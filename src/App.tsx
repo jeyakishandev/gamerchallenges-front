@@ -1,14 +1,15 @@
 
+
+import Header from "./components/Header";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 
-
-import Header from './components/header'
   
 function App() {
   return (
     <>
       {/* plus tard le Header ici */}
+      <Header />
       <main className="home-content">
       <h1 className="joti-title">Prêt à relever le challenge ?</h1>
 
@@ -28,7 +29,7 @@ function App() {
 
       <Footer />
 
-      <Header />
+      
      
     </>
   );

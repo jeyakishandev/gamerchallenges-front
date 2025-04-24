@@ -1,7 +1,7 @@
 import { useState } from "react";
-import logo from "../../assets/logo-transparent.svg";
-import BurgerIcon from "./burgerIcon";
 import "./style.css";
+import logo from "../../assets/logo-transparent.svg";
+import BurgerIcon from "./BurgerIcon";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);

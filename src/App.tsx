@@ -5,7 +5,9 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Leaderboard from "./pages/Leaderboard";
 import Challenge from "./pages/Challenge";
+
 
   
 function App() {
@@ -15,9 +17,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/leaderboard/" element={<Leaderboard />} />
         <Route path="/challenges/"/>
         <Route path="/challenges/:id" element={<Challenge/>}/>
-        <Route path="/leaderbord/" />
         <Route path="/profile/:id" />
       </Routes>
 

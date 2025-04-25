@@ -1,4 +1,6 @@
 
+/* === STYLE GLOBAL === */
+
 body {
   margin: 0;
   padding: 0;
@@ -8,8 +10,7 @@ body {
   color: white;
 }
 
-
-/* ----- SECTION PRINCIPALE ----- */
+/* === BLOC PRINCIPAL (Titre + texte + boutons) === */
 
 .home-content {
   text-align: center;
@@ -21,25 +22,20 @@ body {
 .home-content h1 {
   font-size: 2.2rem;
   margin-bottom: 1rem;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .home-content p {
   font-size: 1.1rem;
   line-height: 1.6;
-  font-weight: 400;
-  font-style: normal;
 }
 
-
-/* ----- BOUTONS CRÉER / PARTICIPER ----- */
+/* === BOUTONS CRÉER / PARTICIPER === */
 
 .home-buttons {
   display: flex;
   justify-content: center;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
@@ -59,8 +55,81 @@ body {
   background-color: #8692FA;
 }
 
+/* === SECTION CARROUSEL (Nouveautés) === */
+
+.carousel-section {
+  margin: 2rem auto;
+  max-width: 1000px;
+  padding: 0 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.skeleton-card {
+  background-color: #6778A7;
+  width: 180px;
+  height: 120px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jura', sans-serif;
+  font-weight: bold;
+}
+
+/* === FLECHES GAUCHE / DROITE === */
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+}
 
 
+/* === SECTION CHALLENGES POPULAIRES === */
+
+.home-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.home-slider-placeholder {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.video-placeholder {
+  min-width: 250px;
+  height: 140px;
+  background-color: #6778A7;
+  border-radius: 6px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* === FOOTER === */
 
 footer {
   margin-top: 4rem;
@@ -78,4 +147,17 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 600px) {
+  .carousel-items {
+    gap: 0.5rem;
+  }
+
+  .skeleton-card {
+    width: 100%;
+    max-width: 280px;
+  }
 }

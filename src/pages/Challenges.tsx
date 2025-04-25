@@ -10,7 +10,7 @@ export default function Challenges() {
                 est efficitur tortor, sit amet rhoncus justo tellus sed erat.
                 Sed hendrerit mauris id velit</h2>
 
-                <button>Créer un challenge</button>
+                <a href="#" className="default-button">Créer un challenge</a>
 
                 <ChallengesDisplay />
         </>

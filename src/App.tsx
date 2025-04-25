@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer/Footer";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
   
 function App() {
@@ -12,7 +13,7 @@ function App() {
       
       <Header />
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<Home/>}/>
         <Route path="/challenges/" />
         <Route path="/challenges/:id" />
         <Route path="/leaderbord/" />

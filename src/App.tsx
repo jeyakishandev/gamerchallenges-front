@@ -6,6 +6,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Leaderboard from "./pages/Leaderboard";
+import Challenge from "./pages/Challenge";
 
 
   
@@ -16,9 +17,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/challenges/" />
-        <Route path="/challenges/:id" />
         <Route path="/leaderboard/" element={<Leaderboard />} />
+        <Route path="/challenges/"/>
+        <Route path="/challenges/:id" element={<Challenge/>}/>
         <Route path="/profile/:id" />
       </Routes>
 

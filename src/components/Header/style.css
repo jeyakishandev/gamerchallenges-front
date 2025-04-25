@@ -22,7 +22,7 @@ a {
     flex-direction: column;
     z-index: 10;
     width: 100px;
-    position: absolute;
+    position: fixed;
     right: 0;
     padding-top: 25rem;
     padding-right: 5rem;

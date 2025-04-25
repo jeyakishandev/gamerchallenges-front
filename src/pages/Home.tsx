@@ -1,3 +1,6 @@
+
+import "./Home.css";
+
 export default function Home () {
     return (
 <main>
@@ -10,9 +13,24 @@ export default function Home () {
         <div className="buttons-flex">
           <button>Créer</button>
           <button>Participer</button>
+
         </div>
-      </main>
-    )
+      </section>
+
+      
+      <section className="carousel-section">
+        <h2>Challenges populaire</h2>
+        <div className="carousel-container">
+        <button className="arrow left">❮</button>
+
+          <div className="carousel-items">
+            <div className="skeleton-card">populaire 1</div>
+            <div className="skeleton-card">populaire 2</div>
+            <div className="skeleton-card">populaire 3</div>
+          </div>
+          <button className="arrow right">❯</button>
+        </div>
+      </section>
+    </main>
+  );
 }
-
-

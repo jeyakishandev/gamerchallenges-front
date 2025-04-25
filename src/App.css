@@ -1,66 +1,63 @@
-
+/* * MOBILE */
 body {
+  font-size: 16px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Joti One', cursive;
-  background: linear-gradient(180deg, #1D083B 0%, #5017A1 100%);
+  background: radial-gradient(#1D083B, #5017A1);
   color: white;
 }
 
-
-/* ----- SECTION PRINCIPALE ----- */
-
-.home-content {
+h1, h2 {
+  font-family: 'Joti One', cursive;
   text-align: center;
-  padding: 4rem 1rem 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
-.home-content h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  font-weight: 400;
-  font-style: normal;
+h1 {
+  font-size: 1.4rem;
+  padding: 4rem 0 1rem;
 }
 
-.home-content p {
+h2 {
   font-size: 1.1rem;
-  line-height: 1.6;
-  font-weight: 400;
-  font-style: normal;
+  padding: 0 0.5rem 1rem;
+}
+
+p, a, button {
+  font-family: 'Jura', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+button {
+  min-width: 10rem;
+  color: white;
+  background-color: #285CEC;
+  padding: 0.8rem 2rem;
+  border: 2px solid #8692FA;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px #8692FA;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #285cecc1;
+}
+
+button:active {
+  box-shadow: 1px 1px 0px black;
+  transform: scale(0.95) translate(5%, 5%);
 }
 
 
-/* ----- BOUTONS CRÉER / PARTICIPER ----- */
-
-.home-buttons {
+/* * DISPLAY FLEX BUTTONS */
+.buttons-flex {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
-
-.home-buttons button {
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #285CEC;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.home-buttons button:hover {
-  background-color: #8692FA;
-}
-
-
-
 
 footer {
   margin-top: 4rem;
@@ -78,4 +75,16 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* * TABLETTE */
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
 }

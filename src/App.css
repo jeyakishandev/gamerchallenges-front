@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: radial-gradient(#1D083B, #5017A1);
+  background: radial-gradient(#5017A1, #1D083B);
   color: white;
 }
 
@@ -50,13 +50,13 @@ h2 {
 
 }
 
-p, a, button {
+p, a, .default-button {
   font-family: 'Jura', sans-serif;
   font-size: 1rem;
   font-weight: bold;
 }
 
-button {
+.default-button {
   min-width: 10rem;
   color: white;
   background-color: #285CEC;
@@ -67,10 +67,15 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.default-button:hover {
   background-color: #285cecc1;
 }
 
+
+.default-button:active {
+  box-shadow: 1px 1px 0px black;
+  transform: scale(0.95) translate(5%, 5%);
+}
 
 /* === SECTION CARROUSEL (Nouveautés) === */
 
@@ -120,12 +125,6 @@ button:hover {
   cursor: pointer;
   padding: 0.5rem;
 }
-
-button:active {
-  box-shadow: 1px 1px 0px black;
-  transform: scale(0.95) translate(5%, 5%);
-}
-
 
 /* === SECTION CHALLENGES POPULAIRES === */
 

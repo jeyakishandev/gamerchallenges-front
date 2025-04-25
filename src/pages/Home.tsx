@@ -36,7 +36,7 @@ export default function Home() {
 
       
       <section className="carousel-section">
-        <h2>Challenges Populaires</h2>
+        <h2>Challenges populaire</h2>
         <div className="carousel-container">
         <button className="arrow left">❮</button>
 

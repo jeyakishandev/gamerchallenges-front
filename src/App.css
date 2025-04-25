@@ -13,8 +13,6 @@ body {
 
 /* === BLOC PRINCIPAL (Titre + texte + boutons) === */
 
-.home-content {
-
 h1, h2 {
   font-family: 'Joti One', cursive;
 
@@ -25,6 +23,7 @@ h1, h2 {
 .home-content h1 {
   font-size: 2.2rem;
   margin-bottom: 1rem;
+}
 
 h1 {
   font-size: 1.4rem;
@@ -194,6 +193,8 @@ footer a:hover {
   .skeleton-card {
     width: 100%;
     max-width: 280px;
+  }
+}
 
 /* * TABLETTE */
 

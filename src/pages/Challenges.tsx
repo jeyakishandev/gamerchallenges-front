@@ -1,4 +1,4 @@
-import ChallengesDisplay from "../components/ChallengesDisplay";
+import ChallengesCards from "../components/ChallengesCards";
 
 export default function Challenges() {
 
@@ -12,7 +12,7 @@ export default function Challenges() {
 
                 <a href="#" className="default-button">Créer un challenge</a>
 
-                <ChallengesDisplay />
+                <ChallengesCards/>
         </>
     )
     

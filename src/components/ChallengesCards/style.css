@@ -1,0 +1,38 @@
+.cards-container {
+    margin-top: 3rem;
+    text-align: center;
+    /*width: auto;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 25rem);
+    gap: 20px 30px;
+    justify-content: center;
+    
+   
+}
+
+.card {
+    background: radial-gradient(#3f117e, #6e21d8);
+    width: 100%;
+    height: 20rem;
+    
+}
+
+.card-video {
+    object-fit: cover;
+}
+
+.card-tags {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card-tags p {
+    font-size: 12px;
+}
+
+.card-details {
+    bottom: 0;
+}

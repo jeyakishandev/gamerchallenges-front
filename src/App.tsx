@@ -6,6 +6,10 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import {Challenge} from "./components/Challenge/Challenge";
+import Challenges from "./pages/Challenges";
+import Leaderboard from "./pages/Leaderboard";
+import Challenge from "./pages/Challenge";
+
 
   
 function App() {
@@ -15,9 +19,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/challenges/"/>
+        <Route path="/challenges/" element={<Challenges />}/>
         <Route path="/challenges/:id" element={<Challenge/>}/>
-        <Route path="/leaderbord/" />
+        <Route path="/leaderboard/" element={<Leaderboard />} />
         <Route path="/profile/:id" />
       </Routes>
 

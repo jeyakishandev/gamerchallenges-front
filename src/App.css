@@ -1,4 +1,6 @@
+
 /* * MOBILE */
+
 body {
   font-size: 16px;
   margin: 0;
@@ -8,22 +10,47 @@ body {
   color: white;
 }
 
+
+/* === BLOC PRINCIPAL (Titre + texte + boutons) === */
+
 h1, h2 {
   font-family: 'Joti One', cursive;
+
   text-align: center;
+}
+
+
+.home-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
   font-size: 1.4rem;
   padding: 4rem 0 1rem;
+
 }
 
 h2 {
   font-size: 1.1rem;
-  padding: 0 0.5rem 1rem;
+
+  line-height: 1.6;
 }
 
-p, a, button, span {
+/* === BOUTONS CRÉER / PARTICIPER === */
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  padding: 0 0.5rem 1rem;
+
+}
+
+p, a, .default-button {
   font-family: 'Jura', sans-serif;
   font-size: 1rem;
   font-weight: bold;
@@ -40,15 +67,91 @@ p, a, button, span {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.default-button:hover {
   background-color: #285cecc1;
 }
 
-button:active {
+
+.default-button:active {
   box-shadow: 1px 1px 0px black;
   transform: scale(0.95) translate(5%, 5%);
 }
 
+/* === SECTION CARROUSEL (Nouveautés) === */
+
+.carousel-section {
+  margin: 2rem auto;
+  max-width: 1000px;
+  padding: 0 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.skeleton-card {
+  background-color: #6778A7;
+  width: 180px;
+  height: 120px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jura', sans-serif;
+  font-weight: bold;
+}
+
+/* === FLECHES GAUCHE / DROITE === */
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* === SECTION CHALLENGES POPULAIRES === */
+
+
+.home-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.home-slider-placeholder {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.video-placeholder {
+  min-width: 250px;
+  height: 140px;
+  background-color: #6778A7;
+  border-radius: 6px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* === FOOTER === */
 
 /* * DISPLAY FLEX BUTTONS */
 .buttons-flex {
@@ -58,6 +161,7 @@ button:active {
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
+
 
 footer {
   margin-top: 4rem;
@@ -77,6 +181,20 @@ footer a:hover {
   text-decoration: underline;
 }
 
+
+/* === RESPONSIVE === */
+
+@media (max-width: 600px) {
+  .carousel-items {
+    gap: 0.5rem;
+  }
+
+  .skeleton-card {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
 /* * TABLETTE */
 
 @media screen and (min-width: 768px) {
@@ -86,6 +204,7 @@ footer a:hover {
 
   h2 {
     font-size: 1.3rem;
+
   }
 
 }

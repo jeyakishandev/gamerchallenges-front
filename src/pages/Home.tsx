@@ -14,8 +14,8 @@ export default function Home () {
               Postez vos vidéos, défiez les autres, et grimpez au sommet.
             </h2>
             <div className="buttons-flex">
-              <button>Créer</button>
-              <button>Participer</button>
+              <button className="default-button">Créer</button>
+              <button className="default-button">Participer</button>
 
             </div>
           </section>

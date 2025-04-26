@@ -36,7 +36,7 @@ export default function Header() {
             
 
             <ul className={`navbar${menuOpen ? " open" : ""}`}>
-                <li><Link to="/">Accueil</Link></li>
+                <li><NavLink to="/">Accueil</NavLink></li>
                 <li><NavLink to="/challenges">Challenges</NavLink></li>
                 <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
                 <li className="mobile-only"><a href="#">Se connecter</a></li>                

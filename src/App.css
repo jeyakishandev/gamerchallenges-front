@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: radial-gradient(#1D083B, #5017A1);
+  background: radial-gradient(#5017A1, #1D083B);
   color: white;
 }
 
@@ -23,13 +23,13 @@ h2 {
   padding: 0 0.5rem 1rem;
 }
 
-p, a, button {
+p, a, button, span {
   font-family: 'Jura', sans-serif;
   font-size: 1rem;
   font-weight: bold;
 }
 
-button {
+.default-button {
   min-width: 10rem;
   color: white;
   background-color: #285CEC;
@@ -87,4 +87,14 @@ footer a:hover {
   h2 {
     font-size: 1.3rem;
   }
+
+}
+
+/* * DESKTOP */
+@media screen and (min-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1360px) {
+  
 }

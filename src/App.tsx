@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Challenge from "./pages/Challenge";
+import {Challenge} from "./components/Challenge/Challenge";
 
   
 function App() {

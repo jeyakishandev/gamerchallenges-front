@@ -8,7 +8,6 @@ import Home from "./pages/Home";
 import {Challenge} from "./components/Challenge/Challenge";
 import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
-import Challenge from "./pages/Challenge";
 
 
   

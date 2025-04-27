@@ -2,7 +2,12 @@
 
 .challenge-content {
   border: 1px solid #8692FA;
-  background-color: radial-gradient( var(--color--secondary), var(--color--primary));
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
   border-radius: 10px;
   padding: 2rem 1rem;
   margin: 2rem;
@@ -67,7 +72,12 @@
 .challenge-participation-container {
   border: 2px solid #8692FA;
   border-radius: 10px;
-  background-color: radial-gradient( var(--color--secondary), var(--color--primary));
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
   padding: 0 1rem 2rem;
   margin: 0 2rem 2rem;
   display: flex;

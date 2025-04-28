@@ -1,3 +1,5 @@
+export type IChallenges = IChallenge[];
+
 export interface IChallenge {
   id: number;
   name: string;

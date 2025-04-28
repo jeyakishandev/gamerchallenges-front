@@ -1,6 +1,20 @@
-import ChallengesCard from "../components/ChallengesCard";
+import { useEffect, useState } from "react";
+import { IChallenges } from "../@types";
 import "./Challenges.css";
+import { getChallenges } from "../api";
+import ChallengesCard from "../components/ChallengesCard";
+
+
 export default function Challenges() {
+    const [challenges, setChallenges] = useState<IChallenges>([]);
+
+    useEffect(() => {
+        const loadData = async () => {
+            const newChallenges = await getChallenges();
+            setChallenges(newChallenges);
+        };
+        loadData();
+    }, [])
     
     return (
         <main>
@@ -15,7 +29,10 @@ export default function Challenges() {
                 </div> 
 
                 <div className="cards-container">
-                <ChallengesCard />
+                    {challenges.map((challenge) => {
+                        return <ChallengesCard key={challenge.id} challenge={challenge} />
+                    })}
+                
                 </div>
                 
                 

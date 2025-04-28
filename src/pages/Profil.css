@@ -17,15 +17,6 @@
     gap: 1rem; /* Optionnel : espace entre les sections */
 }
 
-/* Challenge en cours */
-
-.current-chall-flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px; 
-}
-
 .arrow {
     background: none;
     border: none;
@@ -35,16 +26,24 @@
     transition: background 0.2s;
 }
 
+.arrow:hover {
+    color: #007bff;
+}
+
+/* Challenge en cours */
+
+.current-chall-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px; 
+}
+
 .current-chall-list {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
 }
-
-.arrow:hover {
-    color: #007bff;
-}
-
 
 .current-chall-box {
     display: column;
@@ -69,25 +68,11 @@
     gap: 24px; /* Espace entre les éléments */
 }
 
-.arrow {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 8px 16px;
-    transition: background 0.2s;
-}
-
 .completed-chall-list {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
 }
-
-.arrow:hover {
-    color: #007bff;
-}
-
 
 .completed-chall-box {
     display: column;
@@ -112,25 +97,11 @@
     gap: 24px; /* Espace entre les éléments */
 }
 
-.arrow {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    padding: 8px 16px;
-    transition: background 0.2s;
-}
-
 .created-chall-list {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
 }
-
-.arrow:hover {
-    color: #007bff;
-}
-
 
 .created-chall-box {
     display: column;

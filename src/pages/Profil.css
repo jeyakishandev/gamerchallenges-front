@@ -136,33 +136,38 @@
 
 @media screen and (min-width: 350px) and (max-width: 450px) {
     .current-chall-flex {
-        padding-left: 5rem;
+        padding-left: 1rem;
     }
 
     .completed-chall-flex {
-        padding-left: 5rem;
+        padding-left: 1rem;
     }
 
     .created-chall-flex {
-        padding-left: 5rem;
+        padding-left: 1rem;
     }
 }
 
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 450px) and (max-width: 700px) {
     .current-chall-flex {
-        padding-left: 4rem;
+        padding-left: 1rem;
     }
 
     .completed-chall-flex {
-        padding-left: 4rem;
+        padding-left: 1rem;
     }
 
     .created-chall-flex {
-        padding-left: 4rem;
+        padding-left: 1rem;
     }
 }
 
 @media screen and (max-width: 700px) {
+    .current-chall-title {
+        text-align: center;
+        padding-left: 10px;
+    }
+
     .current-chall-pres {
         display: flex;
         flex-direction: column; /* Place les enfants en colonne (verticalement) */
@@ -171,6 +176,11 @@
 
     .current-chall-box {
         height: 25rem;
+        padding: 5px;
+    }
+
+    .completed-chall-title {
+        text-align: center;
     }
 
     .completed-chall-pres {
@@ -181,6 +191,11 @@
 
     .completed-chall-box {
         height: 25rem;
+        padding: 5px;
+    }
+
+    .created-chall-title {
+        text-align: center;
     }
 
     .created-chall-pres {
@@ -191,6 +206,7 @@
 
     .created-chall-box {
         height: 25rem;
+        padding: 5px;
     }
 }
 

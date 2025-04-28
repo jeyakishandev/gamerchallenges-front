@@ -32,6 +32,7 @@
     background: radial-gradient( var(--color--secondary), var(--color--primary));
     padding-right: 2.5rem;
     border-radius: 5px;
+    box-shadow: 2px 2px 6px #8692FA;
 }
 
 .list-chall li {
@@ -54,6 +55,7 @@
     background: radial-gradient( var(--color--secondary), var(--color--primary));
     padding-right: 2.5rem;
     border-radius: 5px;
+    box-shadow: 2px 2px 6px #8692FA;
 }
 
 .list-players li {

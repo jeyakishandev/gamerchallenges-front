@@ -1,4 +1,9 @@
 /* Page CLASSEMENT */
+:root {
+    --color--primary: #3f117e;
+    --color--secondary: #6e21d8;
+  }
+
 .lead-content {
     text-align: center;
     padding: 4rem 1rem 2rem;
@@ -24,9 +29,10 @@
 }
 
 .list-chall {
-    background: linear-gradient(180deg, #3f117e 0%, #6e21d8 100%);
+    background: radial-gradient( var(--color--secondary), var(--color--primary));
     padding-right: 2.5rem;
     border-radius: 5px;
+    box-shadow: 2px 2px 6px #8692FA;
 }
 
 .list-chall li {
@@ -46,9 +52,10 @@
 /* Boîtes contenant les classements (joueurs) */
 
 .list-players {
-    background: linear-gradient(180deg, #3f117e 0%, #6e21d8 100%);
+    background: radial-gradient( var(--color--secondary), var(--color--primary));
     padding-right: 2.5rem;
     border-radius: 5px;
+    box-shadow: 2px 2px 6px #8692FA;
 }
 
 .list-players li {
@@ -86,4 +93,47 @@
     }
 }
 
+@media screen and (min-width: 700px) and (max-width: 767px) {
+    .lead-boxes {
+        padding-left: 5.5rem;
+        padding-right: 5.5rem;
+    }
+}
+
 /* Responsive TABLETTE / DESKTOP */
+
+@media screen and (min-width: 768px) and (max-width: 900px) {
+    .lead-boxes {
+        justify-content: center;
+        gap: 40px;
+        display: flex;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .best-challenges {
+        width: 40rem;
+    }
+
+    .best-players {
+        width: 40rem;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .lead-boxes {
+        justify-content: center;
+        gap: 80px;
+        display: flex;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+
+    .best-challenges {
+        width: 40rem;
+    }
+
+    .best-players {
+        width: 40rem;
+    }
+}

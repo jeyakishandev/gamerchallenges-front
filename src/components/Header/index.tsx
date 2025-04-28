@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.css";
 import logo from "../../assets/logo-transparent.svg";
 import BurgerIcon from "./BurgerIcon";
+import { NavLink, Link } from "react-router-dom";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false); // Menu burger fermé par défaut.
@@ -28,16 +29,16 @@ export default function Header() {
     return (
         <header className="header">
             <div className="logo">
-                <a href="#">
+                <Link to="/">
                     <img src={logo} alt="Logo Gamer Challenges" />
-                </a>
+                </Link>
             </div>
             
 
             <ul className={`navbar${menuOpen ? " open" : ""}`}>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Challenges</a></li>
-                <li><a href="#">Classement</a></li>
+                <li><NavLink to="/">Accueil</NavLink></li>
+                <li><NavLink to="/challenges">Challenges</NavLink></li>
+                <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
                 <li className="mobile-only"><a href="#">Se connecter</a></li>                
             </ul>
 

@@ -11,6 +11,7 @@ export default function Home() {
     }
   };
 
+
   // Scroll vers la droite
   const scrollRight = (id: string) => {
     const container = document.getElementById(id);
@@ -75,5 +76,7 @@ export default function Home() {
         </div>
       </section>
     </main>
+
+
   );
 }

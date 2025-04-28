@@ -38,6 +38,23 @@ export default function Profil() {
 
                         </section>
 
+                        {/* <section className="current-chall-box">
+
+                            <section className="video">
+                                <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                            </section>
+
+                            <section className="current-chall-info">
+                                <p className="current-chall-name">Nom du challenge</p>
+                                <p className="current-chall-tag">Catégorie</p>
+                                <p className="current-chall-diff">Difficulté</p>
+                                <p className="current-chall-submission">Nombre de participants</p>
+                            </section>
+
+                            <a href="#" className="default-button card-details">Détails</a>
+
+                        </section> */}
+
                         <button className="arrow right">❯</button>
                     </article>
 

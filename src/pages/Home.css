@@ -97,6 +97,13 @@
   padding: 0 0.5rem;
 }
 
+.formulaire-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
 /* === RESPONSIVE MOBILE === */
 @media (max-width: 768px) {
   .carousel-items {

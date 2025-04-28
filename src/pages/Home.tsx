@@ -1,6 +1,7 @@
 import "./Home.css";
 import "../App.css";
-
+import { useState } from "react";
+import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
 export default function Home() {
   // Scroll vers la gauche
   const scrollLeft = (id: string) => {
@@ -17,7 +18,7 @@ export default function Home() {
       container.scrollBy({ left: 250, behavior: "smooth" });
     }
   };
-
+  const [afficherFormulaire, setAfficherFormulaire] = useState(false);
   return (
     <main>
       <section className="home-content">
@@ -26,11 +27,20 @@ export default function Home() {
           Montrez-nous ce que vous avez dans le ventre !<br />
           Postez vos vidéos, défiez les autres, et grimpez au sommet.
         </p>
+
         <div className="home-buttons">
-          <button>Créer</button>
+          <button onClick={() => setAfficherFormulaire(true)}>Créer</button>
           <button>Participer</button>
         </div>
       </section>
+
+      {/* Formulaire affiché uniquement si on clique sur Créer */}
+      {afficherFormulaire && (
+        <section className="formulaire-section">
+          <FormulaireChallenge />
+        </section>
+      )}
+
 
       <section className="carousel-section">
         <h2>Nouveauté</h2>

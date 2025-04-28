@@ -1,161 +1,139 @@
-/* === GENERAL === */
 
+/* Contenu principal */
 .home-content {
-    text-align: center;
-    padding: 4rem 1rem 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .home-content h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Joti One', cursive;
-  }
-  
-  .home-content p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Jura', sans-serif;
-  }
-  
-  /* === BOUTONS === */
-  
-  .home-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-  }
-  
-  .home-buttons button {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #285CEC;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home-buttons button:hover {
-    background-color: #8692FA;
-  }
-  
-  /* === SECTION NOUVEAUTÉS === */
-  
-  .carousel-section {
-    margin-top: 4rem;
-  }
-  
-  .carousel-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    position: relative;
-  }
-  
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Titre principal */
+.home-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Joti One', cursive;
+}
+
+/* Paragraphe description */
+.home-content p {
+  font-size: 1.2rem;
+  font-family: 'Joti One', cursive; 
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Boutons Créer / Participer */
+.buttons-flex {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.home-buttons button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #285CEC;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-buttons button:hover {
+  background-color: #8692FA;
+}
+
+/* === SECTIONS CAROUSELS === */
+
+.carousel-section {
+  margin-top: 4rem;
+  position: relative;
+  text-align: center;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 1rem;
+  padding: 0 2rem;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.skeleton-card {
+  flex: 0 0 auto;
+  background-color: #6778A7;
+  width: 250px;
+  height: 140px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  scroll-snap-align: start;
+  font-family: 'Jura', sans-serif;
+}
+
+/* Flèches */
+.arrow {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.arrow.left {
+  left: 0;
+  margin-left: 20px;
+}
+
+.arrow.right {
+  right: 0;
+  margin-right: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
   .carousel-items {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 1rem 0;
+    gap: 0.5rem;
+    padding: 1rem;
   }
-  
+
   .skeleton-card {
-    flex: 0 0 auto;
-    background-color: #6778A7;
-    width: 250px;
-    height: 140px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    scroll-snap-align: center;
-    font-family: 'Jura', sans-serif;
+    width: 100%;
+    max-width: 280px;
   }
-  
-  /* Flèches gauche/droite */
+
   .arrow {
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    z-index: 10;
+    font-size: 1.8rem;
   }
-  
-  .arrow.left {
-    margin-right: -1rem;
-  }
-  
-  .arrow.right {
-    margin-left: -1rem;
-  }
-  
-  /* === SECTION CHALLENGES POPULAIRES === */
-  
-  .home-section {
-    text-align: center;
-    margin: 3rem auto;
-    max-width: 1000px;
-    padding: 0 1rem;
-  }
-  
-  .popular-grid {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
-  
-  .video-placeholder {
-    background-color: #6778A7;
-    width: 250px;
-    height: 140px;
-    border-radius: 8px;
-    flex: 1 1 250px;
-  }
-  
-  /* === RESPONSIVE === */
-  
-  @media (max-width: 768px) {
-    .carousel-items {
-      gap: 0.5rem;
-      padding: 1rem;
-    }
-  
-    .skeleton-card {
-      width: 100%;
-      max-width: 280px;
-    }
-  
-    .arrow {
-      font-size: 1.8rem;
-    }
-  
-    .popular-grid {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .video-placeholder {
-      width: 90%;
-    }
-  }
+}
+
+
   

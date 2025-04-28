@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 /* * MOBILE */
 
 body {
@@ -53,6 +54,40 @@ h2 {
 
 p, a, button {
   font-family: 'Jura', sans-serif;
+=======
+/* === RESET GLOBAL === */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === BODY GLOBAL === */
+
+body {
+  font-family: 'Jura', sans-serif;
+  background: linear-gradient(180deg, #1D083B 0%, #5017A1 100%);
+  color: white;
+  min-height: 100vh;
+}
+
+/* === LIENS === */
+
+a {
+  color: #8692FA;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === BOUTONS GÉNÉRIQUES === */
+
+.default-button {
+  padding: 0.8rem 2rem;
+>>>>>>> make function of scrool left and right
   font-size: 1rem;
   font-weight: bold;
 }
@@ -68,6 +103,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
+<<<<<<< HEAD
 button:hover {
   background-color: #285cecc1;
 }
@@ -153,6 +189,12 @@ button:active {
   flex-shrink: 0;
 }
 
+=======
+.default-button:hover {
+  background-color: #8692FA;
+}
+
+>>>>>>> make function of scrool left and right
 /* === FOOTER === */
 
 /* * DISPLAY FLEX BUTTONS */
@@ -183,6 +225,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
 
 /* === RESPONSIVE === */
 
@@ -205,5 +248,14 @@ footer a:hover {
   h2 {
     font-size: 1.3rem;
 
+=======
+/* === RESPONSIVE GLOBAL === */
+
+@media (max-width: 768px) {
+  .default-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+>>>>>>> make function of scrool left and right
   }
 }
+

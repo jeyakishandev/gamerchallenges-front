@@ -9,6 +9,9 @@ import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
 import { ChallengePage } from "./pages/Challenge";
 import Profil from "./pages/Profil";
+import { Challenge } from "./pages/Challenge";
+import { Connection } from "./pages/Connexion";
+
 
 
   
@@ -20,9 +23,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/challenges/" element={<Challenges />}/>
-        <Route path="/challenges/:id" element={<ChallengePage/>}/>
+        <Route path="/challenges/:id" element={<Challenge/>}/>
         <Route path="/leaderboard/" element={<Leaderboard />} />
-        <Route path="/profile/:id" element={<Profil />}/>
+        <Route path="/connection/" element={<Connection />} />
+        <Route path="/profile/:id" />
       </Routes>
 
       <Footer />

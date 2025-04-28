@@ -1,161 +1,125 @@
-/* === GENERAL === */
 
+/* === HOME CONTENT === */
 .home-content {
-    text-align: center;
-    padding: 4rem 1rem 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .home-content h1 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Joti One', cursive;
-  }
-  
-  .home-content p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    font-weight: 400;
-    font-style: normal;
-    font-family: 'Jura', sans-serif;
-  }
-  
-  /* === BOUTONS === */
-  
-  .home-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-  }
-  
-  .home-buttons button {
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #285CEC;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .home-buttons button:hover {
-    background-color: #8692FA;
-  }
-  
-  /* === SECTION NOUVEAUTÉS === */
-  
-  .carousel-section {
-    margin-top: 4rem;
-  }
-  
-  .carousel-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    position: relative;
-  }
-  
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.home-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Joti One', cursive;
+}
+
+.home-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  font-family: 'Joti One', cursive;
+}
+
+/* === BOUTONS === */
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.default-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #285CEC;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.default-button:hover {
+  background-color: #8692FA;
+}
+
+/* === CAROUSEL SECTIONS === */
+.carousel-section {
+  margin-top: 4rem;
+}
+.carousel-section h2 {
+  margin-bottom: 1.5rem; 
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.skeleton-card {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 140px;
+  background-color: #6778A7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  font-family: 'Jura', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+/* === ARROWS (FLÈCHES) === */
+.arrow {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 0.5rem;
+}
+
+.formulaire-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+/* === RESPONSIVE MOBILE === */
+@media (max-width: 768px) {
   .carousel-items {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 1rem 0;
+    gap: 0.5rem;
   }
-  
+
   .skeleton-card {
-    flex: 0 0 auto;
-    background-color: #6778A7;
-    width: 250px;
-    height: 140px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    scroll-snap-align: center;
-    font-family: 'Jura', sans-serif;
+    width: 100%;
+    max-width: 280px;
   }
-  
-  /* Flèches gauche/droite */
+
   .arrow {
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    z-index: 10;
+    font-size: 1.8rem;
   }
-  
-  .arrow.left {
-    margin-right: -1rem;
-  }
-  
-  .arrow.right {
-    margin-left: -1rem;
-  }
-  
-  /* === SECTION CHALLENGES POPULAIRES === */
-  
-  .home-section {
-    text-align: center;
-    margin: 3rem auto;
-    max-width: 1000px;
-    padding: 0 1rem;
-  }
-  
-  .popular-grid {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-  }
-  
-  .video-placeholder {
-    background-color: #6778A7;
-    width: 250px;
-    height: 140px;
-    border-radius: 8px;
-    flex: 1 1 250px;
-  }
-  
-  /* === RESPONSIVE === */
-  
-  @media (max-width: 768px) {
-    .carousel-items {
-      gap: 0.5rem;
-      padding: 1rem;
-    }
-  
-    .skeleton-card {
-      width: 100%;
-      max-width: 280px;
-    }
-  
-    .arrow {
-      font-size: 1.8rem;
-    }
-  
-    .popular-grid {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .video-placeholder {
-      width: 90%;
-    }
-  }
+}
+
+
+
   

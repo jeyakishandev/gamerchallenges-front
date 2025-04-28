@@ -1,15 +1,25 @@
 
-/* * MOBILE */
+/* === RESET GLOBAL === */
 
-body {
-  font-size: 16px;
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
   background: radial-gradient(#5017A1, #1D083B);
   color: white;
+
 }
 
+/* === BODY GLOBAL === */
+
+
+body {
+  font-family: 'Jura', sans-serif;
+  background: linear-gradient(180deg, #1D083B 0%, #5017A1 100%);
+  color: white;
+  min-height: 100vh;
 
 /* === BLOC PRINCIPAL (Titre + texte + boutons) === */
 
@@ -17,8 +27,15 @@ h1, h2 {
   font-family: 'Joti One', cursive;
 
   text-align: center;
+
 }
 
+/* === LIENS === */
+
+
+a {
+  color: #8692FA;
+  text-decoration: none;
 
 .home-content h1 {
   font-size: 2.2rem;
@@ -29,29 +46,24 @@ h1 {
   font-size: 1.4rem;
   padding: 4rem 0 1rem;
 
+
 }
 
-h2 {
-  font-size: 1.1rem;
-
-  line-height: 1.6;
+a:hover {
+  text-decoration: underline;
 }
 
-/* === BOUTONS CRÉER / PARTICIPER === */
+/* === BOUTONS GÉNÉRIQUES === */
 
-.home-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
 
-  padding: 0 0.5rem 1rem;
+.default-button {
+  padding: 0.8rem 2rem;
 
 }
 
 p, a, .default-button {
   font-family: 'Jura', sans-serif;
+
   font-size: 1rem;
   font-weight: bold;
 }
@@ -68,6 +80,9 @@ p, a, .default-button {
 }
 
 .default-button:hover {
+
+  background-color: #8692FA;
+
   background-color: #285cecc1;
 }
 
@@ -149,6 +164,273 @@ p, a, .default-button {
   border-radius: 6px;
   scroll-snap-align: start;
   flex-shrink: 0;
+
+}
+
+/* * CHALLENGE  MOBILE SECTION */
+
+.challenge-content {
+  border: 1px solid #8692FA;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  margin: 2rem;
+}
+
+.challenge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container {
+  width: 90%;
+}
+
+.challenge-cat-and-diff {
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.challenge-cat-and-diff span, .participation-info span {
+  border: 2px solid #8692FA;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px #8692FA;
+  padding: 0.1rem 1rem;
+}
+
+.challenge-cat-and-diff span {
+  margin: 2rem 0 0 1rem;
+}
+
+.category-color {
+  background-color: #EC9E28;
+}
+
+.difficulty-color {
+  background-color: #EC3C28;
+}
+
+.challenge-description {
+  border: 1px solid #8692FA;
+  padding: 0 1rem;
+  margin: 1rem 1rem;
+}
+
+.align-button {
+  width: 100%;
+  text-align: center;
+}
+
+/* * PARTICIPATION SECTION */
+
+.challenge-participations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.challenge-participation-container {
+  border: 2px solid #8692FA;
+  border-radius: 10px;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.participation-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.participation-info span {
+  margin: 1rem 0 2rem;
+  background-color: #285CEC;
+}
+
+@media screen and (min-width: 400px) {
+  .challenge-participation-container {
+    width: 100%;
+  }
+}
+
+/* * CHALLENGE TABLETTE SECTION */
+
+@media screen and (min-width: 768px) {
+  .challenge-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .challenge-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+  }
+
+  .challenge-cat-and-diff span {
+    margin-top: 0;
+  }
+
+  .video-container {
+    width: 45%;
+    height: 100%;
+  }
+
+  .align-button {
+    margin-top: 2rem;
+  }
+
+  .challenge-participation-container {
+    width: 40%;
+    margin: 1rem 0;
+  }
+}
+
+/* * CHALLENGE DESKTOP SECTION */
+
+@media screen and (min-width: 1024px) {
+
+  .challenge-title {
+    margin: 4rem 0;
+  }
+
+  .challenge-content {
+    padding-top: 4rem;
+    width: 70%;
+    margin: auto;
+  }
+  .challenge-description {
+    margin-bottom: 0;
+    margin-top: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .video-container {
+    margin-left: 1rem;
+  }
+
+  .challenge-participations {
+    width: 90%;
+    margin: auto;
+  }
+
+  .challenge-participation-container {
+    width: 30%;
+    margin: 1rem 0.5rem;
+  }
+
+  .challenge-cat-and-diff {
+    margin-bottom: 1rem;
+  }
+}
+
+  /* * CONNECTION PAGE MOBILE DISPLAY */
+
+.paragraph-center {
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form, .login-form {
+  border-radius: 10px;
+  border: 1px solid #8692FA;
+    padding: 0 1rem 2rem;
+  margin: 0 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form form, .login-form form { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form input, .login-form input {
+  height: 1.2rem;
+  width: 80%;
+  margin: 1rem;
+  border-radius: 5px;
+  background-color: #5017A1;
+  color: white;
+}
+
+.signup-form input::placeholder, .login-form input::placeholder {
+  color: white;
+}
+
+.form-button {
+  padding: 0.5rem 2rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+}
+
+/* * CONNECTION PAGE TABLETTE DISPLAY */
+
+@media screen and (min-width: 768px) {
+  .form-container {
+    width: 70%;
+    margin: auto;
+  }
+
+  .form-button {
+    margin: 1rem 0.5rem 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .form-container {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .login-form {
+    height: 19rem;
+  }
+
+  .form-button {
+    margin: 1rem 0.5rem 1.5rem;
+  }
+
+  .signup-form, .login-form {
+    width: 40%;
+  }
+
+  .signup-form input, .login-form input {
+    height: 2rem;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .form-container {
+    max-width: 80%;
+  }
 }
 
 /* === FOOTER === */
@@ -181,6 +463,13 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* === RESPONSIVE GLOBAL === */
+
+
+@media (max-width: 768px) {
+  .default-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
 
 /* === RESPONSIVE === */
 
@@ -205,6 +494,7 @@ footer a:hover {
   h2 {
     font-size: 1.3rem;
 
+
   }
 
 }
@@ -217,3 +507,4 @@ footer a:hover {
 @media screen and (min-width: 1360px) {
   
 }
+

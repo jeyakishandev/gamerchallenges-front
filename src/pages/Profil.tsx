@@ -34,6 +34,8 @@ export default function Profil() {
                                 <p className="current-chall-submission">Nombre de participants</p>
                             </section>
 
+                            <a href="#" className="default-button card-details">Détails</a>
+
                         </section>
 
                         <button className="arrow right">❯</button>
@@ -57,6 +59,9 @@ export default function Profil() {
                                 <p className="completed-chall-submission">Nombre de participants</p>
                             </section>
 
+                            <a href="#" className="default-button card-details">Détails</a>
+
+
                         </section>
 
                         <button className="arrow right">❯</button>
@@ -79,6 +84,8 @@ export default function Profil() {
                                 <p className="created-chall-diff">Difficulté</p>
                                 <p className="created-chall-submission">Nombre de participants</p>
                             </section>
+
+                            <a href="#" className="default-button card-details">Détails</a>
 
                         </section>
 

@@ -34,10 +34,10 @@ export default function Profil() {
                                     </section>
 
                                     <section className="current-chall-info">
-                                        <p className="current-chall-name">Nom du challenge</p>
-                                        <p className="current-chall-tag">Catégorie</p>
-                                        <p className="current-chall-diff">Difficulté</p>
-                                        <p className="current-chall-submission">Nombre de participants</p>
+                                        <p className="chall-name">Nom du challenge</p>
+                                        <p className="chall-tag">Catégorie</p>
+                                        <p className="chall-diff">Difficulté</p>
+                                        <p className="chall-submission">Nombre de participants</p>
                                     </section>
 
                                 </div>
@@ -73,10 +73,10 @@ export default function Profil() {
                                     </section>
 
                                     <section className="completed-chall-info">
-                                        <p className="completed-chall-name">Nom du challenge</p>
-                                        <p className="completed-chall-tag">Catégorie</p>
-                                        <p className="completed-chall-diff">Difficulté</p>
-                                        <p className="completed-chall-submission">Nombre de participants</p>
+                                        <p className="chall-name">Nom du challenge</p>
+                                        <p className="chall-tag">Catégorie</p>
+                                        <p className="chall-diff">Difficulté</p>
+                                        <p className="chall-submission">Nombre de participants</p>
                                     </section>
 
                                 </div>
@@ -88,7 +88,7 @@ export default function Profil() {
                             </div>
 
                         </div>
-                        
+
                         <button className="arrow right">❯</button>
 
                     </div>
@@ -113,10 +113,10 @@ export default function Profil() {
                                     </section>
 
                                     <section className="created-chall-info">
-                                        <p className="created-chall-name">Nom du challenge</p>
-                                        <p className="created-chall-tag">Catégorie</p>
-                                        <p className="created-chall-diff">Difficulté</p>
-                                        <p className="created-chall-submission">Nombre de participants</p>
+                                        <p className="chall-name">Nom du challenge</p>
+                                        <p className="chall-tag">Catégorie</p>
+                                        <p className="chall-diff">Difficulté</p>
+                                        <p className="chall-submission">Nombre de participants</p>
                                     </section>
 
                                 </div>

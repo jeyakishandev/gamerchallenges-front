@@ -1,51 +1,26 @@
-<<<<<<< HEAD
-
-=======
-import { useRef } from "react";
->>>>>>> make function of scrool left and right
 import "./Home.css";
 import "../App.css";
 
-<<<<<<< HEAD
-export default function Home () {
-    return (
-<main>
-      <h1>Prêt à relever le challenge ?</h1>
-
-        <h2>
-          Montrez-nous ce que vous avez dans le ventre !<br />
-          Postez vos vidéos, défiez les autres, et grimpez au sommet.
-        </h2>
-        <div className="buttons-flex">
-          <button>Créer</button>
-          <button>Participer</button>
-
-=======
 export default function Home() {
 
-const nouveauteRef = useRef<HTMLDivElement>(null);
-
-
-const populaireRef = useRef<HTMLDivElement>(null);
-
-// Fonction pour défiler à gauche
-const scrollLeft = (ref: React.RefObject<HTMLDivElement>) => {
-  if (ref.current) {
-    ref.current.scrollBy({ left: -250, behavior: "smooth" });
+  // Fonction pour défiler à gauche
+  function scrollLeft(id: string) {
+    const container = document.getElementById(id);
+    if (container) {
+      container.scrollBy({ left: -250, behavior: "smooth" });
+    }
   }
-};
 
-// Fonction pour défiler à droite
-const scrollRight = (ref: React.RefObject<HTMLDivElement>) => {
-  if (ref.current) {
-    ref.current.scrollBy({ left: 250, behavior: "smooth" });
+  // Fonction pour défiler à droite
+  function scrollRight(id: string) {
+    const container = document.getElementById(id);
+    if (container) {
+      container.scrollBy({ left: 250, behavior: "smooth" });
+    }
   }
-};
-  
-return (
+
+  return (
     <main>
-
-
       <section className="home-content">
         <h1>Prêt à relever le challenge ?</h1>
 
@@ -60,14 +35,12 @@ return (
         </div>
       </section>
 
-      
       <section className="carousel-section">
         <h2>Nouveauté</h2>
         <div className="carousel-container">
-        <button className="arrow left" onClick={() => scrollLeft(nouveauteRef)}>❮</button>
+          <button className="arrow left" onClick={() => scrollLeft("nouveaute")}>❮</button>
 
-          <div className="carousel-items" ref={nouveauteRef}>
-
+          <div id="nouveaute" className="carousel-items">
             <div className="skeleton-card">jeu 1</div>
             <div className="skeleton-card">jeu 2</div>
             <div className="skeleton-card">jeu 3</div>
@@ -76,27 +49,24 @@ return (
             <div className="skeleton-card">jeu 6</div>
           </div>
 
-          <button className="arrow right" onClick={() => scrollRight(nouveauteRef)}>❯</button>
->>>>>>> make function of scrool left and right
+          <button className="arrow right" onClick={() => scrollRight("nouveaute")}>❯</button>
         </div>
       </section>
 
-    
       <section className="carousel-section">
         <h2>Challenges populaire</h2>
         <div className="carousel-container">
-        <button className="arrow left" onClick={() => scrollLeft(populaireRef)}>❮</button>
+          <button className="arrow left" onClick={() => scrollLeft("populaire")}>❮</button>
 
-          <div className="carousel-items" ref={populaireRef}>
+          <div id="populaire" className="carousel-items">
             <div className="skeleton-card">populaire 1</div>
             <div className="skeleton-card">populaire 2</div>
             <div className="skeleton-card">populaire 3</div>
           </div>
 
-          <button className="arrow right" onClick={() => scrollRight(populaireRef)}>❯</button>
+          <button className="arrow right" onClick={() => scrollRight("populaire")}>❯</button>
         </div>
       </section>
-
     </main>
   );
 }

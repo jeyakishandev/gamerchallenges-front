@@ -1,0 +1,29 @@
+
+
+/* Challenge en cours */
+
+.current-chall-list {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+.current-chall-box {
+    display: column;
+    background-color: black;
+}
+
+.current-chall-pres {
+    display: flex;
+    align-items: center; 
+    gap: 1rem;
+}
+
+.default-button {
+    align-items: center;
+}
+
+
+  
+  

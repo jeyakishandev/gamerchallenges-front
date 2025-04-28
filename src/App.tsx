@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
 import { ChallengePage } from "./pages/Challenge";
+import Profil from "./pages/Profil";
 
 
   
@@ -21,7 +22,7 @@ function App() {
         <Route path="/challenges/" element={<Challenges />}/>
         <Route path="/challenges/:id" element={<ChallengePage/>}/>
         <Route path="/leaderboard/" element={<Leaderboard />} />
-        <Route path="/profile/:id" />
+        <Route path="/profile/:id" element={<Profil />}/>
       </Routes>
 
       <Footer />

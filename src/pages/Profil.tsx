@@ -17,15 +17,18 @@ export default function Profil() {
 
                 <div className="perso-chall">
                     
-                    <article className="current-chall">
+                <article className="current-chall">
+                    <h3 className="current-chall-title">Mes challenges en cours</h3>
+
+                    <div className="current-chall-flex">
                         <button className="arrow left">❮</button>
-                        <h3 className="current-chall-title">Mes challenges en cours</h3>
 
                         <div className="current-chall-list">
 
                             <div className="current-chall-box">
 
                                 <div className="current-chall-pres">
+
                                     <section className="video">
                                         <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                                     </section>
@@ -36,31 +39,11 @@ export default function Profil() {
                                         <p className="current-chall-diff">Difficulté</p>
                                         <p className="current-chall-submission">Nombre de participants</p>
                                     </section>
+
                                 </div>
 
-                                <div className="current-chall-button">
-                                    <a href="#" className="default-button card-details">Détails</a>
-                                </div>
-
-                            </div>
-
-                            <div className="current-chall-box">
-
-                                <div className="current-chall-pres">
-                                    <section className="video">
-                                        <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                                    </section>
-
-                                    <section className="current-chall-info">
-                                        <p className="current-chall-name">Nom du challenge</p>
-                                        <p className="current-chall-tag">Catégorie</p>
-                                        <p className="current-chall-diff">Difficulté</p>
-                                        <p className="current-chall-submission">Nombre de participants</p>
-                                    </section>
-                                </div>
-
-                                <div className="current-chall-button">
-                                    <a href="#" className="default-button card-details">Détails</a>
+                                <div className="button-container">
+                                    <a href="#" className="default-button">Détails</a>
                                 </div>
 
                             </div>
@@ -68,59 +51,89 @@ export default function Profil() {
                         </div>
 
                         <button className="arrow right">❯</button>
-                    </article>
 
+                    </div>
 
-                    <article className="completed-chall">
+                </article>
+
+                <article className="completed-chall">
+                    <h3 className="completed-chall-title">Mes challenges en cours</h3>
+
+                    <div className="completed-chall-flex">
                         <button className="arrow left">❮</button>
-                        <h3 className="completed-chall-title">Mes challenges réalisés</h3>
 
-                        <section className="completed-chall-box">
+                        <div className="completed-chall-list">
 
-                            <section className="video">
-                                <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                            </section>
+                            <div className="completed-chall-box">
 
-                            <section className="completed-chall-info">
-                                <p className="completed-chall-name">Nom du challenge</p>
-                                <p className="completed-chall-tag">Catégorie</p>
-                                <p className="completed-chall-diff">Difficulté</p>
-                                <p className="completed-chall-submission">Nombre de participants</p>
-                            </section>
+                                <div className="completed-chall-pres">
 
-                            <a href="#" className="default-button card-details">Détails</a>
+                                    <section className="video">
+                                        <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                                    </section>
+
+                                    <section className="completed-chall-info">
+                                        <p className="completed-chall-name">Nom du challenge</p>
+                                        <p className="completed-chall-tag">Catégorie</p>
+                                        <p className="completed-chall-diff">Difficulté</p>
+                                        <p className="completed-chall-submission">Nombre de participants</p>
+                                    </section>
+
+                                </div>
+
+                                <div className="button-container">
+                                    <a href="#" className="default-button">Détails</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                        <button className="arrow right">❯</button>
+
+                    </div>
+
+                </article>
 
 
-                        </section>
+                <article className="created-chall">
+                    <h3 className="created-chall-title">Mes challenges en cours</h3>
+
+                    <div className="created-chall-flex">
+                        <button className="arrow left">❮</button>
+
+                        <div className="created-chall-list">
+
+                            <div className="created-chall-box">
+
+                                <div className="created-chall-pres">
+
+                                    <section className="video">
+                                        <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                                    </section>
+
+                                    <section className="created-chall-info">
+                                        <p className="created-chall-name">Nom du challenge</p>
+                                        <p className="created-chall-tag">Catégorie</p>
+                                        <p className="created-chall-diff">Difficulté</p>
+                                        <p className="created-chall-submission">Nombre de participants</p>
+                                    </section>
+
+                                </div>
+
+                                <div className="button-container">
+                                    <a href="#" className="default-button">Détails</a>
+                                </div>
+
+                            </div>
+
+                        </div>
 
                         <button className="arrow right">❯</button>
-                    </article>
 
+                    </div>
 
-                    <article className="created-chall">
-                        <button className="arrow left">❮</button>
-                        <h3 className="created-chall-title">Mes challenges crées</h3>
-
-                        <section className="created-chall-box">
-
-                            <section className="video">
-                                <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                            </section>
-
-                            <section className="created-chall-info">
-                                <p className="created-chall-name">Nom du challenge</p>
-                                <p className="created-chall-tag">Catégorie</p>
-                                <p className="created-chall-diff">Difficulté</p>
-                                <p className="created-chall-submission">Nombre de participants</p>
-                            </section>
-
-                            <a href="#" className="default-button card-details">Détails</a>
-
-                        </section>
-
-                        <button className="arrow right">❯</button>
-                    </article>
-
+                </article>
                 </div>
 
             </main>

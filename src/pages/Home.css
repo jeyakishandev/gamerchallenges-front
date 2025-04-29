@@ -1,0 +1,125 @@
+
+/* === HOME CONTENT === */
+.home-content {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.home-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-family: 'Joti One', cursive;
+}
+
+.home-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  font-family: 'Joti One', cursive;
+}
+
+/* === BOUTONS === */
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.default-button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #285CEC;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.default-button:hover {
+  background-color: #8692FA;
+}
+
+/* === CAROUSEL SECTIONS === */
+.carousel-section {
+  margin-top: 4rem;
+}
+.carousel-section h2 {
+  margin-bottom: 1.5rem; 
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.skeleton-card {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 140px;
+  background-color: #6778A7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  font-family: 'Jura', sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+/* === ARROWS (FLÈCHES) === */
+.arrow {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 0.5rem;
+}
+
+.formulaire-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+/* === RESPONSIVE MOBILE === */
+@media (max-width: 768px) {
+  .carousel-items {
+    gap: 0.5rem;
+  }
+
+  .skeleton-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .arrow {
+    font-size: 1.8rem;
+  }
+}
+
+
+
+  

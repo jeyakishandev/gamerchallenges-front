@@ -1,0 +1,87 @@
+
+/*=== Mobile first ===*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.logo {
+    width: 50%;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+.navbar {
+    display: none;
+    
+}
+.navbar.open {
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    width: 100px;
+    position: fixed;
+    right: 0;
+    padding-top: 25rem;
+    padding-right: 5rem;
+    padding-bottom: 3rem;
+    background: linear-gradient(180deg, #1d083b 0%, #5017a1 100%);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); 
+}
+.navbar li {
+    list-style-type: none;
+    padding: 1rem;
+}
+.mobile-only {
+    display: block;
+}
+.desktop-only {
+    display: none;
+}
+.burger { 
+    position: fixed;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 3rem;
+    color: white;
+    
+}
+
+@media screen and (min-width: 768px) { 
+    .burger {
+        display: none;
+    }
+    
+    .logo {
+        width: 25%;
+    }
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 55%;
+        position: static;
+    }
+    .mobile-only {
+        display: none;
+    }
+    .desktop-only {
+        display: block;
+    }
+    .login {
+        padding-right: 2rem;
+        width: 15%;
+        text-align: right;
+    }
+}
+
+

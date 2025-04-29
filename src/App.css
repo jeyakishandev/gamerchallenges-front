@@ -1,42 +1,478 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* * MOBILE */
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: radial-gradient(#5017A1, #1D083B);
+  color: white;
+}
+
+
+/* === BLOC PRINCIPAL (Titre + texte + boutons) === */
+
+h1, h2 {
+  font-family: 'Joti One', cursive;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.home-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+h1 {
+  font-size: 1.4rem;
+  padding: 4rem 0 1rem;
+}
+
+h2 {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* === BOUTONS CRÉER / PARTICIPER === */
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 0 0.5rem 1rem;
+}
+
+p, a, .default-button {
+  font-family: 'Jura', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.default-button {
+  min-width: 10rem;
+  color: white;
+  background-color: #285CEC;
+  padding: 0.8rem 2rem;
+  border: 2px solid #8692FA;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px #8692FA;
+  transition: background-color 0.3s ease;
+}
+
+.default-button:hover {
+  background-color: #285cecc1;
+}
+
+
+.default-button:active {
+  box-shadow: 1px 1px 0px black;
+  transform: scale(0.95) translate(5%, 5%);
+}
+
+/* === SECTION CARROUSEL (Nouveautés) === */
+
+.carousel-section {
+  margin: 2rem auto;
+  max-width: 1000px;
+  padding: 0 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+}
+
+.skeleton-card {
+  background-color: #6778A7;
+  width: 180px;
+  height: 120px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jura', sans-serif;
+  font-weight: bold;
+}
+
+/* === FLECHES GAUCHE / DROITE === */
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* === SECTION CHALLENGES POPULAIRES === */
+
+
+.home-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.home-slider-placeholder {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.video-placeholder {
+  min-width: 250px;
+  height: 140px;
+  background-color: #6778A7;
+  border-radius: 6px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* * CHALLENGE  MOBILE SECTION */
+
+.challenge-content {
+  border: 1px solid #8692FA;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  margin: 2rem;
+}
+
+.challenge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container {
+  width: 90%;
+}
+
+.challenge-cat-and-diff {
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.challenge-cat-and-diff span, .participation-info span {
+  border: 2px solid #8692FA;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px #8692FA;
+  padding: 0.1rem 1rem;
+}
+
+.challenge-cat-and-diff span {
+  margin: 2rem 0 0 1rem;
+}
+
+.category-color {
+  background-color: #EC9E28;
+}
+
+.difficulty-color {
+  background-color: #EC3C28;
+}
+
+.challenge-description {
+  border: 1px solid #8692FA;
+  padding: 0 1rem;
+  margin: 1rem 1rem;
+}
+
+.align-button {
+  width: 100%;
+  text-align: center;
+}
+
+/* * PARTICIPATION SECTION */
+
+.challenge-participations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.challenge-participation-container {
+  border: 2px solid #8692FA;
+  border-radius: 10px;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.participation-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.participation-info span {
+  margin: 1rem 0 2rem;
+  background-color: #285CEC;
+}
+
+@media screen and (min-width: 400px) {
+  .challenge-participation-container {
+    width: 100%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/* * CHALLENGE TABLETTE SECTION */
+
+@media screen and (min-width: 768px) {
+  .challenge-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .challenge-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+  }
+
+  .challenge-cat-and-diff span {
+    margin-top: 0;
+  }
+
+  .video-container {
+    width: 45%;
+    height: 100%;
+  }
+
+  .align-button {
+    margin-top: 2rem;
+  }
+
+  .challenge-participation-container {
+    width: 40%;
+    margin: 1rem 0;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* * CHALLENGE DESKTOP SECTION */
+
+@media screen and (min-width: 1024px) {
+
+  .challenge-title {
+    margin: 4rem 0;
+  }
+
+  .challenge-content {
+    padding-top: 4rem;
+    width: 70%;
+    margin: auto;
+  }
+  .challenge-description {
+    margin-bottom: 0;
+    margin-top: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .video-container {
+    margin-left: 1rem;
+  }
+
+  .challenge-participations {
+    width: 90%;
+    margin: auto;
+  }
+
+  .challenge-participation-container {
+    width: 30%;
+    margin: 1rem 0.5rem;
+  }
+
+  .challenge-cat-and-diff {
+    margin-bottom: 1rem;
   }
 }
 
-.card {
-  padding: 2em;
+  /* * CONNECTION PAGE MOBILE DISPLAY */
+
+.paragraph-center {
+  text-align: center;
 }
 
-.read-the-docs {
-  color: #888;
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form, .login-form {
+  border-radius: 10px;
+  border: 1px solid #8692FA;
+    padding: 0 1rem 2rem;
+  margin: 0 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form form, .login-form form { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form input, .login-form input {
+  height: 1.2rem;
+  width: 80%;
+  margin: 1rem;
+  border-radius: 5px;
+  background-color: #5017A1;
+  color: white;
+}
+
+.signup-form input::placeholder, .login-form input::placeholder {
+  color: white;
+}
+
+.form-button {
+  padding: 0.5rem 2rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+}
+
+/* * CONNECTION PAGE TABLETTE DISPLAY */
+
+@media screen and (min-width: 768px) {
+  .form-container {
+    width: 70%;
+    margin: auto;
+  }
+
+  .form-button {
+    margin: 1rem 0.5rem 0.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .form-container {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .login-form {
+    height: 19rem;
+  }
+
+  .form-button {
+    margin: 1rem 0.5rem 1.5rem;
+  }
+
+  .signup-form, .login-form {
+    width: 40%;
+  }
+
+  .signup-form input, .login-form input {
+    height: 2rem;
+  }
+}
+
+@media screen and (min-width: 1366px) {
+  .form-container {
+    max-width: 80%;
+  }
+}
+
+/* === FOOTER === */
+
+/* * DISPLAY FLEX BUTTONS */
+.buttons-flex {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+
+footer {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+footer a {
+  margin: 0 8px;
+  color: #8692FA;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* === RESPONSIVE === */
+
+@media (max-width: 600px) {
+  .carousel-items {
+    gap: 0.5rem;
+  }
+
+  .skeleton-card {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* * TABLETTE */
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+
+  }
+
+}
+
+/* * DESKTOP */
+@media screen and (min-width: 1024px) {
+
+}
+
+@media screen and (min-width: 1360px) {
+  
 }

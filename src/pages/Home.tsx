@@ -37,10 +37,13 @@ export default function Home() {
 
       {/* Formulaire affiché uniquement si on clique sur Créer */}
       {afficherFormulaire && (
-        <section className="formulaire-section">
-          <FormulaireChallenge />
-        </section>
-      )}
+  <section className="formulaire-section">
+    
+    <FormulaireChallenge onFormSubmit={() => {}} />
+    
+  </section>
+)}
+
 
 
       <section className="carousel-section">

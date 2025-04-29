@@ -402,6 +402,72 @@ p, a, .default-button {
     max-width: 80%;
   }
 }
+/* Formulaire Challenge */
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 80%;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background-color: #5017A1;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid #8692FA;
+}
+
+.form-textarea {
+  height: 5rem;
+  resize: none;
+}
+
+.button-default {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #285CEC;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-default:hover {
+  background-color: #8692FA;
+}
+.formulaire-section {
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #8692FA;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.7) 50%,
+    rgba(103, 30, 205, 0.5) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+  width: 90%;
+  
+  margin: 2rem auto;
+}
+/* CSS de base (mobile d'abord) */
+.formulaire-challenge {
+  max-width: 90%;
+  margin: 2rem auto;
+}
+
+/* Pour les écrans de bureau (desktop) */
+@media screen and (min-width: 1024px) {
+  .formulaire-challenge {
+    max-width: 600px; /* ou plus grand si tu veux */
+  }
+}
+
 
 /* === FOOTER === */
 

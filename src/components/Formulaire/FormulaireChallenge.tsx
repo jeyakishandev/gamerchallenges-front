@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../../App.css";
 
-export default function FormulaireChallenge() {
+interface FormulaireChallengeProps {
+  onFormSubmit: () => void;
+}
+
+export default function FormulaireChallenge({ onFormSubmit }: FormulaireChallengeProps) {
   const navigate = useNavigate();
 
-  // Données simulées
   const categories = ["Action", "Aventure", "Puzzle"];
   const difficultes = ["Facile", "Moyen", "Difficile"];
 
-  // États pour le formulaire
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
@@ -26,65 +29,66 @@ export default function FormulaireChallenge() {
       difficulte,
     };
 
-    // Stockage local
     localStorage.setItem("nouveauChallenge", JSON.stringify(newChallenge));
-
-    // Redirection vers la page du challenge
-    navigate("/challenges/preview"); // On imagine que "preview" est une page temporaire
+    onFormSubmit();
+    navigate("/challenges/preview");
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ maxWidth: "500px", margin: "0 auto", padding: "2rem" }}>
-      <h2>Créer un Challenge</h2>
+    <div className="form-container">
+      <div className="signup-form">
+        <form onSubmit={handleSubmit} className="form-content">
+          <h2 className="paragraph-center">Créer un Challenge</h2>
 
-      <div>
-        <label>Titre :</label><br />
-        <input
-          type="text"
-          value={titre}
-          onChange={(e) => setTitre(e.target.value)}
-          required
-        />
+          <input
+            type="text"
+            className="form-input"
+            placeholder="Titre"
+            value={titre}
+            onChange={(e) => setTitre(e.target.value)}
+            required
+          />
+
+          <textarea
+            className="form-textarea"
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+
+          <input
+            type="text"
+            className="form-input"
+            placeholder="URL de la vidéo"
+            value={videoUrl}
+            onChange={(e) => setVideoUrl(e.target.value)}
+            required
+          />
+
+          <select
+            className="form-select"
+            value={categorie}
+            onChange={(e) => setCategorie(e.target.value)}
+          >
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+
+          <select
+            className="form-select"
+            value={difficulte}
+            onChange={(e) => setDifficulte(e.target.value)}
+          >
+            {difficultes.map((diff) => (
+              <option key={diff} value={diff}>{diff}</option>
+            ))}
+          </select>
+
+          <button type="submit" className="button-default">Valider</button>
+        </form>
       </div>
-
-      <div>
-        <label>Description :</label><br />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-      </div>
-
-      <div>
-        <label>URL Vidéo :</label><br />
-        <input
-          type="text"
-          value={videoUrl}
-          onChange={(e) => setVideoUrl(e.target.value)}
-          required
-        />
-      </div>
-
-      <div>
-        <label>Catégorie :</label><br />
-        <select value={categorie} onChange={(e) => setCategorie(e.target.value)}>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label>Difficulté :</label><br />
-        <select value={difficulte} onChange={(e) => setDifficulte(e.target.value)}>
-          {difficultes.map((diff) => (
-            <option key={diff} value={diff}>{diff}</option>
-          ))}
-        </select>
-      </div>
-
-      <button className="default-button" type="submit" style={{ marginTop: "1rem" }}>Valider</button>
-    </form>
+    </div>
   );
 }

@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom"
+import { IChallenges } from "../@types"
 import "./Leaderboard.css"
 
-export default function Leaderboard() {
+interface LeaderboardProps {
+    challenges: IChallenges;
+}
+
+export default function Leaderboard({ challenges }: LeaderboardProps) {
+
+    /* On commence par calculer le nombre de participations pour chaque challenge */
+    const challengesWithCount = challenges.map(challenge => ({
+        ...challenge,
+        participations: challenge.users.length,
+    }));
+
+    /* On va maintenant les trier par ordre décroissant, puis faire en sorte de n'afficher que le top 10 */
+    const sortedChallenges = challengesWithCount.sort((a, b) => b.participations - a.participations).slice(0, 10);
+
     return (
         <>
             <main className="lead-content">
@@ -10,8 +25,8 @@ export default function Leaderboard() {
                 <div className="lead-boxes">
                     <section className="best-challenges">
                         <h3>Challenges populaires</h3>
-                        <ul className="list-chall">
-                            <li>1- <Link to="/challenge/1">Speedrun : 35 899 participations</Link></li>
+                        <ul className="list-chall"> 
+                            {/* <li>1- <Link to="/challenge/1">Speedrun : 35 899 participations</Link></li>
                             <li>2- <Link to="/challenge/2">100% : 32 408 participations </Link></li>
                             <li>3- <Link to="/challenge/3">Shiny Race : 30 941 participations </Link></li>
                             <li>4- <Link to="/challenge/4">Any Damage : 27 369 participations </Link></li>
@@ -20,7 +35,7 @@ export default function Leaderboard() {
                             <li>7- <Link to="/challenge/7">Record de Kills : 20 753 participations </Link></li>
                             <li>8- <Link to="/challenge/8">No Death Run : 14 125 participations </Link></li>
                             <li>9- <Link to="/challenge/9">Pascifist Run : 10 193 participations </Link></li>
-                            <li>10- <Link to="/challenge/10">Instrument Challenge : 999 participations </Link></li>
+                            <li>10- <Link to="/challenge/10">Instrument Challenge : 999 participations </Link></li> */}
                         </ul>
                     </section>
 

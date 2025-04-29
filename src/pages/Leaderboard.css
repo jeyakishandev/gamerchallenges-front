@@ -33,21 +33,16 @@
     padding-right: 2.5rem;
     border-radius: 5px;
     box-shadow: 2px 2px 6px #8692FA;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .list-chall li {
     list-style-type: none;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.first-li-chall {
-    padding-top: 5px;
-}
-
-.last-li-chall {
-    padding-bottom: 5px;
-}
 
 /* Boîtes contenant les classements (joueurs) */
 
@@ -56,25 +51,16 @@
     padding-right: 2.5rem;
     border-radius: 5px;
     box-shadow: 2px 2px 6px #8692FA;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .list-players li {
     list-style-type: none;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.first-li-players {
-    padding-top: 5px;
-}
-
-.last-li-players {
-    padding-bottom: 20px;
-}
-
-.perso-li-players {
-    padding-bottom: 5px;
-}
 
 /* Responsive */
 

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
-import { IChallenges } from "../../@types"; 
+import { IChallenge } from "../../@types"; 
 import "./Leaderboard.css"
 
 interface LeaderboardProps {
-    challenges: IChallenges;
+    challenges: IChallenge [];
 }
 
 export default function Leaderboards({ challenges }: LeaderboardProps) {
@@ -19,14 +19,17 @@ export default function Leaderboards({ challenges }: LeaderboardProps) {
 
     return (
         <>
-
-                        <ul className="list-chall"> {sortedChallenges.map((challenge, idx) => (
-                            <li key={challenge.id}>
-                                {idx + 1}- <Link to={`/challenge/${challenge.id}`}> {challenge.name} : {challenge.participations} participations</Link>
-                            </li>
-                        ))}
-                        
-                        </ul>            
+            <ul className="list-chall">
+            {sortedChallenges.length === 0 ? (
+                <li>Aucun challenge trouvé.</li>
+            ) : (
+                sortedChallenges.map((challenge, idx) => (
+                <li key={challenge.id}>
+                    {idx + 1}- <Link to={`/challenge/${challenge.id}`}> {challenge.name} : {challenge.participations} participations</Link>
+                </li>
+                ))
+            )}
+            </ul>         
         </>
     )
 }

@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/challenges/" element={<Challenges />}/>
         <Route path="/challenges/:id" element={<Challenge/>}/>
-        <Route path="/leaderboard/" element={<Leaderboard />} />
+        <Route path="/leaderboard/" element={<Leaderboard/>} />
         <Route path="/connection/" element={<Connection />} />
         <Route path="/profile/:id" element={<Profil />}/>
       </Routes>

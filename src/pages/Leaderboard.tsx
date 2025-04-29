@@ -1,10 +1,21 @@
 import "./Leaderboard.css"
 import Leaderboards from "../components/Leaderboards"
+import { useEffect, useState } from "react"
+import { IChallenges } from "../@types"
+import { getChallenges } from "../api"
 
 export default function Leaderboard() {
 
-//useState
-//useEffect
+    const [challenges, setLeaderboards] = useState<IChallenges>([])
+
+    useEffect(() => {
+        const loadData = async () => {
+            const newLeaderboards = await getChallenges();
+            console.log("Challenges récupérés :", newLeaderboards);
+            setLeaderboards(newLeaderboards);
+        };
+        loadData();
+    }, [])
 
     return (
         <>
@@ -14,8 +25,7 @@ export default function Leaderboard() {
                 <div className="lead-boxes">
                     <section className="best-challenges">
                         <h3>Challenges populaires</h3>
-
-                            <Leaderboards /> 
+                        <Leaderboards challenges={challenges} />
 
                     </section>
 

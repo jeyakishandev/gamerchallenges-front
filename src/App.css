@@ -1,41 +1,21 @@
+/* * MOBILE */
 
-/* === RESET GLOBAL === */
-
-* {
+body {
+  font-size: 16px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-
   background: radial-gradient(#5017A1, #1D083B);
   color: white;
-
 }
 
-/* === BODY GLOBAL === */
-
-
-body {
-  font-family: 'Jura', sans-serif;
-  background: linear-gradient(180deg, #1D083B 0%, #5017A1 100%);
-  color: white;
-  min-height: 100vh;
 
 /* === BLOC PRINCIPAL (Titre + texte + boutons) === */
 
 h1, h2 {
   font-family: 'Joti One', cursive;
-
   text-align: center;
-
 }
-
-/* === LIENS === */
-
-
-a {
-  color: #8692FA;
-  text-decoration: none;
 
 .home-content h1 {
   font-size: 2.2rem;
@@ -45,25 +25,26 @@ a {
 h1 {
   font-size: 1.4rem;
   padding: 4rem 0 1rem;
-
-
 }
 
-a:hover {
-  text-decoration: underline;
+h2 {
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-/* === BOUTONS GÉNÉRIQUES === */
+/* === BOUTONS CRÉER / PARTICIPER === */
 
-
-.default-button {
-  padding: 0.8rem 2rem;
-
+.home-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 0 0.5rem 1rem;
 }
 
 p, a, .default-button {
   font-family: 'Jura', sans-serif;
-
   font-size: 1rem;
   font-weight: bold;
 }
@@ -80,9 +61,6 @@ p, a, .default-button {
 }
 
 .default-button:hover {
-
-  background-color: #8692FA;
-
   background-color: #285cecc1;
 }
 
@@ -164,7 +142,6 @@ p, a, .default-button {
   border-radius: 6px;
   scroll-snap-align: start;
   flex-shrink: 0;
-
 }
 
 /* * CHALLENGE  MOBILE SECTION */
@@ -463,13 +440,6 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* === RESPONSIVE GLOBAL === */
-
-
-@media (max-width: 768px) {
-  .default-button {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.9rem;
 
 /* === RESPONSIVE === */
 
@@ -494,7 +464,6 @@ footer a:hover {
   h2 {
     font-size: 1.3rem;
 
-
   }
 
 }
@@ -507,4 +476,3 @@ footer a:hover {
 @media screen and (min-width: 1360px) {
   
 }
-

@@ -7,8 +7,10 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
-import { ChallengePage } from "./pages/Challenge";
+
+import {ChallengePage} from "./pages/Challenge";
 import { Connection } from "./pages/Connexion";
+
 
 
   
@@ -23,7 +25,7 @@ function App() {
         <Route path="/challenges/:id" element={<ChallengePage/>}/>
         <Route path="/leaderboard/" element={<Leaderboard />} />
         <Route path="/connection/" element={<Connection />} />
-        <Route path="/profile/:id" />
+        <Route path="/profile/:id"/>
       </Routes>
 
       <Footer />

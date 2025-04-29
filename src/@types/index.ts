@@ -3,18 +3,19 @@ export interface IChallenge {
   name: string;
   description: string;
   videoId: string;
+  user: IUser[];
   category_id: number;
   difficulty_id: number;
-  submissions: [];
+  submissions: ISubmission[];
 }
 
-export interface IUsers {
+export interface IUser {
   id: number;
   pseudo: string;
   email: string;
-  avatar_url: number;
+  avatar_url: string | null;
   difficulty_id: number;
-  submissions: [];
+  submissions: ISubmission[];
 }
 
 export interface ISubmission {

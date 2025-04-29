@@ -8,8 +8,6 @@ interface LeaderboardChallenges {
 
 export default function LeaderboardTopChallenges({ challenge }: LeaderboardChallenges) {
     return (
-        <ul className="list-chall">
             <li>1- <Link to={`/challenge/${challenge.id}`}> {challenge.name} : {challenge.users.length} participations </Link></li>
-        </ul>
     )
 }

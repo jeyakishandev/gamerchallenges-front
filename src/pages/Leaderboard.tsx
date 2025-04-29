@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom"
 import "./Leaderboard.css"
+import { useEffect, useState } from "react"
+import { IChallenges } from "../@types"
+import { getTopChallengesByParticipation } from "../api";
+import LeaderboardTopChallenges from "../components/LeaderboardChallenges";
+
+
 
 export default function Leaderboard() {
+
+    const [challenges, setLeaderboardChall] = useState<IChallenges>([]);
+
+    useEffect (() => {
+        const loadData = async () => {
+            const newLeaderChall = await getTopChallengesByParticipation();
+            setLeaderboardChall(newLeaderChall)
+        };
+        loadData();
+    }, [])
+
     return (
         <>
             <main className="lead-content">
@@ -10,7 +27,11 @@ export default function Leaderboard() {
                 <div className="lead-boxes">
                     <section className="best-challenges">
                         <h3>Challenges populaires</h3>
-                        {/* inserer le component */}
+                        <ul className="list-chall">
+                        {challenges.map((challenge) => {
+                            return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} />
+                        })}
+                        </ul>
                     </section>
 
                     <section className="best-players">

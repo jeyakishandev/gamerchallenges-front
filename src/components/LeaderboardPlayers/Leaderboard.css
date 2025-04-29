@@ -1,0 +1,125 @@
+/* Page CLASSEMENT */
+:root {
+    --color--primary: #3f117e;
+    --color--secondary: #6e21d8;
+  }
+
+.lead-content {
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+}
+
+.main-title {
+    font-family: 'Joti One', cursive;
+    /* font-size: 1.1rem; */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3.5rem;
+}
+
+/* Boîtes contenant les classements (challeneges + joueurs) */
+.lead-boxes {
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+}
+
+/* Boîtes contenant les classements (challenges) */
+.best-challenges {
+    padding-bottom: 2rem;
+}
+
+.list-chall {
+    background: radial-gradient( var(--color--secondary), var(--color--primary));
+    padding-right: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px #8692FA;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.list-chall li {
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* Boîtes contenant les classements (joueurs) */
+
+.list-players {
+    background: radial-gradient( var(--color--secondary), var(--color--primary));
+    padding-right: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px #8692FA;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.list-players li {
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* Responsive */
+
+/* Responsive MOBILE */
+@media screen and (max-width: 486px) {
+    .lead-boxes {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (min-width: 487px) and (max-width: 610px) {
+    .lead-boxes {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 767px) {
+    .lead-boxes {
+        padding-left: 5.5rem;
+        padding-right: 5.5rem;
+    }
+}
+
+/* Responsive TABLETTE / DESKTOP */
+
+@media screen and (min-width: 768px) and (max-width: 900px) {
+    .lead-boxes {
+        justify-content: center;
+        gap: 40px;
+        display: flex;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .best-challenges {
+        width: 40rem;
+    }
+
+    .best-players {
+        width: 40rem;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .lead-boxes {
+        justify-content: center;
+        gap: 80px;
+        display: flex;
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+
+    .best-challenges {
+        width: 40rem;
+    }
+
+    .best-players {
+        width: 40rem;
+    }
+}

@@ -1,4 +1,4 @@
-import type { IChallenges, IChallenge } from "../@types";
+import type { IChallenges, IChallenge, IUser } from "../@types";
 
 export async function getChallenges(): Promise<IChallenges> {
   const response = await fetch("http://localhost:3000/challenges");
@@ -15,6 +15,12 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
   return challenge;
 }
 
+export async function getPlayers(): Promise<IUser> {
+  const response = await fetch("http://localhost:3000/users");
+  const players = await response.json();
+  return players
+}
+
 export async function getTopChallengesByParticipation(limit: number = 10): Promise<IChallenges> {
   // Récupération de tous les challenges
   const challenges = await getChallenges();
@@ -27,3 +33,15 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   // Retourne les 10 premiers challenges
   return sortedChallenges.slice(0, limit);
 }
+
+/* export async function getTopPlayersBySubmission(limit: number = 10): Promise<IUser> {
+
+  const players = await getPlayers();
+
+  const sortedPlayers = players.sort((a, b) => {
+    return b.users.length - a.users.length;
+  });
+
+  return sortedPlayers.slice(0, limit)
+
+} */

@@ -13,7 +13,7 @@ export default function ChallengesCard({ challenge }: ChallengesCardProps) {
             <h3 className="card-title items">{challenge.name}</h3>
                 <iframe className="card-video" src={challenge.video_url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
-                <div className="card-tags items">
+                <div className="card-tags">
                     <p style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>
                     <p style={{backgroundColor: challenge.difficulty.color}}>{challenge.difficulty.name}</p>
                     <p>{challenge.users.length} participants</p>

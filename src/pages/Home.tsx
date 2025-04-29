@@ -30,8 +30,8 @@ export default function Home() {
         </p>
 
         <div className="home-buttons">
-          <button onClick={() => setAfficherFormulaire(true)}>Créer</button>
-          <button>Participer</button>
+          <button className="default-button" onClick={() => setAfficherFormulaire(true)}>Créer</button>
+          <button className="default-button">Participer</button>
         </div>
       </section>
 

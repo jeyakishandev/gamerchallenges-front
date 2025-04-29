@@ -84,7 +84,7 @@ export default function FormulaireChallenge() {
         </select>
       </div>
 
-      <button type="submit" style={{ marginTop: "1rem" }}>Valider</button>
+      <button className="default-button" type="submit" style={{ marginTop: "1rem" }}>Valider</button>
     </form>
   );
 }

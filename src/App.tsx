@@ -7,9 +7,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
-import { ChallengePage } from "./pages/Challenge";
-import Profil from "./pages/Profil";
 import { Challenge } from "./pages/Challenge";
+import Profil from "./pages/Profil";
+
 import { Connection } from "./pages/Connexion";
 
 

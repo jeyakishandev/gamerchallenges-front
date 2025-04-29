@@ -1,20 +1,4 @@
-
-/* === RESET GLOBAL === */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-
-  background: radial-gradient(#5017A1, #1D083B);
-  color: white;
-
-}
-
 /* === BODY GLOBAL === */
-
-
 body {
   font-family: 'Jura', sans-serif;
   background: linear-gradient(180deg, #1D083B 0%, #5017A1 100%);
@@ -30,12 +14,6 @@ h1, h2 {
 
 }
 
-/* === LIENS === */
-
-
-a {
-  color: #8692FA;
-  text-decoration: none;
 
 .home-content h1 {
   font-size: 2.2rem;
@@ -45,21 +23,16 @@ a {
 h1 {
   font-size: 1.4rem;
   padding: 4rem 0 1rem;
-
-
+}
+h2 { 
+  font-size: 1.1 rem;
+  line-height: 1.6 ;
 }
 
-a:hover {
-  text-decoration: underline;
-}
 
 /* === BOUTONS GÉNÉRIQUES === */
 
 
-.default-button {
-  padding: 0.8rem 2rem;
-
-}
 
 p, a, .default-button {
   font-family: 'Jura', sans-serif;
@@ -470,7 +443,8 @@ footer a:hover {
   .default-button {
     padding: 0.6rem 1.5rem;
     font-size: 0.9rem;
-
+  }
+}
 /* === RESPONSIVE === */
 
 @media (max-width: 600px) {
@@ -508,3 +482,4 @@ footer a:hover {
   
 }
 
+}

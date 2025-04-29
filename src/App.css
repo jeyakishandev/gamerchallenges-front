@@ -1,19 +1,21 @@
-/* === BODY GLOBAL === */
+/* * MOBILE */
+
 body {
-  font-family: 'Jura', sans-serif;
-  background: linear-gradient(180deg, #1D083B 0%, #5017A1 100%);
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: radial-gradient(#5017A1, #1D083B);
   color: white;
-  min-height: 100vh;
+}
+
 
 /* === BLOC PRINCIPAL (Titre + texte + boutons) === */
 
 h1, h2 {
   font-family: 'Joti One', cursive;
-
   text-align: center;
-
 }
-
 
 .home-content h1 {
   font-size: 2.2rem;
@@ -36,7 +38,6 @@ h2 {
 
 p, a, .default-button {
   font-family: 'Jura', sans-serif;
-
   font-size: 1rem;
   font-weight: bold;
 }
@@ -53,9 +54,6 @@ p, a, .default-button {
 }
 
 .default-button:hover {
-
-  background-color: #8692FA;
-
   background-color: #285cecc1;
 }
 
@@ -137,7 +135,6 @@ p, a, .default-button {
   border-radius: 6px;
   scroll-snap-align: start;
   flex-shrink: 0;
-
 }
 
 /* * CHALLENGE  MOBILE SECTION */
@@ -468,7 +465,6 @@ footer a:hover {
   h2 {
     font-size: 1.3rem;
 
-
   }
 
 }
@@ -480,6 +476,4 @@ footer a:hover {
 
 @media screen and (min-width: 1360px) {
   
-}
-
 }

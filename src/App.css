@@ -455,16 +455,16 @@ p, a, .default-button {
   
   margin: 2rem auto;
 }
-/* CSS de base (mobile d'abord) */
+
 .formulaire-challenge {
   max-width: 90%;
   margin: 2rem auto;
 }
 
-/* Pour les écrans de bureau (desktop) */
+
 @media screen and (min-width: 1024px) {
   .formulaire-challenge {
-    max-width: 600px; /* ou plus grand si tu veux */
+    max-width: 600px;
   }
 }
 

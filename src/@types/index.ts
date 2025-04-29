@@ -18,13 +18,14 @@ export interface IUser {
   email: string;
   avatar_url: number;
   difficulty_id: number;
-  submission: ISubmission[];
+  Submission: ISubmission;
 }
 
 export interface ISubmission {
   user_id: number;
   challenge_id: number;
   video_url: string;
+  created_at: string;
 }
 
 export interface ICategory {

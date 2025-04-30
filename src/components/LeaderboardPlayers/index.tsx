@@ -1,4 +1,4 @@
-import "./Leaderboard.css"
+/* import "./Leaderboard.css"
 import { IUser } from "../../@types"
 import { Link } from "react-router-dom";
 
@@ -11,4 +11,4 @@ export default function LeaderboardTopPlayers({users}: LeaderboardPlayers) {
     return (
         <li>1- <Link to={`/challenge/${users.id}`}> {users.pseudo} : {users.challenges.length} participations </Link></li>
 )
-}
+} */

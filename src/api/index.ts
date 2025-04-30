@@ -34,7 +34,7 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   return sortedChallenges.slice(0, limit);
 }
 
-export async function getTopUsersByCompletedChallenges(limit: number = 10): Promise<IUser[]> {
+/* export async function getTopUsersByCompletedChallenges(limit: number = 10): Promise<IUser[]> {
   // Récupération de tous les challenges qui contiennent les utilisateurs
   const challenges = await getChallenges();
   
@@ -62,4 +62,4 @@ export async function getTopUsersByCompletedChallenges(limit: number = 10): Prom
   
   // Retourner les 10 premiers utilisateurs
   return sortedUsers.slice(0, limit);
-}
+} */

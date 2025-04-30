@@ -16,15 +16,16 @@ export interface IUser {
   id: number;
   pseudo: string;
   email: string;
-  avatar_url: number;
+  avatar_url: string | null;
   difficulty_id: number;
-  submission: ISubmission[];
+  submissions: ISubmission[];
 }
 
 export interface ISubmission {
   user_id: number;
   challenge_id: number;
   video_url: string;
+  created_at: string;
 }
 
 export interface ICategory {

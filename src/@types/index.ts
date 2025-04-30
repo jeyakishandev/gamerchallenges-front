@@ -16,9 +16,9 @@ export interface IUser {
   id: number;
   pseudo: string;
   email: string;
-  avatar_url: number;
+  avatar_url: string | null;
   difficulty_id: number;
-  Submission: ISubmission;
+  submissions: ISubmission[];
 }
 
 export interface ISubmission {

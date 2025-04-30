@@ -108,3 +108,18 @@ export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
   return sortedPlayers.slice(0, limit);
 }
 
+export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {
+  const response = await fetch(`http://localhost:3000/challenges/${challengeId}/submissions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ video_url: videoUrl }),
+  })
+  if (!response.ok) {
+    console.error(response);
+    return null;
+  }
+  return await response.json();
+}

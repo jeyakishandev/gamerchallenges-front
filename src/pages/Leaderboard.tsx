@@ -7,7 +7,6 @@ import LeaderboardTopChallenges from "../components/LeaderboardChallenges";
 import LeaderboardTopPlayers from "../components/LeaderboardPlayers";
 
 
-
 export default function Leaderboard() {
 
     const [challenges, setLeaderboardChall] = useState<IChallenges>([]);
@@ -43,6 +42,7 @@ export default function Leaderboard() {
                     <section className="best-challenges">
                         <h3>Challenges populaires</h3>
                         <ul className="list-chall">
+                        {/* Liste les 10 challenges les plus joués */}
                         {challenges.map((challenge) => {
                             return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} />
                         })}
@@ -52,6 +52,7 @@ export default function Leaderboard() {
                     <section className="best-players">
                         <h3>Meilleurs joueurs</h3>
                         <ul className="list-players">
+                        {/* Liste les 10 joueurs ayant réalisés le plus de challenges */}
                         {players.map((user) => {
                             return <LeaderboardTopPlayers key={user.id} players={user} />
                         })}

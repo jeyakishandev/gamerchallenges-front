@@ -1,12 +1,15 @@
+export type IChallenges = IChallenge[];
+
 export interface IChallenge {
   id: number;
   name: string;
   description: string;
-  videoId: string;
-  user: IUser[];
+  video_url: string;
   category_id: number;
   difficulty_id: number;
-  submissions: ISubmission[];
+  users: IUser[];
+  category: ICategory;
+  difficulty: IDifficulty;
 }
 
 export interface IUser {
@@ -22,4 +25,17 @@ export interface ISubmission {
   user_id: number;
   challenge_id: number;
   video_url: string;
+  created_at: string;
+}
+
+export interface ICategory {
+  id: number;
+  name: string;
+  color: string;
+}
+
+export interface IDifficulty {
+  id: number;
+  name: string;
+  color: string;
 }

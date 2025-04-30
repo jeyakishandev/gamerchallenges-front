@@ -56,12 +56,14 @@ export default function Home() {
           <button className="default-button">Participer</button>
         </div>
       </section>
-
+      
       {afficherFormulaire && (
-        <section className="formulaire-section">
-          <FormulaireChallenge onFormSubmit={() => {}} />
-        </section>
-      )}
+  <section className="formulaire-section">
+    <FormulaireChallenge onFormSubmit={() => setAfficherFormulaire(false)} />
+  </section>
+)}
+
+
 
       <section className="carousel-section">
         <h2>Nouveauté</h2>

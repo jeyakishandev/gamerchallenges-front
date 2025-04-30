@@ -98,12 +98,25 @@
 }
 
 .formulaire-section {
-  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  border-radius: 1rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.7) 50%,
+    rgba(103, 30, 205, 0.5) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
 }
+.form-card {
+  padding: 2rem;
+  border: 1px solid #ffffff20;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
 
+}
 /* === RESPONSIVE MOBILE === */
 @media (max-width: 768px) {
   .carousel-items {

@@ -34,6 +34,17 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   return sortedChallenges.slice(0, limit);
 }
 
+export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
+  const response = await fetch("http://localhost:3000/users");
+  const players = await response.json();
+  
+  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
+    return b.challenges.length - a.challenges.length;
+  });
+
+  return sortedPlayers.slice(0, limit);
+}
+
 /* export async function getTopUsersByCompletedChallenges(limit: number = 10): Promise<IUser[]> {
   // Récupération de tous les challenges qui contiennent les utilisateurs
   const challenges = await getChallenges();

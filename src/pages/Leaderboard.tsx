@@ -1,9 +1,10 @@
 
 import "./Leaderboard.css"
 import { useEffect, useState } from "react"
-import { IChallenges } from "../@types"
-import { getTopChallengesByParticipation } from "../api";
+import { IChallenges, IUser } from "../@types"
+import { getTopChallengesByParticipation, getTopUsers } from "../api";
 import LeaderboardTopChallenges from "../components/LeaderboardChallenges";
+import LeaderboardTopPlayers from "../components/LeaderboardPlayers";
 
 
 
@@ -20,16 +21,16 @@ export default function Leaderboard() {
     }, [])
 
 
-/*     const [players, setLeaderboardPlayers] = useState<IUser[]>([]);
+    const [players, setLeaderboardPlayers] = useState<IUser[]>([]);
 
     useEffect (() => {
         const loadData = async () => {
-            const newLeaderPlayers = await getTopUsersByCompletedChallenges();
+            const newLeaderPlayers = await getTopUsers();
             console.log(newLeaderPlayers);
             setLeaderboardPlayers(newLeaderPlayers)
         };
         loadData();
-    }, []) */
+    }, []) 
 
 
 
@@ -51,9 +52,9 @@ export default function Leaderboard() {
                     <section className="best-players">
                         <h3>Meilleurs joueurs</h3>
                         <ul className="list-players">
-                        {/* {players.map((user) => {
-                            return <LeaderboardTopPlayers key={user.id} users={user} />
-                        })} */}
+                        {players.map((user) => {
+                            return <LeaderboardTopPlayers key={user.id} players={user} />
+                        })}
                         </ul>
                     </section>
                 </div>

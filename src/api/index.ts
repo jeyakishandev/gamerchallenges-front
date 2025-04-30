@@ -91,14 +91,14 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   return sortedChallenges.slice(0, limit);
 }
 
-/* export async function getTopPlayersBySubmission(limit: number = 10): Promise<IUser> {
-
-  const players = await getPlayers();
-
-  const sortedPlayers = players.sort((a, b) => {
-    return b.users.length - a.users.length;
+export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
+  const response = await fetch("http://localhost:3000/users");
+  const players = await response.json();
+  
+  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
+    return b.challenges.length - a.challenges.length;
   });
 
-  return sortedPlayers.slice(0, limit)
+  return sortedPlayers.slice(0, limit);
+}
 
-} */

@@ -7,7 +7,6 @@ import LeaderboardTopChallenges from "../components/LeaderboardChallenges";
 import LeaderboardTopPlayers from "../components/LeaderboardPlayers";
 
 
-
 export default function Leaderboard() {
 
     const [challenges, setLeaderboardChall] = useState<IChallenges>([]);

@@ -1,6 +1,10 @@
 import "./style.css"
 
-export default function SubmissionForm(){
+interface SubmissionFormProps {
+    close: () => void;
+}
+
+export default function SubmissionForm({ close }: SubmissionFormProps){
     return (
         <div className="form-container signup-form">
             <form action="">
@@ -14,7 +18,12 @@ export default function SubmissionForm(){
                 
                 <div className="align-button">
                     <button type="submit" className="default-button form-button">Soummettre</button>
-                    <button className="default-button">Fermer</button>
+                    <button 
+                        className="default-button"
+                        onClick={close}
+                        >
+                            Fermer
+                    </button>
                 </div>
                 
                 

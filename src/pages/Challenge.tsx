@@ -19,7 +19,7 @@ export default function Challenge() {
     loadData();
   }, [id]);
 
-  const [form, setForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   return (
     <>
@@ -51,15 +51,15 @@ export default function Challenge() {
           <div className="align-button">
             <button 
               className="default-button"
-              onClick={() => setForm(current => !current)}
+              onClick={() => setShowForm(true)}
             >
               Participer
             </button>
           </div>
         </section>
-        {form && (
+        {showForm && (
           <section>
-            <SubmissionForm />
+            <SubmissionForm close={() => setShowForm(false)} />
           </section>
         )}
       <h2 className="challenge-title">Les participations</h2>

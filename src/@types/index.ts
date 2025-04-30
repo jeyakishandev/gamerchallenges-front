@@ -18,7 +18,7 @@ export interface IUser {
   email: string;
   avatar_url: number;
   difficulty_id: number;
-  Submission: ISubmission;
+  challenges: IChallenge[];
 }
 
 export interface ISubmission {

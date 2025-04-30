@@ -91,6 +91,22 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   return sortedChallenges.slice(0, limit);
 }
 
+export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {
+  const response = await fetch(`http://localhost:3000/challenges/${challengeId}/submissions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ video_url: videoUrl }),
+  })
+  if (!response.ok) {
+    console.error(response);
+    return null;
+  }
+  return await response.json();
+}
+
 /* export async function getTopPlayersBySubmission(limit: number = 10): Promise<IUser> {
 
   const players = await getPlayers();

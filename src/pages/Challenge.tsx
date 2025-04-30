@@ -19,7 +19,7 @@ export default function Challenge() {
     loadData();
   }, [id]);
 
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false); // Formulaire de participation fermé par défaut.
 
   return (
     <>
@@ -57,9 +57,10 @@ export default function Challenge() {
             </button>
           </div>
         </section>
-        {showForm && (
+        {/** Le formulaire ne s'affiche au clic que s'il y a bien un challenge.id */}
+        {showForm && challenge?.id !== undefined && (
           <section>
-            <SubmissionForm close={() => setShowForm(false)} />
+            <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id}/>
           </section>
         )}
       <h2 className="challenge-title">Les participations</h2>

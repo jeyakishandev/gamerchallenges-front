@@ -54,8 +54,6 @@ export async function addUserIntoApi(
       avatar_url: avatarUrl
     };
     
-    console.log(userData);
-    
     const result = await fetch("http://localhost:3000/users", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

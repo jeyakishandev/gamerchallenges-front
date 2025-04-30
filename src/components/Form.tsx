@@ -94,9 +94,9 @@ function FormSubscribe ({addUser}: INewUserProps) {
       setConfirmPassword("");
       setAvatar(null);
 
-      // Réinitialiser le champ de fichier manuellement
-      // const fileInput = document.getElementById("avatar") as HTMLInputElement;
-      // if (fileInput) fileInput.value = "";
+      //Réinitialiser le champ de fichier manuellement
+      const fileInput = document.getElementById("avatar") as HTMLInputElement;
+      if (fileInput) fileInput.value = "";
 
     } catch (error) {
       setError("Une erreur s'est produite lors de l'inscription");

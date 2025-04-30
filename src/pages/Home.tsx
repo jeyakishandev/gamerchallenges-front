@@ -1,9 +1,31 @@
 import "./Home.css";
 import "../App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
+import { IChallenge } from "../@types/index";
+
 export default function Home() {
-  // Scroll vers la gauche
+  const [challenges, setChallenges] = useState<IChallenge[]>([]);
+  const [afficherFormulaire, setAfficherFormulaire] = useState(false);
+
+  useEffect(() => {
+    const fetchChallenges = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/challenges`);
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setChallenges(data);
+        } else {
+          console.error("Les données reçues ne sont pas un tableau :", data);
+        }
+      } catch (error) {
+        console.error("Erreur lors du fetch des challenges :", error);
+      }
+    };
+
+    fetchChallenges();
+  }, []);
+
   const scrollLeft = (id: string) => {
     const container = document.getElementById(id);
     if (container) {
@@ -11,15 +33,13 @@ export default function Home() {
     }
   };
 
-
-  // Scroll vers la droite
   const scrollRight = (id: string) => {
     const container = document.getElementById(id);
     if (container) {
       container.scrollBy({ left: 250, behavior: "smooth" });
     }
   };
-  const [afficherFormulaire, setAfficherFormulaire] = useState(false);
+
   return (
     <main>
       <section className="home-content">
@@ -30,18 +50,18 @@ export default function Home() {
         </p>
 
         <div className="home-buttons">
-          <button onClick={() => setAfficherFormulaire(true)}>Créer</button>
-          <button>Participer</button>
+          <button className="default-button" onClick={() => setAfficherFormulaire(true)}>
+            Créer
+          </button>
+          <button className="default-button">Participer</button>
         </div>
       </section>
 
-      {/* Formulaire affiché uniquement si on clique sur Créer */}
       {afficherFormulaire && (
         <section className="formulaire-section">
-          <FormulaireChallenge />
+          <FormulaireChallenge onFormSubmit={() => {}} />
         </section>
       )}
-
 
       <section className="carousel-section">
         <h2>Nouveauté</h2>
@@ -49,12 +69,20 @@ export default function Home() {
           <span className="arrow" onClick={() => scrollLeft("nouveaute")}>❮</span>
 
           <div id="nouveaute" className="carousel-items">
-            <div className="skeleton-card">jeu 1</div>
-            <div className="skeleton-card">jeu 2</div>
-            <div className="skeleton-card">jeu 3</div>
-            <div className="skeleton-card">jeu 4</div>
-            <div className="skeleton-card">jeu 5</div>
-            <div className="skeleton-card">jeu 6</div>
+          {Array.isArray(challenges) && challenges.slice(0, 10).map((challenge) => (
+  <div key={challenge.id} className="skeleton-card">
+    <iframe
+      width="100%"
+      height="140"
+      src={challenge.video_url}
+      title={`video-${challenge.id}`}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      style={{ borderRadius: "8px" }}
+    />
+  </div>
+))}
+
           </div>
 
           <span className="arrow" onClick={() => scrollRight("nouveaute")}>❯</span>
@@ -76,7 +104,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-
-
   );
 }

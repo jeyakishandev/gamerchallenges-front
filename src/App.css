@@ -26,22 +26,15 @@ h1 {
   font-size: 1.4rem;
   padding: 4rem 0 1rem;
 }
-
-h2 {
-  font-size: 1.1rem;
-  line-height: 1.6;
+h2 { 
+  font-size: 1.1 rem;
+  line-height: 1.6 ;
 }
 
-/* === BOUTONS CRÉER / PARTICIPER === */
 
-.home-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  padding: 0 0.5rem 1rem;
-}
+/* === BOUTONS GÉNÉRIQUES === */
+
+
 
 p, a, .default-button {
   font-family: 'Jura', sans-serif;
@@ -382,7 +375,7 @@ p, a, .default-button {
 
 @media screen and (min-width: 1024px) {
   .form-container {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-around;
     width: 90%;
   }
@@ -409,6 +402,72 @@ p, a, .default-button {
     max-width: 80%;
   }
 }
+/* Formulaire Challenge */
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 80%;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background-color: #5017A1;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid #8692FA;
+}
+
+.form-textarea {
+  height: 5rem;
+  resize: none;
+}
+
+.button-default {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #285CEC;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-default:hover {
+  background-color: #8692FA;
+}
+.formulaire-section {
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #8692FA;
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.7) 50%,
+    rgba(103, 30, 205, 0.5) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+  width: 90%;
+  
+  margin: 2rem auto;
+}
+
+.formulaire-challenge {
+  max-width: 90%;
+  margin: 2rem auto;
+}
+
+
+@media screen and (min-width: 1024px) {
+  .formulaire-challenge {
+    max-width: 600px;
+  }
+}
+
 
 /* === FOOTER === */
 
@@ -440,7 +499,15 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* === RESPONSIVE GLOBAL === */
 
+
+@media (max-width: 768px) {
+  .default-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
 /* === RESPONSIVE === */
 
 @media (max-width: 600px) {

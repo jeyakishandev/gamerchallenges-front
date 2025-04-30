@@ -39,11 +39,11 @@ export default function Header() {
                 <li><NavLink to="/">Accueil</NavLink></li>
                 <li><NavLink to="/challenges">Challenges</NavLink></li>
                 <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
-                <li className="mobile-only"><a href="#">Se connecter</a></li>                
+                <li className="mobile-only"><NavLink to="/Connection">Se connecter</NavLink></li>                
             </ul>
 
             <div className="login desktop-only">
-                <a href="#">Se connecter</a>
+                <NavLink to="/Connection">Se connecter</NavLink>
             </div>
             
             <button className="burger" onClick={() => setMenuOpen(!menuOpen)}>

@@ -17,23 +17,23 @@ export default function Profil() {
 
                 <div className="perso-chall">
                     
-                <article className="current-chall">
-                    <h3 className="current-chall-title">Mes challenges en cours</h3>
+                <article className="chall">
+                    <h3 className="chall-title">Mes challenges en cours</h3>
 
-                    <div className="current-chall-flex">
+                    <div className="chall-flex">
                         <button className="arrow left">❮</button>
 
-                        <div className="current-chall-list">
+                        <div className="chall-list">
 
-                            <div className="current-chall-box">
+                            <div className="chall-box">
 
-                                <div className="current-chall-pres">
+                                <div className="chall-pres">
 
                                     <section className="video">
                                         <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                                     </section>
 
-                                    <section className="current-chall-info">
+                                    <section className="chall-info">
                                         <p className="chall-name">Nom du challenge</p>
                                         <p className="chall-tag">Catégorie</p>
                                         <p className="chall-diff">Difficulté</p>
@@ -56,23 +56,23 @@ export default function Profil() {
 
                 </article>
 
-                <article className="completed-chall">
-                    <h3 className="completed-chall-title">Mes challenges en cours</h3>
+                <article className="chall">
+                    <h3 className="chall-title">Mes challenges réalisés</h3>
 
-                    <div className="completed-chall-flex">
+                    <div className="chall-flex">
                         <button className="arrow left">❮</button>
 
-                        <div className="completed-chall-list">
+                        <div className="chall-list">
 
-                            <div className="completed-chall-box">
+                            <div className="chall-box">
 
-                                <div className="completed-chall-pres">
+                                <div className="chall-pres">
 
                                     <section className="video">
                                         <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                                     </section>
 
-                                    <section className="completed-chall-info">
+                                    <section className="chall-info">
                                         <p className="chall-name">Nom du challenge</p>
                                         <p className="chall-tag">Catégorie</p>
                                         <p className="chall-diff">Difficulté</p>
@@ -96,23 +96,23 @@ export default function Profil() {
                 </article>
 
 
-                <article className="created-chall">
-                    <h3 className="created-chall-title">Mes challenges en cours</h3>
+                <article className="chall">
+                    <h3 className="chall-title">Mes challenges crées</h3>
 
-                    <div className="created-chall-flex">
+                    <div className="chall-flex">
                         <button className="arrow left">❮</button>
 
-                        <div className="created-chall-list">
+                        <div className="chall-list">
 
-                            <div className="created-chall-box">
+                            <div className="chall-box">
 
-                                <div className="created-chall-pres">
+                                <div className="chall-pres">
 
                                     <section className="video">
                                         <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                                     </section>
 
-                                    <section className="created-chall-info">
+                                    <section className="chall-info">
                                         <p className="chall-name">Nom du challenge</p>
                                         <p className="chall-tag">Catégorie</p>
                                         <p className="chall-diff">Difficulté</p>

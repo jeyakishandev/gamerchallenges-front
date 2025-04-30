@@ -1,94 +1,165 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../App.css";
+import { ICategory, IDifficulty } from "../../@types";
 
-interface FormulaireChallengeProps {
-  onFormSubmit: () => void;
+interface Props {
+  onFormSubmit?: () => void;
 }
 
-export default function FormulaireChallenge({ onFormSubmit }: FormulaireChallengeProps) {
+function FormulaireChallenge({ onFormSubmit }: Props) {
   const navigate = useNavigate();
 
-  const categories = ["Action", "Aventure", "Puzzle"];
-  const difficultes = ["Facile", "Moyen", "Difficile"];
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [difficulties, setDifficulties] = useState<IDifficulty[]>([]);
+  const [error, setError] = useState<string>("");
 
-  const [titre, setTitre] = useState("");
-  const [description, setDescription] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
-  const [categorie, setCategorie] = useState(categories[0]);
-  const [difficulte, setDifficulte] = useState(difficultes[0]);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    video_url: "",
+    category_id: "",
+    difficulty_id: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    fetch("http://localhost:3000/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else {
+          console.error("Données invalides reçues pour catégories :", data);
+          setCategories([]); // fallback
+        }
+      })
+      .catch((err) => {
+        console.error("Erreur lors du fetch catégories :", err);
+        setCategories([]);
+      });
+  
+    fetch("http://localhost:3000/difficulties")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setDifficulties(data);
+        } else {
+          console.error("Données invalides reçues pour difficultés :", data);
+          setDifficulties([]);
+        }
+      })
+      .catch((err) => {
+        console.error("Erreur lors du fetch difficultés :", err);
+        setDifficulties([]);
+      });
+  }, []);
+  
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    const newChallenge = {
-      titre,
-      description,
-      videoUrl,
-      categorie,
-      difficulte,
-    };
+    try {
+      const response = await fetch("http://localhost:3000/challenges", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // ⚠️ Ajoute ici un user_id par défaut temporaire (ex : 1)
+        body: JSON.stringify({ ...formData, user_id: 1 }),
+      });
 
-    localStorage.setItem("nouveauChallenge", JSON.stringify(newChallenge));
-    onFormSubmit();
-    navigate("/challenges/preview");
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.message || "Erreur lors de l'envoi.");
+      }
+
+      console.log("Challenge créé avec succès.");
+      if (onFormSubmit) onFormSubmit();
+      navigate("/"); // Redirige vers la home
+
+    } catch (err: any) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div className="form-container">
-      <div className="signup-form">
-        <form onSubmit={handleSubmit} className="form-content">
-          <h2 className="paragraph-center">Créer un Challenge</h2>
+    <section className="formulaire-section">
+      <div className="form-container">
+        <form className="signup-form" onSubmit={handleSubmit}>
+          <p className="paragraph-center">Créer un Challenge</p>
+
+          {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
           <input
             type="text"
-            className="form-input"
+            name="name"
             placeholder="Titre"
-            value={titre}
-            onChange={(e) => setTitre(e.target.value)}
+            value={formData.name}
+            onChange={handleChange}
             required
           />
 
           <textarea
-            className="form-textarea"
+            name="description"
             placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={formData.description}
+            onChange={handleChange}
             required
           />
 
           <input
             type="text"
-            className="form-input"
+            name="video_url"
             placeholder="URL de la vidéo"
-            value={videoUrl}
-            onChange={(e) => setVideoUrl(e.target.value)}
+            value={formData.video_url}
+            onChange={handleChange}
             required
           />
 
-          <select
-            className="form-select"
-            value={categorie}
-            onChange={(e) => setCategorie(e.target.value)}
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
+<select
+  name="category_id"
+  value={formData.category_id}
+  onChange={handleChange}
+  required
+>
+  <option value="">-- Sélectionner une catégorie --</option>
+  {Array.isArray(categories) &&
+    categories.map((cat) => (
+      <option key={cat.id} value={cat.id}>
+        {cat.name}
+      </option>
+    ))}
+</select>
 
-          <select
-            className="form-select"
-            value={difficulte}
-            onChange={(e) => setDifficulte(e.target.value)}
-          >
-            {difficultes.map((diff) => (
-              <option key={diff} value={diff}>{diff}</option>
-            ))}
-          </select>
+<select
+  name="difficulty_id"
+  value={formData.difficulty_id}
+  onChange={handleChange}
+  required
+>
+  <option value="">-- Sélectionner une difficulté --</option>
+  {Array.isArray(difficulties) &&
+    difficulties.map((diff) => (
+      <option key={diff.id} value={diff.id}>
+        {diff.name}
+      </option>
+    ))}
+</select>
 
-          <button type="submit" className="button-default">Valider</button>
+          <button type="submit" className="default-button form-button">
+            Valider
+          </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 }
+
+export default FormulaireChallenge;
+

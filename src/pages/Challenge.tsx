@@ -27,7 +27,7 @@ export default function Challenge() {
         <iframe 
               width="100%" 
               height="315"
-              src={`https://www.youtube.com/embed/l4NaMSbirPE?origin=${window.location.origin}`}
+              src={challenge?.video_url}
               title="YouTube video player" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -36,8 +36,8 @@ export default function Challenge() {
         </section>
         <section className="challenge-info">
           <div className="challenge-cat-and-diff">
-            <span className="category-color">category</span>
-            <span className="difficulty-color">difficulty</span>
+            <span className="category-color" style={{backgroundColor: challenge?.category.color}}>{challenge?.category.name}</span>
+            <span className="difficulty-color" style={{backgroundColor: challenge?.difficulty.color}}>{challenge?.difficulty.name}</span>
           </div>
           <article className="challenge-description">
             <p>{challenge?.description}
@@ -51,23 +51,30 @@ export default function Challenge() {
     </section>
     <h2 className="challenge-title">Les participations</h2>
     <section className="challenge-participations">
-      <article className="challenge-participation-container">
-        <div className="participation-info">
-          <span>Pseudo</span>
-          <span>Date</span>
-        </div>
-        <div>
-        <iframe 
-              width="100%" 
-              height="315"
-              src={`https://www.youtube.com/embed/l4NaMSbirPE?origin=${window.location.origin}`}
-              title="YouTube video player" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowFullScreen
-            ></iframe>
-        </div>
-      </article>
+
+      {challenge?.users.map((user) => {
+        const submission = user?.Submission;
+        const key = `${user.id}-${submission?.challenge_id}`;
+        return (
+          <article className="challenge-participation-container" key={key}>
+            <div className="participation-info">
+              <span>{user?.pseudo}</span>
+              <span>{new Date(submission.created_at).toLocaleDateString()}</span>
+            </div>
+            <div>
+            <iframe 
+                  width="100%" 
+                  height="315"
+                  src={submission.video_url}
+                  title="YouTube video player" 
+                  frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowFullScreen
+                ></iframe>
+            </div>
+          </article>
+        )})}
+     
     </section>
     </>
   )

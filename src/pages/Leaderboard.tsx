@@ -19,6 +19,8 @@ export default function Leaderboard() {
         loadData();
     }, [])
 
+
+
     return (
         <>
             <main className="lead-content">

@@ -44,33 +44,3 @@ export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
 
   return sortedPlayers.slice(0, limit);
 }
-
-/* export async function getTopUsersByCompletedChallenges(limit: number = 10): Promise<IUser[]> {
-  // Récupération de tous les challenges qui contiennent les utilisateurs
-  const challenges = await getChallenges();
-  
-  // Création d'un Map pour compter les challenges complétés par utilisateur
-  const userChallengeCount = new Map<number, { user: IUser; count: number }>();
-  
-  // Parcourir tous les challenges et comptabiliser pour chaque utilisateur
-  challenges.forEach(challenge => {
-    challenge.users.forEach(user => {
-      if (userChallengeCount.has(user.id)) {
-        // Incrémenter le compteur pour cet utilisateur
-        const userData = userChallengeCount.get(user.id)!;
-        userData.count += 1;
-      } else {
-        // Ajouter l'utilisateur avec un compteur à 1
-        userChallengeCount.set(user.id, { user, count: 1 });
-      }
-    });
-  });
-  
-  // Convertir le Map en tableau et trier par nombre de challenges complétés (ordre décroissant)
-  const sortedUsers = Array.from(userChallengeCount.values())
-    .sort((a, b) => b.count - a.count)
-    .map(userData => userData.user);
-  
-  // Retourner les 10 premiers utilisateurs
-  return sortedUsers.slice(0, limit);
-} */

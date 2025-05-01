@@ -56,12 +56,14 @@ export default function Home() {
           <button className="default-button">Participer</button>
         </div>
       </section>
-
+      
       {afficherFormulaire && (
-        <section className="formulaire-section">
-          <FormulaireChallenge onFormSubmit={() => {}} />
-        </section>
-      )}
+  <section className="formulaire-section">
+    <FormulaireChallenge onFormSubmit={() => setAfficherFormulaire(false)} />
+  </section>
+)}
+
+
 
       <section className="carousel-section">
         <h2>Nouveauté</h2>
@@ -69,19 +71,19 @@ export default function Home() {
           <span className="arrow" onClick={() => scrollLeft("nouveaute")}>❮</span>
 
           <div id="nouveaute" className="carousel-items">
-          {Array.isArray(challenges) && challenges.slice(0, 10).map((challenge) => (
-  <div key={challenge.id} className="skeleton-card">
-    <iframe
-      width="100%"
-      height="140"
-      src={challenge.video_url}
-      title={`video-${challenge.id}`}
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      style={{ borderRadius: "8px" }}
-    />
-  </div>
-))}
+            {Array.isArray(challenges) && challenges.slice(0, 10).map((challenge) => (
+              <div key={challenge.id} className="skeleton-card">
+                <iframe
+                  width="100%"
+                  height="140"
+                  src={challenge.video_url}
+                  title={`video-${challenge.id}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ borderRadius: "8px" }}
+                />
+              </div>
+            ))}
 
           </div>
 

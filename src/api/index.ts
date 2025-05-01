@@ -76,14 +76,35 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   return sortedChallenges.slice(0, limit);
 }
 
-/* export async function getTopPlayersBySubmission(limit: number = 10): Promise<IUser> {
 
-  const players = await getPlayers();
-
-  const sortedPlayers = players.sort((a, b) => {
-    return b.users.length - a.users.length;
+// Fonction qui permets de récupérer les 10 meilleurs joueurs, et les trier de manière décroissante
+export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
+  
+  // Récupère tous les users 
+  const response = await fetch("http://localhost:3000/users");
+  const players = await response.json();
+  
+  // Tri les users par nombre de challenges complétés (ordre décroissant)
+  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
+    return b.challenges.length - a.challenges.length;
   });
 
-  return sortedPlayers.slice(0, limit)
+  // Retourne les 10 meilleurs joueurs
+  return sortedPlayers.slice(0, limit);
+}
 
-} */
+export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {
+  const response = await fetch(`http://localhost:3000/challenges/${challengeId}/submissions`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ video_url: videoUrl }),
+  })
+  if (!response.ok) {
+    console.error(response);
+    return null;
+  }
+  return await response.json();
+}

@@ -63,8 +63,8 @@ export async function addUserIntoApi(
   }   
 }
 
-export async function getProfileUsers() {
-  const response = await fetch("http://localhost:3000/users");
+export async function getProfileUsers(id: number) {
+  const response = await fetch(`http://localhost:3000/users/${id}`);
   const users = await response.json();
   return users;
 }

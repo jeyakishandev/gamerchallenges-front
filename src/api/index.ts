@@ -15,6 +15,11 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
   return challenge;
 }
 
+export async function getChallengesByUserId(userId: number): Promise<IChallenge[]> {
+  const challenges = await getChallenges();
+  return challenges.filter(challenge => challenge.user_id === userId);
+}
+
 export async function getUsers() {
   const response = await fetch("http://localhost:3000/users");
   const users = await response.json();

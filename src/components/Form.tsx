@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import useAuthStore from "../store";
 import { IUser } from "../@types";
+import { useNavigate } from "react-router-dom";
 
 interface INewUserProps {
   addUser: (pseudo: string, email: string, password: string, confirmPasword: string, avatar: File | null) => Promise<void>;
@@ -162,6 +163,7 @@ function FormSubscribe ({addUser}: INewUserProps) {
 function FormLogin () {
 
   const { login } = useAuthStore()
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -194,7 +196,7 @@ function FormLogin () {
         setError("Impossible de récupérer les informations de l'utilisateur.")
       }
       const user: IUser = await userResponse.json();
-
+      navigate("/");
       login(token, user);
       localStorage.setItem("token", token);
     } catch (error) {

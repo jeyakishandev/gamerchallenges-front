@@ -7,6 +7,7 @@ export interface IChallenge {
   video_url: string;
   category_id: number;
   difficulty_id: number;
+  user_id: number;
   users: IUser[];
   category: ICategory;
   difficulty: IDifficulty;

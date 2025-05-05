@@ -15,6 +15,11 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
   return challenge;
 }
 
+export async function getChallengesByUserId(userId: number): Promise<IChallenge[]> {
+  const challenges = await getChallenges();
+  return challenges.filter(challenge => challenge.user_id === userId);
+}
+
 export async function getUsers() {
   const response = await fetch("http://localhost:3000/users");
   const users = await response.json();
@@ -61,6 +66,12 @@ export async function addUserIntoApi(
     console.error("Erreur lors de l'ajout de l'utilisateur", error);
     return null;
   }   
+}
+
+export async function getProfileUsers(id: number) {
+  const response = await fetch(`http://localhost:3000/users/${id}`);
+  const users = await response.json();
+  return users;
 }
 
 export async function getTopChallengesByParticipation(limit: number = 10): Promise<IChallenges> {

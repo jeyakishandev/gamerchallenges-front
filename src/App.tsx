@@ -10,6 +10,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Profil from "./pages/Profil";
 import { Challenge } from "./pages/Challenge";
 import { Connection } from "./pages/Connexion";
+import Logout from "./pages/logout";
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/challenges/:id" element={<Challenge/>}/>
         <Route path="/leaderboard/" element={<Leaderboard />} />
         <Route path="/connexion/" element={<Connection />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/profile/:id" element={<Profil />}/>
       </Routes>
 

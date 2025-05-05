@@ -63,6 +63,12 @@ export async function addUserIntoApi(
   }   
 }
 
+export async function getProfileUsers() {
+  const response = await fetch("http://localhost:3000/users");
+  const users = await response.json();
+  return users;
+}
+
 export async function getTopChallengesByParticipation(limit: number = 10): Promise<IChallenges> {
   // Récupération de tous les challenges
   const challenges = await getChallenges();

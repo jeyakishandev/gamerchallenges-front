@@ -10,6 +10,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Profil from "./pages/Profil";
 import { Challenge } from "./pages/Challenge";
 import { Connection } from "./pages/Connexion";
+import About from "./pages/About";
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/leaderboard/" element={<Leaderboard />} />
         <Route path="/connexion/" element={<Connection />} />
         <Route path="/profile/:id" element={<Profil />}/>
+        <Route path="/about" element={<About />} />
       </Routes>
 
       <Footer />

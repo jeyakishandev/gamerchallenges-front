@@ -92,6 +92,7 @@
 @media screen and (max-width: 700px) {
     .chall-title {
         text-align: center;
+        padding-left: 10px;
     }
 
     .chall-pres {
@@ -112,6 +113,7 @@
 @media screen and (min-width: 700px) {
     .chall-title {
         text-align: center;
+        padding-left: 10px;
     }
 
     .chall-box {
@@ -120,13 +122,12 @@
 }
 
 @media screen and (min-width: 1000px) {
+    .chall-title {
+        padding-left: 25px;
+    }
 
     .chall-box {
         padding: 5px;
     }
 
 }
-
-
-  
-  

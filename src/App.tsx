@@ -11,6 +11,7 @@ import Profil from "./pages/Profil";
 import { Challenge } from "./pages/Challenge";
 import { Connection } from "./pages/Connexion";
 import About from "./pages/About";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/connexion/" element={<Connection />} />
         <Route path="/profile/:id" element={<Profil />}/>
         <Route path="/about" element={<About />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
 
       <Footer />

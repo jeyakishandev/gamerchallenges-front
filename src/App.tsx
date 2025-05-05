@@ -10,12 +10,19 @@ import Leaderboard from "./pages/Leaderboard";
 import Profil from "./pages/Profil";
 import { Challenge } from "./pages/Challenge";
 import { Connection } from "./pages/Connexion";
+
+import Creation from "./pages/Creation";
+import LoginRedirect from "./pages/LoginRedirect";
+import RequireAuth from "./components/ProtectedRoute/RequireAuth";
+
 import Logout from "./pages/logout";
+
 
 
 
   
 function App() {
+  
   return (
     <>
       
@@ -28,6 +35,13 @@ function App() {
         <Route path="/connexion/" element={<Connection />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/profile/:id" element={<Profil />}/>
+        <Route path="/creation" element={
+        <RequireAuth>
+          <Creation />
+          </RequireAuth>
+        } />
+
+        <Route path="/login-redirect" element={<LoginRedirect />} />
       </Routes>
 
       <Footer />

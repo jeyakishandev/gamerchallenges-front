@@ -88,6 +88,22 @@
   color: white;
 }
 
+
+.video-card {
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.video-title {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  font-family: 'Jura', sans-serif;
+}
+
 /* === ARROWS (FLÈCHES) === */
 .arrow {
   font-size: 2rem;

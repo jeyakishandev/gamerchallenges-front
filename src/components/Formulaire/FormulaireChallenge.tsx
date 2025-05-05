@@ -1,7 +1,9 @@
+// src/components/Formulaire/FormulaireChallenge.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../../@types";
 
+// Props optionnelles : une fonction à appeler après soumission du formulaire
 interface Props {
   onFormSubmit?: () => void;
 }
@@ -9,10 +11,12 @@ interface Props {
 function FormulaireChallenge({ onFormSubmit }: Props) {
   const navigate = useNavigate();
 
+  // États pour stocker les catégories, difficultés et erreurs éventuelles
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [difficulties, setDifficulties] = useState<IDifficulty[]>([]);
   const [error, setError] = useState<string>("");
 
+  // État pour gérer les données du formulaire
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -21,6 +25,7 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
     difficulty_id: "",
   });
 
+  // Récupère les catégories et difficultés depuis le back au chargement du composant
   useEffect(() => {
     fetch("http://localhost:3000/categories")
       .then((res) => res.json())
@@ -28,12 +33,12 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
         if (Array.isArray(data)) {
           setCategories(data);
         } else {
-          console.error("Données invalides reçues pour catégories :", data);
+          console.error("Catégories non valides :", data);
           setCategories([]);
         }
       })
       .catch((err) => {
-        console.error("Erreur lors du fetch catégories :", err);
+        console.error("Erreur fetch catégories :", err);
         setCategories([]);
       });
 
@@ -43,33 +48,39 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
         if (Array.isArray(data)) {
           setDifficulties(data);
         } else {
-          console.error("Données invalides reçues pour difficultés :", data);
+          console.error("Difficultés non valides :", data);
           setDifficulties([]);
         }
       })
       .catch((err) => {
-        console.error("Erreur lors du fetch difficultés :", err);
+        console.error("Erreur fetch difficultés :", err);
         setDifficulties([]);
       });
   }, []);
 
+  // Gère le changement de valeur dans les champs du formulaire
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Envoie du formulaire à la base de données
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      setError("Utilisateur non connecté.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3000/challenges", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...formData, user_id: 1 }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, user_id: Number(userId) }),
       });
 
       if (!response.ok) {
@@ -77,14 +88,18 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
         throw new Error(err.message || "Erreur lors de l'envoi.");
       }
 
-      console.log("Challenge créé avec succès.");
+      const newChallenge = await response.json();
+      console.log("Challenge créé :", newChallenge);
+
       if (onFormSubmit) onFormSubmit();
-      navigate("/");
+      navigate(`/challenges/${newChallenge.id}`);
+
     } catch (err: any) {
       setError(err.message);
     }
   };
 
+  // Rendu du formulaire de création de challenge
   return (
     <section className="formulaire-section">
       <div className="form-container">
@@ -126,12 +141,9 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
             required
           >
             <option value="">-- Sélectionner une catégorie --</option>
-            {Array.isArray(categories) &&
-              categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>{cat.name}</option>
+            ))}
           </select>
 
           <select
@@ -141,12 +153,9 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
             required
           >
             <option value="">-- Sélectionner une difficulté --</option>
-            {Array.isArray(difficulties) &&
-              difficulties.map((diff) => (
-                <option key={diff.id} value={diff.id}>
-                  {diff.name}
-                </option>
-              ))}
+            {difficulties.map((diff) => (
+              <option key={diff.id} value={diff.id}>{diff.name}</option>
+            ))}
           </select>
 
           <button type="submit" className="default-button form-button">

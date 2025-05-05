@@ -55,7 +55,7 @@ export default function LoginRedirect() {
             </button>
           </div>
         </form>
-        {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+        
       </section>
     </div>
   );

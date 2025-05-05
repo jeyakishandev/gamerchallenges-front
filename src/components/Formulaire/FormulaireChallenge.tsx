@@ -1,4 +1,4 @@
-// src/components/Formulaire/FormulaireChallenge.tsx
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../../@types";

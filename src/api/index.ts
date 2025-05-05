@@ -15,15 +15,6 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
   return challenge;
 }
 
-export async function getChallengesByUser(userId: number): Promise<IChallenges> {
-  const response = await fetch(`http://localhost:3000/challenges?user_id=${userId}`);
-  if (!response.ok) {
-    throw new Error("Erreur lors de la récupération des challenges");
-  }
-  const challengesById = await response.json();
-  return challengesById;
-}
-
 export async function getUsers() {
   const response = await fetch("http://localhost:3000/users");
   const users = await response.json();

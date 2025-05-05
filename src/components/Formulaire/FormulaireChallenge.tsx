@@ -29,14 +29,14 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
           setCategories(data);
         } else {
           console.error("Données invalides reçues pour catégories :", data);
-          setCategories([]); // fallback
+          setCategories([]);
         }
       })
       .catch((err) => {
         console.error("Erreur lors du fetch catégories :", err);
         setCategories([]);
       });
-  
+
     fetch("http://localhost:3000/difficulties")
       .then((res) => res.json())
       .then((data) => {
@@ -52,7 +52,6 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
         setDifficulties([]);
       });
   }, []);
-  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -70,7 +69,6 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
         headers: {
           "Content-Type": "application/json",
         },
-        // ⚠️ Ajoute ici un user_id par défaut temporaire (ex : 1)
         body: JSON.stringify({ ...formData, user_id: 1 }),
       });
 
@@ -81,8 +79,7 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
 
       console.log("Challenge créé avec succès.");
       if (onFormSubmit) onFormSubmit();
-      navigate("/"); // Redirige vers la home
-
+      navigate("/");
     } catch (err: any) {
       setError(err.message);
     }
@@ -122,35 +119,35 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
             required
           />
 
-<select
-  name="category_id"
-  value={formData.category_id}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Sélectionner une catégorie --</option>
-  {Array.isArray(categories) &&
-    categories.map((cat) => (
-      <option key={cat.id} value={cat.id}>
-        {cat.name}
-      </option>
-    ))}
-</select>
+          <select
+            name="category_id"
+            value={formData.category_id}
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Sélectionner une catégorie --</option>
+            {Array.isArray(categories) &&
+              categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+          </select>
 
-<select
-  name="difficulty_id"
-  value={formData.difficulty_id}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Sélectionner une difficulté --</option>
-  {Array.isArray(difficulties) &&
-    difficulties.map((diff) => (
-      <option key={diff.id} value={diff.id}>
-        {diff.name}
-      </option>
-    ))}
-</select>
+          <select
+            name="difficulty_id"
+            value={formData.difficulty_id}
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Sélectionner une difficulté --</option>
+            {Array.isArray(difficulties) &&
+              difficulties.map((diff) => (
+                <option key={diff.id} value={diff.id}>
+                  {diff.name}
+                </option>
+              ))}
+          </select>
 
           <button type="submit" className="default-button form-button">
             Valider
@@ -162,4 +159,3 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
 }
 
 export default FormulaireChallenge;
-

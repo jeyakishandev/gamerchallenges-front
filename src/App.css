@@ -467,7 +467,7 @@ p, a, .default-button {
   resize: vertical;
 }
 
-/* SÉLECTEURS : garder cohérence */
+
 .signup-form select option {
   background-color: #5017A1;
   color: white;

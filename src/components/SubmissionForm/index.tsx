@@ -1,0 +1,85 @@
+import { useState } from "react";
+import "./style.css";
+import { addSubmissionToChallenge } from "../../api";
+
+interface SubmissionFormProps {
+    close: () => void;
+    challengeId: number;
+}
+
+export default function SubmissionForm({ close, challengeId }: SubmissionFormProps){
+    const [videoUrl, setVideoUrl] = useState("");
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSucces] = useState(false);
+
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        setError(null);
+
+        try {
+            // Récupérer le token, il sera envoyé dans la requête HTTP vers l'API.
+            const token = localStorage.getItem("token");
+            if (!token) {
+                setError("Connectes toi pour participer à un challenge.");
+                return;
+            }
+
+            // Vérifier si l'URL de la vidéo est bien fournie.
+            if (!videoUrl.trim()) {
+                setError("L'URL de la vidéo est obligatoire pour participer.");
+                return;
+            }
+
+            // Soumettre la participation à l'API pour l'enregistrer en BDD.
+            await addSubmissionToChallenge(
+                challengeId,
+                videoUrl,
+                token
+            );
+
+            setSucces(true);
+            close();
+
+        } catch(error) {
+            console.error("Erreur lors de l'enregistrement.", error)
+        }
+    }
+    
+
+    return (
+        <div className="form-container signup-form">
+            <form onSubmit={handleSubmit}>
+                <p>Envoie nous tes exploits !</p>
+                {error && <div style={{ color: "red" }}>{error}</div>}
+                {success && <div style={{ color: "green"}}>Participation enregistrée !</div>}
+
+                <input 
+                    type="text"
+                    className="form-input"
+                    name="video_url"
+                    placeholder="URL de la vidéo"
+                    value={videoUrl}
+                    onChange={(e) => setVideoUrl(e.target.value)}
+                />
+                
+                <div className="align-button">
+                    <button 
+                        type="submit" 
+                        className="default-button form-button"
+                    >
+                        Soummettre
+                    </button>
+
+                    <button 
+                        className="default-button"
+                        onClick={close}
+                    >
+                        Fermer
+                    </button>
+                </div>
+                
+                
+            </form>
+        </div>
+    )
+}

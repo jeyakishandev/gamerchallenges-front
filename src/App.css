@@ -324,9 +324,15 @@ p, a, .default-button {
 }
 
 .signup-form, .login-form {
+  background: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
   border-radius: 10px;
   border: 1px solid #8692FA;
-    padding: 0 1rem 2rem;
+  padding: 0 1rem 2rem;
   margin: 0 2rem 2rem;
   display: flex;
   flex-direction: column;

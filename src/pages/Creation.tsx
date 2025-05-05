@@ -25,7 +25,7 @@ export default function Creation() {
   }
 
   if (!isAuth) {
-    return null; // ou un fallback visuel
+    return null; 
   }
 
   return (

@@ -179,7 +179,6 @@ function FormLogin () {
       })
       console.log("response: ", response.status, response.statusText);
       if (!response.ok) {
-        console.log("pas de reponse");
         setError("Nom d'utilisateur ou mot de passe incorrect");
         return;
       }

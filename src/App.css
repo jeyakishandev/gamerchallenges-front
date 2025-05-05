@@ -408,69 +408,127 @@ p, a, .default-button {
     max-width: 80%;
   }
 }
-/* Formulaire Challenge */
+/* === FORMULAIRE CRÉATION CHALLENGE === */
 
-.form-content {
+/* SECTION GLOBALE */
+.formulaire-section {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  padding: 2rem 1rem;
+}
+
+/* CONTENEUR DU FORMULAIRE */
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.form-input, .form-select, .form-textarea {
-  width: 80%;
-  margin: 1rem 0;
-  border-radius: 5px;
-  background-color: #5017A1;
-  color: white;
-  padding: 0.5rem;
-  border: 1px solid #8692FA;
-}
-
-.form-textarea {
-  height: 5rem;
-  resize: none;
-}
-
-.button-default {
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #285CEC;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button-default:hover {
-  background-color: #8692FA;
-}
-.formulaire-section {
-  padding: 2rem 1rem;
+/* FORMULAIRE STYLISÉ */
+.signup-form {
+  width: 100%;
+  padding: 2rem;
   border-radius: 10px;
   border: 1px solid #8692FA;
   background: radial-gradient(
     circle at center,
-    rgba(148, 46, 250, 0.7) 50%,
-    rgba(103, 30, 205, 0.5) 80%,
-    rgba(59, 17, 119, 0.2) 100%
+    rgba(148, 46, 250, 0.7),
+    rgba(103, 30, 205, 0.5),
+    rgba(59, 17, 119, 0.2)
   );
-  width: 90%;
-  
-  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-.formulaire-challenge {
-  max-width: 90%;
-  margin: 2rem auto;
+/* CHAMPS TEXTE / SELECT / TEXTAREA */
+.signup-form input,
+.signup-form textarea,
+.signup-form select {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #5017A1;
+  color: white;
+  font-size: 1rem;
+  transition: box-shadow 0.2s ease;
 }
 
+/* PLACEHOLDERS */
+.signup-form input::placeholder,
+.signup-form textarea::placeholder {
+  color: white;
+}
 
-@media screen and (min-width: 1024px) {
-  .formulaire-challenge {
-    max-width: 600px;
+/* TEXTAREA SPÉCIFIQUE */
+.signup-form textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+/* SÉLECTEURS : garder cohérence */
+.signup-form select option {
+  background-color: #5017A1;
+  color: white;
+}
+
+/* BOUTON VALIDER */
+.signup-form .form-button {
+  background: #0050f0;
+  color: white;
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.signup-form .form-button:hover {
+  background: #003ac2;
+  cursor: pointer;
+}
+
+/* TITRE */
+.paragraph-center {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+/* ✅ RESPONSIVE : DESKTOP */
+@media (min-width: 768px) {
+  .formulaire-section {
+    padding: 4rem 1rem;
+  }
+
+  .form-container {
+    max-width: 700px;
+  }
+
+  .signup-form {
+    max-width: 500px;
+    padding: 3rem;
+  }
+
+  .signup-form input,
+  .signup-form textarea,
+  .signup-form select {
+    font-size: 1.1rem;
+  }
+
+  .paragraph-center {
+    font-size: 1.4rem;
   }
 }
 

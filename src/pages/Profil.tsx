@@ -1,17 +1,40 @@
+import { useParams } from "react-router-dom"
 import "./Profil.css"
+import { useEffect, useState } from "react";
+import { IUser } from "../@types";
+import { getProfileUsers } from "../api";
 
 export default function Profil() {
+
+    const { id } = useParams();
+    const [user, setUser] = useState<IUser | null>(null);
+
+    useEffect(() => {
+        const loadData = async () => {
+            if (id) {
+                const newUser = await getProfileUsers(Number.parseInt(id));
+                setUser(newUser)
+            }
+        };
+        loadData();
+    }, [id])
+
     return (
         <>
             <main className="profile">
 
                 <div className="perso-info">
-                    <h2 className="main-title">Retrouvez ici blabla</h2>
+                    <h2 className="main-title">Retrouvez ici ton profile, avec tes informations personnelles, et tes défis !</h2>
                     <section className="button-container">
                         <a href="#" className="default-button">Modifier le profile</a>
                     </section>
-                    <p className="avatar">Avatar</p>
-                    <p className="pseudo">Pseudo : igordu13</p>
+                    <img
+                        className="avatar"
+                        src={user?.avatar_url ?? undefined}
+                        alt={`Avatar de ${user?.pseudo || "l'utilisateur"}`}
+                        style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+                    />
+                    <p className="pseudo">Pseudo : {user?.pseudo}</p>
                 </div>
 
 

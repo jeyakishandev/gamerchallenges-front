@@ -177,17 +177,13 @@ function FormLogin () {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
       })
-      console.log("response: ", response.status, response.statusText);
+      
       if (!response.ok) {
         setError("Nom d'utilisateur ou mot de passe incorrect");
         return;
       }
       const data = await response.json();
-      console.log(`data: ${data}`);
       const { token, userId } = data;
-      console.log(token);
-      console.log(data);
-      console.log(typeof userId);
 
       const userResponse  = await fetch(`http://localhost:3000/users/${userId}`, {
         method: "GET",
@@ -198,11 +194,8 @@ function FormLogin () {
         setError("Impossible de récupérer les informations de l'utilisateur.")
       }
       const user: IUser = await userResponse.json();
-      console.log(`userResponse: ${userResponse}`)
-      console.log(`user: ${user}`)
 
       login(token, user);
-      console.log(`login: ${login}`);
       localStorage.setItem("token", token);
     } catch (error) {
       setError("Echec de la connexion. Vérifiez vos identifiants.")

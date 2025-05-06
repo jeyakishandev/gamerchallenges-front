@@ -3,8 +3,9 @@ import "./Profil.css"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
-import { getChallengesByUser, getProfileUsers } from "../api";
+import { getChallengesByUser, getProfileUsers, getSubmissionsByUser } from "../api";
 import CreatedChall from "../components/CreatedProfile";
+import CompletedChall from "../components/CompletedChall";
 
 export default function Profil() {
 
@@ -24,7 +25,7 @@ export default function Profil() {
     const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
 
     useEffect(() => {
-        const loadData= async () => {
+        const loadData = async () => {
             if (id) {
             const newCreatedChallenges = await getChallengesByUser(Number.parseInt(id));
             console.log(newCreatedChallenges);
@@ -32,6 +33,18 @@ export default function Profil() {
             }
         };
         loadData();
+    }, [id]);
+
+    const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
+
+    useEffect(() => {
+        const loadData  = async () => {
+            if (id) {
+                const newCompletedChallenges = await getSubmissionsByUser(Number.parseInt(id));
+                setCompletedChallenges(newCompletedChallenges)
+            }
+        };
+        loadData()
     }, [id]);
 
     return (
@@ -102,28 +115,10 @@ export default function Profil() {
 
                         <div className="chall-list">
 
-                            <div className="chall-box">
-
-                                <div className="chall-pres">
-
-                                    <section className="video">
-                                        <iframe className="card-video" src="https://www.youtube.com/embed/SCi_kDUe7yU?si=lAvofjbMcTbQbI2w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                                    </section>
-
-                                    <section className="chall-info">
-                                        <p className="chall-name">Nom du challenge</p>
-                                        <p className="chall-tag">Catégorie</p>
-                                        <p className="chall-diff">Difficulté</p>
-                                        <p className="chall-submission">Nombre de participants</p>
-                                    </section>
-
-                                </div>
-
-                                <div className="button-container">
-                                    <a href="#" className="default-button">Détails</a>
-                                </div>
-
-                            </div>
+                            {completedChallenges.map((challenge) => {
+                                console.log(challenge)
+                                return <CompletedChall key={challenge.id} challenge={challenge} />
+                            })}
 
                         </div>
 
@@ -143,6 +138,7 @@ export default function Profil() {
                         <div className="chall-list">
 
                             {createdChallenges.map((challenge) => {
+                                console.log(challenge)
                                 return <CreatedChall key={challenge.id} challenge={challenge}/>
                             })}
 

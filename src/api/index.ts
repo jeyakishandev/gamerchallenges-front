@@ -18,13 +18,14 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
 export async function getChallengesByUser(id: number): Promise<IChallenges> {
   const response = await fetch(`http://localhost:3000/users/${id}/challenges`);
   const challenges = await response.json();
-  console.log(challenges);
+  /* console.log(challenges); */
   return challenges;
 }
 
-export async function getSubmissionsByUser(id: number): Promise<IChallenges> {
+export async function getSubmissionsByUser(id: number): Promise<IChallenge> {
   const response = await fetch(`http://localhost:3000/users/${id}/submissions`);
   const submissions = await response.json();
+  console.log(submissions)
   return submissions;
 }
 

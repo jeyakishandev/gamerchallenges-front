@@ -12,7 +12,7 @@ import { Challenge } from "./pages/Challenge";
 import { Connection } from "./pages/Connexion";
 
 import Creation from "./pages/Creation";
-import LoginRedirect from "./pages/LoginRedirect";
+
 import RequireAuth from "./components/ProtectedRoute/RequireAuth";
 
 import Logout from "./pages/logout";
@@ -42,7 +42,7 @@ function App() {
         } />
        
 
-        <Route path="/login-redirect" element={<LoginRedirect />} />
+        
       </Routes>
 
       <Footer />

@@ -2,10 +2,13 @@
 import "./Home.css";
 import "../App.css";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
-import { getTopChallengesByParticipation, getTopUsers } from "../api";
+import { getTopChallengesByParticipation } from "../api";
+
+
 
 export default function Home() {
   const [challenges, setChallenges] = useState<IChallenge[]>([]);
@@ -109,7 +112,10 @@ export default function Home() {
                     }
                   }}
                 />
-                <p className="video-title">{challenge.name}</p>
+                <Link to={`/challenges/${challenge.id}`} className="video-title">
+                  {challenge.name}
+                </Link>
+
               </div>
             );
           })}
@@ -147,7 +153,10 @@ export default function Home() {
                       }
                     }}
                   />
-                  <p className="video-title">{challenge.name}</p>
+                  <Link to={`/challenges/${challenge.id}`} className="video-title">
+                    {challenge.name}
+                  </Link>
+
                 </div>
               );
             })}

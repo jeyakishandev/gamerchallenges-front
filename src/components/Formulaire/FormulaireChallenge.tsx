@@ -173,9 +173,19 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
             ))}
           </select>
 
-          <button type="submit" className="default-button form-button">
-            Valider
-          </button>
+          <div className="form-buttons">
+  <button type="submit" className="default-button form-button">
+    Valider
+  </button>
+  <button
+    type="button"
+    className="default-button form-button"
+    onClick={() => navigate("/")}
+  >
+    Retour
+  </button>
+</div>
+
         </form>
       </div>
     </section>

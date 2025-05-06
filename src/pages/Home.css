@@ -44,6 +44,13 @@
 .default-button:hover {
   background-color: #8692FA;
 }
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 
 /* === CAROUSEL SECTION === */
 .carousel-section {

@@ -76,24 +76,39 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
       return;
     }
 
+    const payload = {
+      ...formData,
+      user_id: Number(userId),
+      category_id: Number(formData.category_id),
+      difficulty_id: Number(formData.difficulty_id),
+    };
+  
+    console.log("Payload envoyé :", payload);
+  
     try {
       const response = await fetch("http://localhost:3000/challenges", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, user_id: Number(userId) }),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        },
+        
+        body: JSON.stringify(payload),
       });
-
+  
       if (!response.ok) {
         const err = await response.json();
         throw new Error(err.message || "Erreur lors de l'envoi.");
       }
-
+  
       const newChallenge = await response.json();
       console.log("Challenge créé :", newChallenge);
-
+  
       if (onFormSubmit) onFormSubmit();
+  
+      // ✅ Redirection vers la page du challenge
       navigate(`/challenges/${newChallenge.id}`);
-
+  
     } catch (err: any) {
       setError(err.message);
     }

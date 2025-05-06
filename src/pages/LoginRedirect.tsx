@@ -7,9 +7,8 @@ export default function LoginRedirect() {
   const [searchParams] = useSearchParams();
   const [error, setError] = useState("");
 
-  const login = useAuthStore((state) => state.login); // 👈 login depuis Zustand
+  const login = useAuthStore((state) => state.login);
 
-  // Fonction exécutée lors de la soumission du formulaire de connexion
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
@@ -29,16 +28,20 @@ export default function LoginRedirect() {
       }
 
       const data = await res.json();
+
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user)); 
+      localStorage.setItem("user", JSON.stringify(data.user));
 
+      login(data.token, data.user || data);
 
-      // 🔐 Stockage en mémoire avec Zustand
-      login(data.token, data.user || data); // data.user selon retour du backend
+      // ✅ Correction ici : on lit le paramètre redirect de l'URL
+      const redirect = searchParams.get("redirect");
+      if (redirect) {
+        navigate(redirect);
+      } else {
+        navigate(`/profile/${data.user?.id || data.user_id || data.id}`);
+      }
 
-      // Redirection vers la page demandée ou vers le profil
-      const redirect = searchParams.get("redirect") || `/profile/${data.user?.id || data.user_id || data.id}`;
-      navigate(redirect);
     } catch (err) {
       console.error(err);
       setError("Erreur réseau.");

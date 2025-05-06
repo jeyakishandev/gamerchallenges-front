@@ -17,17 +17,17 @@ export default function Header() {
             }
         };
         
-        // Ajouter d'un écouteur d'évenement sur la taille de la fenêtre.
+        // Ajouter un écouteur d'évenement sur la taille de la fenêtre.
         window.addEventListener('resize', checkScreenSize);
 
         // Appeler de la fonction.
         checkScreenSize();
 
-        // Nettoyer l'écouter d'évenement lors du démontage du composant.
+        // Nettoyer l'écouteur d'évenement lors du démontage du composant.
         return () => {
             window.removeEventListener('resize', checkScreenSize)
         };
-    }, [menuOpen]) // Appeler le hook que si menuOpen === true.
+    }, [menuOpen]) // N'appeler le hook que si menuOpen === true.
     return (
         <header className="header">
             <div className="logo">
@@ -38,6 +38,7 @@ export default function Header() {
             
 
             <ul className={`navbar${menuOpen ? " open" : ""}`}>
+                {/** Quand un utilisateur est authentifé, son avatar s'affiche dans le header. Au clic il est renvoyé vers sa page de profil */}
                 {user && (
                     
                         <NavLink to={`/profile/${user.id}`}>
@@ -52,6 +53,8 @@ export default function Header() {
                 <li><NavLink to="/">Accueil</NavLink></li>
                 <li><NavLink to="/challenges">Challenges</NavLink></li>
                 <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
+
+                {/** S'il n'y a pas d'utilisateur authentifié, lien pour se connecter, sinon lien pour se déconnecter. */}
                 {!user ?
                     <li className="mobile-only"><NavLink to="/connexion">Se connecter</NavLink></li>
                     : 
@@ -59,7 +62,7 @@ export default function Header() {
                 }
                                 
             </ul>
-            <div className="login desktop-only">
+            <div className="desktop-only">
                 {!user ? 
                     <NavLink to="/connexion">Se connecter</NavLink>
                     :

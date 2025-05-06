@@ -4,7 +4,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 .logo {
     width: 50%;
@@ -75,7 +74,7 @@ a {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        width: 55%;
+        width: 50%;
         position: static;
     }
     .mobile-only {
@@ -84,13 +83,12 @@ a {
     .desktop-only {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-    }
-    .login {
+        justify-content: space-evenly;
         padding-right: 2rem;
-        width: 15%;
+        width: 20%;
         text-align: right;
         margin-right: 2rem;
+        white-space: nowrap;
     }
     .profil-picture {
         height: 50px;

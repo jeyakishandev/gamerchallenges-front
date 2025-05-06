@@ -1,39 +1,28 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
+import useAuthStore from "../store";
 
 export default function Creation() {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuth, setIsAuth] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("userId");
-
-
-    if (token) {
-      setIsAuth(true);
-    } else {
+    if (!user) {
       navigate("/connexion?redirect=/creation");
+    } else {
+      setChecking(false);
     }
+  }, [user]);
 
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading) {
-    return <p>Chargement...</p>;
-  }
-
-  if (!isAuth) {
-    return null; 
-  }
+  if (checking) return <p className="paragraph-center">Chargement...</p>;
 
   return (
-    <main>
-      <h1>Créer un challenge</h1>
+    <main className="formulaire-section">
+      
       <FormulaireChallenge onFormSubmit={() => navigate("/")} />
     </main>
   );
 }
-
 

@@ -4,12 +4,13 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IChallenge } from "../@types/index";
+import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 
 export default function Home() {
   const [challenges, setChallenges] = useState<IChallenge[]>([]);
   const navigate = useNavigate();
+  const user = useAuthStore((state) => state.user); // ✅ check Zustand
 
-  // Appel API pour récupérer les challenges dès que la page est chargée
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
@@ -24,7 +25,6 @@ export default function Home() {
     fetchChallenges();
   }, []);
 
-  // Scroll horizontal dans le carrousel (gauche/droite)
   const scroll = (id: string, direction: "left" | "right") => {
     const container = document.getElementById(id);
     if (container) {
@@ -43,25 +43,27 @@ export default function Home() {
         </p>
 
         <div className="home-buttons">
-          {/* Bouton pour rediriger vers la création (via page intermédiaire login-redirect) */}
-          <button className="default-button" onClick={() => navigate("/login-redirect?redirect=/creation")}>Créer</button>
-
-          {/* Accès direct à /creation pour debug (à supprimer en prod) */}
-          <button onClick={() => navigate("/creation")} className="default-button">
-            Aller vers création
+          <button
+            className="default-button"
+            onClick={() => {
+              if (user) {
+                navigate("/creation");
+              } else {
+                navigate("/connexion?redirect=/creation");
+              }
+            }}
+          >
+            Créer
           </button>
 
-          {/* Placeholder bouton Participer (à relier plus tard) */}
           <button className="default-button">Participer</button>
         </div>
       </section>
 
-      {/* Section Nouveauté avec vidéos YouTube embed */}
       <section className="carousel-section">
         <h2>Nouveauté</h2>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("nouveaute", "left")}>❮</span>
-
           <div id="nouveaute" className="carousel-items">
             {challenges.slice(0, 10).map((challenge) => {
               const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
@@ -94,14 +96,12 @@ export default function Home() {
               );
             })}
           </div>
-
           <span className="arrow" onClick={() => scroll("nouveaute", "right")}>❯</span>
         </div>
       </section>
 
-      {/* Section populaire (encore vide) */}
       <section className="carousel-section">
-        <h2>Challenges populaire</h2>
+        <h2>Challenges populaires</h2>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
           <div id="populaire" className="carousel-items">

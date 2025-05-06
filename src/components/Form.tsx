@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import useAuthStore from "../store";
 import { IUser } from "../@types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
 
 interface INewUserProps {
   addUser: (pseudo: string, email: string, password: string, confirmPasword: string, avatar: File | null) => Promise<void>;
@@ -164,7 +165,7 @@ function FormLogin () {
 
   const { login } = useAuthStore()
   const navigate = useNavigate();
-
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null);
@@ -196,11 +197,16 @@ function FormLogin () {
         setError("Impossible de récupérer les informations de l'utilisateur.")
       }
       const user: IUser = await userResponse.json();
-      navigate("/");
       login(token, user);
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // ✅ Redirection dynamique
+      const redirect = searchParams.get("redirect");
+      navigate(redirect || `/profile/${user.id}`);
+
     } catch (error) {
-      setError("Echec de la connexion. Vérifiez vos identifiants.")
+      setError("Échec de la connexion. Vérifiez vos identifiants.");
       console.error("Erreur de connexion:", error);
     }
   };

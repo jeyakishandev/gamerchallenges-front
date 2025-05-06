@@ -38,6 +38,17 @@ export default function Header() {
             
 
             <ul className={`navbar${menuOpen ? " open" : ""}`}>
+                {user && (
+                    
+                        <NavLink to={`/profil`}>
+                        <img
+                            src={`http://localhost:3000/uploads/${user.avatar_url}`}
+                            alt={`Profil de ${user.pseudo}`}
+                            className="profil-picture mobile-only"
+                        />
+                        </NavLink>
+                           
+                )}
                 <li><NavLink to="/">Accueil</NavLink></li>
                 <li><NavLink to="/challenges">Challenges</NavLink></li>
                 <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
@@ -53,7 +64,13 @@ export default function Header() {
                     <NavLink to="/connexion">Se connecter</NavLink>
                     :
                     <>
-                        <img src={`http://localhost:3000/uploads/${user.avatar_url}`} alt={`photo de profil de ${user.pseudo}`} className="profil-picture" />
+                        <NavLink to="/profil">
+                            <img 
+                                src={`http://localhost:3000/uploads/${user.avatar_url}`} 
+                                alt={`photo de profil de ${user.pseudo}`} 
+                                className="profil-picture"
+                            />
+                        </NavLink>
                         <NavLink to="/logout">Se déconnecter</NavLink>
                     </>
                     

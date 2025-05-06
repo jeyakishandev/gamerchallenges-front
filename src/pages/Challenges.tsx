@@ -4,6 +4,8 @@ import "./Challenges.css";
 import { getChallenges } from "../api";
 import ChallengesCard from "../components/ChallengesCard";
 import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
+import { Link } from "react-router-dom";
+import useAuthStore from "../store";
 
 
 export default function Challenges() {
@@ -18,6 +20,7 @@ export default function Challenges() {
         loadData();
     }, [])
 
+    const { user } = useAuthStore();
     const [form, setForm] = useState(false);
     
     return (
@@ -29,11 +32,17 @@ export default function Challenges() {
                 Sed hendrerit mauris id velit</h2>
 
                 <div className="button-container">
-                    <button 
-                        className="default-button"
-                        onClick={() => setForm(current => !current)}> {/* Toggle sur le bouton pour afficher ou fermer le formulaire de création d'un challenge */}
-                            {form ? "Fermer le formulaire" : "Créer un challenge"} {/* On change le texte du bouton en fonction de l'état du formulaire (ouvert ou fermé) */}
-                    </button>
+                    {user ? (
+                        <button 
+                            className="default-button"
+                            onClick={() => setForm(current => !current)}> {/* Toggle sur le bouton pour afficher ou fermer le formulaire de création d'un challenge */}
+                                {form ? "Fermer le formulaire" : "Créer un challenge"} {/* On change le texte du bouton en fonction de l'état du formulaire (ouvert ou fermé) */}
+                        </button>
+                    ) : (
+                        <Link className="default-button" to="/connexion">
+                            Connecte-toi pour créer un challenge
+                        </Link>
+                    )}
                 </div> 
                 {form && (
                     <section className="formulaire-section">

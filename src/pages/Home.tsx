@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
+import { getTopChallengesByParticipation, getTopUsers } from "../api";
 
 export default function Home() {
   const [challenges, setChallenges] = useState<IChallenge[]>([]);
@@ -32,6 +33,20 @@ export default function Home() {
       container.scrollBy({ left: amount, behavior: "smooth" });
     }
   };
+  const [popularChallenges, setPopularChallenges] = useState<IChallenge[]>([]);
+
+  useEffect(() => {
+    const fetchPopular = async () => {
+      try {
+        const data = await getTopChallengesByParticipation();
+        setPopularChallenges(data);
+      } catch (err) {
+        console.error("Erreur de chargement des challenges populaires", err);
+      }
+    };
+    fetchPopular();
+  }, []);
+  
 
   return (
     <main>
@@ -56,22 +71,64 @@ export default function Home() {
             Créer
           </button>
 
-          <button className="default-button">Participer</button>
+          <button
+            className="default-button"
+            onClick={() => navigate("/challenges")}
+          >
+            Participer
+          </button>
+
         </div>
       </section>
 
       <section className="carousel-section">
-        <h2>Nouveauté</h2>
+        <h2>Nouveautés</h2>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("nouveaute", "left")}>❮</span>
           <div id="nouveaute" className="carousel-items">
-            {challenges.slice(0, 10).map((challenge) => {
+          {challenges.slice(0, 10).map((challenge) => {
+            const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+            return (
+              <div key={challenge.id} className="video-card">
+                <iframe
+                  src={embedUrl}
+                  title={`challenge-${challenge.id}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  onMouseEnter={(e) => {
+                    const src = e.currentTarget.getAttribute("src");
+                    if (src && !src.includes("autoplay=1")) {
+                      e.currentTarget.setAttribute("src", src + "&autoplay=1");
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    const src = e.currentTarget.getAttribute("src");
+                    if (src) {
+                      const cleanSrc = src.replace("&autoplay=1", "");
+                      e.currentTarget.setAttribute("src", cleanSrc);
+                    }
+                  }}
+                />
+                <p className="video-title">{challenge.name}</p>
+              </div>
+            );
+          })}
+
+          </div>
+          <span className="arrow" onClick={() => scroll("nouveaute", "right")}>❯</span>
+        </div>
+      </section>
+
+      <section className="carousel-section">
+        <h2>Challenges populaires</h2>
+        <div className="carousel-container">
+          <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
+          <div id="populaire" className="carousel-items">
+            {popularChallenges.slice(0, 10).map((challenge) => {
               const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
               return (
-                <div key={challenge.id} className="skeleton-card video-card">
+                <div key={challenge.id} className="video-card">
                   <iframe
-                    width="100%"
-                    height="140"
                     src={embedUrl}
                     title={`challenge-${challenge.id}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -89,29 +146,16 @@ export default function Home() {
                         e.currentTarget.setAttribute("src", cleanSrc);
                       }
                     }}
-                    style={{ borderRadius: "8px" }}
-                  ></iframe>
+                  />
                   <p className="video-title">{challenge.name}</p>
                 </div>
               );
             })}
           </div>
-          <span className="arrow" onClick={() => scroll("nouveaute", "right")}>❯</span>
-        </div>
-      </section>
-
-      <section className="carousel-section">
-        <h2>Challenges populaires</h2>
-        <div className="carousel-container">
-          <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
-          <div id="populaire" className="carousel-items">
-            <div className="skeleton-card">populaire 1</div>
-            <div className="skeleton-card">populaire 2</div>
-            <div className="skeleton-card">populaire 3</div>
-          </div>
           <span className="arrow" onClick={() => scroll("populaire", "right")}>❯</span>
         </div>
       </section>
+
     </main>
   );
 }

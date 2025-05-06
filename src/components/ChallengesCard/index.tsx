@@ -8,10 +8,12 @@ interface ChallengesCardProps {
 }
 
 export default function ChallengesCard({ challenge }: ChallengesCardProps) {
+    const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
     return (              
         <article className="card" key={challenge.id}>
             <h3 className="card-title items">{challenge.name}</h3>
-                <iframe className="card-video" src={challenge.video_url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <iframe className="card-video" src={embedUrl}
+                  title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
                 <div className="card-tags">
                     <p style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>

@@ -44,26 +44,37 @@
 .default-button:hover {
   background-color: #8692FA;
 }
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
 
-/* === CAROUSEL SECTIONS === */
+
+/* === CAROUSEL SECTION === */
 .carousel-section {
   margin-top: 4rem;
 }
+
 .carousel-section h2 {
-  margin-bottom: 1.5rem; 
+  margin-bottom: 1.5rem;
   font-size: 1.8rem;
   text-align: center;
+  color: white;
 }
 
+/* === CONTAINER === */
 .carousel-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
-  gap: 1rem;
+  width: 100%;
   padding: 0 1rem;
 }
 
+/* === SCROLLABLE WRAPPER === */
 .carousel-items {
   display: flex;
   gap: 1rem;
@@ -73,38 +84,38 @@
   padding: 1rem 0;
 }
 
-.skeleton-card {
-  flex: 0 0 auto;
-  width: 250px;
-  height: 140px;
-  background-color: #6778A7;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-  font-family: 'Jura', sans-serif;
-  font-weight: bold;
-  color: white;
-}
-
-
+/* === VIDEO CARD === */
 .video-card {
-  flex-direction: column;
-  padding: 0;
+  flex: 0 0 320px;
+  background-color: #6778A7;
+  border-radius: 12px;
   overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   display: flex;
+  flex-direction: column;
 }
 
+/* === IFRAME (Vidéo) === */
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+/* === TITRE === */
 .video-title {
-  margin-top: 0.5rem;
+  padding: 0.5rem;
   font-size: 1rem;
   text-align: center;
   color: white;
   font-family: 'Jura', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* === ARROWS (FLÈCHES) === */
+/* === FLÈCHES GAUCHE/DROITE === */
 .arrow {
   font-size: 2rem;
   color: white;
@@ -113,82 +124,27 @@
   padding: 0 0.5rem;
 }
 
-.formulaire-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  border-radius: 1rem;
-  background: radial-gradient(
-    circle at center,
-    rgba(148, 46, 250, 0.7) 50%,
-    rgba(103, 30, 205, 0.5) 80%,
-    rgba(59, 17, 119, 0.2) 100%
-  );
-}
-.form-card {
-  padding: 2rem;
-  border: 1px solid #ffffff20;
-  border-radius: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
-
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* === RESPONSIVE TABLETTE === */
+@media (max-width: 1024px) {
+  .video-card {
+    flex: 0 0 90vw;
+    max-width: 600px;
+  }
 }
 
-.modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  position: relative;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-
-
-/* === RESPONSIVE MOBILE === */
-@media (max-width: 768px) {
-  .carousel-items {
-    gap: 0.5rem;
+/* === RESPONSIVE IPHONE & PETITS ÉCRANS === */
+@media (max-width: 480px) {
+  .video-card {
+    flex: 0 0 95vw;
+    max-width: 95vw;
   }
 
-  .skeleton-card {
-    width: 100%;
-    max-width: 280px;
+  .video-title {
+    font-size: 0.85rem;
+    padding: 0 0.3rem;
   }
 
   .arrow {
     font-size: 1.8rem;
   }
 }
-
-
-
-  

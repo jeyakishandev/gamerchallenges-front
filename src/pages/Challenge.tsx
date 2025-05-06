@@ -80,7 +80,8 @@ export default function Challenge() {
 
           {challenge?.users.map((user) => {
             const submission = user?.Submission;
-            const key = `${user.id}-${submission?.challenge_id}`;
+            const key = `${user.id}-${submission.challenge_id}`;
+
             return (
               <article className="challenge-participation-container" key={key}>
                 <div className="participation-info">

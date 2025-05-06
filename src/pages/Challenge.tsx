@@ -22,7 +22,11 @@ export default function Challenge() {
   }, [id]);
 
   const [showForm, setShowForm] = useState(false); // Formulaire de participation fermé par défaut.
-
+  
+  if (!challenge) {
+    return <p>Chargement...</p>;
+  }
+  const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
   return (
     <>
       <h2 className="challenge-title">{challenge?.name}</h2>
@@ -32,8 +36,8 @@ export default function Challenge() {
             <iframe 
                   width="100%" 
                   height="315"
-                  src={challenge?.video_url}
-                  title="YouTube video player" 
+                  src={embedUrl}
+                  title={`challenge-${challenge.id}`}
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                   allowFullScreen

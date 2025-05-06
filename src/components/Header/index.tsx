@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./style.css";
 import logo from "../../assets/logo-transparent.svg";
 import BurgerIcon from "./BurgerIcon";
@@ -6,28 +6,64 @@ import { NavLink, Link } from "react-router-dom";
 import useAuthStore from "../../store";
 
 export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false); // Menu burger fermé par défaut.
+    // Etat pour gérer l'ouverture/fermeture du menu burger (mobile).
+    const [menuOpen, setMenuOpen] = useState(false); // Fermé par défaut.
+
+    // Références vers les éléments du DOM pour le menu (ul) et le bouton burger (button).
+    const menuRef = useRef<HTMLUListElement | null>(null);
+    const burgerRef = useRef<HTMLButtonElement | null>(null);
+
+     // Récupère l'utilisateur connecté depuis dans le store d'authentification.
     const { user } = useAuthStore();
 
+    /**
+     * Ferme le menu burger automatiquement si la fenêtre 
+     * est redimensionnée au delà de 768px de largeur
+     */
     useEffect(() => {
-        // Vérifier la largeur de la fenêtre du navigateur et fermer le menu burger si elle est supérieure à 768px.
         const checkScreenSize = () => {
             if (window.innerWidth > 768 && menuOpen) {
                 setMenuOpen(false);
             }
         };
         
-        // Ajouter un écouteur d'évenement sur la taille de la fenêtre.
+        // Ajoute un écouteur d'évenement lors du redimensionnement de la fenêtre.
         window.addEventListener('resize', checkScreenSize);
 
-        // Appeler de la fonction.
+        // Appelle la fonction immédiatement pour gérer le cas initial.
         checkScreenSize();
 
-        // Nettoyer l'écouteur d'évenement lors du démontage du composant.
+        // Nettoie l'écouteur lors du démontage du composant (= quand le menu n'est plus ouvert).
         return () => {
             window.removeEventListener('resize', checkScreenSize)
         };
-    }, [menuOpen]) // N'appeler le hook que si menuOpen === true.
+    }, [menuOpen]) // S'exécute à chaque changement de menuOpen, mais agit uniquement si menuOpen est ouvert.
+
+    // Fermer le menu burger si clic en dehors du menu ET du bouton.
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuOpen) {
+                
+                const clickOutsideMenu = menuRef.current && !menuRef.current.contains(event.target as Node);
+                const clickOutsideBurger = burgerRef.current && !burgerRef.current.contains(event.target as Node);
+
+                /**
+                 * Si le clic ne se produit NI sur le menu (menuRef) 
+                 * NI sur le bouton burger (burgerRef), alors on ferme le menu.
+                 */
+                if (clickOutsideMenu && clickOutsideBurger) {
+                    setMenuOpen(false);
+                }
+            }
+        };
+        // Ajoute un écouteur dsur tous les clics de la page.
+        document.addEventListener("mousedown", handleClickOutside);
+
+        // Nettoie l'écouteur lors du démontage du composant.
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [menuOpen]);
     return (
         <header className="header">
             <div className="logo">
@@ -37,7 +73,7 @@ export default function Header() {
             </div>
             
 
-            <ul className={`navbar${menuOpen ? " open" : ""}`}>
+            <ul ref={menuRef} className={`navbar${menuOpen ? " open" : ""}`}>
                 {/** Quand un utilisateur est authentifé, son avatar s'affiche dans le header. Au clic il est renvoyé vers sa page de profil */}
                 {user && (
                     
@@ -80,7 +116,7 @@ export default function Header() {
                 }
             </div>
             
-            <button className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+            <button ref={burgerRef} className="burger" onClick={() => setMenuOpen(!menuOpen)}>
                 <BurgerIcon />
             </button>
         </header>

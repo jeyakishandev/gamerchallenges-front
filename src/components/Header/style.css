@@ -21,11 +21,10 @@ a {
     display: flex;
     flex-direction: column;
     z-index: 10;
-    width: 100px;
     position: fixed;
     right: 0;
     padding-top: 25rem;
-    padding-right: 5rem;
+    padding-right: 1rem;
     padding-bottom: 3rem;
     background: linear-gradient(180deg, #1d083b 0%, #5017a1 100%);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5); 
@@ -61,7 +60,7 @@ a {
     width: 60px;
 }
 .profil-picture.mobile-only {
-    margin: 1rem 3rem;
+    margin: 1rem 2.5rem;
 }
 
 @media screen and (min-width: 768px) { 

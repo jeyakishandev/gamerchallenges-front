@@ -115,7 +115,7 @@ export default function Profil() {
 
                         <div className="chall-list">
 
-                            {completedChallenges.map((challenge) => {
+                            {user?.challenges.map((challenge) => {
                                 console.log(challenge)
                                 return <CompletedChall key={challenge.id} challenge={challenge} />
                             })}

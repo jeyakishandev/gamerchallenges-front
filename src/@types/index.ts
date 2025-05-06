@@ -11,6 +11,7 @@ export interface IChallenge {
   users: IUser[];
   category: ICategory;
   difficulty: IDifficulty;
+  Submission?: ISubmission
 }
 
 export interface IUser {

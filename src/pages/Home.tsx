@@ -71,7 +71,13 @@ export default function Home() {
             Créer
           </button>
 
-          <button className="default-button">Participer</button>
+          <button
+            className="default-button"
+            onClick={() => navigate("/challenges")}
+          >
+            Participer
+          </button>
+
         </div>
       </section>
 

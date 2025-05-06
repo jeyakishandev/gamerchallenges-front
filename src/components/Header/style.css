@@ -55,6 +55,14 @@ a {
     color: white;
     
 }
+.profil-picture {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+}
+.profil-picture.mobile-only {
+    margin: 1rem 3rem;
+}
 
 @media screen and (min-width: 768px) { 
     .burger {
@@ -75,12 +83,19 @@ a {
         display: none;
     }
     .desktop-only {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     .login {
         padding-right: 2rem;
         width: 15%;
         text-align: right;
+        margin-right: 2rem;
+    }
+    .profil-picture {
+        height: 50px;
+        width: 50px;
     }
 }
 

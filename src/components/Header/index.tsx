@@ -40,7 +40,7 @@ export default function Header() {
             <ul className={`navbar${menuOpen ? " open" : ""}`}>
                 {user && (
                     
-                        <NavLink to={`/profil`}>
+                        <NavLink to={`/profile/${user.id}`}>
                         <img
                             src={`http://localhost:3000/uploads/${user.avatar_url}`}
                             alt={`Profil de ${user.pseudo}`}
@@ -64,7 +64,7 @@ export default function Header() {
                     <NavLink to="/connexion">Se connecter</NavLink>
                     :
                     <>
-                        <NavLink to="/profil">
+                        <NavLink to={`/profile/${user.id}`}>
                             <img 
                                 src={`http://localhost:3000/uploads/${user.avatar_url}`} 
                                 alt={`photo de profil de ${user.pseudo}`} 

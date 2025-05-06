@@ -21,6 +21,7 @@ export interface IUser {
   difficulty_id: number;
   challenges: IChallenge[];
   Submission?: ISubmission;
+
 }
 
 export interface ISubmission {

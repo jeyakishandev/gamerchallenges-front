@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { IChallenge } from "../@types";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getChallengeById } from "../api";
 import SubmissionForm from "../components/SubmissionForm";
+import useAuthStore from "../store";
 
 
 export default function Challenge() {
   const { id } = useParams();
   const [challenge, setChallenge] = useState<IChallenge | null>(null);
+  const { user } = useAuthStore();
 
   useEffect(() => {
     const loadData = async () => {
@@ -59,9 +61,15 @@ export default function Challenge() {
         </section>
         {/** Le formulaire ne s'affiche au clic que s'il y a bien un challenge.id */}
         {showForm && challenge?.id !== undefined && (
-          <section>
+          user ? (
+            <section>
             <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id}/>
           </section>
+          ) : (
+            <Link className="default-button" to="/connexion">
+              Connecte-toi pour participer
+            </Link>
+          )
         )}
       <h2 className="challenge-title">Les participations</h2>
         <section className="challenge-participations">

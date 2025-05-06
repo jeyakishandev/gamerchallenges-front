@@ -20,7 +20,7 @@ export interface IUser {
   avatar_url: string | null;
   difficulty_id: number;
   challenges: IChallenge[];
-  Submission?: ISubmission;
+  Submission: ISubmission;
 
 }
 

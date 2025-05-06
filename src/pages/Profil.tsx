@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
 import "./Profil.css"
+import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
 import { getChallengesByUser, getProfileUsers } from "../api";

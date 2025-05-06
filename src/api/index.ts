@@ -22,6 +22,12 @@ export async function getChallengesByUser(id: number): Promise<IChallenges> {
   return challenges;
 }
 
+export async function getSubmissionsByUser(id: number): Promise<IChallenges> {
+  const response = await fetch(`http://localhost:3000/users/${id}/submissions`);
+  const submissions = await response.json();
+  return submissions;
+}
+
 export async function getUsers() {
   const response = await fetch("http://localhost:3000/users");
   const users = await response.json();

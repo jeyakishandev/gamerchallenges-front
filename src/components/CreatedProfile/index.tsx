@@ -1,4 +1,5 @@
 import './Profile.css'
+import '../../App.css'
 import { IChallenge } from "../../@types"
 import { Link } from 'react-router-dom'
 

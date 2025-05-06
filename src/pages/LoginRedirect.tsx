@@ -1,11 +1,13 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import useAuthStore from "../store/index"; 
 
-// Page de redirection si un utilisateur non connecté tente d'accéder à une page protégée
 export default function LoginRedirect() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [error, setError] = useState("");
+
+  const login = useAuthStore((state) => state.login); // 👈 login depuis Zustand
 
   // Fonction exécutée lors de la soumission du formulaire de connexion
   const handleSubmit = async (e: React.FormEvent) => {
@@ -28,11 +30,14 @@ export default function LoginRedirect() {
 
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userId", data.user.id || data.user_id || data.id);
+      localStorage.setItem("user", JSON.stringify(data.user)); 
 
 
-      // Redirection vers la page demandée ou profil par défaut
-      const redirect = searchParams.get("redirect") || `/profile/${data.token.id}`;
+      // 🔐 Stockage en mémoire avec Zustand
+      login(data.token, data.user || data); // data.user selon retour du backend
+
+      // Redirection vers la page demandée ou vers le profil
+      const redirect = searchParams.get("redirect") || `/profile/${data.user?.id || data.user_id || data.id}`;
       navigate(redirect);
     } catch (err) {
       console.error(err);
@@ -55,7 +60,8 @@ export default function LoginRedirect() {
             </button>
           </div>
         </form>
-        
+
+        {error && <p className="error-message">{error}</p>}
       </section>
     </div>
   );

@@ -104,7 +104,7 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
     <section className="formulaire-section">
       <div className="form-container">
         <form className="signup-form" onSubmit={handleSubmit}>
-          <p className="paragraph-center">Créer un Challenge</p>
+          <h1>Créer un Challenge</h1>
 
           {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 

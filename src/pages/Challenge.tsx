@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Challenge.css";
 import { IChallenge } from "../@types";
 import { Link, useParams } from "react-router-dom";
 import { getChallengeById } from "../api";
@@ -20,6 +21,28 @@ export default function Challenge() {
     };
     loadData();
   }, [id]);
+  const handleDelete = async () => {
+    if (!challenge) return; 
+  
+    if (confirm("Es-tu sûr de vouloir supprimer ce challenge ?")) {
+      try {
+        await fetch(`http://localhost:3000/challenges/${challenge.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        alert("Challenge supprimé !");
+        window.location.href = "/";
+      } catch (error) {
+        console.error("Erreur suppression :", error);
+        alert("Erreur lors de la suppression.");
+      }
+    }
+  };
+  
+
+
 
   const [showForm, setShowForm] = useState(false); // Formulaire de participation fermé par défaut.
   
@@ -45,6 +68,13 @@ export default function Challenge() {
             </section>
             <section className="challenge-info">
               <div className="challenge-cat-and-diff">
+              {user?.id === challenge.user_id && (
+  <div className="challenge-actions">
+    <span className="icon-button" title="Modifier">✏️</span>
+    <span className="icon-button" title="Supprimer" onClick={handleDelete}>🗑️</span>
+  </div>
+)}
+
                 <span className="category-color" style={{backgroundColor: challenge?.category.color}}>{challenge?.category.name}</span>
                 <span className="difficulty-color" style={{backgroundColor: challenge?.difficulty.color}}>{challenge?.difficulty.name}</span>
               </div>

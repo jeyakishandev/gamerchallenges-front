@@ -19,6 +19,7 @@
 /**! - CONNECTION PAGE
 /* TODO: PROFILE
 /**! - FOOTER */
+/**! - 404NNotFound */
 
 /**! ============== COMMENTS BLOCK ================ */
 
@@ -804,3 +805,45 @@ body {
   text-decoration: underline;
 }
 
+/** ==================================== */
+/** ===== 404NotFound PAGE SECTION ===== */
+/** ==================================== */
+
+a:hover {
+  color: #007bff
+}
+
+.main-404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-sentence-404 {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.home-link-404 {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dino-car-404 {
+  max-width: 75%;
+  height: auto;
+}
+
+/**? ==================================== */
+/**? ===== 404NotFound PAGE DISPLAY ===== */
+/**? ==================================== */
+
+@media screen and (min-width: 650px) {
+  .dino-car-404 {
+    max-width: 60%;
+    height: auto;
+  }
+}

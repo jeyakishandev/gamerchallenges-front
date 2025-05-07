@@ -16,8 +16,10 @@ import Creation from "./pages/Creation";
 import RequireAuth from "./components/ProtectedRoute/RequireAuth";
 
 import Logout from "./pages/logout";
+
 import EditChallenge from "./pages/EditChallenge";
 
+import NotFound from "./pages/404NotFound";
 
 
 
@@ -38,11 +40,12 @@ function App() {
         <Route path="/connexion/" element={<Connection />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/profile/:id" element={<Profil />}/>
-        <Route path="/creation" element={
+        <Route path="/creation" element={ 
         <RequireAuth>
           <Creation />
           </RequireAuth>
         } />
+
         <Route
           path="/challenges/:id/edit"
           element={
@@ -51,6 +54,9 @@ function App() {
             </RequireAuth>
           }
         />
+
+       <Route path="*" element={<NotFound />} />
+
 
        
        <Route path="/challenges/:id/edit" element={<EditChallenge />} />

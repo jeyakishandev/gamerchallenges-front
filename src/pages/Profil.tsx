@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom"
-import "./Profil.css"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
@@ -82,7 +81,7 @@ export default function Profil() {
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div id="completed" className="chall-list">
+                        <div id="completed" className="carousel-items">
 
                             {user?.challenges.map((challenge) => {
                                 return <CompletedChall key={challenge.id} challenge={challenge} />
@@ -103,7 +102,7 @@ export default function Profil() {
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-                        <div id="created" className="chall-list carousel-items">
+                        <div id="created" className="carousel-items">
 
                             {createdChallenges.map((challenge) => {
                                 return <CreatedChall key={challenge.id} challenge={challenge}/>

@@ -1,35 +1,32 @@
 import { Link } from 'react-router-dom'
 import { IChallenge, } from '../../@types'
 import '../../App.css'
-import '../../pages/Profil.css'
 
 interface CompletedChallenge {
     challenge: IChallenge
 }
 
-export default function CompletedChall({challenge}: CompletedChallenge) {
-    return (
-            <div className="chall-box">
+    export default function CompletedChall({ challenge }: CompletedChallenge) {
 
-                <div className="chall-pres">
+        const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
 
-                    <section className="video">
-                        <iframe className="card-video" src={challenge.Submission?.video_url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                    </section>
+        return ( 
 
-                    <section className="chall-info">
-                        <p className="chall-name">{challenge.name}</p>
-                        <p className="chall-tag"  style={{backgroundColor: challenge.category.color}} > {challenge.category.name} </p>
-                        <p className="chall-diff" style={{backgroundColor: challenge.difficulty.color}} > {challenge.difficulty.name}</p>
-                        {/* <p className="chall-submission"> Particpations : {challenge.users.length}</p> */}
-                    </section>
+            <article className="card default-box-design" key={challenge.id}>
+
+                <h3 className="low-title card-title items">{challenge.name}</h3>
+                <iframe className="card-video" src={embedUrl}
+                        title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+    
+                <div className="card-tags">
+
+                    <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>
+                    <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.difficulty.color}}>{challenge.difficulty.name}</p>
 
                 </div>
 
-                <div className="button-container">
                     <Link to={`/challenges/${challenge.id}`} className="default-button card-details">Détails</Link>
-                </div>
 
-            </div>
-    )
+            </article>  
+        )
 }

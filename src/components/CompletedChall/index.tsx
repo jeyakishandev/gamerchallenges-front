@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { IChallenge, } from '../../@types'
 import '../../App.css'
-import '../../pages/Profil.css'
 import { getYoutubeEmbedUrl } from '../../utils/youtube'
 
 

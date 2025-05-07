@@ -32,6 +32,31 @@ export async function getUsers() {
   return users;
 }
 
+export async function loginUser(pseudoOrEmail: string, password: string): Promise<{ token: string; userId: number}> {
+  const response = await fetch("http://localhost:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ pseudoOrEmail, password })
+  })
+  
+  if (!response.ok) {
+    throw new Error("Nom d'utilisateur ou mot de passe incorrect");
+  }
+  return response.json();
+}
+
+export async function getUserById(userId: number, token: string): Promise<IUser> {
+  const response  = await fetch(`http://localhost:3000/users/${userId}`, {
+    method: "GET",
+    headers: { "Authorization": `Bearer ${token}`},
+  });
+
+  if (!response.ok) {
+    throw new Error("Impossible de récupérer les informations de l'utilisateur.");
+  }
+  return response.json();
+}
+
 export async function addUserIntoApi(
   pseudo: string,
   email: string,

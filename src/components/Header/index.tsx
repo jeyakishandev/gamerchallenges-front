@@ -72,7 +72,6 @@ export default function Header() {
                 </Link>
             </div>
             
-
             <ul ref={menuRef} className={`navbar${menuOpen ? " open" : ""}`}>
                 {/** Quand un utilisateur est authentifé, son avatar s'affiche dans le header. Au clic il est renvoyé vers sa page de profil */}
                 {user && (

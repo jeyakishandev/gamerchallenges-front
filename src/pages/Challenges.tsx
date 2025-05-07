@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { IChallenges } from "../@types";
-import "./Challenges.css";
 import { getChallenges } from "../api";
 import ChallengesCard from "../components/ChallengesCard";
-import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
+import FormulaireChallenge from "../components/FormulaireChallenge";
 import { Link } from "react-router-dom";
 import useAuthStore from "../store";
 
@@ -25,8 +24,8 @@ export default function Challenges() {
     
     return (
         <main>
-            <h1>Tous les challenges en cours</h1>
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            <h1 className="main-title challenges-title">Tous les challenges en cours</h1>
+            <h2 className="subtitle challenges-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Cras auctor, nisi tempus lacinia pulvinar, ligula 
                 est efficitur tortor, sit amet rhoncus justo tellus sed erat.
                 Sed hendrerit mauris id velit</h2>
@@ -45,7 +44,7 @@ export default function Challenges() {
                     )}
                 </div> 
                 {form && (
-                    <section className="formulaire-section">
+                    <section>
                         <FormulaireChallenge />
                     </section>
                 )}

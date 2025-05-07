@@ -29,6 +29,7 @@ function Input ({value, setValue, name, type, placeholder, label}: IInputProps) 
     <>
       <label htmlFor={label}></label> 
       <input
+        className="form-input"
         type={type}
         id={name}
         name={name}
@@ -53,6 +54,7 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
     <>
     <label htmlFor={label}></label>
     <input 
+        className="form-input"
         type="file" 
         id={name} 
         name={name} 
@@ -153,9 +155,9 @@ function FormSubscribe ({addUser}: INewUserProps) {
         accept="image/jpeg, image/jpg, image/png, image/gif"
       />
 
-      <div className="align-button">
-        <button className="default-button form-button" type="submit">Confirmer</button>
-        <button className="default-button form-button" type="button">Retour</button>
+      <div className="form-button align-button">
+        <button className="default-button" type="submit">Confirmer</button>
+        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>
@@ -234,9 +236,9 @@ function FormLogin () {
         label="Mot de passe"
       />
 
-      <div className="align-button">
-        <button className="default-button form-button" type="submit">Confirmer</button>
-        <button className="default-button form-button" type="button">Retour</button>
+      <div className="form-button align-button">
+        <button className="default-button" type="submit">Confirmer</button>
+        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>

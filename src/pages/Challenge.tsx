@@ -52,8 +52,7 @@ export default function Challenge() {
   const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
   return (
     <>
-      <h2 className="challenge-title">{challenge?.name}</h2>
-        <section className="challenge-content">
+        <section className="challenge-content default-box-design">
           <div className="challenge-container">
             <section className="video-container">
             <iframe 
@@ -67,6 +66,7 @@ export default function Challenge() {
                 ></iframe>
             </section>
             <section className="challenge-info">
+            <h2 className="challenge-title low-title">{challenge?.name}</h2>
               <div className="challenge-cat-and-diff">
               {user?.id === challenge.user_id && (
   <div className="challenge-actions">
@@ -74,12 +74,11 @@ export default function Challenge() {
     <span className="icon-button" title="Supprimer" onClick={handleDelete}>🗑️</span>
   </div>
 )}
-
-                <span className="category-color" style={{backgroundColor: challenge?.category.color}}>{challenge?.category.name}</span>
-                <span className="difficulty-color" style={{backgroundColor: challenge?.difficulty.color}}>{challenge?.difficulty.name}</span>
+                <span className="category-color default-tag-design" style={{backgroundColor: challenge?.category.color}}>{challenge?.category.name}</span>
+                <span className="difficulty-color default-tag-design" style={{backgroundColor: challenge?.difficulty.color}}>{challenge?.difficulty.name}</span>
               </div>
               <article className="challenge-description">
-                <p>{challenge?.description}
+                <p className="default-text">{challenge?.description}
                 </p>
               </article>
             </section>
@@ -96,7 +95,7 @@ export default function Challenge() {
         {/** Le formulaire ne s'affiche au clic que s'il y a bien un challenge.id */}
         {showForm && challenge?.id !== undefined && (
           user ? (
-            <section>
+          <section className="submission-form-section">
             <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id}/>
           </section>
           ) : (
@@ -105,7 +104,7 @@ export default function Challenge() {
             </Link>
           )
         )}
-      <h2 className="challenge-title">Les participations</h2>
+      <h3 className="participation-title low-title">Les participations</h3>
         <section className="challenge-participations">
 
           {challenge?.users.map((user) => {
@@ -114,10 +113,10 @@ export default function Challenge() {
             const embedUrl = submission.video_url.replace("watch?v=", "embed/") + "?mute=1";
 
             return (
-              <article className="challenge-participation-container" key={key}>
+              <article className="challenge-participation-container default-box-design" key={key}>
                 <div className="participation-info">
-                  <span>{user?.pseudo}</span>
-                  <span>{new Date(submission.created_at).toLocaleDateString()}</span>
+                  <span className="default-tag-design">{user?.pseudo}</span>
+                  <span className="default-tag-design">{new Date(submission.created_at).toLocaleDateString()}</span>
                 </div>
                 <div>
                 <iframe

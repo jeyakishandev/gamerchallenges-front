@@ -1,9 +1,6 @@
-
-import "./Home.css";
 import "../App.css";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getTopChallengesByParticipation } from "../api";
@@ -54,13 +51,13 @@ export default function Home() {
   return (
     <main>
       <section className="home-content">
-        <h1>Prêt à relever le challenge ?</h1>
-        <p>
+        <h1 className="main-title">Prêt à relever le challenge ?</h1>
+        <h2 className="subtitle">
           Montrez-nous ce que vous avez dans le ventre !<br />
           Postez vos vidéos, défiez les autres, et grimpez au sommet.
-        </p>
+        </h2>
 
-        <div className="home-buttons">
+        <div className="home-buttons buttons-flex">
           <button
             className="default-button"
             onClick={() => {
@@ -85,7 +82,7 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-        <h2>Nouveautés</h2>
+        <h3 className="low-title">Nouveauté</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("nouveaute", "left")}>❮</span>
           <div id="nouveaute" className="carousel-items">
@@ -126,7 +123,7 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-        <h2>Challenges populaires</h2>
+       <h3 className="low-title">Challenges populaire</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
           <div id="populaire" className="carousel-items">

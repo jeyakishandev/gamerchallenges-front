@@ -16,6 +16,9 @@ import Creation from "./pages/Creation";
 import RequireAuth from "./components/ProtectedRoute/RequireAuth";
 
 import Logout from "./pages/logout";
+import EditChallenge from "./pages/EditChallenge";
+
+
 
 
 
@@ -40,8 +43,17 @@ function App() {
           <Creation />
           </RequireAuth>
         } />
-       
+        <Route
+          path="/challenges/:id/edit"
+          element={
+            <RequireAuth>
+              <EditChallenge />
+            </RequireAuth>
+          }
+        />
 
+       
+       <Route path="/challenges/:id/edit" element={<EditChallenge />} />
         
       </Routes>
 

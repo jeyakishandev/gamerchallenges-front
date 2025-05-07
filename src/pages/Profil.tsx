@@ -28,7 +28,6 @@ export default function Profil() {
         const loadData = async () => {
             if (id) {
             const newCreatedChallenges = await getChallengesByUser(Number.parseInt(id));
-            console.log(newCreatedChallenges);
             setCreatedChallenges(newCreatedChallenges)
             }
         };
@@ -78,7 +77,6 @@ export default function Profil() {
                         <div className="chall-list">
 
                             {user?.challenges.map((challenge) => {
-                                console.log(challenge)
                                 return <CompletedChall key={challenge.id} challenge={challenge} />
                             })}
 
@@ -100,7 +98,6 @@ export default function Profil() {
                         <div className="chall-list">
 
                             {createdChallenges.map((challenge) => {
-                                console.log(challenge)
                                 return <CreatedChall key={challenge.id} challenge={challenge}/>
                             })}
 

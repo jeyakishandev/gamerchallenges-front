@@ -8,7 +8,6 @@ interface CompletedChallenge {
 }
 
 export default function CompletedChall({challenge}: CompletedChallenge) {
-    console.log(challenge)
     return (
             <div className="chall-box">
 

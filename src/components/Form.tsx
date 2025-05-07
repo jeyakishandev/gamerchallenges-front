@@ -1,11 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import useAuthStore from "../store";
+import { IUser } from "../@types";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
 
 interface INewUserProps {
   addUser: (pseudo: string, email: string, password: string, confirmPasword: string, avatar: File | null) => Promise<void>;
-}
-
-interface ILogUserProps {
-  logUser: (pseudo: string, password: string) => Promise<void>;
 }
 
 interface IInputProps {
@@ -65,6 +65,8 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
 
 
 function FormSubscribe ({addUser}: INewUserProps) {
+
+  console.log("formSubscribe")
   const [pseudo, setPseudo] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -159,21 +161,52 @@ function FormSubscribe ({addUser}: INewUserProps) {
   </>
 }
 
-function FormLogin ({logUser}: ILogUserProps) {
-  const [pseudo, setPseudo] = useState("")
+function FormLogin () {
+
+  const { login } = useAuthStore()
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async(e: FormEvent) => {
     e.preventDefault()
     setError(null);
-
+    
     try {
-    await logUser(pseudo, password)
-    setPseudo("");
-    setPassword("");
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      })
+      
+      if (!response.ok) {
+        setError("Nom d'utilisateur ou mot de passe incorrect");
+        return;
+      }
+      const data = await response.json();
+      const { token, userId } = data;
+
+      const userResponse  = await fetch(`http://localhost:3000/users/${userId}`, {
+        method: "GET",
+        headers: { "Authorization": `Bearer ${token}`},
+      });
+
+      if (!userResponse.ok) {
+        setError("Impossible de récupérer les informations de l'utilisateur.")
+      }
+      const user: IUser = await userResponse.json();
+      login(token, user);
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // ✅ Redirection dynamique
+      const redirect = searchParams.get("redirect");
+      navigate(redirect || `/profile/${user.id}`);
+
     } catch (error) {
-      setError("Echec de la connexion. Vérifiez vos identifiants.")
+      setError("Échec de la connexion. Vérifiez vos identifiants.");
       console.error("Erreur de connexion:", error);
     }
   };
@@ -184,12 +217,12 @@ function FormLogin ({logUser}: ILogUserProps) {
       {error && <div className="error-message">{error}</div>}
 
       <Input 
-        value={pseudo}
-        setValue={setPseudo}
-        name="pseudo"
-        placeholder="Pseudo"
-        type="text"
-        label="Pseudo"
+        value={email}
+        setValue={setEmail}
+        name="email"
+        placeholder="Email"
+        type="email"
+        label="Email"
       />
 
       <Input 

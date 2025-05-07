@@ -1,7 +1,9 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../../@types";
 
+// Props optionnelles : une fonction à appeler après soumission du formulaire
 interface Props {
   onFormSubmit?: () => void;
 }
@@ -9,10 +11,12 @@ interface Props {
 function FormulaireChallenge({ onFormSubmit }: Props) {
   const navigate = useNavigate();
 
+  // États pour stocker les catégories, difficultés et erreurs éventuelles
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [difficulties, setDifficulties] = useState<IDifficulty[]>([]);
   const [error, setError] = useState<string>("");
 
+  // État pour gérer les données du formulaire
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -21,6 +25,7 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
     difficulty_id: "",
   });
 
+  // Récupère les catégories et difficultés depuis le back au chargement du composant
   useEffect(() => {
     fetch("http://localhost:3000/categories")
       .then((res) => res.json())
@@ -28,71 +33,93 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
         if (Array.isArray(data)) {
           setCategories(data);
         } else {
-          console.error("Données invalides reçues pour catégories :", data);
-          setCategories([]); // fallback
+          console.error("Catégories non valides :", data);
+          setCategories([]);
         }
       })
       .catch((err) => {
-        console.error("Erreur lors du fetch catégories :", err);
+        console.error("Erreur fetch catégories :", err);
         setCategories([]);
       });
-  
+
     fetch("http://localhost:3000/difficulties")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
           setDifficulties(data);
         } else {
-          console.error("Données invalides reçues pour difficultés :", data);
+          console.error("Difficultés non valides :", data);
           setDifficulties([]);
         }
       })
       .catch((err) => {
-        console.error("Erreur lors du fetch difficultés :", err);
+        console.error("Erreur fetch difficultés :", err);
         setDifficulties([]);
       });
   }, []);
-  
 
+  // Gère le changement de valeur dans les champs du formulaire
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Envoie du formulaire à la base de données
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
+    const userId = localStorage.getItem("userId");
+    if (!userId) {
+      setError("Utilisateur non connecté.");
+      return;
+    }
+
+    const payload = {
+      ...formData,
+      user_id: Number(userId),
+      category_id: Number(formData.category_id),
+      difficulty_id: Number(formData.difficulty_id),
+    };
+  
+    console.log("Payload envoyé :", payload);
+  
     try {
       const response = await fetch("http://localhost:3000/challenges", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
-        // ⚠️ Ajoute ici un user_id par défaut temporaire (ex : 1)
-        body: JSON.stringify({ ...formData, user_id: 1 }),
+        
+        body: JSON.stringify(payload),
       });
-
+  
       if (!response.ok) {
         const err = await response.json();
         throw new Error(err.message || "Erreur lors de l'envoi.");
       }
-
-      console.log("Challenge créé avec succès.");
+  
+      const newChallenge = await response.json();
+      console.log("Challenge créé :", newChallenge);
+  
       if (onFormSubmit) onFormSubmit();
-      navigate("/"); // Redirige vers la home
-
+  
+      // ✅ Redirection vers la page du challenge
+      navigate(`/challenges/${newChallenge.id}`);
+  
     } catch (err: any) {
       setError(err.message);
     }
   };
 
+  // Rendu du formulaire de création de challenge
   return (
     <section className="formulaire-section">
       <div className="form-container">
         <form className="signup-form" onSubmit={handleSubmit}>
-          <p className="paragraph-center">Créer un Challenge</p>
+          <h1>Créer un Challenge</h1>
 
           {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
 
@@ -122,39 +149,43 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
             required
           />
 
-<select
-  name="category_id"
-  value={formData.category_id}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Sélectionner une catégorie --</option>
-  {Array.isArray(categories) &&
-    categories.map((cat) => (
-      <option key={cat.id} value={cat.id}>
-        {cat.name}
-      </option>
-    ))}
-</select>
+          <select
+            name="category_id"
+            value={formData.category_id}
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Sélectionner une catégorie --</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>{cat.name}</option>
+            ))}
+          </select>
 
-<select
-  name="difficulty_id"
-  value={formData.difficulty_id}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Sélectionner une difficulté --</option>
-  {Array.isArray(difficulties) &&
-    difficulties.map((diff) => (
-      <option key={diff.id} value={diff.id}>
-        {diff.name}
-      </option>
-    ))}
-</select>
+          <select
+            name="difficulty_id"
+            value={formData.difficulty_id}
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Sélectionner une difficulté --</option>
+            {difficulties.map((diff) => (
+              <option key={diff.id} value={diff.id}>{diff.name}</option>
+            ))}
+          </select>
 
-          <button type="submit" className="default-button form-button">
-            Valider
-          </button>
+          <div className="form-buttons">
+  <button type="submit" className="default-button form-button">
+    Valider
+  </button>
+  <button
+    type="button"
+    className="default-button form-button"
+    onClick={() => navigate("/")}
+  >
+    Retour
+  </button>
+</div>
+
         </form>
       </div>
     </section>
@@ -162,4 +193,3 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
 }
 
 export default FormulaireChallenge;
-

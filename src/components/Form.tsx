@@ -197,7 +197,8 @@ function FormLogin () {
         setError("Impossible de récupérer les informations de l'utilisateur.")
       }
       const user: IUser = await userResponse.json();
-      login(token, user);
+      login(user, token);
+
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 

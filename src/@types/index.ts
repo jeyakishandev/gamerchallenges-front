@@ -42,3 +42,4 @@ export interface IDifficulty {
   name: string;
   color: string;
 }
+

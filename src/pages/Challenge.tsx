@@ -68,21 +68,41 @@ export default function Challenge() {
             </section>
             <section className="challenge-info">
               <div className="challenge-cat-and-diff">
-              {user?.id === challenge.user_id && (
-  <div className="challenge-actions">
-    <span className="icon-button" title="Modifier">✏️</span>
-    <span className="icon-button" title="Supprimer" onClick={handleDelete}>🗑️</span>
-  </div>
-)}
+                
+                {/* Actions visibles seulement pour l'auteur */}
+                {user?.id === challenge.user_id && (
+                  <div className="challenge-actions-inline">
+                    <button
+                      className="icon-button"
+                      title="Modifier"
+                      onClick={() => window.location.href = `/challenges/${challenge.id}/edit`}
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      className="icon-button"
+                      title="Supprimer"
+                      onClick={handleDelete}
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                )}
 
-                <span className="category-color" style={{backgroundColor: challenge?.category.color}}>{challenge?.category.name}</span>
-                <span className="difficulty-color" style={{backgroundColor: challenge?.difficulty.color}}>{challenge?.difficulty.name}</span>
+                {/* Badges */}
+                <span className="category-color" style={{ backgroundColor: challenge?.category.color }}>
+                  {challenge?.category.name}
+                </span>
+                <span className="difficulty-color" style={{ backgroundColor: challenge?.difficulty.color }}>
+                  {challenge?.difficulty.name}
+                </span>
               </div>
+
               <article className="challenge-description">
-                <p>{challenge?.description}
-                </p>
+                <p>{challenge?.description}</p>
               </article>
             </section>
+
           </div>
           <div className="align-button">
             <button 

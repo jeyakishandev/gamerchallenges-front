@@ -121,3 +121,22 @@ export async function addSubmissionToChallenge(challengeId: number, videoUrl: st
   }
   return await response.json();
 }
+export async function updateChallenge(
+  id: number,
+  data: object,
+  token: string
+): Promise<any> {
+  const response = await fetch(`http://localhost:3000/challenges/${id}`, {
+    method: "PATCH",
+
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) throw new Error("Erreur lors de la modification");
+
+  return await response.json();
+}

@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import useAuthStore from "../store";
 import { IUser } from "../@types";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { getUserById, loginUser } from "../api";
 
 
 interface INewUserProps {
@@ -175,28 +176,9 @@ function FormLogin () {
     setError(null);
     
     try {
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pseudoOrEmail, password })
-      })
+      const { token, userId } = await loginUser(pseudoOrEmail, password);
+      const user = await getUserById(userId, token);
       
-      if (!response.ok) {
-        setError("Nom d'utilisateur ou mot de passe incorrect");
-        return;
-      }
-      const data = await response.json();
-      const { token, userId } = data;
-
-      const userResponse  = await fetch(`http://localhost:3000/users/${userId}`, {
-        method: "GET",
-        headers: { "Authorization": `Bearer ${token}`},
-      });
-
-      if (!userResponse.ok) {
-        setError("Impossible de récupérer les informations de l'utilisateur.")
-      }
-      const user: IUser = await userResponse.json();
       login(token, user);
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));

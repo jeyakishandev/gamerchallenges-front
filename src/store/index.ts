@@ -1,17 +1,32 @@
-import { create } from 'zustand';
-import { IUser } from '../@types';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-interface AuthStore {
-    token: string | null;
-    user: IUser | null;
-    login: (token: string, user: IUser) => void;
-    logout: () => void;
+interface User {
+  id: number;
+  pseudo: string;
+  email: string;
+  avatar_url: string | null;
 }
-const useAuthStore = create<AuthStore>((set) => ({
-    token: null,
-    user: null,
-    login: (token: string, user: IUser) => set({ token, user }),
-    logout: () => set({ token: null, user: null }),
-  }));
+
+interface AuthState {
+  user: User | null;
+  token: string | null;
+  login: (user: User, token: string) => void;
+  logout: () => void;
+}
+
+const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      token: null,
+      login: (user, token) => set({ user, token }),
+      logout: () => set({ user: null, token: null }),
+    }),
+    {
+      name: "auth-storage", 
+    }
+  )
+);
 
 export default useAuthStore;

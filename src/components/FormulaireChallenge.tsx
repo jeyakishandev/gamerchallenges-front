@@ -2,13 +2,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../@types";
+import { updateChallenge } from "../api/index";
 
 // Props optionnelles : une fonction à appeler après soumission du formulaire
 interface Props {
   onFormSubmit?: () => void;
+  challengeId?: number;
+  defaultValues?: {
+    name: string;
+    description: string;
+    video_url: string;
+    category_id: number;
+    difficulty_id: number;
+  };
 }
 
-function FormulaireChallenge({ onFormSubmit }: Props) {
+function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
   const navigate = useNavigate();
 
   // États pour stocker les catégories, difficultés et erreurs éventuelles
@@ -18,11 +27,11 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
 
   // État pour gérer les données du formulaire
   const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    video_url: "",
-    category_id: "",
-    difficulty_id: "",
+    name: defaultValues?.name || "",
+    description: defaultValues?.description || "",
+    video_url: defaultValues?.video_url || "",
+    category_id: defaultValues?.category_id?.toString() || "",
+    difficulty_id: defaultValues?.difficulty_id?.toString() || "",
   });
 
   // Récupère les catégories et difficultés depuis le back au chargement du composant
@@ -71,8 +80,10 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
     setError("");
 
     const userId = localStorage.getItem("userId");
-    if (!userId) {
-      setError("Utilisateur non connecté.");
+    const token = localStorage.getItem("token") || "";
+
+    if (!userId || !token) {
+      setError("Tu dois être connecté pour modifier un challenge.");
       return;
     }
 
@@ -82,43 +93,50 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
       category_id: Number(formData.category_id),
       difficulty_id: Number(formData.difficulty_id),
     };
-  
+
     console.log("Payload envoyé :", payload);
-  
+
     try {
-      const response = await fetch("http://localhost:3000/challenges", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        },
-        
-        body: JSON.stringify(payload),
-      });
-  
-      if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.message || "Erreur lors de l'envoi.");
+      let responseData;
+
+      if (challengeId) {
+        // MODE MODIFICATION → PUT
+        responseData = await updateChallenge(challengeId, payload, token);
+      } else {
+        // MODE CRÉATION → POST
+        const response = await fetch("http://localhost:3000/challenges", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const err = await response.json();
+          throw new Error(err.message || "Erreur lors de l'envoi.");
+        }
+
+        responseData = await response.json();
       }
-  
-      const newChallenge = await response.json();
-      console.log("Challenge créé :", newChallenge);
-  
+
+      console.log("Challenge sauvegardé :", responseData);
+
       if (onFormSubmit) onFormSubmit();
-  
+
       // ✅ Redirection vers la page du challenge
-      navigate(`/challenges/${newChallenge.id}`);
-  
+      navigate(`/challenges/${responseData.id}`);
     } catch (err: any) {
       setError(err.message);
     }
   };
 
-  // Rendu du formulaire de création de challenge
+  // Rendu du formulaire
   return (
     <div className="default-form-container default-form default-box-design">
       <form className="create-form " onSubmit={handleSubmit}>
-        <p className="paragraph-center">Créer un Challenge</p>
+        <p className="paragraph-center">{challengeId ? "Modifier le Challenge" : "Créer un Challenge"}</p>
 
         {error && <p style={{ color: "white", textAlign: "center", background: "red"}}>{error}</p>}
 

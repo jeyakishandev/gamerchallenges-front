@@ -1,7 +1,6 @@
-import "./Home.css";
 import "../App.css";
 import { useEffect, useState } from "react";
-import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
+import FormulaireChallenge from "../components/FormulaireChallenge";
 import { IChallenge } from "../@types/index";
 
 export default function Home() {
@@ -43,13 +42,13 @@ export default function Home() {
   return (
     <main>
       <section className="home-content">
-        <h1>Prêt à relever le challenge ?</h1>
-        <p>
+        <h1 className="main-title">Prêt à relever le challenge ?</h1>
+        <h2 className="subtitle">
           Montrez-nous ce que vous avez dans le ventre !<br />
           Postez vos vidéos, défiez les autres, et grimpez au sommet.
-        </p>
+        </h2>
 
-        <div className="home-buttons">
+        <div className="home-buttons buttons-flex">
           <button className="default-button" onClick={() => setAfficherFormulaire(true)}>
             Créer
           </button>
@@ -58,7 +57,7 @@ export default function Home() {
       </section>
       
       {afficherFormulaire && (
-  <section className="formulaire-section">
+  <section className="submission-form-section">
     <FormulaireChallenge onFormSubmit={() => setAfficherFormulaire(false)} />
   </section>
 )}
@@ -66,13 +65,13 @@ export default function Home() {
 
 
       <section className="carousel-section">
-        <h2>Nouveauté</h2>
+        <h3 className="low-title">Nouveauté</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scrollLeft("nouveaute")}>❮</span>
 
           <div id="nouveaute" className="carousel-items">
             {Array.isArray(challenges) && challenges.slice(0, 10).map((challenge) => (
-              <div key={challenge.id} className="skeleton-card">
+              <div key={challenge.id} className="home-video">
                 <iframe
                   width="100%"
                   height="140"
@@ -92,7 +91,7 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-        <h2>Challenges populaire</h2>
+        <h3 className="low-title">Challenges populaire</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scrollLeft("populaire")}>❮</span>
 

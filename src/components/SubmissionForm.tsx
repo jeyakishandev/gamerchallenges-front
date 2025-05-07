@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./style.css";
-import { addSubmissionToChallenge } from "../../api";
+import "../App.css";
+import { addSubmissionToChallenge } from "../api";
 
 interface SubmissionFormProps {
     close: () => void;
@@ -47,9 +47,9 @@ export default function SubmissionForm({ close, challengeId }: SubmissionFormPro
     
 
     return (
-        <div className="form-container signup-form">
+        <div className="default-form-container default-form default-box-design">
             <form onSubmit={handleSubmit}>
-                <p>Envoie nous tes exploits !</p>
+                <p className="default-text">Envoie nous tes exploits !</p>
                 {error && <div style={{ color: "red" }}>{error}</div>}
                 {success && <div style={{ color: "green"}}>Participation enregistrée !</div>}
 
@@ -62,10 +62,10 @@ export default function SubmissionForm({ close, challengeId }: SubmissionFormPro
                     onChange={(e) => setVideoUrl(e.target.value)}
                 />
                 
-                <div className="align-button">
+                <div className="form-button">
                     <button 
                         type="submit" 
-                        className="default-button form-button"
+                        className="default-button"
                     >
                         Soummettre
                     </button>

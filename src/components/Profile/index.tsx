@@ -8,7 +8,7 @@ interface ProfilesUsers {
 export default function ProfileInfos({user}: ProfilesUsers) {
     return (
         <div className="perso-info">
-            <h2 className="main-title">Retrouvez ici ton profile, avec tes informations personnelles, et tes défis !</h2>
+            <h2 className="subtitle">Retrouvez ici ton profile, avec tes informations personnelles, et tes défis !</h2>
             <section className="button-container">
                 <a href="#" className="default-button">Modifier le profile</a>
             </section>

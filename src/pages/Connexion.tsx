@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IUser } from "../@types";
 import { addUserIntoApi, getUsers } from "../api";
-import { FormLogin, FormSubscribe } from "../components/Form";
+import { FormLogin, FormSubscribe } from "../components/FormConnection";
 
 function Connection () {
     const [users, setUsers] = useState<IUser[]>([]);
@@ -24,16 +24,16 @@ function Connection () {
 
     return (
         <>
-            <div className="form-container">
-          <section className="login-form">
-              <p className="paragraph-center">Connexion</p>
-              <FormLogin/>
-          </section>
-          <section className="signup-form">
-              <p className="paragraph-center">Inscription</p>
-              <FormSubscribe addUser={addUser} />
-          </section>
-        </div>
+            <div className="form-container connection-form">
+                <section className="default-form default-box-design login-form">
+                    <h3 className="low-title">Connexion</h3>
+                    <FormLogin/>
+                </section>
+                <section className="default-form default-box-design signup-form">
+                    <h3 className="low-title">Inscription</h3>
+                    <FormSubscribe addUser={addUser} />
+                </section>
+            </div>
         </>
     )
 }

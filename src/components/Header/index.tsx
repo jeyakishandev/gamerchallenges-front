@@ -36,14 +36,14 @@ export default function Header() {
             
 
             <ul className={`navbar${menuOpen ? " open" : ""}`}>
-                <li><NavLink to="/">Accueil</NavLink></li>
-                <li><NavLink to="/challenges">Challenges</NavLink></li>
-                <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
-                <li className="mobile-only"><NavLink to="/connexion">Se connecter</NavLink></li>                
+                <li className="text-font"><NavLink to="/">Accueil</NavLink></li>
+                <li className="text-font"><NavLink to="/challenges">Challenges</NavLink></li>
+                <li className="text-font"><NavLink to={`/leaderboard`}>Classement</NavLink></li>
+                <li className="mobile-only text-font"><NavLink to="/connexion">Se connecter</NavLink></li>                
             </ul>
 
             <div className="login desktop-only">
-                <NavLink to="/connexion">Se connecter</NavLink>
+                <NavLink className="text-font" to="/connexion">Se connecter</NavLink>
             </div>
             
             <button className="burger" onClick={() => setMenuOpen(!menuOpen)}>

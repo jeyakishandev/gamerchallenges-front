@@ -21,7 +21,7 @@
     text-align: center;
 }
 
-.arrow {
+/* .arrow {
     background: none;
     border: none;
     font-size: 2rem;
@@ -30,9 +30,6 @@
     transition: background 0.2s;
 }
 
-.arrow:hover {
-    color: #007bff;
-}
 
 .chall-name {
     font-weight: bold;

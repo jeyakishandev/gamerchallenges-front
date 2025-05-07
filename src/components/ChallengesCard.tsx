@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import { IChallenge } from "../../@types"
-import "./style.css"
+import { IChallenge } from "../@types"
+import "../App.css"
 
 
 interface ChallengesCardProps {
@@ -9,14 +9,14 @@ interface ChallengesCardProps {
 
 export default function ChallengesCard({ challenge }: ChallengesCardProps) {
     return (              
-        <article className="card" key={challenge.id}>
-            <h3 className="card-title items">{challenge.name}</h3>
+        <article className="card default-box-design" key={challenge.id}>
+            <h3 className="low-title card-title items">{challenge.name}</h3>
                 <iframe className="card-video" src={challenge.video_url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
                 <div className="card-tags">
-                    <p style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>
-                    <p style={{backgroundColor: challenge.difficulty.color}}>{challenge.difficulty.name}</p>
-                    <p>{challenge.users.length} participants</p>
+                    <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>
+                    <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.difficulty.color}}>{challenge.difficulty.name}</p>
+                    <p className="default-tag-design challenges-tag" >{challenge.users.length} participants</p>
                 </div>
                 <Link to={`/challenges/${challenge.id}`} className="default-button card-details">Détails</Link>
         </article>  

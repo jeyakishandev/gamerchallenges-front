@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
-import { IUser } from "../../@types"
-import "./Leaderboard.css"
+import { IUser } from "../@types"
 
 
 interface LeaderboardPlayers {

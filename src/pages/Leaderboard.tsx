@@ -1,9 +1,8 @@
-
-import "./Leaderboard.css"
+import "../App.css"
 import { useEffect, useState } from "react"
 import { IChallenges, IUser } from "../@types"
 import { getTopChallengesByParticipation, getTopUsers } from "../api";
-import LeaderboardTopChallenges from "../components/LeaderboardChallenges";
+import LeaderboardTopChallenges from "../components/LeaderbordChallenges";
 import LeaderboardTopPlayers from "../components/LeaderboardPlayers";
 
 
@@ -35,13 +34,14 @@ export default function Leaderboard() {
 
     return (
         <>
-            <main className="lead-content">
-                <h2 className="main-title">Vous pourrez retrouver ici le classement des meilleurs joueurs et des challenges les plus jouer. </h2>
+            <main>
+                <h1 className="main-title leaderbord-title">Les classements</h1>
+                <h2 className="leaderbord-subtitle subtitle">Vous pourrez retrouver ici le classement des meilleurs joueurs et des challenges les plus jouer. </h2>
 
                 <div className="lead-boxes">
                     <section className="best-challenges">
-                        <h3>Challenges populaires</h3>
-                        <ul className="list-chall">
+                        <h3 className="low-title">Challenges populaires</h3>
+                        <ul className="leaderbord-lists default-box-design">
                         {/* Liste les 10 challenges les plus joués */}
                         {challenges.map((challenge) => {
                             return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} />
@@ -50,8 +50,8 @@ export default function Leaderboard() {
                     </section>
 
                     <section className="best-players">
-                        <h3>Meilleurs joueurs</h3>
-                        <ul className="list-players">
+                        <h3 className="low-title">Meilleurs joueurs</h3>
+                        <ul className="leaderbord-lists default-box-design">
                         {/* Liste les 10 joueurs ayant réalisés le plus de challenges */}
                         {players.map((user) => {
                             return <LeaderboardTopPlayers key={user.id} players={user} />

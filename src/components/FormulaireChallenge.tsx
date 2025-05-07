@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ICategory, IDifficulty } from "../../@types";
+import { ICategory, IDifficulty } from "../@types";
 
 interface Props {
   onFormSubmit?: () => void;
@@ -89,75 +89,78 @@ function FormulaireChallenge({ onFormSubmit }: Props) {
   };
 
   return (
-    <section className="formulaire-section">
-      <div className="form-container">
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <p className="paragraph-center">Créer un Challenge</p>
+    <div className="default-form-container default-form default-box-design">
+      <form className="create-form " onSubmit={handleSubmit}>
+        <p className="paragraph-center">Créer un Challenge</p>
 
-          {error && <p style={{ color: "red", textAlign: "center" }}>{error}</p>}
+        {error && <p style={{ color: "white", textAlign: "center", background: "red"}}>{error}</p>}
 
-          <input
-            type="text"
-            name="name"
-            placeholder="Titre"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+        <input
+          type="text"
+          className="form-input"
+          name="name"
+          placeholder="Titre"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
 
-          <textarea
-            name="description"
-            placeholder="Description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
+        <textarea
+          name="description"
+          className="form-input textarea"
+          placeholder="Description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+        />
 
-          <input
-            type="text"
-            name="video_url"
-            placeholder="URL de la vidéo"
-            value={formData.video_url}
-            onChange={handleChange}
-            required
-          />
+        <input
+          type="text"
+          className="form-input"
+          name="video_url"
+          placeholder="URL de la vidéo"
+          value={formData.video_url}
+          onChange={handleChange}
+          required
+        />
 
-<select
-  name="category_id"
-  value={formData.category_id}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Sélectionner une catégorie --</option>
-  {Array.isArray(categories) &&
-    categories.map((cat) => (
-      <option key={cat.id} value={cat.id}>
-        {cat.name}
-      </option>
-    ))}
-</select>
+        <select
+          name="category_id"
+          className="form-input select"
+          value={formData.category_id}
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Sélectionner une catégorie --</option>
+          {Array.isArray(categories) &&
+            categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+        </select>
 
-<select
-  name="difficulty_id"
-  value={formData.difficulty_id}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Sélectionner une difficulté --</option>
-  {Array.isArray(difficulties) &&
-    difficulties.map((diff) => (
-      <option key={diff.id} value={diff.id}>
-        {diff.name}
-      </option>
-    ))}
-</select>
+        <select
+          name="difficulty_id"
+          className="form-input"
+          value={formData.difficulty_id}
+          onChange={handleChange}
+          required
+        >
+          <option value="">-- Sélectionner une difficulté --</option>
+          {Array.isArray(difficulties) &&
+            difficulties.map((diff) => (
+              <option key={diff.id} value={diff.id}>
+                {diff.name}
+              </option>
+            ))}
+        </select>
 
-          <button type="submit" className="default-button form-button">
-            Valider
-          </button>
-        </form>
-      </div>
-    </section>
+        <button type="submit" className="default-button form-button">
+          Valider
+        </button>
+      </form>
+    </div>
   );
 }
 

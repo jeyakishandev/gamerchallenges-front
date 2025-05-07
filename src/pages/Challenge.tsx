@@ -106,25 +106,28 @@ export default function Challenge() {
 
           </div>
           <div className="align-button">
-            <button 
-              className="default-button"
-              onClick={() => setShowForm(true)}
-            >
-              Participer
-            </button>
+            {/** Si l'utilisateur est connecté il voit le bouton participer, sinon il est invité à se connecter */}
+            {user ? (
+              <button 
+                className="default-button"
+                onClick={() => setShowForm(true)}
+              >
+                Participer
+              </button>
+            ) : (
+              <Link className="default-button" to="/connexion">
+                Connecte-toi pour participer
+              </Link>
+            )}
           </div>
         </section>
         {/** Le formulaire ne s'affiche au clic que s'il y a bien un challenge.id */}
         {showForm && challenge?.id !== undefined && (
-          user ? (
+          
           <section className="submission-form-section">
             <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id}/>
           </section>
-          ) : (
-            <Link className="default-button" to="/connexion">
-              Connecte-toi pour participer
-            </Link>
-          )
+          
         )}
       <h3 className="participation-title low-title">Les participations</h3>
         <section className="challenge-participations">

@@ -166,7 +166,7 @@ function FormLogin () {
   const { login } = useAuthStore()
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [email, setEmail] = useState("")
+  const [pseudoOrEmail, setPseudoOrEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null);
 
@@ -178,7 +178,7 @@ function FormLogin () {
       const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ pseudoOrEmail, password })
       })
       
       if (!response.ok) {
@@ -217,12 +217,12 @@ function FormLogin () {
       {error && <div className="error-message">{error}</div>}
 
       <Input 
-        value={email}
-        setValue={setEmail}
-        name="email"
-        placeholder="Email"
-        type="email"
-        label="Email"
+        value={pseudoOrEmail}
+        setValue={setPseudoOrEmail}
+        name="pseudoOrEmail"
+        placeholder="Pseudo ou Email"
+        type="text"
+        label="Identifiant"
       />
 
       <Input 

@@ -11,6 +11,7 @@ export interface IChallenge {
   users: IUser[];
   category: ICategory;
   difficulty: IDifficulty;
+  Submission?: ISubmission
 }
 
 export interface IUser {
@@ -21,7 +22,6 @@ export interface IUser {
   difficulty_id: number;
   challenges: IChallenge[];
   Submission: ISubmission;
-
 }
 
 export interface ISubmission {
@@ -29,6 +29,9 @@ export interface ISubmission {
   challenge_id: number;
   video_url: string;
   created_at: string;
+  name: string;
+  category: ICategory;
+  difficulty: IDifficulty;
 }
 
 export interface ICategory {

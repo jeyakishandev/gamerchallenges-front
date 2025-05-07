@@ -124,12 +124,12 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-       <h3 className="low-title">Challenges populaire</h3>
+       <h3 className="low-title">Challenges populaires</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
           <div id="populaire" className="carousel-items">
             {popularChallenges.slice(0, 10).map((challenge) => {
-              const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+              const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
               return (
                 <div key={challenge.id} className="video-card">
                   <iframe

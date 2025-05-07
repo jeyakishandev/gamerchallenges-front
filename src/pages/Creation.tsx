@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormulaireChallenge from "../components/Formulaire/FormulaireChallenge";
+import FormulaireChallenge from "../components/FormulaireChallenge";
 import useAuthStore from "../store";
 
 export default function Creation() {

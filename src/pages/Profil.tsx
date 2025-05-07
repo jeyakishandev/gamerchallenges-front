@@ -9,6 +9,14 @@ import CompletedChall from "../components/CompletedChall";
 
 export default function Profil() {
 
+    const scroll = (id: string, direction: "left" | "right") => {
+        const container = document.getElementById(id);
+        if(container) {
+            const amount = direction === "left" ? -250 : 250;
+            container.scrollBy({ left: amount, behavior: "smooth"});
+        }
+    };
+
     const { id } = useParams();
     const [user, setUser] = useState<IUser | null>(null);
 
@@ -72,9 +80,9 @@ export default function Profil() {
                     <h3 className="chall-title">Mes challenges réalisés</h3>
 
                     <div className="chall-flex">
-                        <button className="arrow left">❮</button>
+                        <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div className="chall-list">
+                        <div id="completed" className="chall-list">
 
                             {user?.challenges.map((challenge) => {
                                 return <CompletedChall key={challenge.id} challenge={challenge} />
@@ -82,7 +90,7 @@ export default function Profil() {
 
                         </div>
 
-                        <button className="arrow right">❯</button>
+                        <span className="arrow" onClick={() => scroll("completed", "right")}>❯</span>
 
                     </div>
 
@@ -93,9 +101,9 @@ export default function Profil() {
                     <h3 className="chall-title">Mes challenges crées</h3>
 
                     <div className="chall-flex">
-                        <button className="arrow left">❮</button>
+                        <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-                        <div className="chall-list">
+                        <div id="created" className="chall-list carousel-items">
 
                             {createdChallenges.map((challenge) => {
                                 return <CreatedChall key={challenge.id} challenge={challenge}/>
@@ -103,7 +111,7 @@ export default function Profil() {
 
                         </div>
 
-                        <button className="arrow right">❯</button>
+                        <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
 
                     </div>
 

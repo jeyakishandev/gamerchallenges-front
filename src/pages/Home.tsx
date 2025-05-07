@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getTopChallengesByParticipation } from "../api";
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 
 
 
@@ -82,12 +83,12 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-        <h3 className="low-title">Nouveauté</h3>
+        <h3 className="low-title">Nouveautés</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("nouveaute", "left")}>❮</span>
           <div id="nouveaute" className="carousel-items">
           {challenges.slice(0, 10).map((challenge) => {
-            const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+            const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
             return (
               <div key={challenge.id} className="video-card">
                 <iframe

@@ -21,13 +21,6 @@ export function extractYoutubeVideoId(url: string): string | null {
             return parsedUrl.searchParams.get("v");
         }
 
-        if (
-            parsedUrl.hostname.includes("youtube.com") &&
-            parsedUrl.pathname.startsWith("/embed/")
-        ) {
-            return parsedUrl.pathname.split("/embed/")[1];
-        }
-
         return null;
     } catch {
         return null;
@@ -35,6 +28,13 @@ export function extractYoutubeVideoId(url: string): string | null {
 }
 
 export function getYoutubeEmbedUrl(url: string): string {
+    
+    // Si l'URL est déjà un embed, on la convertit en version nocookie.
+    if (url.includes("/embed/")) {
+        return url.replace("youtube.com", "youtube-nocookie.com");
+    }
+
+    // Sinon, on extrait l'id et on construit l'URL embed avec youtube-nocookie.
     const videoId = extractYoutubeVideoId(url);
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : url;
 }

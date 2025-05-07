@@ -2,19 +2,22 @@ import { Link } from 'react-router-dom'
 import { IChallenge, } from '../../@types'
 import '../../App.css'
 import '../../pages/Profil.css'
+import { getYoutubeEmbedUrl } from '../../utils/youtube'
 
 interface CompletedChallenge {
     challenge: IChallenge
 }
 
 export default function CompletedChall({challenge}: CompletedChallenge) {
+    const videoUrl = challenge.Submission?.video_url || "";
+    const embed = getYoutubeEmbedUrl(videoUrl);
     return (
             <div className="chall-box">
 
                 <div className="chall-pres">
 
                     <section className="video">
-                        <iframe className="card-video" src={challenge.Submission?.video_url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                        <iframe className="card-video" src={embed} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     </section>
 
                     <section className="chall-info">

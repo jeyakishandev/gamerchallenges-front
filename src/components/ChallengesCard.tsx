@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { IChallenge } from "../@types"
 import "../App.css"
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 
 
 interface ChallengesCardProps {
@@ -8,7 +9,7 @@ interface ChallengesCardProps {
 }
 
 export default function ChallengesCard({ challenge }: ChallengesCardProps) {
-    const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+    const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
     return (              
         <article className="card default-box-design" key={challenge.id}>
             <h3 className="low-title card-title items">{challenge.name}</h3>

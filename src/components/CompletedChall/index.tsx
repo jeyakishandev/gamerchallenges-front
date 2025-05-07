@@ -11,7 +11,7 @@ interface CompletedChallenge {
 
 export default function CompletedChall({challenge}: CompletedChallenge) {
     const videoUrl = challenge.Submission?.video_url || "";
-    const embed = getYoutubeEmbedUrl(videoUrl);
+    const embedUrl = getYoutubeEmbedUrl(videoUrl);
   
     return (
             

@@ -850,12 +850,12 @@ body {
 /**? ===== PROFILE PAGE DISPLAY ===== */
 /**? ================================ */
 
-@media screen and (min-width: 300px) and (max-width: 350px) {
+/* @media screen and (min-width: 300px) and (max-width: 350px) {
   .chall-flex {
       padding-left: 8rem;
   }
 
-}
+} */
 
 @media screen and (min-width: 350px) and (max-width: 450px) {
   .chall-flex {

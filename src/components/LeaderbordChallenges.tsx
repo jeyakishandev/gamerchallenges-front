@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 interface LeaderboardChallenges {
     challenge : IChallenge
+    index: number
 }
 
 // Rempli chaque ligne de la liste par les informations du challenge concerné

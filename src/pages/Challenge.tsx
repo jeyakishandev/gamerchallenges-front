@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./Challenge.css";
 import { IChallenge } from "../@types";
 import { Link, useParams } from "react-router-dom";
@@ -12,16 +12,18 @@ export default function Challenge() {
   const { id } = useParams();
   const [challenge, setChallenge] = useState<IChallenge | null>(null);
   const { user } = useAuthStore();
+  const [showForm, setShowForm] = useState(false); // Formulaire de participation fermé par défaut.
+
+  const loadData = useCallback(async () => {
+    if (id) {
+      const newChallenge = await getChallengeById(Number.parseInt(id));
+      setChallenge(newChallenge);
+    }
+  }, [id]);
 
   useEffect(() => {
-    const loadData = async () => {
-      if (id) {
-        const newChallenge = await getChallengeById(Number.parseInt(id));
-        setChallenge(newChallenge)
-      }
-    };
     loadData();
-  }, [id]);
+  }, [loadData]);
   const handleDelete = async () => {
     if (!challenge) return; 
   
@@ -40,12 +42,7 @@ export default function Challenge() {
         alert("Erreur lors de la suppression.");
       }
     }
-  };
-  
-
-
-
-  const [showForm, setShowForm] = useState(false); // Formulaire de participation fermé par défaut.
+  }; 
   
   if (!challenge) {
     return <p>Chargement...</p>;
@@ -126,7 +123,7 @@ export default function Challenge() {
         {showForm && challenge?.id !== undefined && (
           
           <section className="submission-form-section">
-            <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id}/>
+            <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id} onSuccess={loadData}/>
           </section>
           
         )}

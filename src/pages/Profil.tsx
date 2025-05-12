@@ -3,7 +3,7 @@ import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
 import { getChallengesByUser, getProfileUsers, getSubmissionsByUser } from "../api";
-import CreatedChall from "../components/CreatedProfile";
+import CreatedChall from "../components/CreatedChallProfile";
 import CompletedChall from "../components/CompletedChall";
 
 export default function Profil() {

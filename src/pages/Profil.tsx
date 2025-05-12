@@ -84,7 +84,7 @@ export default function Profil() {
                         <div id="completed" className="carousel-items">
 
                             {user?.challenges.map((challenge) => {
-                                return <CompletedChall key={challenge.id} challenge={challenge} />
+                                return <CompletedChall key={challenge.id} challenge={challenge} userId={user.id} />
                             })}
 
                         </div>

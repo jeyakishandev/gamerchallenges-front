@@ -427,6 +427,7 @@ body {
 .challenges-tag {
   min-width: 6rem;
   margin: 1rem 0.5rem;
+  text-align: center;
 }
 
 .card-details {
@@ -868,20 +869,21 @@ body {
   }
 }
 
+/* @media screen and (max-width: 500px) {
+  .boxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    padding: 0 2rem;
+    margin: 1rem 0;
+  }
+} */
+
 @media screen and (max-width: 700px) {
   .chall-title {
       text-align: center;
-  }
-
-  .chall-pres {
-      display: flex;
-      flex-direction: column; /* Place les enfants (.video et .current-chall-info) en colonne (verticalement) */
-      gap: 1rem;
-  }
-
-  .chall-box {
-      height: 25rem;
-      padding: 5px;
   }
 
 }
@@ -893,9 +895,6 @@ body {
       text-align: center;
   }
 
-  .chall-box {
-      padding: 5px;
-  }
 }
 
 @media screen and (min-width: 1000px) {

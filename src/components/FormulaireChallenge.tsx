@@ -81,6 +81,8 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
 
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token") || "";
+    console.log(userId)
+    console.log(token)
 
     if (!userId || !token) {
       setError("Tu dois être connecté pour modifier un challenge.");

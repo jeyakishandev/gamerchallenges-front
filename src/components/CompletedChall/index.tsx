@@ -3,7 +3,7 @@ import { IChallenge, } from '../../@types'
 import '../../App.css'
 import { getYoutubeEmbedUrl } from '../../utils/youtube'
 import { useState } from 'react'
-import { updateUserSubmission } from '../../api'
+import { deleteUserSubmission, updateUserSubmission } from '../../api'
 
 
 interface CompletedChallenge {
@@ -15,14 +15,15 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
     const [videoUrl, setVideoUrl] = useState(challenge.Submission?.video_url || "");
     const [isEditing, setIsEditing] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [succes, setSucces] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [deleted, setDeleted] = useState(false);
   
     const embedUrl = getYoutubeEmbedUrl(videoUrl);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError(null);
-        setSucces(false);
+        setSuccess(false);
 
         const token = localStorage.getItem("token");
         if (!token) {
@@ -37,7 +38,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
         try {
             const result = await updateUserSubmission(userId, challenge.id, videoUrl);
             if (result) {
-                setSucces(true);
+                setSuccess(true);
                 setIsEditing(false);
             } else {
                 setError("La mise à jour à échoué.");
@@ -47,7 +48,26 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
             setError("Une erreur est survenue.")
         }
     }
-  
+
+    const handleDelete = async () => {
+        console.log("Suppression demandée.")
+        const confirmed = window.confirm("Es-tu sûr de vouloir supprimer ta participation ?");
+        if (!confirmed) return;
+
+        try {
+            const result = await deleteUserSubmission(userId, challenge.id);
+            console.log("Résultat suppression :", result)
+            if (result) {
+                setDeleted(true);
+            } else {
+                setError("Erreur lors de la suppression.")
+            }
+        } catch (error) {
+            console.error("Erreur lors de la suppression", error);
+            setError("Une erreur est survenue. Suppression impossible, merci de réessayer plus tard.");
+        }
+    }
+    if (deleted) return null;
     return (
             
         <article className="card default-box-design" key={challenge.id}>
@@ -64,7 +84,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
                 <button
                     className="icon-button"
                     title="Supprimer"
-                    
+                    onClick={handleDelete}
                 >
                     🗑️
                 </button>
@@ -73,7 +93,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
             {isEditing ? (
                 <form onSubmit={handleSubmit}>
                     {error && <p style={{ color: "red" }}>{error}</p>}
-                    {succes && <p style={{ color: "green" }}>Lien mis à jour !</p>}
+                    {success && <p style={{ color: "green" }}>Lien mis à jour !</p>}
                     <input 
                         type='text'
                         className='form-input'
@@ -84,7 +104,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
                     />
                     <div className='form-button'>
                         <button type='submit' className='default-button'>Enregistrer</button>
-                        <button type='submit' className='default-button' onClick={() => setIsEditing(false)}>Annuler</button>
+                        <button type='button' className='default-button' onClick={() => setIsEditing(false)}>Annuler</button>
 
                     </div>
                 </form>

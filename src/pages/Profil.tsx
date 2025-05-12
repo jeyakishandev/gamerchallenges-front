@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import '../App.css'
 import { useEffect, useState } from "react";
-import { IChallenges, IUser } from "../@types";
+import { IChallenge, IChallenges, IUser } from "../@types";
 import { getChallengesByUser, getProfileUsers, getSubmissionsByUser } from "../api";
 import CreatedChall from "../components/CreatedProfile";
 import CompletedChall from "../components/CompletedChall";
@@ -29,7 +29,7 @@ export default function Profil() {
         loadData();
     }, [id])
 
-    const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
+    const [createdChallenges, setCreatedChallenges] = useState<IChallenge[]>([]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -52,6 +52,7 @@ export default function Profil() {
         };
         loadData()
     }, [id]);
+
 
     return (
         <>

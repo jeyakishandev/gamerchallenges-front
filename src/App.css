@@ -850,13 +850,6 @@ body {
 /**? ===== PROFILE PAGE DISPLAY ===== */
 /**? ================================ */
 
-/* @media screen and (min-width: 300px) and (max-width: 350px) {
-  .chall-flex {
-      padding-left: 8rem;
-  }
-
-} */
-
 @media screen and (max-width: 386px) {
   .default-button {
     padding: 0.8rem 0.5rem;
@@ -874,18 +867,6 @@ body {
       padding-left: 1rem;
   }
 }
-
-/* @media screen and (max-width: 500px) {
-  .boxes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 70%;
-    padding: 0 2rem;
-    margin: 1rem 0;
-  }
-} */
 
 @media screen and (max-width: 700px) {
   .chall-title {

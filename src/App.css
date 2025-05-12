@@ -857,6 +857,12 @@ body {
 
 } */
 
+@media screen and (max-width: 386px) {
+  .default-button {
+    padding: 0.8rem 0.5rem;
+  }
+}
+
 @media screen and (min-width: 350px) and (max-width: 450px) {
   .chall-flex {
       padding-left: 1rem;

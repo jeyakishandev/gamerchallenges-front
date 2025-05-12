@@ -13,12 +13,14 @@ export default function CompletedChall({challenge}: CompletedChallenge) {
     const embedUrl = getYoutubeEmbedUrl(videoUrl);
   
     return (
-            
-        <article className="card default-box-design" key={challenge.id}>
+
+
+            <article className="boxes default-box-design" key={challenge.id}>
 
             <h3 className="low-title card-title items">{challenge.name}</h3>
             <iframe className="card-video" src={embedUrl}
                     title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
 
             <div className="card-tags">
 

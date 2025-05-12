@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../@types";
 import { updateChallenge } from "../api/index";
+import useAuthStore from "../store"; 
 
 // Props optionnelles : une fonction à appeler après soumission du formulaire
 interface Props {
@@ -73,66 +74,65 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const user = useAuthStore((state) => state.user);
+  const token = useAuthStore((state) => state.token);
   // Envoie du formulaire à la base de données
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("token") || "";
-    console.log(userId)
-    console.log(token)
-
-    if (!userId || !token) {
-      setError("Tu dois être connecté pour modifier un challenge.");
+  
+    
+    
+    console.log("👤 user dans Zustand :", user);
+    console.log("🔑 token dans Zustand :", token);
+    
+    if (!user || !token) {
+      setError("Tu dois être connecté pour modifier ou créer un challenge.");
       return;
     }
-
+  
     const payload = {
       ...formData,
-      user_id: Number(userId),
+      user_id: user.id, 
       category_id: Number(formData.category_id),
       difficulty_id: Number(formData.difficulty_id),
     };
-
+  
     console.log("Payload envoyé :", payload);
-
+  
     try {
       let responseData;
-
+  
       if (challengeId) {
-        // MODE MODIFICATION → PUT
         responseData = await updateChallenge(challengeId, payload, token);
       } else {
-        // MODE CRÉATION → POST
         const response = await fetch("http://localhost:3000/challenges", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // ✅ Token de Zustand
           },
           body: JSON.stringify(payload),
         });
-
+  
         if (!response.ok) {
           const err = await response.json();
           throw new Error(err.message || "Erreur lors de l'envoi.");
         }
-
+  
         responseData = await response.json();
       }
-
+  
       console.log("Challenge sauvegardé :", responseData);
-
+  
       if (onFormSubmit) onFormSubmit();
-
-      // ✅ Redirection vers la page du challenge
       navigate(`/challenges/${responseData.id}`);
+  
     } catch (err: any) {
       setError(err.message);
     }
   };
+  
 
   // Rendu du formulaire
   return (

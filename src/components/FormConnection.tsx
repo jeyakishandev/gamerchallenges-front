@@ -180,12 +180,12 @@ function FormLogin () {
     try {
       const { token, userId } = await loginUser(pseudoOrEmail, password);
       const user = await getUserById(userId, token);
-      
-      login(token, user);
+
+      login(user, token);
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      // ✅ Redirection dynamique
+      //  Redirection dynamique
       const redirect = searchParams.get("redirect");
       navigate(redirect || `/profile/${user.id}`);
 
@@ -194,8 +194,6 @@ function FormLogin () {
       console.error("Erreur de connexion:", error);
     }
   };
-
-
   return <>
     <form onSubmit={handleSubmit}>
       {error && <div className="error-message">{error}</div>}

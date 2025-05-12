@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { getChallengeById } from "../api";
 import SubmissionForm from "../components/SubmissionForm";
 import useAuthStore from "../store";
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 
 
 export default function Challenge() {
@@ -49,7 +50,7 @@ export default function Challenge() {
   if (!challenge) {
     return <p>Chargement...</p>;
   }
-  const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+  const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
   return (
     <>
         <section className="challenge-content default-box-design">
@@ -68,41 +69,66 @@ export default function Challenge() {
             <section className="challenge-info">
             <h2 className="challenge-title low-title">{challenge?.name}</h2>
               <div className="challenge-cat-and-diff">
-              {user?.id === challenge.user_id && (
-  <div className="challenge-actions">
-    <span className="icon-button" title="Modifier">✏️</span>
-    <span className="icon-button" title="Supprimer" onClick={handleDelete}>🗑️</span>
-  </div>
-)}
-                <span className="category-color default-tag-design" style={{backgroundColor: challenge?.category.color}}>{challenge?.category.name}</span>
-                <span className="difficulty-color default-tag-design" style={{backgroundColor: challenge?.difficulty.color}}>{challenge?.difficulty.name}</span>
+                
+                {/* Actions visibles seulement pour l'auteur */}
+                {user?.id === challenge.user_id && (
+                  <div className="challenge-actions-inline">
+                    <button
+                      className="icon-button"
+                      title="Modifier"
+                      onClick={() => window.location.href = `/challenges/${challenge.id}/edit`}
+                    >
+                      ✏️
+                    </button>
+                    <button
+                      className="icon-button"
+                      title="Supprimer"
+                      onClick={handleDelete}
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                )}
+
+                {/* Badges */}
+                <span className="category-color default-tag-design" style={{ backgroundColor: challenge?.category.color }}>
+                  {challenge?.category.name}
+                </span>
+                <span className="difficulty-color default-tag-design" style={{ backgroundColor: challenge?.difficulty.color }}>
+                  {challenge?.difficulty.name}
+                </span>
               </div>
+
               <article className="challenge-description">
                 <p className="default-text">{challenge?.description}
                 </p>
               </article>
             </section>
+
           </div>
           <div className="align-button">
-            <button 
-              className="default-button"
-              onClick={() => setShowForm(true)}
-            >
-              Participer
-            </button>
+            {/** Si l'utilisateur est connecté il voit le bouton participer, sinon il est invité à se connecter */}
+            {user ? (
+              <button 
+                className="default-button"
+                onClick={() => setShowForm(true)}
+              >
+                Participer
+              </button>
+            ) : (
+              <Link className="default-button" to="/connexion">
+                Connecte-toi pour participer
+              </Link>
+            )}
           </div>
         </section>
         {/** Le formulaire ne s'affiche au clic que s'il y a bien un challenge.id */}
         {showForm && challenge?.id !== undefined && (
-          user ? (
+          
           <section className="submission-form-section">
             <SubmissionForm close={() => setShowForm(false)} challengeId={challenge.id}/>
           </section>
-          ) : (
-            <Link className="default-button" to="/connexion">
-              Connecte-toi pour participer
-            </Link>
-          )
+          
         )}
       <h3 className="participation-title low-title">Les participations</h3>
         <section className="challenge-participations">
@@ -110,7 +136,7 @@ export default function Challenge() {
           {challenge?.users.map((user) => {
             const submission = user?.Submission;
             const key = `${user.id}-${submission.challenge_id}`;
-            const embedUrl = submission.video_url.replace("watch?v=", "embed/") + "?mute=1";
+            const subEmbedUrl = getYoutubeEmbedUrl(submission.video_url);
 
             return (
               <article className="challenge-participation-container default-box-design" key={key}>
@@ -122,7 +148,7 @@ export default function Challenge() {
                 <iframe
                 width="100%"
                 height="315"
-                src={embedUrl}
+                src={subEmbedUrl}
                 title={`submission-${user.id}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

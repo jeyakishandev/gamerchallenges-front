@@ -69,8 +69,9 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
     }
     if (deleted) return null;
     return (
-            
-        <article className="card default-box-design" key={challenge.id}>
+
+
+            <article className="boxes default-box-design" key={challenge.id}>
 
             <h3 className="low-title card-title items">{challenge.name}</h3>
             <div className="challenge-actions-inline">
@@ -114,6 +115,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
             )}
 
             
+
 
             <div className="card-tags">
 

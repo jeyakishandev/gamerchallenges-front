@@ -50,7 +50,8 @@ export default function Home() {
   
 
   return (
-    <main>
+    <main className="home-page">
+
       <section className="home-content">
         <h1 className="main-title">Prêt à relever le challenge ?</h1>
         <h2 className="subtitle">

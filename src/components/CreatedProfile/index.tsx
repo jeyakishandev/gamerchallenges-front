@@ -13,7 +13,7 @@ export default function CreatedChall({ challenge }: CreatedChallenges) {
 
     return (
 
-        <article className="card default-box-design" key={challenge.id}>
+        <article className="boxes default-box-design" key={challenge.id}>
 
             <h3 className="low-title card-title items">{challenge.name}</h3>
             <iframe className="card-video" src={embedUrl}

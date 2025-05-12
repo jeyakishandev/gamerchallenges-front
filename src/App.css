@@ -373,6 +373,68 @@ body {
   }
 }
 
+.home-page .carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.home-page .video-card {
+  flex: 0 0 90%;
+  scroll-snap-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  background-color: #6778A7;
+}
+
+.home-page .video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+.home-page .video-title {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.6rem;
+  color: white;
+  background-color: #5d6da1;
+  font-family: 'Jura', sans-serif;
+}
+.home-page .video-title:hover {
+  background-color: #7a8cff; 
+  transition: background-color 0.3s ease;
+}
+
+
+@media screen and (min-width: 768px) {
+  .home-page .video-card {
+    flex: 0 0 320px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home-page .carousel-items {
+    justify-content: center;
+  }
+
+  .home-page .video-card {
+    flex: 0 0 calc((1000px - 2rem) / 3); 
+    max-width: 320px;
+  }
+}
+
+
+
+
+
+
+
 /** =================================== */
 /** ===== CHALLENGES PAGE SECTION ===== */
 /** =================================== */
@@ -427,6 +489,7 @@ body {
 .challenges-tag {
   min-width: 6rem;
   margin: 1rem 0.5rem;
+  text-align: center;
 }
 
 .card-details {
@@ -778,6 +841,21 @@ body {
   align-items: center;
 }
 
+.boxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+.boxes iframe {
+  width: 100%;
+  margin-top: 1rem;
+}
+
 .video-card iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -849,11 +927,10 @@ body {
 /**? ===== PROFILE PAGE DISPLAY ===== */
 /**? ================================ */
 
-@media screen and (min-width: 300px) and (max-width: 350px) {
-  .chall-flex {
-      padding-left: 8rem;
+@media screen and (max-width: 386px) {
+  .default-button {
+    padding: 0.8rem 0.5rem;
   }
-
 }
 
 @media screen and (min-width: 350px) and (max-width: 450px) {
@@ -873,17 +950,6 @@ body {
       text-align: center;
   }
 
-  .chall-pres {
-      display: flex;
-      flex-direction: column; /* Place les enfants (.video et .current-chall-info) en colonne (verticalement) */
-      gap: 1rem;
-  }
-
-  .chall-box {
-      height: 25rem;
-      padding: 5px;
-  }
-
 }
 
 /* Responsive desktop */
@@ -893,9 +959,6 @@ body {
       text-align: center;
   }
 
-  .chall-box {
-      padding: 5px;
-  }
 }
 
 @media screen and (min-width: 1000px) {

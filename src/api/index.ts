@@ -186,17 +186,24 @@ export async function updateChallenge(
   data: object,
   token: string
 ): Promise<any> {
-  const response = await fetch(`http://localhost:3000/challenges/${id}`, {
-    method: "PATCH",
+  try {
+    const response = await fetch(`http://localhost:3000/challenges/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
 
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(data),
-  });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Erreur lors de la modification");
+    }
 
-  if (!response.ok) throw new Error("Erreur lors de la modification");
-
-  return await response.json();
+    return await response.json();
+  } catch (err) {
+    console.error("Erreur API updateChallenge :", err);
+    throw err; // On relance l’erreur pour la catch dans le form
+  }
 }

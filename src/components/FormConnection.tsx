@@ -14,8 +14,6 @@ interface FormUpdateProfileProps {
   onUpdate: (
     pseudo: string,
     email: string,
-    password: string,
-    confirmPassword: string,
     avatar: File | null
   ) => Promise<void>;
 }
@@ -64,7 +62,7 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
 
   return (
     <>
-    <label htmlFor={label}></label>
+    <label className="default-text label" htmlFor={label}>Télécharger un avatar</label>
     <input 
         className="form-input"
         type="file" 
@@ -76,7 +74,6 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
     </>
   )
 }
-
 
 function FormSubscribe ({addUser}: IUserProps) {
 
@@ -238,8 +235,6 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
 
   const [pseudo, setPseudo] = useState("")
   const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
   const [avatar, setAvatar] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -254,12 +249,7 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
     e.preventDefault()
     setError(null);
 
-      if (password !== confirmPassword) {
-        setError("Les mots de passe ne correspondent pas");
-        return;
-      }
-
-      await onUpdate(pseudo, email, password, confirmPassword, avatar)
+      await onUpdate(pseudo, email, avatar)
   };
 
   return <>
@@ -282,24 +272,6 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
         placeholder="Email"
         type="email" 
         label="Email"
-      />
-
-      <Input 
-        value={password}
-        setValue={setPassword}
-        name="password"
-        placeholder="Password"
-        type="password"
-        label="Password"
-      />
-
-      <Input 
-        value={confirmPassword}
-        setValue={setConfirmPassword}
-        name="confirm"
-        placeholder="Confirmez votre mot de passe"
-        type="password" 
-        label="Confirmation"
       />
 
       <Fileinput

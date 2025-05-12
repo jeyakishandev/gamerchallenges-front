@@ -37,8 +37,6 @@ function UpdateProfile () {
     const handleUpdateProfile = async (
       pseudo: string,
       email: string,
-      password: string,
-      confirmPassword: string,
       avatar: File | null
     ) => {
       if (!user?.id || !token) {
@@ -50,8 +48,6 @@ function UpdateProfile () {
           user.id,
           pseudo,
           email,
-          password,
-          confirmPassword,
           avatar,
           token
         );
@@ -74,8 +70,8 @@ function UpdateProfile () {
 
   return (
     <>
-      <section className="default-form default-box-design signup-form">
-        <h3 className="low-title">Inscription</h3>
+      <section className="default-form-container default-form default-box-design">
+        <h3 className="low-title">Modifier le profile</h3>
         <FormUpdateProfile initialUser={currentUser} onUpdate={handleUpdateProfile} />
       </section>
     </>

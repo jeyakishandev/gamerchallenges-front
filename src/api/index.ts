@@ -105,20 +105,18 @@ export async function getProfileUsers(id: number) {
   return users;
 }
 
-export async function updateUserIntoApi(id: number, pseudo: string, email: string, password: string, confirmPassword: string, avatar: File | null, token: string): Promise<null | IUser> {
+export async function updateUserIntoApi(id: number, pseudo: string, email: string, avatar: File | null, token: string): Promise<null | IUser> {
   console.log(id, token);
   const formData = new FormData();
     formData.append('pseudo', pseudo);
     formData.append('email', email);
-    formData.append('password', password);
-    formData.append('confirmPassword', confirmPassword);
 
     if (avatar) {
       formData.append('avatar', avatar);
     }
 
   try {
-    const data = {pseudo, email, password, avatar}
+    const data = {pseudo, email, avatar}
     console.log(data);
     const result = await fetch(`http://localhost:3000/users/${id}`, {
       method: "PATCH",

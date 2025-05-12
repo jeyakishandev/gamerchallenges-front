@@ -43,8 +43,8 @@ export default function Leaderboard() {
                         <h3 className="low-title">Challenges populaires</h3>
                         <ul className="leaderbord-lists default-box-design">
                         {/* Liste les 10 challenges les plus joués */}
-                        {challenges.map((challenge) => {
-                            return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} />
+                        {challenges.map((challenge, index) => {
+                            return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} index={index}/>
                         })}
                         </ul>
                     </section>
@@ -53,8 +53,8 @@ export default function Leaderboard() {
                         <h3 className="low-title">Meilleurs joueurs</h3>
                         <ul className="leaderbord-lists default-box-design">
                         {/* Liste les 10 joueurs ayant réalisés le plus de challenges */}
-                        {players.map((user) => {
-                            return <LeaderboardTopPlayers key={user.id} players={user} />
+                        {players.map((user, index) => {
+                            return <LeaderboardTopPlayers key={user.id} players={user} index={index} />
                         })}
                         </ul>
                     </section>

@@ -7,8 +7,8 @@ interface LeaderboardPlayers {
 }
 
 // Rempli chaque ligne de la liste par les informations du joueur concerné
-export default function LeaderboardTopPlayers ({players}: LeaderboardPlayers) {
+export default function LeaderboardTopPlayers ({players, index}: LeaderboardPlayers) {
     return (
-        <li>1- <Link to={`/profile/${players.id}`}> {players.pseudo} : {players.challenges.length} challenges</Link> </li>
+        <li>{index + 1}- <Link to={`/profile/${players.id}`}> {players.pseudo} : {players.challenges.length} challenges</Link> </li>
     )
 }

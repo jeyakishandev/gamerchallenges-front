@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import "./Profil.css"
 import '../App.css'
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ export default function Profil() {
 
     const { id } = useParams();
     const [user, setUser] = useState<IUser | null>(null);
+    const navigate = useNavigate;
 
     useEffect(() => {
         const loadData = async () => {
@@ -53,15 +54,18 @@ export default function Profil() {
                 <div className="perso-info">
                     <h2 className="main-title">Retrouvez ici ton profile, avec tes informations personnelles, et tes défis !</h2>
                     <section className="button-container">
-                        <a href="#" className="default-button">Modifier le profile</a>
+                        <a
+                        className="default-button"
+                        onClick={() => window.location.href = `/profile/${user?.id}/modifier`}
+                        >Modifier le profile</a>
                     </section>
                     <img
                         className="avatar"
-                        src={user?.avatar_url ?? undefined}
+                        src={`http://localhost:3000/uploads/${user?.avatar_url}`}
                         alt={`Avatar de ${user?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
-                    <p className="pseudo">Pseudo : {user?.pseudo}</p>
+                    <p className="pseudo default-text">Pseudo : {user?.pseudo}</p>
                 </div>
 
 

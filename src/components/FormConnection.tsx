@@ -1,12 +1,23 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import useAuthStore from "../store";
-import { IUser } from "../@types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getUserById, loginUser } from "../api";
+import { IUser } from "../@types";
 
 
-interface INewUserProps {
+interface IUserProps {
   addUser: (pseudo: string, email: string, password: string, confirmPasword: string, avatar: File | null) => Promise<void>;
+}
+
+interface FormUpdateProfileProps {
+  initialUser: IUser;
+  onUpdate: (
+    pseudo: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+    avatar: File | null
+  ) => Promise<void>;
 }
 
 interface IInputProps {
@@ -67,9 +78,8 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
 }
 
 
-function FormSubscribe ({addUser}: INewUserProps) {
+function FormSubscribe ({addUser}: IUserProps) {
 
-  console.log("formSubscribe")
   const [pseudo, setPseudo] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -224,4 +234,87 @@ function FormLogin () {
   </>
 }
 
-export { FormSubscribe, FormLogin}
+function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
+
+  const [pseudo, setPseudo] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [avatar, setAvatar] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (initialUser) {
+      setPseudo(initialUser.pseudo || "");
+      setEmail(initialUser.email || "");
+    }
+  }, [initialUser]);
+
+  const handleSubmit = async(e: FormEvent) => {
+    e.preventDefault()
+    setError(null);
+
+      if (password !== confirmPassword) {
+        setError("Les mots de passe ne correspondent pas");
+        return;
+      }
+
+      await onUpdate(pseudo, email, password, confirmPassword, avatar)
+  };
+
+  return <>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      {error && <div className="error-message">{error}</div>}
+
+      <Input 
+        value={pseudo}
+        setValue={setPseudo}
+        name="pseudo"
+        placeholder="Pseudo"
+        type="text" 
+        label="Pseudo"
+      />
+
+      <Input 
+        value={email}
+        setValue={setEmail}
+        name="email"
+        placeholder="Email"
+        type="email" 
+        label="Email"
+      />
+
+      <Input 
+        value={password}
+        setValue={setPassword}
+        name="password"
+        placeholder="Password"
+        type="password"
+        label="Password"
+      />
+
+      <Input 
+        value={confirmPassword}
+        setValue={setConfirmPassword}
+        name="confirm"
+        placeholder="Confirmez votre mot de passe"
+        type="password" 
+        label="Confirmation"
+      />
+
+      <Fileinput
+        setFile={setAvatar}
+        name="avatar"
+        label="Avatar (JPG, JPEG, PNG, GIF uniquement)"
+        accept="image/jpeg, image/jpg, image/png, image/gif"
+      />
+
+      <div className="form-button align-button">
+        <button className="default-button" type="submit">Confirmer</button>
+        <button className="default-button" type="button">Retour</button>
+      </div>
+    </form>
+  </>
+}
+
+export { FormSubscribe, FormLogin, FormUpdateProfile, Input}

@@ -5,7 +5,7 @@ import useAuthStore from "../../store";
 
 export default function RequireAuth({ children }: { children: ReactNode }) {
   const location = useLocation();
-  const user = useAuthStore((state) => state.user); 
+  const user = useAuthStore((state) => state.user);
 
   if (!user) {
     return <Navigate to={`/connexion?redirect=${location.pathname}`} replace />;

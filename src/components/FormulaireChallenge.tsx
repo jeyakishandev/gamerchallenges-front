@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../@types";
 import { updateChallenge } from "../api/index";
+import useAuthStore from "../store";
 
 // Props optionnelles : une fonction à appeler après soumission du formulaire
 interface Props {
@@ -78,7 +79,6 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token") || "";
 

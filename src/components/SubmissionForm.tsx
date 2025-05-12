@@ -5,9 +5,10 @@ import { addSubmissionToChallenge } from "../api";
 interface SubmissionFormProps {
     close: () => void;
     challengeId: number;
+    onSuccess: () => void;
 }
 
-export default function SubmissionForm({ close, challengeId }: SubmissionFormProps){
+export default function SubmissionForm({ close, challengeId, onSuccess }: SubmissionFormProps){
     const [videoUrl, setVideoUrl] = useState("");
     const [error, setError] = useState<string | null>(null);
     const [success, setSucces] = useState(false);
@@ -38,6 +39,7 @@ export default function SubmissionForm({ close, challengeId }: SubmissionFormPro
             );
 
             setSucces(true);
+            onSuccess();
             close();
 
         } catch(error) {

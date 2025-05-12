@@ -1,12 +1,21 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import useAuthStore from "../store";
-import { IUser } from "../@types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getUserById, loginUser } from "../api";
+import { IUser } from "../@types";
 
 
-interface INewUserProps {
+interface IUserProps {
   addUser: (pseudo: string, email: string, password: string, confirmPasword: string, avatar: File | null) => Promise<void>;
+}
+
+interface FormUpdateProfileProps {
+  initialUser: IUser;
+  onUpdate: (
+    pseudo: string,
+    email: string,
+    avatar: File | null
+  ) => Promise<void>;
 }
 
 interface IInputProps {
@@ -53,7 +62,7 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
 
   return (
     <>
-    <label htmlFor={label}></label>
+    <label className="default-text label" htmlFor={label}>Télécharger un avatar</label>
     <input 
         className="form-input"
         type="file" 
@@ -66,10 +75,8 @@ function Fileinput({setFile, name, label, accept}: IFileInputProps) {
   )
 }
 
+function FormSubscribe ({addUser}: IUserProps) {
 
-function FormSubscribe ({addUser}: INewUserProps) {
-
-  console.log("formSubscribe")
   const [pseudo, setPseudo] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -224,4 +231,62 @@ function FormLogin () {
   </>
 }
 
-export { FormSubscribe, FormLogin}
+function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
+
+  const [pseudo, setPseudo] = useState("")
+  const [email, setEmail] = useState("")
+  const [avatar, setAvatar] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (initialUser) {
+      setPseudo(initialUser.pseudo || "");
+      setEmail(initialUser.email || "");
+    }
+  }, [initialUser]);
+
+  const handleSubmit = async(e: FormEvent) => {
+    e.preventDefault()
+    setError(null);
+
+      await onUpdate(pseudo, email, avatar)
+  };
+
+  return <>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      {error && <div className="error-message">{error}</div>}
+
+      <Input 
+        value={pseudo}
+        setValue={setPseudo}
+        name="pseudo"
+        placeholder="Pseudo"
+        type="text" 
+        label="Pseudo"
+      />
+
+      <Input 
+        value={email}
+        setValue={setEmail}
+        name="email"
+        placeholder="Email"
+        type="email" 
+        label="Email"
+      />
+
+      <Fileinput
+        setFile={setAvatar}
+        name="avatar"
+        label="Avatar (JPG, JPEG, PNG, GIF uniquement)"
+        accept="image/jpeg, image/jpg, image/png, image/gif"
+      />
+
+      <div className="form-button align-button">
+        <button className="default-button" type="submit">Confirmer</button>
+        <button className="default-button" type="button">Retour</button>
+      </div>
+    </form>
+  </>
+}
+
+export { FormSubscribe, FormLogin, FormUpdateProfile, Input}

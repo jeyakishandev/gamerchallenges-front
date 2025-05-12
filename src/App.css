@@ -241,6 +241,10 @@ body {
   font-size: 1.2rem;
 }
 
+.label {
+  width: 80%;
+}
+
 /**? ================================= */
 /**? ===== FORM TABLETTE DISPLAY ===== */
 /**? ================================= */
@@ -276,6 +280,10 @@ body {
 
   .form-input {
     height: 2rem;
+    width: 60%;
+  }
+
+  .label {
     width: 60%;
   }
 }
@@ -499,6 +507,7 @@ body {
 }
 
 .button-container {
+  text-align: center;
   padding: 2rem 0;
 }
 

@@ -105,6 +105,40 @@ export async function getProfileUsers(id: number) {
   return users;
 }
 
+export async function updateUserIntoApi(id: number, pseudo: string, email: string, avatar: File | null, token: string): Promise<null | IUser> {
+  console.log(id, token);
+  const formData = new FormData();
+    formData.append('pseudo', pseudo);
+    formData.append('email', email);
+
+    if (avatar) {
+      formData.append('avatar', avatar);
+    }
+
+  try {
+    const data = {pseudo, email, avatar}
+    console.log(data);
+    const result = await fetch(`http://localhost:3000/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data)
+    });
+    console.log(result);
+    if (result.ok) {
+      const updateUser = await result.json();
+      return updateUser;
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du profile", error);
+    return null;
+  }  
+}
+
 export async function getTopChallengesByParticipation(limit: number = 10): Promise<IChallenges> {
   // Récupération de tous les challenges
   const challenges = await getChallenges();
@@ -185,6 +219,7 @@ export async function updateChallenge(
   id: number,
   data: object,
   token: string
+
 ): Promise<any> {
   try {
     const response = await fetch(`http://localhost:3000/challenges/${id}`, {

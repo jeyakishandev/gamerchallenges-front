@@ -80,8 +80,6 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-  
-    
     
     console.log("👤 user dans Zustand :", user);
     console.log("🔑 token dans Zustand :", token);

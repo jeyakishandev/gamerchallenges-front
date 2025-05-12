@@ -19,6 +19,8 @@ import Logout from "./pages/logout";
 
 import EditChallenge from "./pages/EditChallenge";
 
+import { UpdateProfile } from "./pages/UpdateProfile";
+
 import NotFound from "./pages/404NotFound";
 
 
@@ -51,6 +53,15 @@ function App() {
           element={
             <RequireAuth>
               <EditChallenge />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="/profile/:id/modifier"
+          element={
+            <RequireAuth>
+              <UpdateProfile />
             </RequireAuth>
           }
         />

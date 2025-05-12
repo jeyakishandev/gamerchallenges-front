@@ -4,6 +4,7 @@ import { IUser } from "../@types"
 
 interface LeaderboardPlayers {
     players : IUser
+    index: number
 }
 
 // Rempli chaque ligne de la liste par les informations du joueur concerné

@@ -67,7 +67,7 @@ export default function SubmissionForm({ close, challengeId }: SubmissionFormPro
                         type="submit" 
                         className="default-button"
                     >
-                        Soummettre
+                        Soumettre
                     </button>
 
                     <button 

@@ -110,7 +110,7 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // ✅ Token de Zustand
+            "Authorization": `Bearer ${token}`, // ✅ Token de Zustand
           },
           body: JSON.stringify(payload),
         });

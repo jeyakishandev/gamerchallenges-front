@@ -150,6 +150,37 @@ export async function addSubmissionToChallenge(challengeId: number, videoUrl: st
   }
   return await response.json();
 }
+
+export async function updateUserSubmission(userId: number, challengeId: number, videoUrl: string) {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`http://localhost:3000/users/${userId}/submissions/${challengeId}`, {
+    method: 'PATCH',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+     },
+    body: JSON.stringify({ video_url: videoUrl }),
+  })
+  if (!response.ok) {
+    console.error(response);
+    return null;
+  }
+  return await response.json()
+}
+
+export async function deleteUserSubmission(userId: number, challengId: number) {
+  const token = localStorage.getItem("token");
+  const response = await fetch(`http://localhost:3000/users/${userId}/submissions/${challengId}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${token}` },
+  });
+  if(!response.ok) {
+    console.error(response);
+    return null;
+  }
+  return true;
+}
+
 export async function updateChallenge(
   id: number,
   data: object,

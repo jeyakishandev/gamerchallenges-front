@@ -182,8 +182,8 @@ function FormLogin () {
       const user = await getUserById(userId, token);
 
       login(user, token);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+     // localStorage.setItem("token", token);
+     // localStorage.setItem("user", JSON.stringify(user));
 
       //  Redirection dynamique
       const redirect = searchParams.get("redirect");

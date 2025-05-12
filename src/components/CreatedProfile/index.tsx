@@ -2,6 +2,7 @@
 import '../../App.css'
 import { IChallenge } from "../../@types"
 import { Link } from 'react-router-dom'
+import { getYoutubeEmbedUrl } from '../../utils/youtube';
 
 interface CreatedChallenges {
     challenge: IChallenge
@@ -9,7 +10,7 @@ interface CreatedChallenges {
 
 export default function CreatedChall({ challenge }: CreatedChallenges) {
 
-    const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+    const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
 
     return (
 

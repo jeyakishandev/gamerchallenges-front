@@ -18,7 +18,6 @@ export default function Profil() {
 
     const { id } = useParams();
     const [user, setUser] = useState<IUser | null>(null);
-    const navigate = useNavigate;
 
     useEffect(() => {
         const loadData = async () => {

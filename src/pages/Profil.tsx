@@ -79,7 +79,7 @@ export default function Profil() {
                     
 
                 <article className="chall">
-                    <h3 className="chall-title">Mes challenges réalisés</h3>
+                    <h3 className="chall-title">Mes participations</h3>
 
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>

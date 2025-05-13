@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../App.css";
 import { addSubmissionToChallenge } from "../api";
+import useAuthStore from "../store";
 
 interface SubmissionFormProps {
     close: () => void;
@@ -13,13 +14,15 @@ export default function SubmissionForm({ close, challengeId, onSuccess }: Submis
     const [error, setError] = useState<string | null>(null);
     const [success, setSucces] = useState(false);
 
+    // Récupérer le token, il sera envoyé dans la requête HTTP vers l'API.
+    const token = useAuthStore(state => state.token);
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError(null);
 
         try {
-            // Récupérer le token, il sera envoyé dans la requête HTTP vers l'API.
-            const token = localStorage.getItem("token");
+            
             if (!token) {
                 setError("Connectes toi pour participer à un challenge.");
                 return;

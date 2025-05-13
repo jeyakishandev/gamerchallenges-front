@@ -185,8 +185,7 @@ export async function addSubmissionToChallenge(challengeId: number, videoUrl: st
   return await response.json();
 }
 
-export async function updateUserSubmission(userId: number, challengeId: number, videoUrl: string) {
-  const token = localStorage.getItem("token");
+export async function updateUserSubmission(userId: number, challengeId: number, videoUrl: string, token: string) {
   const response = await fetch(`http://localhost:3000/users/${userId}/submissions/${challengeId}`, {
     method: 'PATCH',
     headers: { 
@@ -202,8 +201,7 @@ export async function updateUserSubmission(userId: number, challengeId: number, 
   return await response.json()
 }
 
-export async function deleteUserSubmission(userId: number, challengId: number) {
-  const token = localStorage.getItem("token");
+export async function deleteUserSubmission(userId: number, challengId: number, token: string) {
   const response = await fetch(`http://localhost:3000/users/${userId}/submissions/${challengId}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${token}` },

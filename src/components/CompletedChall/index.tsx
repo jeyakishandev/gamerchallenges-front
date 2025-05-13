@@ -4,6 +4,7 @@ import '../../App.css'
 import { getYoutubeEmbedUrl } from '../../utils/youtube'
 import { useState } from 'react'
 import { deleteUserSubmission, updateUserSubmission } from '../../api'
+import useAuthStore from '../../store'
 
 
 interface CompletedChallenge {
@@ -20,12 +21,13 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
   
     const embedUrl = getYoutubeEmbedUrl(videoUrl);
 
+    const token = useAuthStore(state => state.token);
+
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setError(null);
         setSuccess(false);
 
-        const token = localStorage.getItem("token");
         if (!token) {
             setError("Tu dois être connecté pour modifier ta participation.");
             return;
@@ -36,7 +38,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
         }
 
         try {
-            const result = await updateUserSubmission(userId, challenge.id, videoUrl);
+            const result = await updateUserSubmission(userId, challenge.id, videoUrl, token);
             if (result) {
                 setSuccess(true);
                 setIsEditing(false);
@@ -54,8 +56,13 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
         const confirmed = window.confirm("Es-tu sûr de vouloir supprimer ta participation ?");
         if (!confirmed) return;
 
+        if (!token) {
+            setError("Tu dois être connecté pour supprimer ta participation.");
+            return;
+        }
+
         try {
-            const result = await deleteUserSubmission(userId, challenge.id);
+            const result = await deleteUserSubmission(userId, challenge.id, token);
             console.log("Résultat suppression :", result)
             if (result) {
                 setDeleted(true);

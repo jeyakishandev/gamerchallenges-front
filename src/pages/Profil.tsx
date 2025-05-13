@@ -58,7 +58,7 @@ export default function Profil() {
             <main className="profile">
 
                 <div className="perso-info">
-                    <h2 className="main-title">Retrouvez ici ton profile, avec tes informations personnelles, et tes défis !</h2>
+                    <h2 className="main-title">Retrouves ici ton profil, avec tes informations personnelles, et tes défis !</h2>
                     <section className="button-container">
                         <a
                         className="default-button"

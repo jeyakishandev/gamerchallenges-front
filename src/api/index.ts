@@ -1,39 +1,41 @@
 import type { IChallenges, IChallenge, IUser } from "../@types";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 export async function getChallenges(): Promise<IChallenges> {
-  const response = await fetch("http://localhost:3000/challenges");
+  const response = await fetch(`${baseUrl}/challenges`);
   const challenges = await response.json();
   return challenges;
 }
 
 export async function getChallengeById(id: number): Promise<IChallenge> {
   const response = await fetch(
-    `http://localhost:3000/challenges/${id}`
+    `${baseUrl}/challenges/${id}`
   );
   const challenge = await response.json();
   return challenge;
 }
 
 export async function getChallengesByUser(id: number): Promise<IChallenges> {
-  const response = await fetch(`http://localhost:3000/users/${id}/challenges`);
+  const response = await fetch(`${baseUrl}/users/${id}/challenges`);
   const challenges = await response.json();
   return challenges;
 }
 
 export async function getSubmissionsByUser(id: number): Promise<IChallenge> {
-  const response = await fetch(`http://localhost:3000/users/${id}/submissions`);
+  const response = await fetch(`${baseUrl}/users/${id}/submissions`);
   const submissions = await response.json();
   return submissions;
 }
 
 export async function getUsers() {
-  const response = await fetch("http://localhost:3000/users");
+  const response = await fetch(`${baseUrl}/users`);
   const users = await response.json();
   return users;
 }
 
 export async function loginUser(pseudoOrEmail: string, password: string): Promise<{ token: string; userId: number}> {
-  const response = await fetch("http://localhost:3000/login", {
+  const response = await fetch(`${baseUrl}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ pseudoOrEmail, password })
@@ -46,7 +48,7 @@ export async function loginUser(pseudoOrEmail: string, password: string): Promis
 }
 
 export async function getUserById(userId: number, token: string): Promise<IUser> {
-  const response  = await fetch(`http://localhost:3000/users/${userId}`, {
+  const response  = await fetch(`${baseUrl}/users/${userId}`, {
     method: "GET",
     headers: { "Authorization": `Bearer ${token}`},
   });
@@ -81,7 +83,7 @@ export async function addUserIntoApi(
       console.log(avatar);
     }
     
-    const result = await fetch("http://localhost:3000/users", {
+    const result = await fetch(`${baseUrl}/users`, {
       method: 'POST',
       body: formData
       //* Le Content-Type, sera automatiquement défini à multipart/form-data
@@ -100,7 +102,7 @@ export async function addUserIntoApi(
 }
 
 export async function getProfileUsers(id: number) {
-  const response = await fetch(`http://localhost:3000/users/${id}`);
+  const response = await fetch(`${baseUrl}/users/${id}`);
   const users = await response.json();
   return users;
 }
@@ -120,7 +122,7 @@ export async function updateUserIntoApi(
     if (email !== undefined) formData.append('email', email);
     if (avatar) formData.append('avatar', avatar);
 
-    const result = await fetch(`http://localhost:3000/users/${id}`, {
+    const result = await fetch(`${baseUrl}/users/${id}`, {
       method: "PATCH",
       headers: {
         // "Content-Type": "application/json",
@@ -173,7 +175,7 @@ export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
 }
 
 export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {
-  const response = await fetch(`http://localhost:3000/challenges/${challengeId}/submissions`, {
+  const response = await fetch(`${baseUrl}/challenges/${challengeId}/submissions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -189,7 +191,7 @@ export async function addSubmissionToChallenge(challengeId: number, videoUrl: st
 }
 
 export async function updateUserSubmission(userId: number, challengeId: number, videoUrl: string, token: string) {
-  const response = await fetch(`http://localhost:3000/users/${userId}/submissions/${challengeId}`, {
+  const response = await fetch(`${baseUrl}/users/${userId}/submissions/${challengeId}`, {
     method: 'PATCH',
     headers: { 
       'Content-Type': 'application/json',
@@ -205,7 +207,7 @@ export async function updateUserSubmission(userId: number, challengeId: number, 
 }
 
 export async function deleteUserSubmission(userId: number, challengId: number, token: string) {
-  const response = await fetch(`http://localhost:3000/users/${userId}/submissions/${challengId}`, {
+  const response = await fetch(`${baseUrl}/users/${userId}/submissions/${challengId}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${token}` },
   });
@@ -223,7 +225,7 @@ export async function updateChallenge(
 
 ): Promise<any> {
   try {
-    const response = await fetch(`http://localhost:3000/challenges/${id}`, {
+    const response = await fetch(`${baseUrl}/challenges/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -118,7 +118,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
                 </form>
             ) : (
                 <iframe className="card-video" src={embedUrl}
-                    title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="no-referrer" allowFullScreen></iframe>
             )}
 
             

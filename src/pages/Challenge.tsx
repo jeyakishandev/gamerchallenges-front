@@ -59,7 +59,8 @@ export default function Challenge() {
                   src={embedUrl}
                   title={`challenge-${challenge.id}`}
                   frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  referrerPolicy="no-referrer" 
                   allowFullScreen
                 ></iframe>
             </section>
@@ -148,6 +149,7 @@ export default function Challenge() {
                 src={subEmbedUrl}
                 title={`submission-${user.id}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerPolicy="no-referrer"
                 allowFullScreen
               ></iframe>
 

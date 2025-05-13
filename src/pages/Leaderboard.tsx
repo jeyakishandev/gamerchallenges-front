@@ -33,6 +33,9 @@ export default function Leaderboard() {
 
     const { user } = useAuthStore();
 
+    // Position de l'utilisateur connecté dans le classement
+    const userRank = players.findIndex((p) => p.id === user?.id);
+
     return (
         <>
             <main>
@@ -57,16 +60,24 @@ export default function Leaderboard() {
                         {players.map((user, index) => {
                             return <LeaderboardTopPlayers key={user.id} players={user} index={index} />
                         })}
-                        </ul>
-                    </section>
-                </div>
 
-                <div>
-                    {user ? (
-                        <p>ID : utilisateur connecté : {user.id}</p>
-                    ) : (
-                        <p> Aucun utilisateur connecté</p>
-                    )}
+                        {user ? (
+                            <section>
+                                {userRank !== -1 ? (
+                                    <p>Vous êtes classé {userRank + 1}e avec {user.challenges.length} challenges réalisés</p>
+                                ) : (
+                                    <p>Vous n'apparaissez pas encore dans le classement</p>
+                                )}
+                            </section>
+                        ) : (
+                           
+                                <p>Connectez-vous pour voir votre classement personnel</p>
+                            
+                        )}
+
+                        </ul>
+
+                    </section>
                 </div>
 
             </main>

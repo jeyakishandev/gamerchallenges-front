@@ -35,21 +35,22 @@ function UpdateProfile () {
     }, [user?.id, token]);
 
     const handleUpdateProfile = async (
+      avatar: File | null,
       pseudo: string,
       email: string,
-      avatar: File | null
     ) => {
       if (!user?.id || !token) {
         setError("Vous devez être connecté pour modifier votre profil.");
         return;
       }
       try {
+        console.log(pseudo, email, avatar);
         const updatedUser = await updateUserIntoApi(
           user.id,
+          token,
+          avatar,
           pseudo,
           email,
-          avatar,
-          token
         );
         console.log(updatedUser);
         if (updatedUser) {

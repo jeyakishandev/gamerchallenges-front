@@ -105,31 +105,34 @@ export async function getProfileUsers(id: number) {
   return users;
 }
 
-export async function updateUserIntoApi(id: number, pseudo: string, email: string, avatar: File | null, token: string): Promise<null | IUser> {
-  console.log(id, token);
-  const formData = new FormData();
-    formData.append('pseudo', pseudo);
-    formData.append('email', email);
-
-    if (avatar) {
-      formData.append('avatar', avatar);
-    }
+export async function updateUserIntoApi(
+  id: number,
+  token: string,
+  avatar: File | null,
+  pseudo?: string,
+  email?: string,
+): Promise<null | IUser> {
 
   try {
-    const data = {pseudo, email, avatar}
-    console.log(data);
+
+    const formData = new FormData();
+    if (pseudo !== undefined) formData.append('pseudo', pseudo);
+    if (email !== undefined) formData.append('email', email);
+    if (avatar) formData.append('avatar', avatar);
+
     const result = await fetch(`http://localhost:3000/users/${id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data)
+      body: formData,
     });
-    console.log(result);
+
     if (result.ok) {
-      const updateUser = await result.json();
-      return updateUser;
+      const updatedUser: IUser = await result.json();
+      console.log("Réponse de l'API après mise à jour :", updatedUser);
+      return updatedUser;
     }
 
     return null;

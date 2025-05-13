@@ -1,5 +1,6 @@
 import "../App.css"
 import { useEffect, useState } from "react"
+import useAuthStore from "../store";
 import { IChallenges, IUser } from "../@types"
 import { getTopChallengesByParticipation, getTopUsers } from "../api";
 import LeaderboardTopChallenges from "../components/LeaderbordChallenges";
@@ -30,7 +31,7 @@ export default function Leaderboard() {
         loadData();
     }, []) 
 
-
+    const { user } = useAuthStore();
 
     return (
         <>
@@ -58,6 +59,14 @@ export default function Leaderboard() {
                         })}
                         </ul>
                     </section>
+                </div>
+
+                <div>
+                    {user ? (
+                        <p>ID : utilisateur connecté : {user.id}</p>
+                    ) : (
+                        <p> Aucun utilisateur connecté</p>
+                    )}
                 </div>
 
             </main>

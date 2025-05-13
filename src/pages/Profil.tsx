@@ -5,7 +5,6 @@ import { IChallenges, IUser } from "../@types";
 import { getChallengesByUser, getProfileUsers, getSubmissionsByUser } from "../api";
 import CreatedChall from "../components/CreatedProfile";
 import CompletedChall from "../components/CompletedChall";
-import useAuthStore from "../store";
 
 export default function Profil() {
 
@@ -54,8 +53,6 @@ export default function Profil() {
         loadData()
     }, [id]);
 
-    const { user } = useAuthStore();
-
 
     return (
         <>
@@ -78,15 +75,6 @@ export default function Profil() {
                     <p className="pseudo default-text">Pseudo : {users?.pseudo}</p>
                 </div>
 
-                <div>
-                    {user ? (
-                        <p>ID : utilisateur connecté : {user.id}</p>
-                    ) : (
-                        <p> Aucun utilisateur connecté</p>
-                    )}
-                </div>
-
-
                 <div className="perso-chall">
                     
 
@@ -98,8 +86,8 @@ export default function Profil() {
 
                         <div id="completed" className="carousel-items">
 
-                            {user?.challenges.map((challenge) => {
-                                return <CompletedChall key={challenge.id} challenge={challenge} userId={user.id} />
+                            {users?.challenges.map((challenge) => {
+                                return <CompletedChall key={challenge.id} challenge={challenge} userId={users.id} />
                             })}
 
                         </div>

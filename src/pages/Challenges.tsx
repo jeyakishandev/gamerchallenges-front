@@ -25,10 +25,7 @@ export default function Challenges() {
     return (
         <main>
             <h1 className="main-title challenges-title">Tous les challenges en cours</h1>
-            <h2 className="subtitle challenges-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Cras auctor, nisi tempus lacinia pulvinar, ligula 
-                est efficitur tortor, sit amet rhoncus justo tellus sed erat.
-                Sed hendrerit mauris id velit</h2>
+            <h2 className="subtitle challenges-subtitle">Prêt à rentrer dans l'arène ? Choisis ton combat, envoie ta vidéo et gagne le respect !</h2>
 
                 <div className="button-container">
                     {user ? (

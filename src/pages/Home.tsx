@@ -44,20 +44,6 @@ export default function Home() {
     }
   };
   
-
-  // useEffect(() => {
-  //   const fetchPopular = async () => {
-  //     try {
-  //       const data = await getTopChallengesByParticipation();
-  //       setPopularChallenges(data);
-  //     } catch (err) {
-  //       console.error("Erreur de chargement des challenges populaires", err);
-  //     }
-  //   };
-  //   fetchPopular();
-  // }, []);
-  
-
   return (
     <main className="home-page">
 

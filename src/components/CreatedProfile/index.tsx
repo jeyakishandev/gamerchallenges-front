@@ -22,8 +22,24 @@ export default function CreatedChall({ challenge }: CreatedChallenges) {
 
             <div className="card-tags">
 
-                <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>
-                <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.difficulty.color}}>{challenge.difficulty.name}</p>
+            {challenge.category && (
+  <p
+    className="default-tag-design challenges-tag"
+    style={{ backgroundColor: challenge.category.color }}
+  >
+    {challenge.category.name}
+  </p>
+)}
+
+{challenge.difficulty && (
+  <p
+    className="default-tag-design challenges-tag"
+    style={{ backgroundColor: challenge.difficulty.color }}
+  >
+    {challenge.difficulty.name}
+  </p>
+)}
+
                 <p className="default-tag-design challenges-tag" >{challenge.users.length} participants</p>
                 
             </div>

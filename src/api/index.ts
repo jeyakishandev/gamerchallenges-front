@@ -16,15 +16,26 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
 
 export async function getChallengesByUser(id: number): Promise<IChallenges> {
   const response = await fetch(`http://localhost:3000/users/${id}/challenges`);
-  const challenges = await response.json();
-  return challenges;
+  if (!response.ok) {
+    throw new Error("Impossible de récupérer les challenges créés par l'utilisateur.");
+  }
+  return await response.json();
+}
+export async function getChallengesCreatedByUser(userId: number): Promise<IChallenges> {
+  const response = await fetch(`http://localhost:3000/challenges/user/${userId}`);
+  return await response.json();
 }
 
-export async function getSubmissionsByUser(id: number): Promise<IChallenge> {
+
+
+
+export async function getSubmissionsByUser(id: number): Promise<{ challenge: IChallenge }[]> {
   const response = await fetch(`http://localhost:3000/users/${id}/submissions`);
   const submissions = await response.json();
   return submissions;
 }
+
+
 
 export async function getUsers() {
   const response = await fetch("http://localhost:3000/users");

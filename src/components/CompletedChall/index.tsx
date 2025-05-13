@@ -124,12 +124,20 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
             
 
 
-            <div className="card-tags">
+<div className="card-tags">
+  {challenge.category && (
+    <p className="default-tag-design challenges-tag" style={{ backgroundColor: challenge.category.color }}>
+      {challenge.category.name}
+    </p>
+  )}
 
-                <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.category.color}}>{challenge.category.name}</p>
-                <p className="default-tag-design challenges-tag" style={{backgroundColor: challenge.difficulty.color}}>{challenge.difficulty.name}</p>
+  {challenge.difficulty && (
+    <p className="default-tag-design challenges-tag" style={{ backgroundColor: challenge.difficulty.color }}>
+      {challenge.difficulty.name}
+    </p>
+  )}
+</div>
 
-            </div>
 
                 <Link to={`/challenges/${challenge.id}`} className="default-button card-details">Détails</Link>
 

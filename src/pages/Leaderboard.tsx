@@ -35,6 +35,7 @@ export default function Leaderboard() {
 
     // Position de l'utilisateur connecté dans le classement
     const userRank = players.findIndex((p) => p.id === user?.id);
+    const currentPlayer = players.find((p) => p.id === user?.id);
 
     return (
         <>
@@ -62,17 +63,18 @@ export default function Leaderboard() {
                         })}
 
                         {user ? (
-                            <section>
+                            <section className="perso-leader">
                                 {userRank !== -1 ? (
-                                    <p>Vous êtes classé {userRank + 1}e avec {user.challenges.length} challenges réalisés</p>
+                                    <p className="default-text perso-leader-sentence">Vous êtes classé {userRank + 1}e avec {currentPlayer?.challenges.length} challenges réalisés</p>
                                 ) : (
-                                    <p>Vous n'apparaissez pas encore dans le classement</p>
+                                    <p className="default-text perso-leader-sentence" >Vous n'apparaissez pas encore dans le classement</p>
                                 )}
                             </section>
                         ) : (
-                           
-                                <p>Connectez-vous pour voir votre classement personnel</p>
-                            
+
+                            <section className="perso-leader">
+                                <p className="default-text perso-leader-sentence">Connectez-vous pour voir votre classement personnel</p>
+                            </section>
                         )}
 
                         </ul>

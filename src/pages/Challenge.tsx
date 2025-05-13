@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { getChallengeById } from "../api";
 import SubmissionForm from "../components/SubmissionForm";
 import useAuthStore from "../store";
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 
 
 export default function Challenge() {
@@ -49,7 +50,7 @@ export default function Challenge() {
   if (!challenge) {
     return <p>Chargement...</p>;
   }
-  const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+  const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
   return (
     <>
         <section className="challenge-content default-box-design">
@@ -135,7 +136,7 @@ export default function Challenge() {
           {challenge?.users.map((user) => {
             const submission = user?.Submission;
             const key = `${user.id}-${submission.challenge_id}`;
-            const embedUrl = submission.video_url.replace("watch?v=", "embed/") + "?mute=1";
+            const subEmbedUrl = getYoutubeEmbedUrl(submission.video_url);
 
             return (
               <article className="challenge-participation-container default-box-design" key={key}>
@@ -147,7 +148,7 @@ export default function Challenge() {
                 <iframe
                 width="100%"
                 height="315"
-                src={embedUrl}
+                src={subEmbedUrl}
                 title={`submission-${user.id}`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

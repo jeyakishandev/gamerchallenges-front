@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getTopChallengesByParticipation } from "../api";
+import { getYoutubeEmbedUrl } from "../utils/youtube";
 
 
 
@@ -49,7 +50,8 @@ export default function Home() {
   
 
   return (
-    <main>
+    <main className="home-page">
+
       <section className="home-content">
         <h1 className="main-title">Prêt à relever le challenge ?</h1>
         <h2 className="subtitle">
@@ -82,12 +84,12 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-        <h3 className="low-title">Nouveauté</h3>
+        <h3 className="low-title">Nouveautés</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("nouveaute", "left")}>❮</span>
           <div id="nouveaute" className="carousel-items">
           {challenges.slice(0, 10).map((challenge) => {
-            const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+            const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
             return (
               <div key={challenge.id} className="video-card">
                 <iframe
@@ -123,12 +125,12 @@ export default function Home() {
       </section>
 
       <section className="carousel-section">
-       <h3 className="low-title">Challenges populaire</h3>
+       <h3 className="low-title">Challenges populaires</h3>
         <div className="carousel-container">
           <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
           <div id="populaire" className="carousel-items">
             {popularChallenges.slice(0, 10).map((challenge) => {
-              const embedUrl = challenge.video_url.replace("watch?v=", "embed/") + "?mute=1";
+              const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
               return (
                 <div key={challenge.id} className="video-card">
                   <iframe

@@ -428,14 +428,15 @@ body {
 }
 @media screen and (min-width: 1024px) {
   .home-page .carousel-items {
-    justify-content: center;
+    justify-content: space-between; 
   }
 
   .home-page .video-card {
-    flex: 0 0 calc((1000px - 2rem) / 3); 
-    max-width: 320px;
+    flex: 0 0 31.5%; 
+    max-width: 31.5%;
   }
 }
+
 
 
 

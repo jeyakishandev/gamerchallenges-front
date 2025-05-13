@@ -12,9 +12,9 @@ interface IUserProps {
 interface FormUpdateProfileProps {
   initialUser: IUser;
   onUpdate: (
+    avatar: File | null,
     pseudo: string,
     email: string,
-    avatar: File | null
   ) => Promise<void>;
 }
 
@@ -189,8 +189,8 @@ function FormLogin () {
       const user = await getUserById(userId, token);
 
       login(user, token);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+     // localStorage.setItem("token", token);
+     // localStorage.setItem("user", JSON.stringify(user));
 
       //  Redirection dynamique
       const redirect = searchParams.get("redirect");
@@ -249,7 +249,10 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
     e.preventDefault()
     setError(null);
 
-      await onUpdate(pseudo, email, avatar)
+      await onUpdate(avatar, pseudo, email)
+      setPseudo("");
+      setEmail("");
+      setAvatar(null);
   };
 
   return <>

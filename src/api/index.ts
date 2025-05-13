@@ -32,6 +32,20 @@ export async function getUsers() {
   return users;
 }
 
+export async function getAllUsers(): Promise<IUser> {
+    
+  // Récupère tous les users 
+  const response = await fetch("http://localhost:3000/users");
+  const players = await response.json();
+  
+  // Tri les users par nombre de challenges complétés (ordre décroissant)
+  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
+    return b.challenges.length - a.challenges.length;
+  });
+
+  return sortedPlayers
+}
+
 export async function loginUser(pseudoOrEmail: string, password: string): Promise<{ token: string; userId: number}> {
   const response = await fetch("http://localhost:3000/login", {
     method: "POST",

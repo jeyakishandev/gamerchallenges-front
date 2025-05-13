@@ -17,7 +17,7 @@ export default function Profil() {
     };
 
     const { id } = useParams();
-    const [user, setUser] = useState<IUser | null>(null);
+    const [users, setUser] = useState<IUser | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
@@ -53,6 +53,7 @@ export default function Profil() {
         loadData()
     }, [id]);
 
+
     return (
         <>
             <main className="profile">
@@ -62,18 +63,17 @@ export default function Profil() {
                     <section className="button-container">
                         <a
                         className="default-button"
-                        onClick={() => window.location.href = `/profile/${user?.id}/modifier`}
+                        onClick={() => window.location.href = `/profile/${users?.id}/modifier`}
                         >Modifier le profile</a>
                     </section>
                     <img
                         className="avatar"
-                        src={`http://localhost:3000/uploads/${user?.avatar_url}`}
-                        alt={`Avatar de ${user?.pseudo || "l'utilisateur"}`}
+                        src={`http://localhost:3000/uploads/${users?.avatar_url}`}
+                        alt={`Avatar de ${users?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
-                    <p className="pseudo default-text">Pseudo : {user?.pseudo}</p>
+                    <p className="pseudo default-text">Pseudo : {users?.pseudo}</p>
                 </div>
-
 
                 <div className="perso-chall">
                     
@@ -86,8 +86,8 @@ export default function Profil() {
 
                         <div id="completed" className="carousel-items">
 
-                            {user?.challenges.map((challenge) => {
-                                return <CompletedChall key={challenge.id} challenge={challenge} userId={user.id} />
+                            {users?.challenges.map((challenge) => {
+                                return <CompletedChall key={challenge.id} challenge={challenge} userId={users.id} />
                             })}
 
                         </div>

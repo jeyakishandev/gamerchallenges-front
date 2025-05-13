@@ -1,5 +1,6 @@
 import "../App.css"
 import { useEffect, useState } from "react"
+import useAuthStore from "../store";
 import { IChallenges, IUser } from "../@types"
 import { getTopChallengesByParticipation, getTopUsers } from "../api";
 import LeaderboardTopChallenges from "../components/LeaderbordChallenges";
@@ -30,7 +31,10 @@ export default function Leaderboard() {
         loadData();
     }, []) 
 
+    const { user } = useAuthStore();
 
+    // Position de l'utilisateur connecté dans le classement
+    const userRank = players.findIndex((p) => p.id === user?.id);
 
     return (
         <>
@@ -56,7 +60,23 @@ export default function Leaderboard() {
                         {players.map((user, index) => {
                             return <LeaderboardTopPlayers key={user.id} players={user} index={index} />
                         })}
+
+                        {user ? (
+                            <section>
+                                {userRank !== -1 ? (
+                                    <p>Vous êtes classé {userRank + 1}e avec {user.challenges.length} challenges réalisés</p>
+                                ) : (
+                                    <p>Vous n'apparaissez pas encore dans le classement</p>
+                                )}
+                            </section>
+                        ) : (
+                           
+                                <p>Connectez-vous pour voir votre classement personnel</p>
+                            
+                        )}
+
                         </ul>
+
                     </section>
                 </div>
 

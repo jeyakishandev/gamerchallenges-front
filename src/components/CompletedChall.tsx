@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { IChallenge, } from '../../@types'
-import '../../App.css'
-import { getYoutubeEmbedUrl } from '../../utils/youtube'
+import { IChallenge, } from '../@types'
+import '../App.css'
+import { getYoutubeEmbedUrl } from '../utils/youtube'
 import { useState } from 'react'
-import { deleteUserSubmission, updateUserSubmission } from '../../api'
-import useAuthStore from '../../store'
+import { deleteUserSubmission, updateUserSubmission } from '../api'
+import useAuthStore from '../store'
 
 
 interface CompletedChallenge {

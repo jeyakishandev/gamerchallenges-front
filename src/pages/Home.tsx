@@ -96,20 +96,8 @@ export default function Home() {
                   src={embedUrl}
                   title={`challenge-${challenge.id}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  referrerPolicy="no-referrer"
                   allowFullScreen
-                  onMouseEnter={(e) => {
-                    const src = e.currentTarget.getAttribute("src");
-                    if (src && !src.includes("autoplay=1")) {
-                      e.currentTarget.setAttribute("src", src + "&autoplay=1");
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    const src = e.currentTarget.getAttribute("src");
-                    if (src) {
-                      const cleanSrc = src.replace("&autoplay=1", "");
-                      e.currentTarget.setAttribute("src", cleanSrc);
-                    }
-                  }}
                 />
                 <Link to={`/challenges/${challenge.id}`} className="video-title">
                   {challenge.name}
@@ -137,20 +125,8 @@ export default function Home() {
                     src={embedUrl}
                     title={`challenge-${challenge.id}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="no-referrer"
                     allowFullScreen
-                    onMouseEnter={(e) => {
-                      const src = e.currentTarget.getAttribute("src");
-                      if (src && !src.includes("autoplay=1")) {
-                        e.currentTarget.setAttribute("src", src + "&autoplay=1");
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      const src = e.currentTarget.getAttribute("src");
-                      if (src) {
-                        const cleanSrc = src.replace("&autoplay=1", "");
-                        e.currentTarget.setAttribute("src", cleanSrc);
-                      }
-                    }}
                   />
                   <Link to={`/challenges/${challenge.id}`} className="video-title">
                     {challenge.name}

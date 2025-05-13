@@ -18,7 +18,7 @@ export default function CreatedChall({ challenge }: CreatedChallenges) {
 
             <h3 className="low-title card-title items">{challenge.name}</h3>
             <iframe className="card-video" src={embedUrl}
-                    title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                    title={`challenge-${challenge.id}`} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="no-referrer" allowFullScreen></iframe>
 
             <div className="card-tags">
 

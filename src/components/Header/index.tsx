@@ -15,6 +15,14 @@ export default function Header() {
 
      // Récupère l'utilisateur connecté depuis dans le store d'authentification.
     const { user } = useAuthStore();
+    const [localAvatarUrl, setLocalAvatarUrl] = useState(user?.avatar_url ? `http://localhost:3000/uploads/${user.avatar_url}` : null);
+
+    //* Use effect to handle avatar changes 
+    useEffect(() => {
+        if (user?.avatar_url) {
+            setLocalAvatarUrl(`http://localhost:3000/uploads/${user.avatar_url}`);
+        }
+    }, [user?.avatar_url]);
 
     /**
      * Ferme le menu burger automatiquement si la fenêtre 
@@ -78,7 +86,7 @@ export default function Header() {
                     
                         <NavLink to={`/profile/${user.id}`}>
                         <img
-                            src={`http://localhost:3000/uploads/${user.avatar_url}`}
+                            src={localAvatarUrl ? localAvatarUrl : undefined}
                             alt={`Profil de ${user.pseudo}`}
                             className="profil-picture mobile-only"
                         />
@@ -104,7 +112,7 @@ export default function Header() {
                     <>
                         <NavLink to={`/profile/${user.id}`}>
                             <img 
-                                src={`http://localhost:3000/uploads/${user.avatar_url}`} 
+                                src={localAvatarUrl ? localAvatarUrl : undefined} 
                                 alt={`photo de profil de ${user.pseudo}`} 
                                 className="profil-picture"
                             />

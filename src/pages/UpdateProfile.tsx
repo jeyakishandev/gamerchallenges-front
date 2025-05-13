@@ -8,7 +8,7 @@ import useAuthStore from "../store";
 function UpdateProfile () {
 
   const navigate = useNavigate();
-  const { user, token } = useAuthStore();
+  const { user, token, login } = useAuthStore();
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +44,6 @@ function UpdateProfile () {
         return;
       }
       try {
-        console.log(pseudo, email, avatar);
         const updatedUser = await updateUserIntoApi(
           user.id,
           token,
@@ -54,6 +53,7 @@ function UpdateProfile () {
         );
         console.log(updatedUser);
         if (updatedUser) {
+          login(updatedUser, token);
           navigate(`/profile/${user.id}`);
         } else {
           setError("La mise à jour du profil a échoué.");

@@ -1,5 +1,4 @@
-import './Profile.css'
-import { IUser } from "../../@types"
+import { IUser } from "../@types"
 
 interface ProfilesUsers {
     user: IUser

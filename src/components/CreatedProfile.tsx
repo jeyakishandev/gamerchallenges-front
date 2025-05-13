@@ -1,8 +1,8 @@
 
-import '../../App.css'
-import { IChallenge } from "../../@types"
+import '../App.css'
+import { IChallenge } from "../@types"
 import { Link } from 'react-router-dom'
-import { getYoutubeEmbedUrl } from '../../utils/youtube';
+import { getYoutubeEmbedUrl } from '../utils/youtube';
 
 interface CreatedChallenges {
     challenge: IChallenge

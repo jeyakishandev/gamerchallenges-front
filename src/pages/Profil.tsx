@@ -92,7 +92,7 @@ export default function Profil() {
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div id="completed" className="carousel-items">
+                        <div id="completed" className="carousel-items chall-width">
 
                             {player?.challenges.map((challenge) => {
                                 return <CompletedChall key={challenge.id} challenge={challenge} userId={player.id} />
@@ -108,6 +108,7 @@ export default function Profil() {
 
 
                 <article className="chall">
+                  
                   {player?.id === user?.id ? (
                     <h3 className="chall-title">Mes challenges créés</h3>
                   ) : (
@@ -130,7 +131,7 @@ export default function Profil() {
                   </div>
                 </article>
 
-                </div>
+              </div>
 
             </main>
         </>

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
-import {  getProfileUsers, getSubmissionsByUser } from "../api";
+import {  getSubmissionsByUser, getUserById } from "../api";
 import CreatedChall from "../components/CreatedChall";
 import CompletedChall from "../components/CompletedChall";
 import { getChallengesCreatedByUser } from "../api";
@@ -19,48 +19,72 @@ export default function Profil() {
     };
 
     const { id } = useParams();
-    const [player, setUser] = useState<IUser | null>(null);
-
-    useEffect(() => {
-        const loadData = async () => {
-            if (id) {
-                const newUser = await getProfileUsers(Number.parseInt(id));
-                setUser(newUser)
-            }
-        };
-        loadData();
-    }, [id])
-
+    const [player, setPlayer] = useState<IUser | null>(null);
     const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
-
-    useEffect(() => {
-        const loadCreated = async () => {
-          if (id) {
-            const newCreated = await getChallengesCreatedByUser(Number(id));
-            setCreatedChallenges(newCreated);
-          }
-        };
-        loadCreated();
-      }, [id]);
-
-      const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
+    const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
       console.log(completedChallenges);
+    const user = useAuthStore(state => state.user);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    
+    // Chargement des données du profil.
+    useEffect(()=> {
+      const loadProfileData = async () => {
+        try {
+          if (!id) return;
+          setLoading(true);
+
+          // Charger les données du profil avec le token d'authentification.
+          const profileData = await getUserById(Number.parseInt(id));
+          setPlayer(profileData);
+
+          // Charger les défis créés par l'utilisateur.
+          const newCreated = await getChallengesCreatedByUser(Number.parseInt(id));
+          setCreatedChallenges(newCreated);
+
+          // Charger les défis complétés par l'utilisateur.
+          const submissions = await getSubmissionsByUser(Number.parseInt(id));
+          const extractedChallenges = submissions.map((s) => s.challenge);
+          setCompletedChallenges(extractedChallenges);
+
+          setLoading(false);
+
+        } catch (err) {
+          setError("Erreur lors du chargement des données du profil.");
+          setLoading(false);
+          console.error(err);
+        }
+      };
+      loadProfileData();
+    }, [id]);
+    // useEffect(() => {
+    //     const loadCreated = async () => {
+    //       if (id) {
+    //         const newCreated = await getChallengesCreatedByUser(Number(id));
+    //         setCreatedChallenges(newCreated);
+    //       }
+    //     };
+    //     loadCreated();
+    //   }, [id]);
+
+      
 
 
-
-    useEffect(() => {
-        const loadData = async () => {
-            if (id) {
-              const submissions = await getSubmissionsByUser(Number.parseInt(id));
-              const extractedChallenges = submissions.map((s) => s.challenge);
-              setCompletedChallenges(extractedChallenges);
-            }
-          };
+    // useEffect(() => {
+    //     const loadData = async () => {
+    //         if (id) {
+    //           const submissions = await getSubmissionsByUser(Number.parseInt(id));
+    //           const extractedChallenges = submissions.map((s) => s.challenge);
+    //           setCompletedChallenges(extractedChallenges);
+    //         }
+    //       };
           
-        loadData();
-      }, [id]);
+    //     loadData();
+    //   }, [id]);
 
-      const { user } = useAuthStore()
+    if (loading) return <p>Chargement du profil...</p>;
+    if (error) return <p className="error-message">{error}</p>;
       
 
     return (
@@ -74,7 +98,7 @@ export default function Profil() {
                         <a
                         className="default-button"
                         onClick={() => window.location.href = `/profile/${player?.id}/modifier`}
-                        >Modifier le profile</a>
+                        >Modifier le profil</a>
                       )}
                     </section>
                     <img

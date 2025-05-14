@@ -1,10 +1,817 @@
+<<<<<<< HEAD
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+=======
+/**! ===== MOBILE FIRST ===== */
+/**! ===== RESPONSIVE SIZE == */
+/**! MOBILE SIZE UNDER 768PX
+/**! TABLETTE SIZE 768PX - 1024PX
+/**! DESKTOP SIZE 1024PX - 1366PX
+/**! LARGE DESKTOP SIZE 1366PX ++
+
+/**! ===== CSS FOLDER PLAN ===== */
+/**! - RESET ELEMENT
+/**! - DEFAULT VARIABLE ELEMENT : FONT, COLOR, BOX DESIGN
+/**! - DEFAULT CLASS ELEMENT : BOX TAG BUTTON DEFAULT DESIGN
+/**! - DEFAULT TITLE AND TEXT
+/**! - DEFAULT FORM
+/* TODO: HEADER
+/**! - HOME PAGE
+/**! - CHALLENGES PAGE
+/**! - CHALLENGE PAGE
+/**! - LEADERBOARD PAGE
+/**! - CONNECTION PAGE
+/* TODO: PROFILE
+/**! - FOOTER */
+/**! - 404NNotFound */
+
+/**! ============== COMMENTS BLOCK ================ */
+
+/** =========================================== */
+/** ===== I COMMENT THE MAIN SECTION ========== */
+/** =========================================== */
+/**? ============================================ */
+/**? ===== I COMMENT ON PART OF THE PAGE ======== */
+/**? ============================================ */
+
+/**! ===== CSS RULLES START HERE ===== */
+
+/** RESET ELEMENT */
+h2 {
+  font-size: 1rem;
+}
+
+/** ==================================== */
+/** ===== DEFAULT VARIABLE ELEMENT ===== */
+/** ==================================== */
+
+:root {
+
+  /** FONT FAMILY */
+  --main-font-title: 'Joti One', cursive;
+  --second-font-text: 'Jura', sans-serif;
+
+  /** COLOR ELEMENTS */
+  --main-background-color: radial-gradient(#5017A1, #1D083B);
+  --button-color: #285CEC;
+  --button-color-hover: #370f6e;
+  --text-color: #FFFFFF;
+  --background-color-box: radial-gradient(
+    circle at center,
+    rgba(148, 46, 250, 0.70) 50%,
+    rgba(103, 30, 205, 0.50) 80%,
+    rgba(59, 17, 119, 0.2) 100%
+  );
+
+  /** BOX DESIGN */
+  --border-box: 2px solid #8692FA;
+  --border-radius: 10px;
+  --shadow-box: 5px 5px 10px rgb(29, 29, 29);
+  --border-button-hover: 2px solid #b4b8fb;
+}
+
+/** ================================== */
+/** ===== DEFAULT CLASS ELEMENTS ===== */
+/** ================================== */
+
+.default-box-design {
+    border: var(--border-box);
+    background: var(--background-color-box);
+    box-shadow: var(--shadow-box);
+    border-radius: var(--border-radius);
+}
+
+.default-tag-design {
+  border: var(--border-box);
+  box-shadow: var(--shadow-box);
+  border-radius: var(--border-radius);
+}
+
+.default-button {
+  min-width: 10rem;
+  color: var(--text-color);
+  background-color: var(--button-color);
+  padding: 0.8rem 2rem;
+  margin: 1rem 0.5rem 0 0.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-box);
+  border: none;
+}
+
+.buttons-flex {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.default-button:hover {
+  transition: background-color 1.5s ease;
+  background-color: var(--button-color-hover);
+}
+
+.default-button:active {
+  box-shadow: 1px 1px 0px black;
+  transform: scale(0.95) translate(5%, 5%);
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--main-background-color);
+  color: var(--text-color);
+}
+
+/** ================================== */
+/** ===== DEFAULT TITLE AND TEXT ===== */
+/** ================================== */
+
+/** main-title: h1 */
+.main-title {
+  font-size: 1.8rem;
+  padding: 1rem 0 1rem;
+}
+
+/** subtitle: h2 */
+.subtitle { 
+  font-size: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+/** low-title: h3 */
+.low-title {
+  text-align: center;
+  font-family: var(--second-font-text);
+  font-size: 1.2rem;
+}
+
+.main-title, .subtitle {
+  font-family: var(--main-font-title);
   text-align: center;
 }
 
+/** default-text: p */
+.default-text, a, .default-button {
+  font-family: var(--second-font-text);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/** paragraph center */
+.paragraph-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 1366px) {
+  .default-text, a, .default-button {
+    font-size: 1.2rem;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .subtitle { 
+    font-size: 1.6rem;
+  }
+
+  .low-title {
+    font-size: 1.4rem;
+  }
+}
+
+/** ================================ */
+/** ===== DEFAULT FORM ELEMENT ===== */
+/** ================================ */
+
+/**? =============================== */
+/**? ===== FORM MOBILE DISPLAY ===== */
+/**? =============================== */
+
+.default-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.default-form {
+  padding: 1rem 1rem 2rem;
+  margin: 0 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.default-form form { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-input {
+  height: 1.4rem;
+  width: 80%;
+  margin: 1rem;
+  border-radius: 5px;
+  background-color: #5017A1;
+  color: white;
+}
+
+.default-form input::placeholder {
+  color: white;
+}
+
+.form-button {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.5rem 2rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.default-form textarea {
+  height: 4rem;
+}
+
+.default-form textarea::placeholder {
+  color: white;
+}
+
+.create-form select option {
+  background-color: #5017A1;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.label {
+  width: 80%;
+}
+
+/**? ================================= */
+/**? ===== FORM TABLETTE DISPLAY ===== */
+/**? ================================= */
+
+@media screen and (min-width: 768px) {
+  .form-container {
+    width: 70%;
+    margin: auto;
+  }
+
+  .form-button {
+    margin: 1rem 0.5rem 0.5rem;
+  }
+
+  .form-input {
+    height: 1.6rem;
+  }
+}
+/**? ================================ */
+/**? ===== FORM DESKTOP DISPLAY ===== */
+/**? ================================ */
+
+@media screen and (min-width: 1024px) {
+
+  .default-form-container {
+    width: 70%;
+    margin: auto;
+  }
+
+  .form-button {
+    margin: 1rem 0.5rem 1.5rem;
+  }
+
+  .form-input {
+    height: 2rem;
+    width: 60%;
+  }
+
+  .label {
+    width: 60%;
+  }
+}
+
+/**? ====================================== */
+/**? ===== FORM LARGE DESKTOP DISPLAY ===== */
+/**? ====================================== */
+
+@media screen and (min-width: 1366px) {
+  .form-container {
+    max-width: 80%;
+  }
+}
+
+/** ============================= */
+/** ===== HOME PAGE SECTION ===== */
+/** ============================= */
+
+/**? ============================ */
+/**? ===== HOME CONTENT ========= */
+/**? ============================ */
+
+.home-content {
+  padding: 2rem 1rem 2rem;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/**? ============================ */
+/**? ===== CAROUSEL CONTENT ===== */
+/**? ============================ */
+
+.carousel-section {
+  margin: 4rem auto;
+  max-width: 1000px;
+  padding: 0 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+}
+
+.carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+/**? ============================ */
+/**? ===== SKELETON DISPLAY ===== */
+/**? ============================ */
+.home-video iframe {
+  width: 260px;
+}
+
+.skeleton-card {
+  background-color: #6778A7;
+  width: 270px;
+  height: 140px;
+  border-radius: 8px;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jura', sans-serif;
+  font-weight: bold;
+}
+
+/**? ============================ */
+/**? ===== ARROW DISPLAY ===== */
+/**? ============================ */
+
+.arrow {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  color: #007bff;
+}
+
+/**? ====================================== */
+/**? ===== HOME LARGE DESKTOP DISPLAY ===== */
+/**? ====================================== */
+
+@media screen and (min-width: 1600px) {
+  .carousel-items {
+    overflow-x: initial;
+  }
+}
+
+.home-page .carousel-items {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.home-page .video-card {
+  flex: 0 0 90%;
+  scroll-snap-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  background-color: #6778A7;
+}
+
+.home-page .video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+.home-page .video-title {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0.6rem;
+  color: white;
+  background-color: #5d6da1;
+  font-family: 'Jura', sans-serif;
+}
+.home-page .video-title:hover {
+  background-color: #7a8cff; 
+  transition: background-color 0.3s ease;
+}
+
+
+@media screen and (min-width: 768px) {
+  .home-page .video-card {
+    flex: 0 0 320px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home-page .carousel-items {
+    justify-content: space-between; 
+  }
+
+  .home-page .video-card {
+    flex: 0 0 31.5%; 
+    max-width: 31.5%;
+  }
+}
+
+
+
+
+
+
+
+
+/** =================================== */
+/** ===== CHALLENGES PAGE SECTION ===== */
+/** =================================== */
+
+
+
+
+
+/**? ====================================== */
+/**? ===== CHALLENGES MOBILE DISPLAY  ===== */
+/**? ====================================== */
+
+.challenges-title {
+  margin-top: 3.8rem;
+}
+
+.challenges-subtitle {
+  width: 80%;
+  margin: auto;
+}
+
+.cards-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+.card iframe {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.card-video {
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.card-tags {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 0.7rem 0;
+}
+
+.challenges-tag {
+  min-width: 6rem;
+  margin: 1rem 0.5rem;
+  text-align: center;
+}
+
+.card-details {
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/**? ======================================== */
+/**? ===== CHALLENGES TABLETTE DISPLAY  ===== */
+/**? ======================================== */
+
+@media screen and (min-width: 768px) {
+  .card {
+      width: 35%;
+  }
+
+  .challenges-subtitle {
+      width: 70%;
+  }
+
+  .card-title {
+    min-height: 6rem;
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    text-align: right;
+    margin-right: 10rem;
+}
+}
+
+/**? ======================================= */
+/**? ===== CHALLENGES DESKTOP DISPLAY  ===== */
+/**? ======================================= */
+@media screen and (min-width: 1024px) {
+  .card {
+      width: 25%;
+  }
+}
+
+/** ================================== */
+/** ===== CHALLENGE PAGE SECTION ===== */
+/** ================================== */
+.challenge-cat-and-diff {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Boutons Modifier + Supprimer */
+.challenge-actions-inline {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: auto;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.2);
+}
+@media screen and (max-width: 600px) {
+  .challenge-cat-and-diff {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .challenge-actions-inline {
+    margin-top: 0.5rem;
+    margin-right: 0;
+    justify-content: flex-start;
+  }
+}
+
+
+
+
+
+
+/**? ==================================== */
+/**? ===== CHALLENGE MOBILE DISPLAY ===== */
+/**? ==================================== */
+
+.challenge-content {
+  padding: 2rem 1rem;
+  margin: 2rem;
+}
+
+.challenge-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container {
+  width: 90%;
+}
+
+.challenge-cat-and-diff {
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.challenge-cat-and-diff span, .participation-info span, .card-tags p{
+  padding: 0.1rem 1rem;
+}
+
+.challenge-cat-and-diff span {
+  margin: 2rem 0 0 1rem;
+}
+
+.category-color {
+  background-color: #EC9E28;
+}
+
+.difficulty-color {
+  background-color: #EC3C28;
+}
+
+.challenge-description {
+  border: 1px solid #8692FA;
+  padding: 0 1rem;
+  margin: 1rem 1rem;
+}
+
+.align-button {
+  width: 100%;
+  text-align: center;
+}
+
+/**? ======================================== */
+/**? ===== CHALLENGE SUBMISSION CONTENT ===== */
+/**? ======================================== */
+
+.participation-title {
+  margin-top: 3rem;
+}
+
+.challenge-participations {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.challenge-participation-container {
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.participation-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+.participation-info span {
+  margin: 1rem 0 2rem;
+  background-color: #285CEC;
+}
+
+@media screen and (min-width: 400px) {
+  .challenge-participation-container {
+    width: 100%;
+  }
+}
+
+/**? ====================================== */
+/**? ===== CHALLENGE TABLETTE DISPLAY ===== */
+/**? ====================================== */
+
+@media screen and (min-width: 768px) {
+  .challenge-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .challenge-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+  }
+
+  .challenge-title {
+    margin: 4rem 1rem 4rem 0;
+  }
+
+  .challenge-cat-and-diff span {
+    margin-top: 0;
+  }
+
+  .video-container {
+    width: 45%;
+    height: 100%;
+  }
+
+  .align-button {
+    margin-top: 2rem;
+  }
+
+  .challenge-participation-container {
+    width: 40%;
+    margin: 1rem 0;
+  }
+}
+
+/**? ===================================== */
+/**? ===== CHALLENGE DESKTOP DISPLAY ===== */
+/**? ===================================== */
+
+@media screen and (min-width: 1024px) {
+
+  .challenge-content {
+    padding-top: 4rem;
+    width: 70%;
+    margin: 4rem auto;
+  }
+  .challenge-description {
+    margin-bottom: 0;
+    margin-top: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .video-container {
+    margin-left: 1rem;
+  }
+
+  .challenge-participations {
+    width: 90%;
+    margin: auto;
+  }
+
+  .challenge-participation-container {
+    width: 30%;
+    margin: 1rem 0.5rem;
+  }
+
+  .challenge-cat-and-diff {
+    margin-bottom: 1rem;
+  }
+
+  .submission-form-section {
+    margin-top: 2rem;
+  }
+}
+
+/** ==================================== */
+/** ===== LEADERBOARD PAGE SECTION ===== */
+/** ==================================== */
+/**? ========================================== */
+/**? ===== LEADERBORD PAGE MOBILE DISPLAY ===== */
+/**? ========================================== */
+
+.leaderbord-title {
+  margin-top: 3.8rem;
+}
+
+.leaderbord-subtitle {
+  margin: 1rem auto 4rem;
+  width: 80%;
+}
+
+.lead-boxes {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.leaderbord-lists {
+  padding: 1rem 2rem;
+  min-height: 15rem;
+}
+
+.leaderbord-lists li {
+>>>>>>> f53580014555b12d0053dd7943cdcbdacf0f6fd2
+  text-align: center;
+  list-style-type: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+<<<<<<< HEAD
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -39,4 +846,305 @@
 
 .read-the-docs {
   color: #888;
+=======
+.perso-leader {
+  text-align: center;
+}
+
+/**? ============================================= */
+/**? ===== LEADERBORAD PAGE TABLETTE DISPLAY ===== */
+/**? ============================================= */
+
+@media screen and (min-width: 768px) {
+
+  .lead-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 2rem;
+}
+
+  .leaderbord-lists {
+    padding: 1rem 2rem;
+    min-height: 18rem;
+  }
+
+  .best-challenges {
+    width: 40rem;
+}
+
+  .best-players {
+      width: 40rem;
+  }
+}
+
+/**? ============================================ */
+/**? ===== LEADERBOARD PAGE DESKTOP DISPLAY ===== */
+/**? ============================================ */
+
+@media screen and (min-width: 1024px) {
+  .lead-boxes {
+      gap: 80px;
+  }
+}
+
+/** =================================== */
+/** ===== CONNECTION PAGE SECTION ===== */
+/** =================================== */
+/**? ========================================== */
+/**? ===== CONNECTION PAGE MOBILE DISPLAY ===== */
+/**? ========================================== */
+
+.connection-form {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+}
+
+/**? ============================================ */
+/**? ===== CONNECTION PAGE TABLETTE DISPLAY ===== */
+/**? ============================================ */
+
+@media screen and (min-width: 768px) {
+  .connection-form {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+
+  .signup-form, .login-form {
+    width: 40%;
+    margin: 0 1rem 2rem 1rem;
+  }
+}
+
+/**? =========================================== */
+/**? ===== CONNECTION PAGE DESKTOP DISPLAY ===== */
+/**? =========================================== */
+@media screen and (min-width: 1024px) {
+  
+  .form-container-login {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .signup-form input, .login-form input {
+    height: 2rem;
+  }
+}
+
+/** =============================== */
+/** ===== PROFIL PAGE SECTION ===== */
+/** =============================== */
+
+.profile {
+  align-items: center;
+}
+
+.boxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+.boxes iframe {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+.video-card {
+  flex: 0 0 320px;
+  background-color: #6778A7;
+  border-radius: 12px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.chall-box {
+  width: 25vw;
+}
+
+.perso-info {
+  text-align: center;
+}
+
+.perso-chall {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.chall-name {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.chall-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px; 
+}
+
+.chall-list {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.chall-box {
+  display: column;
+  background: radial-gradient(#3f117e, #6e21d8);
+  height: 15rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px #6778A7;
+}
+
+.chall-pres {
+  display: flex;
+  align-items: center; 
+  gap: 1rem;
+}
+
+.button {
+  text-align: center;
+}
+
+/**? ================================ */
+/**? ===== PROFILE PAGE DISPLAY ===== */
+/**? ================================ */
+
+@media screen and (max-width: 386px) {
+  .default-button {
+    padding: 0.8rem 0.5rem;
+  }
+}
+
+@media screen and (min-width: 350px) and (max-width: 700px) {
+  .chall-flex {
+      padding-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .chall-title {
+      text-align: center;
+  }
+
+}
+
+/* Responsive desktop */
+
+@media screen and (min-width: 700px) {
+  .chall-title {
+      text-align: center;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+
+  .chall-box {
+      padding: 5px;
+  }
+
+}
+
+/** ==================================== */
+/** ===== FOOTER COMPONENT SECTION ===== */
+/** ==================================== */
+
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1.5rem 1rem;
+  color: white;
+}
+
+.footer-text {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-links a {
+  margin: 0 8px;
+  text-decoration: none;
+  color: #8fa3ff;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/** ==================================== */
+/** ===== 404NotFound PAGE SECTION ===== */
+/** ==================================== */
+
+a:hover {
+  color: #007bff
+}
+
+.main-404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+>>>>>>> f53580014555b12d0053dd7943cdcbdacf0f6fd2
+}
+
+.main-sentence-404 {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.home-link-404 {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dino-car-404 {
+  max-width: 75%;
+  height: auto;
+}
+
+/**? ==================================== */
+/**? ===== 404NotFound PAGE DISPLAY ===== */
+/**? ==================================== */
+
+@media screen and (min-width: 650px) {
+  .dino-car-404 {
+    max-width: 60%;
+    height: auto;
+  }
 }

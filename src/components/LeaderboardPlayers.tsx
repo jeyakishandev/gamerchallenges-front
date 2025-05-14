@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { IUser } from "../@types"
 
-
 interface LeaderboardPlayers {
     players : IUser
     index: number
@@ -11,7 +10,7 @@ interface LeaderboardPlayers {
 export default function LeaderboardTopPlayers ({players, index}: LeaderboardPlayers) {
 
     let medal = null;
-    if (index === 0) medal = "🥇";
+    if (index === 0) medal = "👑";
     else if (index === 1) medal ="🥈";
     else if (index === 2) medal ="🥉";
 

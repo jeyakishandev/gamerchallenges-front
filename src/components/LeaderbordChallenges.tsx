@@ -10,7 +10,7 @@ interface LeaderboardChallenges {
 export default function LeaderboardTopChallenges({ challenge, index}: LeaderboardChallenges) {
 
     let medal = null;
-    if (index === 0) medal = "🥇";
+    if (index === 0) medal = "👑";
     else if (index === 1) medal ="🥈";
     else if (index === 2) medal ="🥉";
 

@@ -2,10 +2,9 @@ import { useParams } from "react-router-dom"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
-import {  getSubmissionsByUser, getUserById } from "../api";
+import { getUserById, getChallengesCreatedByUser } from "../api";
 import CreatedChall from "../components/CreatedChall";
 import CompletedChall from "../components/CompletedChall";
-import { getChallengesCreatedByUser } from "../api";
 import useAuthStore from "../store";
 
 export default function Profil() {
@@ -19,16 +18,14 @@ export default function Profil() {
     };
 
     const { id } = useParams();
+    const user = useAuthStore(state => state.user);
     const [player, setPlayer] = useState<IUser | null>(null);
     const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
-    const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
-      console.log(completedChallenges);
-    const user = useAuthStore(state => state.user);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
+
     
-    // Chargement des données du profil.
     useEffect(()=> {
       const loadProfileData = async () => {
         try {
@@ -43,11 +40,6 @@ export default function Profil() {
           const newCreated = await getChallengesCreatedByUser(Number.parseInt(id));
           setCreatedChallenges(newCreated);
 
-          // Charger les défis complétés par l'utilisateur.
-          const submissions = await getSubmissionsByUser(Number.parseInt(id));
-          const extractedChallenges = submissions.map((s) => s.challenge);
-          setCompletedChallenges(extractedChallenges);
-
           setLoading(false);
 
         } catch (err) {
@@ -58,31 +50,7 @@ export default function Profil() {
       };
       loadProfileData();
     }, [id]);
-    // useEffect(() => {
-    //     const loadCreated = async () => {
-    //       if (id) {
-    //         const newCreated = await getChallengesCreatedByUser(Number(id));
-    //         setCreatedChallenges(newCreated);
-    //       }
-    //     };
-    //     loadCreated();
-    //   }, [id]);
-
-      
-
-
-    // useEffect(() => {
-    //     const loadData = async () => {
-    //         if (id) {
-    //           const submissions = await getSubmissionsByUser(Number.parseInt(id));
-    //           const extractedChallenges = submissions.map((s) => s.challenge);
-    //           setCompletedChallenges(extractedChallenges);
-    //         }
-    //       };
-          
-    //     loadData();
-    //   }, [id]);
-
+  
     if (loading) return <p>Chargement du profil...</p>;
     if (error) return <p className="error-message">{error}</p>;
       

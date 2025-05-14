@@ -29,12 +29,6 @@ export async function getChallengesCreatedByUser(userId: number): Promise<IChall
   return await response.json();
 }
 
-export async function getSubmissionsByUser(id: number): Promise<{ challenge: IChallenge }[]> {
-  const response = await fetch(`http://localhost:3000/users/${id}/submissions`);
-  const submissions = await response.json();
-  return submissions;
-}
-
 export async function getUsers(): Promise<IUser[]> {
   const response = await fetch(`${baseUrl}/users`);
   const users = await response.json();

@@ -10,12 +10,23 @@ interface LeaderboardChallenges {
 export default function LeaderboardTopChallenges({ challenge, index}: LeaderboardChallenges) {
 
     let medal = null;
-    if (index === 0) medal = "👑";
-    else if (index === 1) medal ="🥈";
-    else if (index === 2) medal ="🥉";
+    let className = "";
+
+    if (index === 0) {
+        medal = "👑";
+        className = "gold";
+    }
+    else if (index === 1) {
+        medal ="🥈";
+        className = "silver";
+    }
+    else if (index === 2) {
+        medal ="🥉";
+        className = "bronze";
+    }
 
     return (
-            <li>{medal && <span style={{marginRight: "8px"}}>{medal}</span>}
-            {index + 1} - <Link to={`/challenge/${challenge.id}`}> {challenge.name} : {challenge.users.length} participations </Link></li>
+            <li className={className}>{medal && <span style={{marginRight: "8px"}}>{medal}</span>}
+            {index + 1} - <Link to={`/challenges/${challenge.id}`}> {challenge.name} : {challenge.users.length} participations </Link></li>
     )
 }

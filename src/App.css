@@ -808,6 +808,21 @@ body {
   text-align: center;
 }
 
+.gold {
+  color: #FFD700; /* Or */
+  font-weight: bold;
+}
+
+.silver {
+  color: #C0C0C0; /* Argent */
+  font-weight: bold;
+}
+
+.bronze {
+  color: #CD7F32; /* Bronze */
+  font-weight: bold;
+}
+
 /**? ============================================= */
 /**? ===== LEADERBORAD PAGE TABLETTE DISPLAY ===== */
 /**? ============================================= */

@@ -22,6 +22,7 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
     const embedUrl = getYoutubeEmbedUrl(videoUrl);
 
     const token = useAuthStore(state => state.token);
+    const user = useAuthStore(state => state.user)
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -81,7 +82,8 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
             <article className="boxes default-box-design" key={challenge.id}>
 
             <h3 className="low-title card-title items">{challenge.name}</h3>
-            <div className="challenge-actions-inline">
+            {user?.id === userId && (
+                <div className="challenge-actions-inline">
                 <button
                     className="icon-button"
                     title="Modifier"
@@ -98,6 +100,8 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
                 </button>
             </div>
 
+            )}
+            
             {isEditing ? (
                 <form onSubmit={handleSubmit}>
                     {error && <p style={{ color: "red" }}>{error}</p>}

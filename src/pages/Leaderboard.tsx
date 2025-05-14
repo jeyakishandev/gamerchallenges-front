@@ -2,7 +2,7 @@ import "../App.css"
 import { useEffect, useState } from "react"
 import useAuthStore from "../store";
 import { IChallenges, IUser } from "../@types"
-import { getChallenges, getTopUsers } from "../api";
+import { getChallenges, getUsers } from "../api";
 import LeaderboardTopChallenges from "../components/LeaderbordChallenges";
 import LeaderboardTopPlayers from "../components/LeaderboardPlayers";
 
@@ -25,9 +25,10 @@ export default function Leaderboard() {
 
     useEffect (() => {
         const loadData = async () => {
-            const newLeaderPlayers = await getTopUsers();
+            const data = await getUsers();
+            const newLeaderPlayers = data.sort((a, b) => b.challenges.length - a.challenges.length);
             console.log(newLeaderPlayers);
-            setLeaderboardPlayers(newLeaderPlayers)
+            setLeaderboardPlayers(newLeaderPlayers.slice(0, 10));
         };
         loadData();
     }, []) 

@@ -17,46 +17,22 @@ export async function getChallengeById(id: number): Promise<IChallenge> {
 }
 
 export async function getChallengesByUser(id: number): Promise<IChallenges> {
-  const response = await fetch(`http://localhost:3000/users/${id}/challenges`);
+  const response = await fetch(`${baseUrl}/users/${id}/challenges`);
   if (!response.ok) {
     throw new Error("Impossible de récupérer les challenges créés par l'utilisateur.");
   }
   return await response.json();
 }
+
 export async function getChallengesCreatedByUser(userId: number): Promise<IChallenges> {
-  const response = await fetch(`http://localhost:3000/challenges/user/${userId}`);
+  const response = await fetch(`${baseUrl}/challenges/user/${userId}`);
   return await response.json();
 }
 
-
-
-
-export async function getSubmissionsByUser(id: number): Promise<{ challenge: IChallenge }[]> {
-  const response = await fetch(`http://localhost:3000/users/${id}/submissions`);
-  const submissions = await response.json();
-  return submissions;
-}
-
-
-
-export async function getUsers() {
+export async function getUsers(): Promise<IUser[]> {
   const response = await fetch(`${baseUrl}/users`);
   const users = await response.json();
   return users;
-}
-
-export async function getAllUsers(): Promise<IUser> {
-    
-  // Récupère tous les users 
-  const response = await fetch("http://localhost:3000/users");
-  const players = await response.json();
-  
-  // Tri les users par nombre de challenges complétés (ordre décroissant)
-  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
-    return b.challenges.length - a.challenges.length;
-  });
-
-  return sortedPlayers
 }
 
 export async function loginUser(pseudoOrEmail: string, password: string): Promise<{ token: string; userId: number}> {
@@ -72,10 +48,15 @@ export async function loginUser(pseudoOrEmail: string, password: string): Promis
   return response.json();
 }
 
-export async function getUserById(userId: number, token: string): Promise<IUser> {
+export async function getUserById(userId: number, token?: string): Promise<IUser> {
+  const headers: Record<string, string> = {};
+
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
   const response  = await fetch(`${baseUrl}/users/${userId}`, {
     method: "GET",
-    headers: { "Authorization": `Bearer ${token}`},
+    headers,
   });
 
   if (!response.ok) {
@@ -123,12 +104,6 @@ export async function addUserIntoApi(
     console.error("Erreur lors de l'ajout de l'utilisateur", error);
     return null;
   }   
-}
-
-export async function getProfileUsers(id: number) {
-  const response = await fetch(`${baseUrl}/users/${id}`);
-  const users = await response.json();
-  return users;
 }
 
 //* Update basic profil information

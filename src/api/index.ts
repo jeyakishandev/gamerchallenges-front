@@ -38,25 +38,10 @@ export async function getSubmissionsByUser(id: number): Promise<{ challenge: ICh
 }
 
 
-
-export async function getUsers() {
+export async function getUsers(): Promise<IUser[]> {
   const response = await fetch(`${baseUrl}/users`);
   const users = await response.json();
   return users;
-}
-
-export async function getAllUsers(): Promise<IUser> {
-    
-  // Récupère tous les users 
-  const response = await fetch("http://localhost:3000/users");
-  const players = await response.json();
-  
-  // Tri les users par nombre de challenges complétés (ordre décroissant)
-  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
-    return b.challenges.length - a.challenges.length;
-  });
-
-  return sortedPlayers
 }
 
 export async function loginUser(pseudoOrEmail: string, password: string): Promise<{ token: string; userId: number}> {
@@ -167,22 +152,6 @@ export async function updateUserIntoApi(
     console.error("Erreur lors de la mise à jour du profile", error);
     return null;
   }  
-}
-
-// Fonction qui permets de récupérer les 10 meilleurs joueurs, et les trier de manière décroissante
-export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
-  
-  // Récupère tous les users 
-  const response = await fetch("http://localhost:3000/users");
-  const players = await response.json();
-  
-  // Tri les users par nombre de challenges complétés (ordre décroissant)
-  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
-    return b.challenges.length - a.challenges.length;
-  });
-
-  // Retourne les 10 meilleurs joueurs
-  return sortedPlayers.slice(0, limit);
 }
 
 export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {

@@ -1,40 +1,41 @@
 .challenge-cat-and-diff {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-/* Boutons Modifier + Supprimer */
-.challenge-actions-inline {
-  display: flex;
-  gap: 0.5rem;
-  margin-right: auto;
-}
-
-.icon-button {
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.icon-button:hover {
-  transform: scale(1.2);
-}
-@media screen and (max-width: 600px) {
-  .challenge-cat-and-diff {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .challenge-actions-inline {
-    margin-top: 0.5rem;
-    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    position: relative;
   }
-}
+  
+  /* Boutons Modifier + Supprimer */
+  .challenge-actions-inline {
+    display: flex;
+    gap: 0.5rem;
+    margin-right: auto;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .icon-button:hover {
+    transform: scale(1.2);
+  }
+  @media screen and (max-width: 600px) {
+    .challenge-cat-and-diff {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .challenge-actions-inline {
+      margin-top: 0.5rem;
+      margin-right: 0;
+      justify-content: flex-start;
+    }
+  }
+  

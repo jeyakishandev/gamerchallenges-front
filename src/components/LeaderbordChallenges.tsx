@@ -27,6 +27,6 @@ export default function LeaderboardTopChallenges({ challenge, index}: Leaderboar
 
     return (
             <li className={className}>{medal && <span style={{marginRight: "8px"}}>{medal}</span>}
-            {index + 1} - <Link className={className }to={`/challenges/${challenge.id}`}> {challenge.name} : {challenge.users.length} participations </Link></li>
+            {index + 1} - <Link className={className}to={`/challenges/${challenge.id}`}> {challenge.name} : {challenge.users.length} participations </Link></li>
     )
 }

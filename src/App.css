@@ -731,6 +731,13 @@ body {
   }
 }
 
+.leader-box-design {
+  border: var(--border-box);
+  background:#1D083B;
+  box-shadow: var(--shadow-box);
+  border-radius: var(--border-radius);
+}
+
 /**? ===================================== */
 /**? ===== CHALLENGE DESKTOP DISPLAY ===== */
 /**? ===================================== */
@@ -778,6 +785,10 @@ body {
 /**? ===== LEADERBORD PAGE MOBILE DISPLAY ===== */
 /**? ========================================== */
 
+.low-title {
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+}
+
 .leaderbord-title {
   margin-top: 3.8rem;
 }
@@ -795,6 +806,7 @@ body {
 .leaderbord-lists {
   padding: 1rem 2rem;
   min-height: 15rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.18);
 }
 
 .leaderbord-lists li {

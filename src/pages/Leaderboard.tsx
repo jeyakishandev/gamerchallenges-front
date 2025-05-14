@@ -47,7 +47,7 @@ export default function Leaderboard() {
                 <div className="lead-boxes">
                     <section className="best-challenges">
                         <h3 className="low-title">Challenges populaires</h3>
-                        <ul className="leaderbord-lists default-box-design">
+                        <ul className="leaderbord-lists leader-box-design">
                         {/* Liste les 10 challenges les plus joués */}
                         {challenges.map((challenge, index) => {
                             return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} index={index}/>
@@ -57,7 +57,7 @@ export default function Leaderboard() {
 
                     <section className="best-players">
                         <h3 className="low-title">Meilleurs joueurs</h3>
-                        <ul className="leaderbord-lists default-box-design">
+                        <ul className="leaderbord-lists leader-box-design">
                         {/* Liste les 10 joueurs ayant réalisés le plus de challenges */}
                         {players.map((user, index) => {
                             return <LeaderboardTopPlayers key={user.id} players={user} index={index} />

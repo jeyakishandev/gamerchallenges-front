@@ -910,7 +910,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px; 
+  gap: 24px;
 }
 
 .chall-list {
@@ -932,6 +932,15 @@ body {
   align-items: center; 
   gap: 1rem;
 }
+
+.chall-width {
+  max-width: 1500px;
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  scroll-behavior: smooth; /* Pour un défilement fluide */
+}
+
 
 .button {
   text-align: center;
@@ -976,6 +985,7 @@ body {
   }
 
 }
+
 
 /** ==================================== */
 /** ===== FOOTER COMPONENT SECTION ===== */

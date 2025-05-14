@@ -95,7 +95,7 @@ export default function Profil() {
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div id="completed" className="carousel-items">
+                        <div id="completed" className="carousel-items chall-width">
 
                             {player?.challenges.map((challenge) => {
                                 return <CompletedChall key={challenge.id} challenge={challenge} userId={player.id} />
@@ -111,24 +111,24 @@ export default function Profil() {
 
 
                 <article className="chall">
-  <h3 className="chall-title">Mes challenges créés</h3>
+                  <h3 className="chall-title">Mes challenges créés</h3>
 
-  <div className="chall-flex">
-    <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
+                  <div className="chall-flex">
+                    <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-    <div id="created" className="carousel-items">
-    {createdChallenges.map((challenge) => {
-        console.log(createdChallenges)
-  return <CreatedChall key={challenge.id} challenge={challenge}/>
-})}
+                    <div id="created" className="carousel-items chall-width">
+                      {createdChallenges.map((challenge) => {
+                          console.log(createdChallenges)
+                    return <CreatedChall key={challenge.id} challenge={challenge}/>
+                      })}
 
-    </div>
+                    </div>
 
-    <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
-  </div>
-</article>
+                    <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
+                  </div>
+                </article>
 
-                </div>
+              </div>
 
             </main>
         </>

@@ -27,14 +27,14 @@ export default function Profil() {
 
     
     useEffect(()=> {
-      const loadProfileData = async () => {
+      const loadProfilData = async () => {
         try {
           if (!id) return;
           setLoading(true);
 
           // Charger les données du profil avec le token d'authentification.
-          const profileData = await getUserById(Number.parseInt(id));
-          setPlayer(profileData);
+          const profilData = await getUserById(Number.parseInt(id));
+          setPlayer(profilData);
 
           // Charger les défis créés par l'utilisateur.
           const newCreated = await getChallengesCreatedByUser(Number.parseInt(id));
@@ -48,7 +48,7 @@ export default function Profil() {
           console.error(err);
         }
       };
-      loadProfileData();
+      loadProfilData();
     }, [id]);
   
     if (loading) return <p>Chargement du profil...</p>;

@@ -18,6 +18,15 @@ interface FormUpdateProfileProps {
   ) => Promise<void>;
 }
 
+interface UpdateProfilePasswordProps {
+  initialUser: IUser;
+  onUpdatePassword: (
+    password: string,
+    newPassword: string,
+    confirmNewPassword: string,
+  ) => Promise<void>;
+}
+
 interface IInputProps {
   value: string;
   setValue: (value: string) => void;
@@ -242,9 +251,11 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
     if (initialUser) {
       setPseudo(initialUser.pseudo || "");
       setEmail(initialUser.email || "");
+      
     }
   }, [initialUser]);
 
+  //* Handle user info form
   const handleSubmit = async(e: FormEvent) => {
     e.preventDefault()
     setError(null);
@@ -253,6 +264,7 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
       setPseudo("");
       setEmail("");
       setAvatar(null);
+
   };
 
   return <>
@@ -286,10 +298,82 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
 
       <div className="form-button align-button">
         <button className="default-button" type="submit">Confirmer</button>
-        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>
 }
 
-export { FormSubscribe, FormLogin, FormUpdateProfile, Input}
+function FormUpdatePasswordProfile ({initialUser, onUpdatePassword}: UpdateProfilePasswordProps) {
+
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [password, setPassword] = useState("")
+  const [newPassword, setNewPassword] = useState("")
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async(e: FormEvent) => {
+    e.preventDefault()
+    setError(null);
+
+    try {
+        if (newPassword !== confirmNewPassword) {
+          setError("Les mots de passe ne correspondent pas");
+          return;
+        }
+
+        
+        await onUpdatePassword(password, newPassword, confirmNewPassword)
+        setPassword("");
+        setNewPassword("");
+        setConfirmNewPassword("");
+        
+        //  Redirection dynamique
+        const redirect = searchParams.get("redirect");
+        navigate(redirect || `/profile/${initialUser.id}`);
+        
+    } catch (error) {
+      setError("Échec de la connexion. Vérifiez vos identifiants.");
+      console.error("Erreur de connexion:", error);
+    }
+  };
+
+  return <>
+    <form onSubmit={handleSubmit} encType="multipart/form-data">
+      {error && <div className="error-message">{error}</div>}
+
+      <Input 
+        value={password}
+        setValue={setPassword}
+        name="password"
+        placeholder="Mot de passe"
+        type="password" 
+        label="Mot de passe"
+      />
+
+      <Input 
+        value={newPassword}
+        setValue={setNewPassword}
+        name="password"
+        placeholder="Nouveau mot de passe"
+        type="password" 
+        label="Nouveau mot de passe"
+      />
+
+      <Input 
+        value={confirmNewPassword}
+        setValue={setConfirmNewPassword}
+        name="confirmNewpassword"
+        placeholder="Confimer le nouveau Password"
+        type="password" 
+        label="Confirmer le nouveau mot de passe"
+      />
+
+      <div className="form-button align-button">
+        <button className="default-button" type="submit">Confirmer</button>
+      </div>
+    </form>
+  </>
+}
+
+export { FormSubscribe, FormLogin, FormUpdateProfile, FormUpdatePasswordProfile, Input}

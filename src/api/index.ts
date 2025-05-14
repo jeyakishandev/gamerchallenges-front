@@ -66,7 +66,6 @@ export async function addUserIntoApi(
 ): Promise<null | IUser> {
   try {
 
-    
     //* Créer un FormData pour envoyer les données textuelles et l'avatar
     const formData = new FormData();
     formData.append('pseudo', pseudo);
@@ -105,6 +104,7 @@ export async function getProfileUsers(id: number) {
   return users;
 }
 
+//* Update basic profil information
 export async function updateUserIntoApi(
   id: number,
   token: string,
@@ -142,6 +142,46 @@ export async function updateUserIntoApi(
   }  
 }
 
+//* Update password profil
+export async function updateUserPasswordIntoApi(
+  id: number,
+  token: string,
+  password?: string,
+  newPassword?: string,
+  confirmNewPassword?: string
+): Promise<null | IUser> {
+
+  try {
+
+    const formData = new FormData();
+    if (password !== undefined) formData.append('password', password);
+    if (newPassword !== undefined) formData.append('newPassword', newPassword);
+    if (confirmNewPassword) formData.append('confirmNewPassword', confirmNewPassword);
+
+    const result = await fetch(`http://localhost:3000/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        // "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    console.log(`result fetch ${result}`);
+
+    if (result.ok) {
+      const updatedUserPassword: IUser = await result.json();
+      console.log("Réponse de l'API après mise à jour :", updatedUserPassword);
+      return updatedUserPassword;
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du profile", error);
+    return null;
+  }  
+}
+
 export async function getTopChallengesByParticipation(limit: number = 10): Promise<IChallenges> {
   // Récupération de tous les challenges
   const challenges = await getChallenges();
@@ -154,7 +194,6 @@ export async function getTopChallengesByParticipation(limit: number = 10): Promi
   // Retourne les 10 premiers challenges
   return sortedChallenges.slice(0, limit);
 }
-
 
 // Fonction qui permets de récupérer les 10 meilleurs joueurs, et les trier de manière décroissante
 export async function getTopUsers(limit: number = 10): Promise<IUser[]> {

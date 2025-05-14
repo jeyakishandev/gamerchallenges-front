@@ -18,6 +18,7 @@
 /**! - LEADERBOARD PAGE
 /**! - CONNECTION PAGE
 /* TODO: PROFILE
+/**! - UPDATE PROFIL PAGE
 /**! - FOOTER */
 /**! - 404NNotFound */
 
@@ -436,11 +437,6 @@ body {
     max-width: 320px;
   }
 }
-
-
-
-
-
 
 
 /** =================================== */
@@ -975,7 +971,25 @@ body {
   .chall-box {
       padding: 5px;
   }
+}
 
+/** ================================= */
+/** ===== UPDATE PROFIL SECTION ===== */
+/** ================================= */
+
+.password-form {
+  margin-top: 2rem;
+}
+
+.update-profile-button {
+  text-align: right;
+  margin: 0 2rem 2rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .update-profile-button {
+    width: 85%;
+  }
 }
 
 /** ==================================== */

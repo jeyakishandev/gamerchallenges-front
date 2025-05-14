@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
-import { getChallengesByUser, getProfileUsers, getSubmissionsByUser } from "../api";
-import CreatedChall from "../components/CreatedProfile";
+import {  getProfileUsers, getSubmissionsByUser } from "../api";
+import CreatedChall from "../components/CreatedChall";
 import CompletedChall from "../components/CompletedChall";
+import { getChallengesCreatedByUser } from "../api";
+import useAuthStore from "../store";
 
 export default function Profil() {
 
@@ -17,7 +19,7 @@ export default function Profil() {
     };
 
     const { id } = useParams();
-    const [user, setUser] = useState<IUser | null>(null);
+    const [player, setUser] = useState<IUser | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
@@ -32,62 +34,71 @@ export default function Profil() {
     const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
 
     useEffect(() => {
-        const loadData = async () => {
-            if (id) {
-            const newCreatedChallenges = await getChallengesByUser(Number.parseInt(id));
-            setCreatedChallenges(newCreatedChallenges)
-            }
+        const loadCreated = async () => {
+          if (id) {
+            const newCreated = await getChallengesCreatedByUser(Number(id));
+            setCreatedChallenges(newCreated);
+          }
         };
-        loadData();
-    }, [id]);
+        loadCreated();
+      }, [id]);
 
-    const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
+      const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
+      console.log(completedChallenges);
+
+
 
     useEffect(() => {
-        const loadData  = async () => {
+        const loadData = async () => {
             if (id) {
-                const newCompletedChallenges = await getSubmissionsByUser(Number.parseInt(id));
-                setCompletedChallenges(newCompletedChallenges)
+              const submissions = await getSubmissionsByUser(Number.parseInt(id));
+              const extractedChallenges = submissions.map((s) => s.challenge);
+              setCompletedChallenges(extractedChallenges);
             }
-        };
-        loadData()
-    }, [id]);
+          };
+          
+        loadData();
+      }, [id]);
+
+      const { user } = useAuthStore()
+      
 
     return (
         <>
             <main className="profile">
 
                 <div className="perso-info">
-                    <h2 className="main-title">Retrouvez ici ton profile, avec tes informations personnelles, et tes défis !</h2>
+                    <h2 className="main-title">Retrouves ici ton profil, avec tes informations personnelles, et tes défis !</h2>
                     <section className="button-container">
+                      {user?.id === player?.id && (
                         <a
                         className="default-button"
-                        onClick={() => window.location.href = `/profile/${user?.id}/modifier`}
+                        onClick={() => window.location.href = `/profile/${player?.id}/modifier`}
                         >Modifier le profile</a>
+                      )}
                     </section>
                     <img
                         className="avatar"
-                        src={`http://localhost:3000/uploads/${user?.avatar_url}`}
-                        alt={`Avatar de ${user?.pseudo || "l'utilisateur"}`}
+                        src={`http://localhost:3000/uploads/${player?.avatar_url}`}
+                        alt={`Avatar de ${player?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
-                    <p className="pseudo default-text">Pseudo : {user?.pseudo}</p>
+                    <p className="pseudo default-text">Pseudo : {player?.pseudo}</p>
                 </div>
-
 
                 <div className="perso-chall">
                     
 
                 <article className="chall">
-                    <h3 className="chall-title">Mes challenges réalisés</h3>
+                    <h3 className="chall-title">Mes participations</h3>
 
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div id="completed" className="carousel-items">
+                        <div id="completed" className="carousel-items chall-width">
 
-                            {user?.challenges.map((challenge) => {
-                                return <CompletedChall key={challenge.id} challenge={challenge} userId={user.id} />
+                            {player?.challenges.map((challenge) => {
+                                return <CompletedChall key={challenge.id} challenge={challenge} userId={player.id} />
                             })}
 
                         </div>
@@ -100,25 +111,24 @@ export default function Profil() {
 
 
                 <article className="chall">
-                    <h3 className="chall-title">Mes challenges crées</h3>
+                  <h3 className="chall-title">Mes challenges créés</h3>
 
-                    <div className="chall-flex">
-                        <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
+                  <div className="chall-flex">
+                    <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-                        <div id="created" className="carousel-items">
-
-                            {createdChallenges.map((challenge) => {
-                                return <CreatedChall key={challenge.id} challenge={challenge}/>
-                            })}
-
-                        </div>
-
-                        <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
+                    <div id="created" className="carousel-items chall-width">
+                      {createdChallenges.map((challenge) => {
+                          console.log(createdChallenges)
+                    return <CreatedChall key={challenge.id} challenge={challenge}/>
+                      })}
 
                     </div>
 
+                    <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
+                  </div>
                 </article>
-                </div>
+
+              </div>
 
             </main>
         </>

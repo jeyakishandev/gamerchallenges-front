@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
-import { getTopChallengesByParticipation } from "../api";
+import { getChallenges } from "../api";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
 
 
@@ -12,13 +12,22 @@ export default function Home() {
   const [challenges, setChallenges] = useState<IChallenge[]>([]);
   const navigate = useNavigate();
   const user = useAuthStore((state) => state.user); // ✅ check Zustand
+  const [popularChallenges, setPopularChallenges] = useState<IChallenge[]>([]);
 
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/challenges`);
-        const data = await response.json();
-        if (Array.isArray(data)) setChallenges(data);
+        // Récupérer tous les challenges.
+        const data = await getChallenges();
+        if (Array.isArray(data)) {
+          setChallenges(data);
+
+          // Trier les challenges par popularité.
+          const sortedByPopularity = [...data].sort((a, b) => b.users.length - a.users.length);
+          setPopularChallenges(sortedByPopularity.slice(0, 10));
+        } 
+
+        
         else console.error("Les données reçues ne sont pas un tableau :", data);
       } catch (error) {
         console.error("Erreur lors du fetch des challenges :", error);
@@ -34,21 +43,7 @@ export default function Home() {
       container.scrollBy({ left: amount, behavior: "smooth" });
     }
   };
-  const [popularChallenges, setPopularChallenges] = useState<IChallenge[]>([]);
-
-  useEffect(() => {
-    const fetchPopular = async () => {
-      try {
-        const data = await getTopChallengesByParticipation();
-        setPopularChallenges(data);
-      } catch (err) {
-        console.error("Erreur de chargement des challenges populaires", err);
-      }
-    };
-    fetchPopular();
-  }, []);
   
-
   return (
     <main className="home-page">
 
@@ -96,20 +91,8 @@ export default function Home() {
                   src={embedUrl}
                   title={`challenge-${challenge.id}`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  referrerPolicy="no-referrer"
                   allowFullScreen
-                  onMouseEnter={(e) => {
-                    const src = e.currentTarget.getAttribute("src");
-                    if (src && !src.includes("autoplay=1")) {
-                      e.currentTarget.setAttribute("src", src + "&autoplay=1");
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    const src = e.currentTarget.getAttribute("src");
-                    if (src) {
-                      const cleanSrc = src.replace("&autoplay=1", "");
-                      e.currentTarget.setAttribute("src", cleanSrc);
-                    }
-                  }}
                 />
                 <Link to={`/challenges/${challenge.id}`} className="video-title">
                   {challenge.name}
@@ -137,20 +120,8 @@ export default function Home() {
                     src={embedUrl}
                     title={`challenge-${challenge.id}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerPolicy="no-referrer"
                     allowFullScreen
-                    onMouseEnter={(e) => {
-                      const src = e.currentTarget.getAttribute("src");
-                      if (src && !src.includes("autoplay=1")) {
-                        e.currentTarget.setAttribute("src", src + "&autoplay=1");
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      const src = e.currentTarget.getAttribute("src");
-                      if (src) {
-                        const cleanSrc = src.replace("&autoplay=1", "");
-                        e.currentTarget.setAttribute("src", cleanSrc);
-                      }
-                    }}
                   />
                   <Link to={`/challenges/${challenge.id}`} className="video-title">
                     {challenge.name}

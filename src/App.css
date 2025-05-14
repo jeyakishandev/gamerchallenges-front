@@ -429,12 +429,12 @@ body {
 }
 @media screen and (min-width: 1024px) {
   .home-page .carousel-items {
-    justify-content: center;
+    justify-content: space-between; 
   }
 
   .home-page .video-card {
-    flex: 0 0 calc((1000px - 2rem) / 3); 
-    max-width: 320px;
+    flex: 0 0 31.5%; 
+    max-width: 31.5%;
   }
 }
 
@@ -442,6 +442,11 @@ body {
 /** =================================== */
 /** ===== CHALLENGES PAGE SECTION ===== */
 /** =================================== */
+
+
+
+
+
 /**? ====================================== */
 /**? ===== CHALLENGES MOBILE DISPLAY  ===== */
 /**? ====================================== */
@@ -543,6 +548,51 @@ body {
 /** ================================== */
 /** ===== CHALLENGE PAGE SECTION ===== */
 /** ================================== */
+.challenge-cat-and-diff {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+/* Boutons Modifier + Supprimer */
+.challenge-actions-inline {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: auto;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.2);
+}
+@media screen and (max-width: 600px) {
+  .challenge-cat-and-diff {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .challenge-actions-inline {
+    margin-top: 0.5rem;
+    margin-right: 0;
+    justify-content: flex-start;
+  }
+}
+
+
+
+
+
 
 /**? ==================================== */
 /**? ===== CHALLENGE MOBILE DISPLAY ===== */
@@ -749,6 +799,10 @@ body {
   margin-bottom: 10px;
 }
 
+.perso-leader {
+  text-align: center;
+}
+
 /**? ============================================= */
 /**? ===== LEADERBORAD PAGE TABLETTE DISPLAY ===== */
 /**? ============================================= */
@@ -901,7 +955,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px; 
+  gap: 24px;
 }
 
 .chall-list {
@@ -924,6 +978,15 @@ body {
   gap: 1rem;
 }
 
+.chall-width {
+  max-width: 1500px;
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  scroll-behavior: smooth; /* Pour un défilement fluide */
+}
+
+
 .button {
   text-align: center;
 }
@@ -938,13 +1001,7 @@ body {
   }
 }
 
-@media screen and (min-width: 350px) and (max-width: 450px) {
-  .chall-flex {
-      padding-left: 1rem;
-  }
-}
-
-@media screen and (min-width: 450px) and (max-width: 700px) {
+@media screen and (min-width: 350px) and (max-width: 700px) {
   .chall-flex {
       padding-left: 1rem;
   }
@@ -991,6 +1048,7 @@ body {
     width: 85%;
   }
 }
+
 
 /** ==================================== */
 /** ===== FOOTER COMPONENT SECTION ===== */

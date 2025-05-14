@@ -66,7 +66,7 @@ export default function Leaderboard() {
                         {user ? (
                             <section className="perso-leader">
                                 {userRank !== -1 ? (
-                                    <p className="default-text perso-leader-sentence">Vous êtes classé {userRank + 1}e avec {currentPlayer?.challenges.length} challenges réalisés</p>
+                                    <p className="default-text perso-leader-sentence">Vous avez atteint le rang n°{userRank + 1}, en accomplissant {currentPlayer?.challenges.length} challenges</p>
                                 ) : (
                                     <p className="default-text perso-leader-sentence" >Vous n'apparaissez pas encore dans le classement</p>
                                 )}

@@ -43,7 +43,7 @@ export default function Leaderboard() {
         <>
             <main>
                 <h1 className="main-title leaderbord-title">Les classements</h1>
-                <h2 className="leaderbord-subtitle subtitle">Vous pourrez retrouver ici le classement des meilleurs joueurs et des challenges les plus jouer. </h2>
+                <h2 className="leaderbord-subtitle subtitle">Vous pourrez retrouver ici le classement des meilleurs joueurs et des challenges les plus joués. </h2>
 
                 <div className="lead-boxes">
                     <section className="best-challenges leader-card-style">

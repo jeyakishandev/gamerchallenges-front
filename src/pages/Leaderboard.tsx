@@ -14,7 +14,12 @@ export default function Leaderboard() {
     useEffect (() => {
         const loadData = async () => {
             const data = await getChallenges();
-            const newLeaderChall = data.sort((a, b) => b.users.length - a.users.length); 
+            const newLeaderChall = data.sort((a, b) => {
+                const aLen = a.users?.length ?? 0;
+                const bLen = b.users?.length ?? 0;
+                return bLen - aLen;
+              });
+              
             setLeaderboardChall(newLeaderChall.slice(0, 10)); // top 10
         };
         loadData();
@@ -26,7 +31,12 @@ export default function Leaderboard() {
     useEffect (() => {
         const loadData = async () => {
             const data = await getUsers();
-            const newLeaderPlayers = data.sort((a, b) => b.challenges.length - a.challenges.length);
+            const newLeaderPlayers = data.sort((a, b) => {
+                const aLen = a.challenges?.length ?? 0;
+                const bLen = b.challenges?.length ?? 0;
+                return bLen - aLen;
+              });
+              
             console.log(newLeaderPlayers);
             setLeaderboardPlayers(newLeaderPlayers.slice(0, 10));
         };

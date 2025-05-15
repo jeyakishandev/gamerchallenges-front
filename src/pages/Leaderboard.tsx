@@ -46,43 +46,87 @@ export default function Leaderboard() {
                 <h2 className="leaderbord-subtitle subtitle">Vous pourrez retrouver ici le classement des meilleurs joueurs et des challenges les plus jouer. </h2>
 
                 <div className="lead-boxes">
-                    <section className="best-challenges">
-                        <h3 className="low-title">Challenges populaires</h3>
-                        <ul className="leaderbord-lists leader-box-design">
-                        {/* Liste les 10 challenges les plus joués */}
-                        {challenges.map((challenge, index) => {
-                            return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} index={index}/>
-                        })}
-                        </ul>
+                    <section className="best-challenges leader-card-style">
+                        <h3 className="low-title">Challenges populaire</h3>
+                    <table className="leaderbord-lists default-box-design effectL">
+                            <thead>
+                                <tr>
+                                    <div className="array-header">
+                                    <th className="default-text" scope="col">Rang</th>
+                                    <th className="default-text" scope="col">Pseudo</th>
+                                    <th className="default-text" scope="col">Participations</th>
+                                    </div>
+                                </tr>
+                            </thead>
+                            <tbody className="leader-card-style">
+                                <tr className="effect">
+                                    {challenges.map((challenge, index) => {
+                                        return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} index={index} />
+                                    })}
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                    <tr>
+                                    {user ? (
+                                            userRank !== -1 ? (
+                                                <td className="default-text perso-leader-sentence">Vous êtes classé {userRank + 1}e avec {currentPlayer?.challenges.length} challenges réalisés</td>
+                                            ) : (
+                                                <td className="default-text perso-leader-sentence" >Vous n'apparaissez pas encore dans le classement</td>
+                                            )
+                                    ) : (
+
+                                        <section>
+                                            <td className="default-text perso-leader-sentence">Connectez-vous pour voir votre classement personnel</td>
+                                        </section>
+                                    )}
+                                    </tr>
+                            </tfoot>     
+                        </table>
                     </section>
 
-                    <section className="best-players">
-                        <h3 className="low-title">Meilleurs joueurs</h3>
-                        <ul className="leaderbord-lists leader-box-design">
-                        {/* Liste les 10 joueurs ayant réalisés le plus de challenges */}
-                        {players.map((user, index) => {
-                            return <LeaderboardTopPlayers key={user.id} players={user} index={index} />
-                        })}
+                    <section className="best-players leader-card-style">
+                        <h3 className="low-title">Meilleures Joueurs</h3>
+                        <table className="leaderbord-lists default-box-design effectR">
+                            <thead>
+                                <tr>
+                                    <div className="array-header">
+                                    <th className="default-text" scope="col">Rang</th>
+                                    <th className="default-text" scope="col">Pseudo</th>
+                                    <th className="default-text" scope="col">Participations</th>
+                                    </div>
+                                </tr>
+                            </thead>
+                            <tbody className="leader-card-style">
+                                <tr className="effect">
+                                    {players.map((user, index) => {
+                                        return <LeaderboardTopPlayers key={user.id} players={user} index={index} />
+                                    })}
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                    <tr>
+                                    {user ? (
+                                            userRank !== -1 ? (
+                                                <td className="default-text perso-leader-sentence">Vous êtes classé {userRank + 1}e avec {currentPlayer?.challenges.length} challenges réalisés</td>
+                                            ) : (
+                                                <td className="default-text perso-leader-sentence" >Vous n'apparaissez pas encore dans le classement</td>
+                                            )
+                                    ) : (
 
-                        {user ? (
-                            <section className="perso-leader">
-                                {userRank !== -1 ? (
-                                    <p className="default-text perso-leader-sentence">Vous avez atteint le rang n°{userRank + 1}, en accomplissant {currentPlayer?.challenges.length} challenges</p>
-                                ) : (
-                                    <p className="default-text perso-leader-sentence" >Vous n'apparaissez pas encore dans le classement</p>
-                                )}
-                            </section>
-                        ) : (
-
-                            <section className="perso-leader">
-                                <p className="default-text perso-leader-sentence">Connectez-vous pour voir votre classement personnel</p>
-                            </section>
-                        )}
-
-                        </ul>
-
+                                        <section className="perso-leader">
+                                            <td className="default-text perso-leader-sentence">Connectez-vous pour voir votre classement personnel</td>
+                                        </section>
+                                    )}
+                                    </tr>
+                            </tfoot>     
+                        </table>
+                        
                     </section>
+                    <div className="block">
+
+                    </div>
                 </div>
+
 
             </main>
             

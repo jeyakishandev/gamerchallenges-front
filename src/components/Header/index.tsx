@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
 import logo from "../../assets/logo-transparent.svg";
-import BurgerIcon from "./BurgerIcon";
+
 import { NavLink, Link } from "react-router-dom";
 import useAuthStore from "../../store";
 

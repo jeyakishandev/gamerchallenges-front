@@ -1,4 +1,4 @@
-.challenge-cat-and-diff {
+/* .challenge-cat-and-diff {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -7,8 +7,7 @@
     margin-bottom: 1rem;
     position: relative;
   }
-  
-  /* Boutons Modifier + Supprimer */
+
   .challenge-actions-inline {
     display: flex;
     gap: 0.5rem;
@@ -37,5 +36,4 @@
       margin-right: 0;
       justify-content: flex-start;
     }
-  }
-  
+  } */

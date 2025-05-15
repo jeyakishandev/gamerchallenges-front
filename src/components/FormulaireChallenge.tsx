@@ -136,7 +136,7 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
   return (
     <div className="default-form-container default-form default-box-design">
       <form className="create-form " onSubmit={handleSubmit}>
-        <p className="paragraph-center">{challengeId ? "Modifier le Challenge" : "Créer un Challenge"}</p>
+        <p className="paragraph-center low-title">{challengeId ? "Modifier le Challenge" : "Créer un Challenge"}</p>
 
         {error && <p style={{ color: "white", textAlign: "center", background: "red"}}>{error}</p>}
 

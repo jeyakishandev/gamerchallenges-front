@@ -35,7 +35,7 @@ export default function Challenges() {
                                 {form ? "Fermer le formulaire" : "Créer un challenge"} {/* On change le texte du bouton en fonction de l'état du formulaire (ouvert ou fermé) */}
                         </button>
                     ) : (
-                        <Link className="default-button" to="/connexion">
+                        <Link className="default-button button-long-text" to="/connexion">
                             Connecte-toi pour créer un challenge
                         </Link>
                     )}

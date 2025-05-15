@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import "./Challenge.css";
 import { IChallenge } from "../@types";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { getChallengeById } from "../api";
@@ -112,7 +111,7 @@ export default function Challenge() {
               Participer
             </button>
           ) : (
-            <Link className="default-button" to="/connexion">
+            <Link className="default-button button-long-text" to="/connexion">
               Connecte-toi pour participer
             </Link>
           )}

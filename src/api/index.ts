@@ -286,3 +286,15 @@ export async function getDifficulties(): Promise<IDifficulty[]>{
   const difficulties = response.json();
   return difficulties;
 }
+
+export async function deleteChallenge(id: number, token: string): Promise<void> {
+  const response = await fetch(`${baseUrl}/challenges/${id}`, {
+    method: "DELETE",
+    headers: { "Authorization": `Bearer ${token}` },
+  })
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Erreur lors de la suppression.");
+  }
+}

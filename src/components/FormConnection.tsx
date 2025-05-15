@@ -3,6 +3,7 @@ import useAuthStore from "../store";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getUserById, loginUser } from "../api";
 import { IUser } from "../@types";
+import { deleteUser } from "../api"
 
 
 interface IUserProps {
@@ -238,52 +239,71 @@ function FormLogin () {
   </>
 }
 
-function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
-
-  const [pseudo, setPseudo] = useState("")
-  const [email, setEmail] = useState("")
+function FormUpdateProfile({ initialUser, onUpdate }: FormUpdateProfileProps) {
+  const [pseudo, setPseudo] = useState("");
+  const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+  const token = useAuthStore((state) => state.token);
+  const logout = useAuthStore((state) => state.logout);
 
   useEffect(() => {
     if (initialUser) {
       setPseudo(initialUser.pseudo || "");
       setEmail(initialUser.email || "");
-      
     }
   }, [initialUser]);
 
-  //* Handle user info form
-  const handleSubmit = async(e: FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
     setError(null);
-
-      await onUpdate(avatar, pseudo, email)
-      setPseudo("");
-      setEmail("");
-      setAvatar(null);
-
+    await onUpdate(avatar, pseudo, email);
+    setPseudo("");
+    setEmail("");
+    setAvatar(null);
   };
 
-  return <>
+  const handleDeleteAccount = async () => {
+    const confirmDelete = window.confirm(
+      "Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible !"
+    );
+    if (!confirmDelete) return;
+
+    if (!token) {
+      alert("Token manquant. Veuillez vous reconnecter.");
+      return;
+    }
+
+    const success = await deleteUser(initialUser.id, token);
+    if (success) {
+      logout();
+      navigate("/");
+    } else {
+      alert("Une erreur est survenue lors de la suppression.");
+    }
+  };
+
+  return (
     <form onSubmit={handleSubmit} encType="multipart/form-data">
       {error && <div className="error-message">{error}</div>}
 
-      <Input 
+      <Input
         value={pseudo}
         setValue={setPseudo}
         name="pseudo"
         placeholder="Pseudo"
-        type="text" 
+        type="text"
         label="Pseudo"
       />
 
-      <Input 
+      <Input
         value={email}
         setValue={setEmail}
         name="email"
         placeholder="Email"
-        type="email" 
+        type="email"
         label="Email"
       />
 
@@ -295,10 +315,19 @@ function FormUpdateProfile ({initialUser, onUpdate}: FormUpdateProfileProps) {
       />
 
       <div className="form-button align-button">
-        <button className="default-button" type="submit">Confirmer</button>
+        <button className="default-button" type="submit">
+          Confirmer
+        </button>
+        <button
+          className="default-button danger"
+          type="button"
+          onClick={handleDeleteAccount}
+        >
+          Supprimer mon compte
+        </button>
       </div>
     </form>
-  </>
+  );
 }
 
 function FormUpdatePasswordProfile ({initialUser, onUpdatePassword}: UpdateProfilePasswordProps) {

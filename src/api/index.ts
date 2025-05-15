@@ -255,3 +255,13 @@ export async function updateChallenge(
     throw err; // On relance l’erreur pour la catch dans le form
   }
 }
+export async function deleteUser(userId: number, token: string): Promise<boolean> {
+  const response = await fetch(`${baseUrl}/users/${userId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  return response.ok;
+}

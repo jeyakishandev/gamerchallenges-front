@@ -25,8 +25,18 @@ export default function LeaderboardTopChallenges({ challenge, index}: Leaderboar
         className = "bronze";
     }
 
+    else if (index > 2) {
+        medal =`${index + 1}`;
+    }
+
     return (
-            <li className={className}>{medal && <span style={{marginRight: "8px"}}>{medal}</span>}
-            {index + 1} - <Link className={className}to={`/challenges/${challenge.id}`}> {challenge.name} : {challenge.users.length} participations </Link></li>
+        <>
+            <Link to={`/challenges/${challenge.id}`} className="array-content">
+            <td className={className}>{medal}</td>
+            <td className={className}>{challenge.name}</td>
+            <td className={className}>{challenge.users.length}</td>
+            </Link>
+        </>
     )
 }
+

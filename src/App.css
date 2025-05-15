@@ -95,6 +95,10 @@ h2 {
   border: none;
 }
 
+.default-button.button-long-text {
+  padding: 0.8rem 0.5rem;
+}
+
 .buttons-flex {
   display: flex;
   justify-content: center;
@@ -798,23 +802,6 @@ body {
   padding-right: 2rem;
 }
 
-.leaderbord-lists {
-  padding: 1rem 2rem;
-  min-height: 15rem;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.18);
-}
-
-.leaderbord-lists li {
-  text-align: center;
-  list-style-type: none;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.perso-leader {
-  text-align: center;
-}
-
 .gold {
   color: #FFD700; /* Or */
   font-weight: bold;
@@ -829,6 +816,99 @@ body {
   color: #CD7F32; /* Bronze */
   font-weight: bold;
 }
+
+@keyframes rotate {
+  to {
+    --rotateR: 360deg;
+    --rotateL: -360deg;
+  }
+}
+
+@property --rotateR {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --rotateL {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.effectR {
+  background: conic-gradient(from var(--rotateR),
+              transparent 0%, #c3ffe1 15%, transparent 30%);
+  position: absolute;
+  inset: 0;
+  animation: rotate 5s linear infinite;
+}
+
+.effectL {
+  background: conic-gradient(from var(--rotateL),
+              transparent 0%, #c3ffe1 15%, transparent 30%);
+  position: absolute;
+  inset: 0;
+  animation: rotate 5s linear infinite;
+}
+
+.effectR:after, .effectL:after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-color: #1D083B;
+}
+
+.leader-card-style {
+  position: relative;
+}
+
+.block {
+  position: relative;
+  height: 20%;
+}
+
+.leaderboard-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.leaderbord-lists {
+  padding: 1rem 2rem;
+  min-height: 35rem;
+  position: relative;
+  width: 100%;
+}
+
+.leaderbord-lists td, .leaderbord-lists th {
+  text-align: center;
+  list-style-type: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  z-index: 100;
+  position: relative;
+}
+
+.array-header, .array-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.array-content td, .array-header th {
+  min-width: 33%;
+  padding: 0.5rem 0;
+}
+
+.leaderbord-lists tr {
+  width: 100%;
+}
+
+.perso-leader-sentence {
+  text-align: center;
+}
+
 
 /**? ============================================= */
 /**? ===== LEADERBORAD PAGE TABLETTE DISPLAY ===== */
@@ -845,7 +925,7 @@ body {
 
   .leaderbord-lists {
     padding: 1rem 2rem;
-    min-height: 18rem;
+    min-height: 40rem;
   }
 
   .best-challenges {

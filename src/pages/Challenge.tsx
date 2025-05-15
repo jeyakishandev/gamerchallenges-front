@@ -111,7 +111,7 @@ export default function Challenge() {
               Participer
             </button>
           ) : (
-            <Link className="default-button" to="/connexion">
+            <Link className="default-button button-long-text" to="/connexion">
               Connecte-toi pour participer
             </Link>
           )}

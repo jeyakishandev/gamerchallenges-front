@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../@types";
-import { updateChallenge } from "../api/index";
+import { addChallengeToApi, updateChallenge } from "../api/index";
 import useAuthStore from "../store"; 
 
 // Props optionnelles : une fonction à appeler après soumission du formulaire
@@ -104,21 +104,7 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
       if (challengeId) {
         responseData = await updateChallenge(challengeId, payload, token);
       } else {
-        const response = await fetch("http://localhost:3000/challenges", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`, // ✅ Token de Zustand
-          },
-          body: JSON.stringify(payload),
-        });
-  
-        if (!response.ok) {
-          const err = await response.json();
-          throw new Error(err.message || "Erreur lors de l'envoi.");
-        }
-  
-        responseData = await response.json();
+        responseData = await addChallengeToApi(payload, token);
       }
   
       console.log("Challenge sauvegardé :", responseData);

@@ -1,4 +1,4 @@
-import type { IChallenges, IChallenge, IUser } from "../@types";
+import type { IChallenges, IChallenge, IUser, IChallengePayload } from "../@types";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -160,7 +160,7 @@ export async function updateUserPasswordIntoApi(
     if (newPassword !== undefined) formData.append('newPassword', newPassword);
     if (confirmNewPassword) formData.append('confirmNewPassword', confirmNewPassword);
 
-    const result = await fetch(`http://localhost:3000/users/${id}`, {
+    const result = await fetch(`${baseUrl}/users/${id}`, {
       method: "PATCH",
       headers: {
         // "Content-Type": "application/json",
@@ -182,35 +182,6 @@ export async function updateUserPasswordIntoApi(
     console.error("Erreur lors de la mise à jour du profile", error);
     return null;
   }  
-}
-
-export async function getTopChallengesByParticipation(limit: number = 10): Promise<IChallenges> {
-  // Récupération de tous les challenges
-  const challenges = await getChallenges();
-  
-  // Tri des challenges par nombre de participants (ordre décroissant)
-  const sortedChallenges = challenges.sort((a, b) => {
-    return b.users.length - a.users.length;
-  });
-  
-  // Retourne les 10 premiers challenges
-  return sortedChallenges.slice(0, limit);
-}
-
-// Fonction qui permets de récupérer les 10 meilleurs joueurs, et les trier de manière décroissante
-export async function getTopUsers(limit: number = 10): Promise<IUser[]> {
-  
-  // Récupère tous les users 
-  const response = await fetch("http://localhost:3000/users");
-  const players = await response.json();
-  
-  // Tri les users par nombre de challenges complétés (ordre décroissant)
-  const sortedPlayers = players.sort((a: IUser, b: IUser) => {
-    return b.challenges.length - a.challenges.length;
-  });
-
-  // Retourne les 10 meilleurs joueurs
-  return sortedPlayers.slice(0, limit);
 }
 
 export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {
@@ -283,4 +254,23 @@ export async function updateChallenge(
     console.error("Erreur API updateChallenge :", err);
     throw err; // On relance l’erreur pour la catch dans le form
   }
+}
+
+export async function addChallengeToApi(payload: IChallengePayload, token: string) {
+  const response = await fetch(`${baseUrl}/challenges`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const err = await response.json();
+    throw new Error(err.message || "Erreur lors de l'ajout du challenge.");
+  }
+
+  return await response.json()
+  
 }

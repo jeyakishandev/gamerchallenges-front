@@ -112,11 +112,13 @@ export default function Home() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                           />
-                          <Link to={`/challenges/${challenge.id}`} className="home-video-title">
-                            {challenge.name}
-                          </Link>
-                        </div>
-                      );
+                          <div className="video-card-footer">
+                              <Link to={`/challenges/${challenge.id}`} className="video-card-title">
+                                {challenge.name}
+                              </Link>
+                            </div>
+                          </div>         
+                         );
                     })}
                   </div>
                   <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "right")}>❯</span>
@@ -141,10 +143,12 @@ export default function Home() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                           />
-                          <Link to={`/challenges/${challenge.id}`} className="home-video-title">
+                          <div className="video-card-footer">
+                          <Link to={`/challenges/${challenge.id}`} className="video-card-title">
                             {challenge.name}
                           </Link>
                         </div>
+                      </div>
                       );
                     })}
                   </div>

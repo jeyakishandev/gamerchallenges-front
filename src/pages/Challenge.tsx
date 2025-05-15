@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { IChallenge } from "../@types";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { getChallengeById } from "../api";
+import { deleteChallenge, getChallengeById } from "../api";
 import SubmissionForm from "../components/SubmissionForm";
 import useAuthStore from "../store";
 import { getYoutubeEmbedUrl } from "../utils/youtube";
@@ -26,18 +26,14 @@ export default function Challenge() {
 
   const handleDelete = async () => {
     if (!challenge) return;
+    if (!token) {
+      alert("Tu dois être connecté pour supprimer un challenge.");
+      return;
+    }
 
     if (confirm("Es-tu sûr de vouloir supprimer ce challenge ?")) {
       try {
-        const response = await fetch(`http://localhost:3000/challenges/${challenge.id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!response.ok) throw new Error("Erreur serveur");
-
+        await deleteChallenge(challenge.id, token);
         alert("Challenge supprimé !");
         navigate("/");
       } catch (error) {

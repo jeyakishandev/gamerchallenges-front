@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { IChallenges } from "../@types";
 import { getChallenges } from "../api";
 import ChallengesCard from "../components/ChallengesCard";
-import FormulaireChallenge from "../components/FormulaireChallenge";
+import FormChallenge from "../components/FormChallenge";
 import { Link } from "react-router-dom";
 import useAuthStore from "../store";
 
@@ -42,7 +42,7 @@ export default function Challenges() {
                 </div> 
                 {form && (
                     <section>
-                        <FormulaireChallenge />
+                        <FormChallenge />
                     </section>
                 )}
 

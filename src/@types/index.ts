@@ -14,6 +14,8 @@ export interface IChallenge {
   Submission?: ISubmission
 }
 
+export type IChallengePayload  = Omit<IChallenge, 'id' | 'users' | 'category' | 'difficulty' | 'Submission'>
+
 export interface IUser {
   id: number;
   pseudo: string;

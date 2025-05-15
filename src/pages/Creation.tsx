@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormulaireChallenge from "../components/FormulaireChallenge";
+import FormChallenge from "../components/FormChallenge";
 import useAuthStore from "../store";
 
 export default function Creation() {
@@ -21,7 +21,7 @@ export default function Creation() {
   return (
     <main className="formulaire-section">
       
-      <FormulaireChallenge onFormSubmit={() => navigate("/")} />
+      <FormChallenge onFormSubmit={() => navigate("/")} />
     </main>
   );
 }

@@ -18,7 +18,7 @@ interface Props {
   };
 }
 
-function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
+function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
   const navigate = useNavigate();
 
   // États pour stocker les catégories, difficultés et erreurs éventuelles
@@ -194,4 +194,4 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
   );
 }
 
-export default FormulaireChallenge;
+export default FormChallenge;

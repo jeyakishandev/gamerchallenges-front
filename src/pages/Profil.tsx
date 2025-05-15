@@ -2,10 +2,9 @@ import { useParams } from "react-router-dom"
 import '../App.css'
 import { useEffect, useState } from "react";
 import { IChallenges, IUser } from "../@types";
-import {  getProfileUsers, getSubmissionsByUser } from "../api";
+import { getUserById, getChallengesCreatedByUser } from "../api";
 import CreatedChall from "../components/CreatedChall";
 import CompletedChall from "../components/CompletedChall";
-import { getChallengesCreatedByUser } from "../api";
 import useAuthStore from "../store";
 
 export default function Profil() {
@@ -19,48 +18,41 @@ export default function Profil() {
     };
 
     const { id } = useParams();
-    const [player, setUser] = useState<IUser | null>(null);
-
-    useEffect(() => {
-        const loadData = async () => {
-            if (id) {
-                const newUser = await getProfileUsers(Number.parseInt(id));
-                setUser(newUser)
-            }
-        };
-        loadData();
-    }, [id])
-
+    const user = useAuthStore(state => state.user);
+    const [player, setPlayer] = useState<IUser | null>(null);
     const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
-
-    useEffect(() => {
-        const loadCreated = async () => {
-          if (id) {
-            const newCreated = await getChallengesCreatedByUser(Number(id));
-            setCreatedChallenges(newCreated);
-          }
-        };
-        loadCreated();
-      }, [id]);
-
-      const [completedChallenges, setCompletedChallenges] = useState<IChallenges>([]);
-      console.log(completedChallenges);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
 
+    
+    useEffect(()=> {
+      const loadProfilData = async () => {
+        try {
+          if (!id) return;
+          setLoading(true);
 
-    useEffect(() => {
-        const loadData = async () => {
-            if (id) {
-              const submissions = await getSubmissionsByUser(Number.parseInt(id));
-              const extractedChallenges = submissions.map((s) => s.challenge);
-              setCompletedChallenges(extractedChallenges);
-            }
-          };
-          
-        loadData();
-      }, [id]);
+          // Charger les données du profil avec le token d'authentification.
+          const profilData = await getUserById(Number.parseInt(id));
+          setPlayer(profilData);
 
-      const { user } = useAuthStore()
+          // Charger les défis créés par l'utilisateur.
+          const newCreated = await getChallengesCreatedByUser(Number.parseInt(id));
+          setCreatedChallenges(newCreated);
+
+          setLoading(false);
+
+        } catch (err) {
+          setError("Erreur lors du chargement des données du profil.");
+          setLoading(false);
+          console.error(err);
+        }
+      };
+      loadProfilData();
+    }, [id]);
+  
+    if (loading) return <p>Chargement du profil...</p>;
+    if (error) return <p className="error-message">{error}</p>;
       
 
     return (
@@ -74,7 +66,7 @@ export default function Profil() {
                         <a
                         className="default-button"
                         onClick={() => window.location.href = `/profile/${player?.id}/modifier`}
-                        >Modifier le profile</a>
+                        >Modifier le profil</a>
                       )}
                     </section>
                     <img
@@ -90,12 +82,17 @@ export default function Profil() {
                     
 
                 <article className="chall">
+                  {player?.id === user?.id ? (
                     <h3 className="chall-title">Mes participations</h3>
+                  ) : (
+                    <h3 className="chall-title">Participations</h3>
+                  )}
+
 
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div id="completed" className="carousel-items">
+                        <div id="completed" className="carousel-items chall-width">
 
                             {player?.challenges.map((challenge) => {
                                 return <CompletedChall key={challenge.id} challenge={challenge} userId={player.id} />
@@ -111,24 +108,30 @@ export default function Profil() {
 
 
                 <article className="chall">
+                  
+                  {player?.id === user?.id ? (
                     <h3 className="chall-title">Mes challenges créés</h3>
+                  ) : (
+                    <h3 className="chall-title">Challenges créés</h3>
+                  )}
+                  
 
-                    <div className="chall-flex">
-                      <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
+                  <div className="chall-flex">
+                    <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-                      <div id="created" className="carousel-items">
+                    <div id="created" className="carousel-items">
                       {createdChallenges.map((challenge) => {
-                          console.log(createdChallenges)
-                    return <CreatedChall key={challenge.id} challenge={challenge}/>
-                  })}
+                        console.log(createdChallenges)
+                        return <CreatedChall key={challenge.id} challenge={challenge}/>
+                      })}
 
-                      </div>
-
-                      <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
                     </div>
-                  </article>
 
-                </div>
+                    <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>
+                  </div>
+                </article>
+
+              </div>
 
             </main>
         </>

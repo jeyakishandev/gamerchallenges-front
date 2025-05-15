@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-=======
+
 /**! ===== MOBILE FIRST ===== */
 /**! ===== RESPONSIVE SIZE == */
 /**! MOBILE SIZE UNDER 768PX
@@ -24,6 +19,7 @@
 /**! - LEADERBOARD PAGE
 /**! - CONNECTION PAGE
 /* TODO: PROFILE
+/**! - UPDATE PROFIL PAGE
 /**! - FOOTER */
 /**! - 404NNotFound */
 
@@ -444,12 +440,6 @@ body {
 }
 
 
-
-
-
-
-
-
 /** =================================== */
 /** ===== CHALLENGES PAGE SECTION ===== */
 /** =================================== */
@@ -737,6 +727,13 @@ body {
   }
 }
 
+.leader-box-design {
+  border: var(--border-box);
+  background:#1D083B;
+  box-shadow: var(--shadow-box);
+  border-radius: var(--border-radius);
+}
+
 /**? ===================================== */
 /**? ===== CHALLENGE DESKTOP DISPLAY ===== */
 /**? ===================================== */
@@ -784,6 +781,7 @@ body {
 /**? ===== LEADERBORD PAGE MOBILE DISPLAY ===== */
 /**? ========================================== */
 
+
 .leaderbord-title {
   margin-top: 3.8rem;
 }
@@ -804,51 +802,66 @@ body {
 }
 
 .leaderbord-lists li {
->>>>>>> f53580014555b12d0053dd7943cdcbdacf0f6fd2
+
   text-align: center;
   list-style-type: none;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-=======
 .perso-leader {
   text-align: center;
+}
+
+
+.low-title {
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+}
+
+.leaderbord-title {
+  margin-top: 3.8rem;
+}
+
+.leaderbord-subtitle {
+  margin: 1rem auto 4rem;
+  width: 80%;
+}
+
+.lead-boxes {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.leaderbord-lists {
+  padding: 1rem 2rem;
+  min-height: 15rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.18);
+}
+
+.leaderbord-lists li {
+  text-align: center;
+  list-style-type: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.perso-leader {
+  text-align: center;
+}
+
+.gold {
+  color: #FFD700; /* Or */
+  font-weight: bold;
+}
+
+.silver {
+  color: #C0C0C0; /* Argent */
+  font-weight: bold;
+}
+
+.bronze {
+  color: #CD7F32; /* Bronze */
+  font-weight: bold;
 }
 
 /**? ============================================= */
@@ -1003,7 +1016,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 24px; 
+  gap: 24px;
 }
 
 .chall-list {
@@ -1025,6 +1038,15 @@ body {
   align-items: center; 
   gap: 1rem;
 }
+
+.chall-width {
+  max-width: 1500px;
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  scroll-behavior: smooth; /* Pour un défilement fluide */
+}
+
 
 .button {
   text-align: center;
@@ -1067,8 +1089,27 @@ body {
   .chall-box {
       padding: 5px;
   }
-
 }
+
+/** ================================= */
+/** ===== UPDATE PROFIL SECTION ===== */
+/** ================================= */
+
+.password-form {
+  margin-top: 2rem;
+}
+
+.update-profile-button {
+  text-align: right;
+  margin: 0 2rem 2rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .update-profile-button {
+    width: 85%;
+  }
+}
+
 
 /** ==================================== */
 /** ===== FOOTER COMPONENT SECTION ===== */
@@ -1118,7 +1159,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
->>>>>>> f53580014555b12d0053dd7943cdcbdacf0f6fd2
+
 }
 
 .main-sentence-404 {

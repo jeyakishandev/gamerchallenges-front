@@ -2,7 +2,7 @@ import "../App.css"
 import { useEffect, useState } from "react"
 import useAuthStore from "../store";
 import { IChallenges, IUser } from "../@types"
-import { getChallenges, getTopUsers } from "../api";
+import { getChallenges, getUsers } from "../api";
 import LeaderboardTopChallenges from "../components/LeaderbordChallenges";
 import LeaderboardTopPlayers from "../components/LeaderboardPlayers";
 
@@ -25,9 +25,10 @@ export default function Leaderboard() {
 
     useEffect (() => {
         const loadData = async () => {
-            const newLeaderPlayers = await getTopUsers();
+            const data = await getUsers();
+            const newLeaderPlayers = data.sort((a, b) => b.challenges.length - a.challenges.length);
             console.log(newLeaderPlayers);
-            setLeaderboardPlayers(newLeaderPlayers)
+            setLeaderboardPlayers(newLeaderPlayers.slice(0, 10));
         };
         loadData();
     }, []) 
@@ -47,7 +48,7 @@ export default function Leaderboard() {
                 <div className="lead-boxes">
                     <section className="best-challenges">
                         <h3 className="low-title">Challenges populaires</h3>
-                        <ul className="leaderbord-lists default-box-design">
+                        <ul className="leaderbord-lists leader-box-design">
                         {/* Liste les 10 challenges les plus joués */}
                         {challenges.map((challenge, index) => {
                             return <LeaderboardTopChallenges key={challenge.id} challenge={challenge} index={index}/>
@@ -57,7 +58,7 @@ export default function Leaderboard() {
 
                     <section className="best-players">
                         <h3 className="low-title">Meilleurs joueurs</h3>
-                        <ul className="leaderbord-lists default-box-design">
+                        <ul className="leaderbord-lists leader-box-design">
                         {/* Liste les 10 joueurs ayant réalisés le plus de challenges */}
                         {players.map((user, index) => {
                             return <LeaderboardTopPlayers key={user.id} players={user} index={index} />
@@ -66,7 +67,7 @@ export default function Leaderboard() {
                         {user ? (
                             <section className="perso-leader">
                                 {userRank !== -1 ? (
-                                    <p className="default-text perso-leader-sentence">Vous êtes classé {userRank + 1}e avec {currentPlayer?.challenges.length} challenges réalisés</p>
+                                    <p className="default-text perso-leader-sentence">Vous avez atteint le rang n°{userRank + 1}, en accomplissant {currentPlayer?.challenges.length} challenges</p>
                                 ) : (
                                     <p className="default-text perso-leader-sentence" >Vous n'apparaissez pas encore dans le classement</p>
                                 )}

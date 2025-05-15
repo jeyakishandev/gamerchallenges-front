@@ -1,4 +1,4 @@
-import type { IChallenges, IChallenge, IUser, IChallengePayload } from "../@types";
+import type { IChallenges, IChallenge, IUser, IChallengePayload, ICategory, IDifficulty } from "../@types";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -273,4 +273,16 @@ export async function addChallengeToApi(payload: IChallengePayload, token: strin
 
   return await response.json()
   
+}
+
+export async function getCategories(): Promise<ICategory[]> {
+  const response = await fetch(`${baseUrl}/categories`);
+  const categories = response.json();
+  return categories
+}
+
+export async function getDifficulties(): Promise<IDifficulty[]>{
+  const response = await fetch(`${baseUrl}/difficulties`);
+  const difficulties = response.json();
+  return difficulties;
 }

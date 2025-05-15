@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICategory, IDifficulty } from "../@types";
-import { addChallengeToApi, updateChallenge } from "../api/index";
+import { addChallengeToApi, getCategories, getDifficulties, updateChallenge } from "../api/index";
 import useAuthStore from "../store"; 
 
 // Props optionnelles : une fonction à appeler après soumission du formulaire
@@ -37,35 +37,31 @@ function FormulaireChallenge({ onFormSubmit, challengeId, defaultValues }: Props
 
   // Récupère les catégories et difficultés depuis le back au chargement du composant
   useEffect(() => {
-    fetch("http://localhost:3000/categories")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setCategories(data);
+    const fetchData = async () => {
+      try {
+        const categoriesData = await getCategories();
+        if (Array.isArray(categoriesData)) {
+          setCategories(categoriesData);
         } else {
-          console.error("Catégories non valides :", data);
+          console.error("Catégories non valides :", categoriesData);
           setCategories([]);
         }
-      })
-      .catch((err) => {
-        console.error("Erreur fetch catégories :", err);
-        setCategories([]);
-      });
 
-    fetch("http://localhost:3000/difficulties")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setDifficulties(data);
+        const difficultiesData = await getDifficulties();
+        if(Array.isArray(difficultiesData)) {
+          setDifficulties(difficultiesData);
         } else {
-          console.error("Difficultés non valides :", data);
+          console.error("Difficultés non valides :", difficultiesData);
           setDifficulties([]);
         }
-      })
-      .catch((err) => {
-        console.error("Erreur fetch difficultés :", err);
+      } catch (err) {
+        console.error("Erreur lors du chargement des données :", err);
+        setCategories([]);
         setDifficulties([]);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
   // Gère le changement de valeur dans les champs du formulaire

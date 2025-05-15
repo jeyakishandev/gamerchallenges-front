@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import "./Challenge.css";
 import { IChallenge } from "../@types";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { getChallengeById } from "../api";

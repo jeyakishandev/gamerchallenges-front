@@ -297,7 +297,8 @@ export async function deleteChallenge(id: number, token: string): Promise<void> 
     const error = await response.json();
     throw new Error(error.message || "Erreur lors de la suppression.");
   }
-  
+}
+ 
 export async function deleteUser(userId: number, token: string): Promise<boolean> {
   const response = await fetch(`${baseUrl}/users/${userId}`, {
     method: "DELETE",

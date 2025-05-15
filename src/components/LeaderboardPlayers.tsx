@@ -14,15 +14,15 @@ export default function LeaderboardTopPlayers ({players, index}: LeaderboardPlay
     let className = "";
 
     if (index === 0) {
-        medal = "";
+        medal = "👑";
         className = "gold";
     }
     else if (index === 1) {
-        medal ="";
+        medal ="🥈";
         className = "silver";
     }
     else if (index === 2) {
-        medal ="";
+        medal ="🥉";
         className = "bronze";
     }
 

@@ -82,6 +82,9 @@ h2 {
   border: var(--border-box);
   box-shadow: var(--shadow-box);
   border-radius: var(--border-radius);
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 1.2rem;
 }
 
 .default-button {
@@ -514,6 +517,13 @@ body {
 .button-container {
   text-align: center;
   padding: 2rem 0;
+}
+
+.challenges-background {
+  border: var(--border-box);
+  background-color: #1D083B;
+  box-shadow: var(--shadow-box);
+  border-radius: var(--border-radius);
 }
 
 /**? ======================================== */

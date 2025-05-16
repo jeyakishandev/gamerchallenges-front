@@ -1,4 +1,4 @@
-import type { IChallenges, IChallenge, IUser } from "../@types";
+import type { IChallenges, IChallenge, IUser, IChallengePayload, ICategory, IDifficulty } from "../@types";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -255,6 +255,50 @@ export async function updateChallenge(
     throw err; // On relance l’erreur pour la catch dans le form
   }
 }
+
+export async function addChallengeToApi(payload: IChallengePayload, token: string) {
+  const response = await fetch(`${baseUrl}/challenges`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const err = await response.json();
+    throw new Error(err.message || "Erreur lors de l'ajout du challenge.");
+  }
+
+  return await response.json()
+  
+}
+
+export async function getCategories(): Promise<ICategory[]> {
+  const response = await fetch(`${baseUrl}/categories`);
+  const categories = response.json();
+  return categories
+}
+
+export async function getDifficulties(): Promise<IDifficulty[]>{
+  const response = await fetch(`${baseUrl}/difficulties`);
+  const difficulties = response.json();
+  return difficulties;
+}
+
+export async function deleteChallenge(id: number, token: string): Promise<void> {
+  const response = await fetch(`${baseUrl}/challenges/${id}`, {
+    method: "DELETE",
+    headers: { "Authorization": `Bearer ${token}` },
+  })
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || "Erreur lors de la suppression.");
+  }
+}
+ 
 export async function deleteUser(userId: number, token: string): Promise<boolean> {
   const response = await fetch(`${baseUrl}/users/${userId}`, {
     method: "DELETE",

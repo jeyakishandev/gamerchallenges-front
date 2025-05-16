@@ -83,9 +83,9 @@ export default function Profil() {
 
                 <article className="chall">
                   {player?.id === user?.id ? (
-                    <h3 className="chall-title">Mes participations</h3>
+                    <h3 className="chall-title low-title">Mes participations</h3>
                   ) : (
-                    <h3 className="chall-title">Participations</h3>
+                    <h3 className="chall-title low-title">Participations</h3>
                   )}
 
 

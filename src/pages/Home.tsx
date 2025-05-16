@@ -47,93 +47,116 @@ export default function Home() {
   return (
     <main className="home-page">
 
-      <section className="home-content">
-        <h1 className="main-title">Prêt à relever le challenge ?</h1>
-        <h2 className="subtitle">
-          Montrez-nous ce que vous avez dans le ventre !<br />
-          Postez vos vidéos, défiez les autres, et grimpez au sommet.
-        </h2>
+          <section className="home-content">
+            <div className="home-intro-wrapper">
+              
+              <div className="home-intro-block">
+                <h1 className="main-title">Prêt à relever le challenge ?</h1>
+                <h2 className="subtitle">
+                  Montrez-nous ce que vous avez dans le ventre !<br />
+                  Postez vos vidéos, défiez les autres, et grimpez au sommet.
+                </h2>
 
-        <div className="home-buttons buttons-flex">
-          <button
-            className="default-button"
-            onClick={() => {
-              if (user) {
-                navigate("/creation");
-              } else {
-                navigate("/connexion?redirect=/creation");
-              }
-            }}
-          >
-            Créer
-          </button>
+                <div className="home-buttons buttons-flex">
+                  <button
+                    className="default-button gamer-button"
+                    onClick={() => {
+                      if (user) {
+                        navigate("/creation");
+                      } else {
+                        navigate("/connexion?redirect=/creation");
+                      }
+                    }}
+                  >
+                  <span>🎮 Créer</span>
+                  </button>
 
-          <button
-            className="default-button"
-            onClick={() => navigate("/challenges")}
-          >
-            Participer
-          </button>
-
-        </div>
-      </section>
-
-      <section className="carousel-section">
-        <h3 className="low-title">Nouveautés</h3>
-        <div className="carousel-container">
-          <span className="arrow" onClick={() => scroll("nouveaute", "left")}>❮</span>
-          <div id="nouveaute" className="carousel-items">
-          {challenges.slice(0, 10).map((challenge) => {
-            const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
-            return (
-              <div key={challenge.id} className="video-card">
-                <iframe
-                  src={embedUrl}
-                  title={`challenge-${challenge.id}`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  referrerPolicy="no-referrer"
-                  allowFullScreen
-                />
-                <Link to={`/challenges/${challenge.id}`} className="video-title">
-                  {challenge.name}
-                </Link>
-
-              </div>
-            );
-          })}
-
-          </div>
-          <span className="arrow" onClick={() => scroll("nouveaute", "right")}>❯</span>
-        </div>
-      </section>
-
-      <section className="carousel-section">
-       <h3 className="low-title">Challenges populaires</h3>
-        <div className="carousel-container">
-          <span className="arrow" onClick={() => scroll("populaire", "left")}>❮</span>
-          <div id="populaire" className="carousel-items">
-            {popularChallenges.slice(0, 10).map((challenge) => {
-              const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
-              return (
-                <div key={challenge.id} className="video-card">
-                  <iframe
-                    src={embedUrl}
-                    title={`challenge-${challenge.id}`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    referrerPolicy="no-referrer"
-                    allowFullScreen
-                  />
-                  <Link to={`/challenges/${challenge.id}`} className="video-title">
-                    {challenge.name}
-                  </Link>
-
+                  <button
+                    className="default-button gamer-button"
+                    onClick={() => navigate("/challenges")}
+                  >
+                    <span>🚀 Participer</span>
+                  </button>
                 </div>
-              );
-            })}
-          </div>
-          <span className="arrow" onClick={() => scroll("populaire", "right")}>❯</span>
-        </div>
-      </section>
+
+                  </div>
+                  </div>
+                </section>
+                <section className="home-how-wrapper">
+                <div className="home-how-block">
+                  <h2 className="subtitle">Comment ça marche ?</h2>
+                  <div className="how-steps">
+                    <div className="step-card">🔹 <strong>1.</strong> Crée un challenge</div>
+                    <div className="step-card">🎥 <strong>2.</strong> Poste ta vidéo</div>
+                    <div className="step-card">🏆 <strong>3.</strong> Affronte les autres</div>
+                  </div>
+                </div>
+              </section>
+
+
+
+
+              <section className="home-carousel-section">
+              <div className="home-carousel-block">
+                <h3 className="low-title">🎬 Nouveautés</h3>
+                <div className="home-carousel-container">
+                  <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "left")}>❮</span>
+                  <div id="home-nouveaute" className="home-carousel-items">
+                    {challenges.slice(0, 10).map((challenge) => {
+                      const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
+                      return (
+                        <div key={challenge.id} className="home-video-card">
+                          <iframe
+                            src={embedUrl}
+                            title={`challenge-${challenge.id}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                          <div className="video-card-footer">
+                              <Link to={`/challenges/${challenge.id}`} className="video-card-title">
+                                {challenge.name}
+                              </Link>
+                            </div>
+                          </div>         
+                         );
+                    })}
+                  </div>
+                  <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "right")}>❯</span>
+                </div>
+              </div>
+            </section>
+
+
+            <section className="home-carousel-section">
+              <div className="home-carousel-block">
+                <h3 className="low-title">🏆 Challenges populaires</h3>
+                <div className="home-carousel-container">
+                  <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "left")}>❮</span>
+                  <div id="home-populaires" className="home-carousel-items">
+                    {popularChallenges.slice(0, 10).map((challenge) => {
+                      const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
+                      return (
+                        <div key={challenge.id} className="home-video-card">
+                          <iframe
+                            src={embedUrl}
+                            title={`challenge-${challenge.id}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                          <div className="video-card-footer">
+                          <Link to={`/challenges/${challenge.id}`} className="video-card-title">
+                            {challenge.name}
+                          </Link>
+                        </div>
+                      </div>
+                      );
+                    })}
+                  </div>
+                  <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "right")}>❯</span>
+                </div>
+              </div>
+            </section>
+
 
     </main>
   );

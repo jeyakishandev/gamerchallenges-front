@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { IChallenge } from "../@types";
 import { getChallengeById } from "../api";
-import FormulaireChallenge from "../components/FormulaireChallenge";
+import FormChallenge from "../components/FormChallenge";
 
 export default function EditChallenge() {
   const { id } = useParams();
@@ -25,7 +25,7 @@ export default function EditChallenge() {
   if (!challenge) return <p>Challenge introuvable.</p>;
 
   return (
-    <FormulaireChallenge
+    <FormChallenge
       challengeId={challenge.id}
       defaultValues={{
         name: challenge.name,

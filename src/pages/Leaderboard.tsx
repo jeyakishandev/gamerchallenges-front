@@ -38,7 +38,6 @@ export default function Leaderboard() {
                 return bLen - aLen;
               });
               
-            console.log(newLeaderPlayers);
             setLeaderboardPlayers(newLeaderPlayers.slice(0, 10));
         };
         loadData();

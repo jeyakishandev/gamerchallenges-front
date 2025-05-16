@@ -53,7 +53,6 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
     }
 
     const handleDelete = async () => {
-        console.log("Suppression demandée.")
         const confirmed = window.confirm("Es-tu sûr de vouloir supprimer ta participation ?");
         if (!confirmed) return;
 
@@ -64,7 +63,6 @@ export default function CompletedChall({ challenge, userId }: CompletedChallenge
 
         try {
             const result = await deleteUserSubmission(userId, challenge.id, token);
-            console.log("Résultat suppression :", result)
             if (result) {
                 setDeleted(true);
             } else {

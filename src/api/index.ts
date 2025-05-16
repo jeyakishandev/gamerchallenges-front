@@ -85,7 +85,6 @@ export async function addUserIntoApi(
     //* Ajouter l'avatar seulement s'il existe
     if (avatar) {
       formData.append('avatar', avatar);
-      console.log(avatar);
     }
     
     const result = await fetch(`${baseUrl}/users`, {
@@ -133,7 +132,6 @@ export async function updateUserIntoApi(
 
     if (result.ok) {
       const updatedUser: IUser = await result.json();
-      console.log("Réponse de l'API après mise à jour :", updatedUser);
       return updatedUser;
     }
 
@@ -169,11 +167,8 @@ export async function updateUserPasswordIntoApi(
       body: formData,
     });
 
-    console.log(`result fetch ${result}`);
-
     if (result.ok) {
       const updatedUserPassword: IUser = await result.json();
-      console.log("Réponse de l'API après mise à jour :", updatedUserPassword);
       return updatedUserPassword;
     }
 

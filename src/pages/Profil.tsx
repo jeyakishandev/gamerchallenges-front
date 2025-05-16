@@ -110,9 +110,9 @@ export default function Profil() {
                 <article className="chall">
                   
                   {player?.id === user?.id ? (
-                    <h3 className="chall-title">Mes challenges créés</h3>
+                    <h3 className="chall-title low-title">Mes challenges créés</h3>
                   ) : (
-                    <h3 className="chall-title">Challenges créés</h3>
+                    <h3 className="chall-title low-title">Challenges créés</h3>
                   )}
                   
 
@@ -121,7 +121,6 @@ export default function Profil() {
 
                     <div id="created" className="carousel-items">
                       {createdChallenges.map((challenge) => {
-                        console.log(createdChallenges)
                         return <CreatedChall key={challenge.id} challenge={challenge}/>
                       })}
 

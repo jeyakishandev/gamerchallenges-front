@@ -808,7 +808,7 @@ max-width: 600px;
 }
 
 .challenges-tag {
-  min-width: 6rem;
+  min-width: 7.5rem;
   margin: 1rem 0.5rem;
   text-align: center;
 }
@@ -940,7 +940,7 @@ max-width: 600px;
 }
 
 .challenge-cat-and-diff span, .participation-info span, .card-tags p{
-  padding: 0.1rem 1rem;
+  padding: 0.2rem 1rem;
 }
 
 .challenge-cat-and-diff span {

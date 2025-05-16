@@ -51,7 +51,7 @@ h2 {
   /** COLOR ELEMENTS */
   --main-background-color: radial-gradient(#5017A1, #1D083B);
   --button-color: #285CEC;
-  --button-color-hover: #370f6e;
+  --button-color-hover: #7825d0;
   --text-color: #FFFFFF;
   --background-color-box: radial-gradient(
     circle at center,
@@ -162,6 +162,10 @@ body {
   font-family: var(--second-font-text);
   font-size: 1rem;
   font-weight: bold;
+}
+
+.default-button {
+  cursor: pointer;
 }
 
 /** paragraph center */
@@ -1050,11 +1054,6 @@ max-width: 600px;
   width: 80%;
 }
 
-.lead-boxes {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 .gold {
   color: #FFD700; /* Or */
   font-weight: bold;
@@ -1128,7 +1127,7 @@ max-width: 600px;
 }
 
 .leaderbord-lists {
-  padding: 1rem 2rem;
+  padding: 1rem 0;
   min-height: 35rem;
   position: relative;
   width: 100%;
@@ -1150,7 +1149,7 @@ max-width: 600px;
 }
 
 .array-content td, .array-header th {
-  min-width: 33%;
+  min-width: 20%;
   padding: 0.5rem 0;
 }
 
@@ -1162,6 +1161,24 @@ max-width: 600px;
   text-align: center;
 }
 
+@media screen and (min-width: 320px) {
+
+  .lead-boxes {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+
+  .array-content td, .array-header th {
+    min-width: 33%;
+  }
+
+  .leaderbord-lists {
+    padding: 1rem 2rem;
+  }
+}
+
 
 /**? ============================================= */
 /**? ===== LEADERBORAD PAGE TABLETTE DISPLAY ===== */
@@ -1169,25 +1186,29 @@ max-width: 600px;
 
 @media screen and (min-width: 768px) {
 
+
+}
+
+@media screen and (min-width: 890px) {
   .lead-boxes {
     display: flex;
     justify-content: center;
     gap: 40px;
     padding: 0 2rem;
-}
 
-  .leaderbord-lists {
-    padding: 1rem 2rem;
-    min-height: 40rem;
-  }
-
-  .best-challenges {
-    width: 40rem;
-}
-
-  .best-players {
+    .leaderbord-lists {
+      padding: 1rem 2rem;
+      min-height: 40rem;
+    }
+  
+    .best-challenges {
       width: 40rem;
-  }
+    }
+  
+    .best-players {
+        width: 40rem;
+    }
+}
 }
 
 /**? ============================================ */
@@ -1258,6 +1279,10 @@ max-width: 600px;
 
 .profile {
   align-items: center;
+}
+
+.profile-sentence {
+  margin-top: 5rem;
 }
 
 .boxes {
@@ -1367,9 +1392,10 @@ max-width: 600px;
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (min-width: 700px) {
   .chall-title {
       text-align: center;
+      margin-top: 4rem;
   }
 
 }
@@ -1449,8 +1475,8 @@ max-width: 600px;
 /** ===== 404NotFound PAGE SECTION ===== */
 /** ==================================== */
 
-a:hover {
-  color: #007bff
+.link-color:hover {
+  color: #AFCCFA;
 }
 
 .main-404 {

@@ -60,7 +60,7 @@ export default function Profil() {
             <main className="profile">
 
                 <div className="perso-info">
-                    <h2 className="main-title">Retrouves ici ton profil, avec tes informations personnelles, et tes défis !</h2>
+                    <h2 className="main-title profile-sentence">Retrouves ici ton profil, avec tes informations personnelles, et tes défis !</h2>
                     <section className="button-container">
                       {user?.id === player?.id && (
                         <a
@@ -75,7 +75,7 @@ export default function Profil() {
                         alt={`Avatar de ${player?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
-                    <p className="pseudo default-text">Pseudo : {player?.pseudo}</p>
+                    <h3 className="low-title">{player?.pseudo}</h3>
                 </div>
 
                 <div className="perso-chall">

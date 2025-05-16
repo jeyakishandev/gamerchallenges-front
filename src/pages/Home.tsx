@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getChallenges } from "../api";
-import { getYoutubeEmbedUrl } from "../utils/youtube";
+import { getYoutubeEmbedUrl, getYoutubeThumbnailUrl } from "../utils/youtube";
 
 
 
@@ -103,21 +103,24 @@ export default function Home() {
                   <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "left")}>❮</span>
                   <div id="home-nouveaute" className="home-carousel-items">
                     {challenges.slice(0, 10).map((challenge) => {
-                      const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
+                      const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
                       return (
-                        <div key={challenge.id} className="home-video-card">
-                          <iframe
-                            src={embedUrl}
-                            title={`challenge-${challenge.id}`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                          <div className="video-card-footer">
-                              <Link to={`/challenges/${challenge.id}`} className="video-card-title">
-                                {challenge.name}
-                              </Link>
+                        <Link 
+                          key={challenge.id}
+                          to={`/challenges/${challenge.id}`}
+                          className="home-video-card">
+                            
+                            <img
+                              src={thumbnailUrl}
+                              alt={`Thumbnail du challenge ${challenge.name}`}
+                              
+                            />
+                            <div className="video-card-footer">
+                              <h3 className="video-card-title">{challenge.name}</h3>
                             </div>
-                          </div>         
+                             
+                        </Link>
+                                
                          );
                     })}
                   </div>
@@ -134,22 +137,25 @@ export default function Home() {
                   <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "left")}>❮</span>
                   <div id="home-populaires" className="home-carousel-items">
                     {popularChallenges.slice(0, 10).map((challenge) => {
-                      const embedUrl = getYoutubeEmbedUrl(challenge.video_url);
+                      const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
                       return (
-                        <div key={challenge.id} className="home-video-card">
-                          <iframe
-                            src={embedUrl}
-                            title={`challenge-${challenge.id}`}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                          <div className="video-card-footer">
-                          <Link to={`/challenges/${challenge.id}`} className="video-card-title">
-                            {challenge.name}
-                          </Link>
-                        </div>
-                      </div>
-                      );
+                        <Link 
+                          key={challenge.id}
+                          to={`/challenges/${challenge.id}`}
+                          className="home-video-card">
+                            
+                            <img
+                              src={thumbnailUrl}
+                              alt={`Thumbnail du challenge ${challenge.name}`}
+                              
+                            />
+                            <div className="video-card-footer">
+                              <h3 className="video-card-title">{challenge.name}</h3>
+                            </div>
+                             
+                        </Link>
+                                
+                         );
                     })}
                   </div>
                   <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "right")}>❯</span>

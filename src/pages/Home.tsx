@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getChallenges } from "../api";
-import { getYoutubeEmbedUrl, getYoutubeThumbnailUrl } from "../utils/youtube";
+import { getYoutubeThumbnailUrl } from "../utils/youtube";
 
 
 

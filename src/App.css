@@ -95,6 +95,10 @@ h2 {
   border: none;
 }
 
+.default-button.button-long-text {
+  padding: 0.8rem 0.5rem;
+}
+
 .buttons-flex {
   display: flex;
   justify-content: center;

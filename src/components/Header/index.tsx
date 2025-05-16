@@ -15,12 +15,13 @@ export default function Header() {
 
      // Récupère l'utilisateur connecté depuis dans le store d'authentification.
     const { user } = useAuthStore();
-    const [localAvatarUrl, setLocalAvatarUrl] = useState(user?.avatar_url ? `http://localhost:3000/uploads/${user.avatar_url}` : null);
+    const baseUrl = import.meta.env.VITE_API_URL;
+    const [localAvatarUrl, setLocalAvatarUrl] = useState(user?.avatar_url ? `${baseUrl}/uploads/${user.avatar_url}` : null);
 
     //* Use effect to handle avatar changes 
     useEffect(() => {
         if (user?.avatar_url) {
-            setLocalAvatarUrl(`http://localhost:3000/uploads/${user.avatar_url}`);
+            setLocalAvatarUrl(`${baseUrl}/uploads/${user.avatar_url}`);
         }
     }, [user?.avatar_url]);
 

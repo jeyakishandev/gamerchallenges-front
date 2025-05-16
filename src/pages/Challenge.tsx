@@ -132,7 +132,7 @@ export default function Challenge() {
               <div className="participation-info">
                 <span className="default-tag-design">{user.pseudo}</span>
                 <span className="default-tag-design">
-                  {new Date(submission.created_at).toLocaleDateString()}
+                  {new Date(submission.createdAt).toLocaleDateString()}
                 </span>
               </div>
               <div>

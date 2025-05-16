@@ -16,9 +16,10 @@ interface Props {
     category_id: number;
     difficulty_id: number;
   };
+  isModal?: boolean;
 }
 
-function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
+function FormChallenge({ onFormSubmit, challengeId, defaultValues, isModal }: Props) {
   const navigate = useNavigate();
 
   // États pour stocker les catégories, difficultés et erreurs éventuelles
@@ -181,13 +182,16 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
           <button type="submit" className="default-button form-button">
             Valider
           </button>
-          <button
-            type="button"
-            className="default-button form-button"
-            onClick={() => navigate("/")}
-          >
-            Retour
-          </button>
+          {!isModal && (
+            <button
+              type="button"
+              className="default-button form-button"
+              onClick={() => navigate("/")}
+            >
+              Retour
+            </button>
+          )}
+          
         </div>
       </form>
     </div>

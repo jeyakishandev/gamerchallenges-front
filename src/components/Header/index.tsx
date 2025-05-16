@@ -111,6 +111,7 @@ export default function Header() {
                     <NavLink to="/connexion" className="link-color">Se connecter</NavLink>
                     :
                     <>
+                        <NavLink to="/logout" className="link-color">Se déconnecter</NavLink>
                         <NavLink to={`/profile/${user.id}`}>
                             <img 
                                 src={localAvatarUrl ? localAvatarUrl : undefined} 
@@ -118,7 +119,6 @@ export default function Header() {
                                 className="profil-picture"
                             />
                         </NavLink>
-                        <NavLink to="/logout" className="link-color">Se déconnecter</NavLink>
                     </>
                     
                 }

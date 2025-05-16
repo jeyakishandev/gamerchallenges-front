@@ -30,7 +30,7 @@ export interface ISubmission {
   user_id: number;
   challenge_id: number;
   video_url: string;
-  created_at: string;
+  createdAt: string;
   name: string;
   category: ICategory;
   difficulty: IDifficulty;

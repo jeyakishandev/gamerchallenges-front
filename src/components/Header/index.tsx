@@ -94,21 +94,21 @@ export default function Header() {
                         </NavLink>
                            
                 )}
-                <li><NavLink to="/">Accueil</NavLink></li>
-                <li><NavLink to="/challenges">Challenges</NavLink></li>
-                <li><NavLink to={`/leaderboard`}>Classement</NavLink></li>
+                <li><NavLink to="/" className="link-color">Accueil</NavLink></li>
+                <li><NavLink to="/challenges" className="link-color">Challenges</NavLink></li>
+                <li><NavLink to={`/leaderboard`} className="link-color">Classement</NavLink></li>
 
                 {/** S'il n'y a pas d'utilisateur authentifié, lien pour se connecter, sinon lien pour se déconnecter. */}
                 {!user ?
-                    <li className="mobile-only"><NavLink to="/connexion">Se connecter</NavLink></li>
+                    <li className="mobile-only link-color"><NavLink to="/connexion">Se connecter</NavLink></li>
                     : 
-                    <li className="mobile-only"><NavLink to="/logout">Se déconnecter</NavLink></li>
+                    <li className="mobile-only link-color"><NavLink to="/logout">Se déconnecter</NavLink></li>
                 }
                                 
             </ul>
             <div className="desktop-only">
                 {!user ? 
-                    <NavLink to="/connexion">Se connecter</NavLink>
+                    <NavLink to="/connexion" className="link-color">Se connecter</NavLink>
                     :
                     <>
                         <NavLink to={`/profile/${user.id}`}>
@@ -118,7 +118,7 @@ export default function Header() {
                                 className="profil-picture"
                             />
                         </NavLink>
-                        <NavLink to="/logout">Se déconnecter</NavLink>
+                        <NavLink to="/logout" className="link-color">Se déconnecter</NavLink>
                     </>
                     
                 }

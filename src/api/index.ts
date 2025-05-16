@@ -233,7 +233,7 @@ export async function updateChallenge(
   data: object,
   token: string
 
-): Promise<any> {
+): Promise<null | IChallenge> {
   try {
     const response = await fetch(`${baseUrl}/challenges/${id}`, {
       method: "PATCH",

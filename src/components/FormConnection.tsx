@@ -175,7 +175,6 @@ function FormSubscribe ({addUser}: IUserProps) {
 
       <div className="form-button align-button">
         <button className="default-button" type="submit">Confirmer</button>
-        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>
@@ -233,7 +232,6 @@ function FormLogin () {
 
       <div className="form-button align-button">
         <button className="default-button" type="submit">Confirmer</button>
-        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>

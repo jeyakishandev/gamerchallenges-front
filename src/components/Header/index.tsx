@@ -23,7 +23,7 @@ export default function Header() {
         if (user?.avatar_url) {
             setLocalAvatarUrl(`${baseUrl}/uploads/${user.avatar_url}`);
         }
-    }, [user?.avatar_url]);
+    }, [user?.avatar_url, baseUrl]);
 
     /**
      * Ferme le menu burger automatiquement si la fenêtre 
@@ -94,15 +94,15 @@ export default function Header() {
                         </NavLink>
                            
                 )}
-                <li><NavLink to="/" className="link-color">Accueil</NavLink></li>
-                <li><NavLink to="/challenges" className="link-color">Challenges</NavLink></li>
-                <li><NavLink to={`/leaderboard`} className="link-color">Classement</NavLink></li>
+                <li><Link to="/" className="link-color">Accueil</Link></li>
+                <li><Link to="/challenges" className="link-color">Challenges</Link></li>
+                <li><Link to={`/leaderboard`} className="link-color">Classement</Link></li>
 
                 {/** S'il n'y a pas d'utilisateur authentifié, lien pour se connecter, sinon lien pour se déconnecter. */}
                 {!user ?
-                    <li className="mobile-only link-color"><NavLink to="/connexion">Se connecter</NavLink></li>
+                    <li className="mobile-only link-color"><Link to="/connexion">Se connecter</Link></li>
                     : 
-                    <li className="mobile-only link-color"><NavLink to="/logout">Se déconnecter</NavLink></li>
+                    <li className="mobile-only link-color"><Link to="/logout">Se déconnecter</Link></li>
                 }
                                 
             </ul>

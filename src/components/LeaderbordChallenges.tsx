@@ -32,14 +32,14 @@ export default function LeaderboardTopChallenges({ challenge, index}: Leaderboar
     return (
         <>
             <td className="array-content">
-                <td className={className}>
-                    <Link to={`/challenges/${challenge.id}`}>{medal}</Link>
+                <td>
+                    <Link to={`/challenges/${challenge.id}`} className={className}>{medal}</Link>
                 </td>
-                <td className={className}>
-                    <Link to={`/challenges/${challenge.id}`}>{challenge.name}</Link>
+                <td>
+                    <Link to={`/challenges/${challenge.id}`} className={className}>{challenge.name}</Link>
                 </td>
-                <td className={className}>
-                <Link to={`/challenges/${challenge.id}`}>{challenge.users.length}</Link>
+                <td>
+                <Link to={`/challenges/${challenge.id}`} className={className}>{challenge.users.length}</Link>
                 </td>
             </td>
         </>

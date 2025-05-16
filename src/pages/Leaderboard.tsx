@@ -58,7 +58,7 @@ export default function Leaderboard() {
 
                 <div className="lead-boxes">
                     <section className="best-challenges leader-card-style">
-                        <h3 className="low-title">Challenges populaire</h3>
+                        <h3 className="low-title">Challenges populaires</h3>
                     <table className="leaderbord-lists default-box-design effectL">
                             <thead>
                                 <tr className="array-header">
@@ -94,7 +94,7 @@ export default function Leaderboard() {
                     </section>
 
                     <section className="best-players leader-card-style">
-                        <h3 className="low-title">Meilleures Joueurs</h3>
+                        <h3 className="low-title">Meilleurs Joueurs</h3>
                         <table className="leaderbord-lists default-box-design effectR">
                             <thead>
                                 <tr className="array-header">

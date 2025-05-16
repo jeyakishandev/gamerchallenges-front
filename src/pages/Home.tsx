@@ -59,7 +59,7 @@ export default function Home() {
 
                 <div className="home-buttons buttons-flex">
                   <button
-                    className="default-button gamer-button"
+                    className="default-button "
                     onClick={() => {
                       if (user) {
                         navigate("/creation");
@@ -72,7 +72,7 @@ export default function Home() {
                   </button>
 
                   <button
-                    className="default-button gamer-button"
+                    className="default-button "
                     onClick={() => navigate("/challenges")}
                   >
                     <span>🚀 Participer</span>

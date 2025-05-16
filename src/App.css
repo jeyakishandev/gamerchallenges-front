@@ -54,16 +54,17 @@ h2 {
   --button-color-hover: #370f6e;
   --text-color: #FFFFFF;
   --background-color-box: radial-gradient(
-    circle at center,
-    rgba(148, 46, 250, 0.70) 50%,
-    rgba(103, 30, 205, 0.50) 80%,
-    rgba(59, 17, 119, 0.2) 100%
-  );
+  circle at center,
+  rgba(148, 46, 250, 0.08),
+  rgba(29, 8, 59, 0.95)
+);
+
 
   /** BOX DESIGN */
   --border-box: 2px solid #8692FA;
   --border-radius: 10px;
-  --shadow-box: 5px 5px 10px rgb(29, 29, 29);
+  --shadow-box: 0 0 20px rgba(148, 46, 250, 0.15);
+
   --border-button-hover: 2px solid #b4b8fb;
 }
 
@@ -72,11 +73,16 @@ h2 {
 /** ================================== */
 
 .default-box-design {
-    border: var(--border-box);
-    background: var(--background-color-box);
-    box-shadow: var(--shadow-box);
-    border-radius: var(--border-radius);
+  max-width: 850px;
+  margin: 3rem auto;
+  padding: 3rem 2rem;
+  background: var(--background-color-box);
+  border: var(--border-box);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-box);
+  animation: fadeInUp 0.6s ease-out both;
 }
+
 
 .default-tag-design {
   border: var(--border-box);
@@ -88,16 +94,30 @@ h2 {
 }
 
 .default-button {
-  min-width: 10rem;
-  color: var(--text-color);
-  background-color: var(--button-color);
-  padding: 0.8rem 2rem;
-  margin: 1rem 0.5rem 0 0.5rem;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-box);
-  border: none;
+  position: relative;
+  padding: 0.8rem 2.2rem;
+  font-family: var(--second-font-text);
+  font-size: 1rem;
+  font-weight: bold;
+  background: #2b064b;
+  color: white;
+  border: 2px solid #a96aff;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #a96aff88;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
-
+.default-button span {
+  position: relative;
+  z-index: 2;
+}
 .default-button.button-long-text {
   padding: 0.8rem 0.5rem;
 }
@@ -110,14 +130,34 @@ h2 {
   margin-top: 1.5rem;
 }
 
+.default-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(179,127,255,0.15), transparent 70%);
+  animation: pulse-light 4s linear infinite;
+  z-index: 0;
+}
+
 .default-button:hover {
-  transition: background-color 1.5s ease;
-  background-color: var(--button-color-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #a96affcc, 0 0 28px #6a00ff66;
+  background: #3f0c7c;
+  border-color: #c7a8ff;
 }
 
 .default-button:active {
-  box-shadow: 1px 1px 0px black;
-  transform: scale(0.95) translate(5%, 5%);
+  transform: scale(0.95);
+  box-shadow: 1px 1px 2px black;
+}
+
+@keyframes pulse-light {
+  0% { transform: rotate(0deg); opacity: 0.3; }
+  50% { transform: rotate(180deg); opacity: 0.6; }
+  100% { transform: rotate(360deg); opacity: 0.3; }
 }
 
 body {
@@ -195,17 +235,22 @@ body {
 /**? ===== FORM MOBILE DISPLAY ===== */
 /**? =============================== */
 
-.default-form-container {
-  display: flex;
-  flex-direction: column;
-}
+
 
 .default-form {
-  padding: 1rem 1rem 2rem;
-  margin: 0 2rem 2rem;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 16px;
+  animation: fadeInUp 0.6s ease-out both;
+  background: radial-gradient(circle at center, rgba(148, 46, 250, 0.08), rgba(29, 8, 59, 0.95));
+  box-shadow: 0 0 20px rgba(148, 46, 250, 0.15);
+  border: 2px solid #a96aff88;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
 
 .default-form form { 
   display: flex;
@@ -214,12 +259,16 @@ body {
 }
 
 .form-input {
-  height: 1.4rem;
-  width: 80%;
-  margin: 1rem;
-  border-radius: 5px;
+  width: 100%;
+  max-width: 350px;
+  margin: 0.8rem auto;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #a96aff88;
   background-color: #5017A1;
   color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(148, 46, 250, 0.1);
 }
 
 .default-form input::placeholder {
@@ -252,7 +301,52 @@ body {
 .label {
   width: 80%;
 }
+.form-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+.form-challenge select.form-input {
+  padding-top: 0.5rem;   
+  padding-bottom: 0.4rem; 
+  font-size: 1rem;
+  line-height: 1.2;
+}
 
+.form-challenge .form-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  background-color: #5017A1;
+  border-radius: 8px;
+  border: 1px solid #a96aff66;
+  color: white;
+  line-height: 1.3;
+}
+
+.form-challenge textarea.form-input {
+  height: 100px;
+  resize: vertical;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (max-width: 480px) {
+  .form-section-wrapper {
+    padding: 1rem;
+    margin: 1.5rem 0.5rem;
+  }
+}
 /**? ================================= */
 /**? ===== FORM TABLETTE DISPLAY ===== */
 /**? ================================= */
@@ -274,6 +368,11 @@ body {
 /**? ================================ */
 /**? ===== FORM DESKTOP DISPLAY ===== */
 /**? ================================ */
+@media screen and (max-width: 1023px) {
+  .default-form + .default-form {
+    margin-top: 2rem;
+  }
+}
 
 @media screen and (min-width: 1024px) {
 
@@ -295,7 +394,12 @@ body {
     width: 60%;
   }
 }
-
+@media screen and (max-width: 768px) {
+  .form-section-wrapper {
+    padding: 1.5rem 1rem;
+    margin: 2rem 1rem;
+  }
+}
 /**? ====================================== */
 /**? ===== FORM LARGE DESKTOP DISPLAY ===== */
 /**? ====================================== */
@@ -347,53 +451,7 @@ body {
     transform: translateY(0);
   }
 }
-.gamer-button {
-  position: relative;
-  padding: 0.8rem 2.2rem;
-  font-family: var(--second-font-text);
-  font-size: 1rem;
-  font-weight: bold;
-  background: #2b064b;
-  color: white;
-  border: 2px solid #a96aff;
-  border-radius: 12px;
-  box-shadow: 0 0 8px #a96aff88;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  z-index: 1;
-}
 
-.gamer-button span {
-  position: relative;
-  z-index: 2;
-}
-
-.gamer-button::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(179,127,255,0.15), transparent 70%);
-  animation: pulse-light 4s linear infinite;
-  z-index: 0;
-}
-
-.gamer-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px #a96affcc, 0 0 28px #6a00ff66;
-  background: #3f0c7c;
-  border-color: #c7a8ff;
-}
-
-@keyframes pulse-light {
-  0% { transform: rotate(0deg); opacity: 0.3; }
-  50% { transform: rotate(180deg); opacity: 0.6; }
-  100% { transform: rotate(360deg); opacity: 0.3; }
-}
 .home-how-wrapper {
   margin-top: 0; 
   margin-left: auto;

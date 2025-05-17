@@ -5,7 +5,7 @@ import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getChallenges } from "../api";
 import { getYoutubeThumbnailUrl } from "../utils/youtube";
-
+import heroLeftImage from "../../public/img/astronaute-mignon-agitant-main-controleur-jeu-cartoon-vector-icon-illustration-concept-icone-science-technologie-isole-vecteur-premium-style-dessin-anime-plat.png";
 
 
 export default function Home() {
@@ -46,121 +46,112 @@ export default function Home() {
   
   return (
     <main className="home-page">
+      <section className="hero-layout">
+        <div className="hero-left-image">
+          <img src={heroLeftImage} alt="Image de gauche" />
+        </div>
+        <div className="hero-right-content">
+        <div className="hero-center-content">
+          <div className="default-box-design">
+          <h1 className="main-title">Prêt à relever le challenge ?</h1>
+          <h2 className="subtitle">
+            Montrez-nous ce que vous avez dans le ventre !<br />
+            Postez vos vidéos, défiez les autres, et grimpez au sommet.
+          </h2>
+          <div className="hero-buttons buttons-flex">
+            <button
+              className="default-button "
+              onClick={() => {
+                if (user) {
+                  navigate("/creation");
+                } else {
+                  navigate("/connexion?redirect=/creation");
+                }
+              }}
+            >
+              <span>🎮 Créer</span>
+            </button>
+            <button
+              className="default-button "
+              onClick={() => navigate("/challenges")}
+            >
+              <span>🚀 Participer</span>
+            </button>
+            
+          </div>
+        
+        <div className="hero-right-how">
+          <h2 className="subtitle">Comment ça marche ?</h2>
+          <div className="how-steps">
+            <div className="step-card">🔹 <strong>1.</strong> Crée un challenge</div>
+            <div className="step-card">🎥 <strong>2.</strong> Poste ta vidéo</div>
+            <div className="step-card">🏆 <strong>3.</strong> Affronte les autres</div>
+          </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </section>
 
-          <section className="home-content">
-            <div className="home-intro-wrapper">
-              
-              <div className="home-intro-block">
-                <h1 className="main-title">Prêt à relever le challenge ?</h1>
-                <h2 className="subtitle">
-                  Montrez-nous ce que vous avez dans le ventre !<br />
-                  Postez vos vidéos, défiez les autres, et grimpez au sommet.
-                </h2>
-
-                <div className="home-buttons buttons-flex">
-                  <button
-                    className="default-button "
-                    onClick={() => {
-                      if (user) {
-                        navigate("/creation");
-                      } else {
-                        navigate("/connexion?redirect=/creation");
-                      }
-                    }}
+      <section className="home-carousel-section">
+        <div className="home-carousel-block">
+          <h3 className="low-title">🎬 Nouveautés</h3>
+          <div className="home-carousel-container">
+            <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "left")}>❮</span>
+            <div id="home-nouveaute" className="home-carousel-items">
+              {challenges.slice(0, 10).map((challenge) => {
+                const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
+                return (
+                  <Link
+                    key={challenge.id}
+                    to={`/challenges/${challenge.id}`}
+                    className="home-video-card"
                   >
-                  <span>🎮 Créer</span>
-                  </button>
+                    <img
+                      src={thumbnailUrl}
+                      alt={`Thumbnail du challenge ${challenge.name}`}
+                    />
+                    <div className="video-card-footer">
+                      <h3 className="video-card-title">{challenge.name}</h3>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "right")}>❯</span>
+          </div>
+        </div>
+      </section>
 
-                  <button
-                    className="default-button "
-                    onClick={() => navigate("/challenges")}
+      <section className="home-carousel-section">
+        <div className="home-carousel-block">
+          <h3 className="low-title">🏆 Challenges populaires</h3>
+          <div className="home-carousel-container">
+            <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "left")}>❮</span>
+            <div id="home-populaires" className="home-carousel-items">
+              {popularChallenges.slice(0, 10).map((challenge) => {
+                const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
+                return (
+                  <Link
+                    key={challenge.id}
+                    to={`/challenges/${challenge.id}`}
+                    className="home-video-card"
                   >
-                    <span>🚀 Participer</span>
-                  </button>
-                </div>
-
-                  </div>
-                  </div>
-                </section>
-                <section className="home-how-wrapper">
-                <div className="home-how-block">
-                  <h2 className="subtitle">Comment ça marche ?</h2>
-                  <div className="how-steps">
-                    <div className="step-card">🔹 <strong>1.</strong> Crée un challenge</div>
-                    <div className="step-card">🎥 <strong>2.</strong> Poste ta vidéo</div>
-                    <div className="step-card">🏆 <strong>3.</strong> Affronte les autres</div>
-                  </div>
-                </div>
-              </section>
-
-            <section className="home-carousel-section">
-              <div className="home-carousel-block">
-                <h3 className="low-title">🎬 Nouveautés</h3>
-                <div className="home-carousel-container">
-                  <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "left")}>❮</span>
-                  <div id="home-nouveaute" className="home-carousel-items">
-                    {challenges.slice(0, 10).map((challenge) => {
-                      const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
-                      return (
-                        <Link 
-                          key={challenge.id}
-                          to={`/challenges/${challenge.id}`}
-                          className="home-video-card">
-                            
-                            <img
-                              src={thumbnailUrl}
-                              alt={`Thumbnail du challenge ${challenge.name}`}
-                              
-                            />
-                            <div className="video-card-footer">
-                              <h3 className="video-card-title">{challenge.name}</h3>
-                            </div>
-                             
-                        </Link>
-                                
-                         );
-                    })}
-                  </div>
-                  <span className="home-carousel-arrow" onClick={() => scroll("home-nouveaute", "right")}>❯</span>
-                </div>
-              </div>
-            </section>
-
-
-            <section className="home-carousel-section">
-              <div className="home-carousel-block">
-                <h3 className="low-title">🏆 Challenges populaires</h3>
-                <div className="home-carousel-container">
-                  <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "left")}>❮</span>
-                  <div id="home-populaires" className="home-carousel-items">
-                    {popularChallenges.slice(0, 10).map((challenge) => {
-                      const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
-                      return (
-                        <Link 
-                          key={challenge.id}
-                          to={`/challenges/${challenge.id}`}
-                          className="home-video-card">
-                            
-                            <img
-                              src={thumbnailUrl}
-                              alt={`Thumbnail du challenge ${challenge.name}`}
-                              
-                            />
-                            <div className="video-card-footer">
-                              <h3 className="video-card-title">{challenge.name}</h3>
-                            </div>
-                             
-                        </Link>
-                                
-                         );
-                    })}
-                  </div>
-                  <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "right")}>❯</span>
-                </div>
-              </div>
-            </section>
-
-
+                    <img
+                      src={thumbnailUrl}
+                      alt={`Thumbnail du challenge ${challenge.name}`}
+                    />
+                    <div className="video-card-footer">
+                      <h3 className="video-card-title">{challenge.name}</h3>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <span className="home-carousel-arrow" onClick={() => scroll("home-populaires", "right")}>❯</span>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

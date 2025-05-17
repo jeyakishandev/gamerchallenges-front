@@ -460,101 +460,140 @@ input[type="file"]::file-selector-button:hover {
 /**? ===== HOME CONTENT ========= */
 /**? ============================ */
 
-.home-content {
-  padding: 4rem 1rem;
+/* Home.css */
+
+.home-page {
+  padding: 20px;
+}
+
+/* ================================================== */
+/* ===== SECTION HERO AVEC IMAGE ET "COMMENT ÇA MARCHE ?" ===== */
+/* ================================================== */
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 40% 1fr; /* Ajustez les pourcentages selon vos besoins */
+  align-items: start;
+  gap: 30px;
+  padding: 4rem 20px;
   max-width: 90%;
-  margin: 0 auto;
-}
-.home-intro-wrapper {
-  margin: 0 auto 2rem;
-  padding: 0 1rem;
-  max-width: 850px;
+  margin: 0 auto 3rem;
 }
 
-
-.home-intro-block {
-  position: relative;
-  background: radial-gradient(circle at center, rgba(148, 46, 250, 0.08), rgba(29, 8, 59, 0.95));
-  border: 2px solid #8692FA;
-  box-shadow: 0 0 20px rgba(148, 46, 250, 0.2);
-  border-radius: 16px;
-  padding: 3rem 2rem;
-  text-align: center;
-  animation: fadeInUp 1s ease-out forwards;
-  opacity: 0;
-  transform: translateY(30px);
-  z-index: 2;
+.hero-left-image {
+  width: 100%;
+  height: auto;
 }
 
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.hero-left-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  
+  /* Styles pour l'image (laissez celui qui vous plaît) */
 }
 
-.home-how-wrapper {
-  margin-top: 0; 
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 850px; 
-  padding: 0 1rem;
-}
-
-
-.home-how-block {
-  background: radial-gradient(circle at center, rgba(148, 46, 250, 0.08), rgba(29, 8, 59, 0.95));
-  border: 2px solid #8692FA;
-  box-shadow: 0 0 20px rgba(148, 46, 250, 0.2);
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
-  text-align: center;
-  animation: fadeInUp 1s ease-out forwards;
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.how-steps {
+.hero-right-content {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  flex-direction: column; /* Empile le contenu à droite */
+  gap: 30px; /* Espacement entre les deux sections à droite */
 }
 
-.step-card {
+.hero-center-content {
+  text-align: center;
+  
+}
+
+.hero-center-content .main-title {
+  font-size: 2rem;
+  font-family: var(--main-font-title);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.hero-center-content .subtitle {
   font-size: 1.2rem;
+  font-family: var(--main-font-title);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.hero-right-how {
+  text-align: center;
+  padding-top: 7rem;
+}
+
+.hero-right-how .subtitle {
+  font-size: 1.6rem;
+  font-family: var(--main-font-title);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.hero-right-how .how-steps {
+  display: flex;
+  gap: 1rem;
+  border-radius: 3px;
+  
+}
+
+.hero-right-how .step-card {
+  flex: 1;
+  font-size: 1rem;
   font-family: var(--second-font-text);
   background: rgba(255, 255, 255, 0.05);
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.2rem;
   border-radius: 12px;
   border: 1px solid #a96aff;
   box-shadow: 0 0 6px rgba(148, 46, 250, 0.1);
   text-align: center;
-  white-space: normal;       
-  word-break: break-word;    
+  white-space: normal;
+  word-break: break-word;
 }
 
-
-@media screen and (min-width: 768px) {
-  .how-steps {
-    flex-direction: row;
-    justify-content: space-between;
+/* Responsive pour la section hero sur les petits écrans */
+@media screen and (max-width: 768px) {
+  .hero-layout {
+    grid-template-columns: 1fr; /* Tout en une seule colonne sur les petits écrans */
+    text-align: center;
   }
 
-  .step-card {
-    flex: 1;
-    max-width: 280px;
+  .hero-left-image {
+    margin-bottom: 2rem;
+  }
+
+  .hero-right-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Espacement entre les sections */
+  }
+
+  .hero-right-how {
+    margin-top: 2rem;
+  }
+
+  .hero-right-how .how-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-right-how .step-card {
+    width: 90%;
+    margin-bottom: 1rem;
+    flex: none;
   }
 }
 
+/* Les styles pour les carrousels viendront ici après */
 
 /**? ============================ */
 /**? ===== CAROUSEL CONTENT ===== */

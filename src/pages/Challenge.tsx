@@ -55,6 +55,7 @@ export default function Challenge() {
         <div className="challenge-container">
           <section className="video-container">
             <iframe
+            className="card-video"
               width="100%"
               height="315"
               src={embedUrl}
@@ -137,6 +138,7 @@ export default function Challenge() {
               </div>
               <div>
                 <iframe
+                className="card-video"
                   width="100%"
                   height="315"
                   src={subEmbedUrl}

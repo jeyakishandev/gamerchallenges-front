@@ -93,10 +93,7 @@ export default function Home() {
                 </div>
               </section>
 
-
-
-
-              <section className="home-carousel-section">
+            <section className="home-carousel-section">
               <div className="home-carousel-block">
                 <h3 className="low-title">🎬 Nouveautés</h3>
                 <div className="home-carousel-container">

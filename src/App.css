@@ -96,7 +96,7 @@ h2 {
 .default-button {
   position: relative;
   padding: 0.8rem 2.2rem;
-  
+  white-space: nowrap;
   background: #2b064b;
   color: white;
   border: 2px solid #a96aff;

@@ -77,10 +77,7 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues, isModal }: Pr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    
-    console.log("👤 user dans Zustand :", user);
-    console.log("🔑 token dans Zustand :", token);
-    
+        
     if (!user || !token) {
       setError("Tu dois être connecté pour modifier ou créer un challenge.");
       return;
@@ -92,8 +89,7 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues, isModal }: Pr
       category_id: Number(formData.category_id),
       difficulty_id: Number(formData.difficulty_id),
     };
-  
-    console.log("Payload envoyé :", payload);
+
   
     try {
       let responseData;
@@ -103,8 +99,6 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues, isModal }: Pr
       } else {
         responseData = await addChallengeToApi(payload, token);
       }
-  
-      console.log("Challenge sauvegardé :", responseData);
   
       if (onFormSubmit) onFormSubmit();
       navigate(`/challenges/${responseData.id}`);

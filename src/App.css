@@ -90,7 +90,7 @@ h2 {
   border-radius: var(--border-radius);
   font-weight: bold;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-family: var(--second-font-text);
 }
 
 .default-button {
@@ -861,7 +861,7 @@ max-width: 600px;
 }
 
 .challenges-tag {
-  min-width: 6rem;
+  min-width: 7.5rem;
   margin: 1rem 0.5rem;
   text-align: center;
 }
@@ -940,6 +940,7 @@ max-width: 600px;
 .icon-button {
   background: none;
   border: none;
+  padding-bottom: 1rem;
   font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -993,7 +994,7 @@ max-width: 600px;
 }
 
 .challenge-cat-and-diff span, .participation-info span, .card-tags p{
-  padding: 0.1rem 1rem;
+  padding: 0.2rem 1rem;
 }
 
 .challenge-cat-and-diff span {
@@ -1249,7 +1250,7 @@ max-width: 600px;
   list-style-type: none;
   margin-top: 10px;
   margin-bottom: 10px;
-  z-index: 100;
+  z-index: 2;
   position: relative;
 }
 
@@ -1352,6 +1353,11 @@ max-width: 600px;
   padding: 0.5rem 1rem;
 }
 
+.back-button {
+  text-align: center;
+  padding: 2rem 0;
+}
+
 /**? ============================================ */
 /**? ===== CONNECTION PAGE TABLETTE DISPLAY ===== */
 /**? ============================================ */
@@ -1401,50 +1407,18 @@ max-width: 600px;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 70%;
-  padding: 0 2rem;
+  width: 75%;
+  padding: 0 auto;
   margin: 1rem 0;
 }
 
-.boxes iframe {
+/* .boxes iframe {
   width: 100%;
   margin-top: 1rem;
-}
-
-.video-card iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-}
-
-.video-card {
-  flex: 0 0 320px;
-  background-color: #6778A7;
-  border-radius: 12px;
-  overflow: hidden;
-  scroll-snap-align: start;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-}
-
-.chall-box {
-  width: 25vw;
-}
+} */
 
 .perso-info {
   text-align: center;
-}
-
-.perso-chall {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.chall-name {
-  font-weight: bold;
-  text-decoration: underline;
 }
 
 .chall-flex {
@@ -1452,6 +1426,9 @@ max-width: 600px;
   align-items: center;
   justify-content: center;
   gap: 24px;
+  max-width: 75%;
+  margin: auto;
+  overflow-x: auto;
 }
 
 .chall-list {

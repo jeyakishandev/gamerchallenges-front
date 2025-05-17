@@ -51,7 +51,7 @@ function UpdateProfile () {
           pseudo,
           email,
         );
-        console.log(updatedUser);
+        
         if (updatedUser) {
           login(updatedUser, token);
           navigate(`/profile/${user.id}`);
@@ -81,7 +81,7 @@ function UpdateProfile () {
           newPassword,
           confirmNewPassword
         );
-        console.log(updatedUserPassword);
+        
         if (updatedUserPassword) {
           login(user, token);
           navigate(`/profile/${user.id}`);

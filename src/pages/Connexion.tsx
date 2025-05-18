@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IUser } from "../@types";
 import { addUserIntoApi, getUsers } from "../api";
 import { FormLogin, FormSubscribe } from "../components/FormConnection";

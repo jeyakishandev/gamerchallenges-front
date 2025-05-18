@@ -242,9 +242,7 @@ function FormUpdateProfile({ initialUser, onUpdate }: FormUpdateProfileProps) {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate();
-  const token = useAuthStore((state) => state.token);
-  const logout = useAuthStore((state) => state.logout);
+  
 
   useEffect(() => {
     if (initialUser) {

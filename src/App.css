@@ -921,6 +921,7 @@ input[type="file"]::file-selector-button:hover {
 
 /** ================================== */
 /** ===== CHALLENGE PAGE (UNIQUE) ===== */
+/** ===== EN CONSERVANT LES STYLES DEFAULT ===== */
 /** ================================== */
 .challenge-content.default-box-design {
   padding: 2rem;
@@ -1541,7 +1542,11 @@ input[type="file"]::file-selector-button:hover {
   overflow-x: auto;
   padding: 0.5rem 1rem; 
 }
-
+.avatar-container {
+  display: flex;
+  flex-direction: column; /* Aligner l'avatar et le pseudo verticalement */
+  align-items: center; /* Centrer horizontalement */
+}
 
 .profile-completed-challenge-card {
   display: flex;

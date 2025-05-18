@@ -77,6 +77,7 @@ export default function Profil() {
                         >Modifier le profil</a>
                       )}
                     </section>
+                    <div className="avatar-container">
                     <img
                         className="avatar"
                         src={`http://localhost:3000/uploads/${player?.avatar_url}`}
@@ -86,6 +87,7 @@ export default function Profil() {
                     {user?.id === player?.id && (
                       <h3 className="pseudo default-text low-title">{player?.pseudo}</h3>
                     )}
+                </div>
                 </div>
 
                 <div className="perso-chall">

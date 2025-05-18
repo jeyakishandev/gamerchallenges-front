@@ -920,233 +920,213 @@ input[type="file"]::file-selector-button:hover {
 }
 
 /** ================================== */
-/** ===== CHALLENGE PAGE SECTION ===== */
+/** ===== CHALLENGE PAGE (UNIQUE) ===== */
 /** ================================== */
-.challenge-cat-and-diff {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-/* Boutons Modifier + Supprimer */
-.challenge-actions-inline {
-  display: flex;
-  gap: 0.5rem;
-  margin-right: auto;
-}
-
-.icon-button {
-  background: none;
-  border: none;
-  padding-bottom: 1rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.icon-button:hover {
-  transform: scale(1.2);
-}
-@media screen and (max-width: 600px) {
-  .challenge-cat-and-diff {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .challenge-actions-inline {
-    margin-top: 0.5rem;
-    margin-right: 0;
-    justify-content: flex-start;
-  }
-}
-
-
-
-
-
-
-/**? ==================================== */
-/**? ===== CHALLENGE MOBILE DISPLAY ===== */
-/**? ==================================== */
-
-.challenge-content {
-  padding: 2rem 1rem;
-  margin: 2rem;
+.challenge-content.default-box-design {
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 960px;
 }
 
 .challenge-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 2rem;
 }
-
-.video-container {
-  width: 90%;
-}
-
-.challenge-cat-and-diff {
-  margin-right: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.challenge-cat-and-diff span, .participation-info span, .card-tags p{
-  padding: 0.2rem 1rem;
-}
-
-.challenge-cat-and-diff span {
-  margin: 2rem 0 0 1rem;
-}
-
-.category-color {
-  background-color: #EC9E28;
-}
-
-.difficulty-color {
-  background-color: #EC3C28;
-}
-
-.challenge-description {
-  border: 1px solid #8692FA;
-  padding: 0 1rem;
-  margin: 1rem 1rem;
-}
-
-.align-button {
-  width: 100%;
-  text-align: center;
-}
-
-/**? ======================================== */
-/**? ===== CHALLENGE SUBMISSION CONTENT ===== */
-/**? ======================================== */
-
-.participation-title {
-  margin-top: 3rem;
-}
-
-.challenge-participations {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
-.challenge-participation-container {
-  margin: 2rem;
-  padding: 1rem;
-}
-
-.participation-info {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
-  justify-content: space-between;
-}
-
-.participation-info span {
-  margin: 1rem 0 2rem;
-  background-color: #285CEC;
-}
-
-@media screen and (min-width: 400px) {
-  .challenge-participation-container {
-    width: 100%;
-  }
-}
-
-/**? ====================================== */
-/**? ===== CHALLENGE TABLETTE DISPLAY ===== */
-/**? ====================================== */
 
 @media screen and (min-width: 768px) {
   .challenge-container {
     flex-direction: row;
-    justify-content: space-between;
+    align-items: start;
+  }
+
+  .video-container {
+    width: 60%;
   }
 
   .challenge-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 50%;
-  }
-
-  .challenge-title {
-    margin: 4rem 1rem 4rem 0;
-  }
-
-  .challenge-cat-and-diff span {
-    margin-top: 0;
-  }
-
-  .video-container {
-    width: 45%;
-    height: 100%;
-  }
-
-  .align-button {
-    margin-top: 2rem;
-  }
-
-  .challenge-participation-container {
     width: 40%;
-    margin: 1rem 0;
   }
 }
 
-.leader-box-design {
-  border: var(--border-box);
-  background:#1D083B;
-  box-shadow: var(--shadow-box);
-  border-radius: var(--border-radius);
+.video-container {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
-/**? ===================================== */
-/**? ===== CHALLENGE DESKTOP DISPLAY ===== */
-/**? ===================================== */
+.card-video {
+  width: 100%;
+  height: 100%;
+}
 
-@media screen and (min-width: 1024px) {
+.challenge-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
-  .challenge-content {
-    padding-top: 4rem;
-    width: 70%;
-    margin: 4rem auto;
-  }
-  .challenge-description {
-    margin-bottom: 0;
-    margin-top: 1rem;
-    line-height: 1.5rem;
-  }
+.challenge-title.low-title {
+  font-size: 2.2rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
 
-  .video-container {
-    margin-left: 1rem;
-  }
+.challenge-cat-and-diff {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
 
+.challenge-actions-inline {
+  display: flex;
+  gap: 0.75rem;
+  margin-left: auto;
+  margin-bottom: 1rem;
+}
+
+.icon-button {
+  background: var(--secondary-background);
+  color: var(--text-color-secondary);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.icon-button:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.category-color.default-tag-design,
+.difficulty-color.default-tag-design {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.challenge-description .default-text {
+  line-height: 1.7;
+  color: var(--text-color-secondary);
+  white-space: pre-line;
+}
+
+.align-button {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+
+.participation-title.low-title {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+/* Styles pour la section des participations */
+.challenge-participations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Style pour chaque conteneur de participation */
+.challenge-participation-container.default-box-design {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 15px; 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease-in-out; 
+}
+
+.challenge-participation-container.default-box-design:hover {
+  transform: translateY(-5px); 
+}
+
+/* Style pour les informations de participation (pseudo et date) */
+.participation-info {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.participation-info span.default-tag-design {
+  background-color: var(--tag-accent-background);
+  color: var(--tag-accent-text-color);
+  padding: 0.6rem 1.2rem; 
+  border-radius: 8px; 
+  font-size: 1rem; 
+  font-weight: bold;
+}
+
+/* Style pour le conteneur de la vidéo de participation */
+.challenge-participation-container > div {
+  border-radius: 10px; 
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Style pour l'iframe de la vidéo de participation */
+.challenge-participation-container iframe.card-video {
+  width: 100%;
+  height: 200px; 
+  aspect-ratio: 16 / 9;
+}
+
+/* Responsive pour les participations */
+@media screen and (max-width: 600px) {
   .challenge-participations {
-    width: 90%;
-    margin: auto;
+    grid-template-columns: 1fr; 
   }
 
-  .challenge-participation-container {
-    width: 30%;
-    margin: 1rem 0.5rem;
-  }
-
-  .challenge-cat-and-diff {
-    margin-bottom: 1rem;
-  }
-
-  .submission-form-section {
-    margin-top: 2rem;
+  .challenge-participation-container iframe.card-video {
+    height: 150px; 
   }
 }
+
+
+
+:root {
+  --card-background: #1e1e1e;
+  --secondary-background: #2c2c2c;
+  --text-color: #f0f0f0;
+  --text-color-secondary: #a9a9a9;
+  --border-color: #444;
+  --border-radius: 12px;
+  --shadow-box: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-box-light: 0 2px 4px rgba(0, 0, 0, 0.15);
+  --tag-accent-background: #3962c8; 
+  --tag-accent-text-color: #fff;
+  --accent-color: #007bff; 
+  --accent-color-darker: #0056b3;
+  --tag-accent-background: #4CAF50; 
+  --tag-accent-text-color: #fff;
+}
+
+
 
 /** ==================================== */
 /** ===== LEADERBOARD PAGE SECTION ===== */

@@ -472,8 +472,8 @@ input[type="file"]::file-selector-button:hover {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 40% 1fr; /* Ajustez les pourcentages selon vos besoins pour le desktop */
-  align-items: center; /* Centre verticalement les sections sur desktop */
+  grid-template-columns: 40% 1fr; 
+  align-items: center; 
   gap: 30px;
   padding: 4rem 20px;
   max-width: 90%;
@@ -482,8 +482,8 @@ input[type="file"]::file-selector-button:hover {
 
 .hero-left-section {
   display: flex;
-  flex-direction: column; /* Empile l'image et le séparateur */
-  gap: 20px; /* Espacement entre l'image et le séparateur */
+  flex-direction: column; 
+  gap: 20px; 
 }
 
 .hero-left-image {
@@ -495,13 +495,13 @@ input[type="file"]::file-selector-button:hover {
   display: block;
   width: 100%;
   height: auto;
-  /* Styles pour l'image (laissez celui qui vous plaît) */
+  
 }
 
 .hero-right-content {
   display: flex;
-  flex-direction: column; /* Empile le contenu à droite */
-  gap: 30px; /* Espacement entre les deux sections à droite */
+  flex-direction: column; 
+  gap: 30px; 
 }
 
 .hero-center-content {
@@ -509,19 +509,16 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .hero-separator {
-  margin-bottom: 2rem; /* Marge en bas du séparateur */
+  margin-bottom: 2rem; 
 }
 
 .hero-separator img {
-  max-width: 80%; /* Assurez-vous que l'image du séparateur est responsive si nécessaire */
-  height: auto;
+  max-width: 80%; 
   display: block;
-  margin: 0 auto; /* Centre l'image du séparateur */
+  margin: 0 auto;
 }
 
-.hero-center-content .default-box-design {
-  /* Vos styles pour l'encadrement violet */
-}
+
 
 .hero-center-content .main-title {
   font-size: 2rem;
@@ -580,61 +577,61 @@ input[type="file"]::file-selector-button:hover {
 /* Responsive pour la section hero sur les petits écrans */
 @media screen and (max-width: 768px) {
   .hero-layout {
-    grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+    grid-template-columns: 1fr; 
     text-align: center;
-    padding: 2rem 1rem; /* Réduisez le padding sur mobile */
+    padding: 2rem 1rem;
   }
 
   .hero-left-section {
-    display: none; /* Masque la section de l'image et du séparateur sur mobile */
+    display: none; 
   }
 
   .hero-center-content {
-    margin-bottom: 2rem; /* Augmentez la marge en bas du contenu central */
+    margin-bottom: 2rem; 
   }
 
   .hero-center-content .main-title {
-    font-size: 1.8rem; /* Réduisez la taille du titre sur mobile */
+    font-size: 1.8rem; 
     margin-bottom: 0.5rem;
   }
 
   .hero-center-content .subtitle {
-    font-size: 1rem; /* Réduisez la taille du sous-titre sur mobile */
+    font-size: 1rem; 
     line-height: 1.4;
     margin-bottom: 1.5rem;
   }
 
   .hero-buttons {
-    flex-direction: column; /* Empilez les boutons sur mobile */
-    align-items: center; /* Centrez les boutons horizontalement */
-    gap: 0.8rem; /* Réduisez l'espacement entre les boutons */
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.8rem; 
     margin-top: 1rem;
   }
 
   .hero-right-how {
     margin-top: 2rem;
-    text-align: center; /* Assurez-vous que le contenu est centré */
+    text-align: center; 
   }
 
   .hero-right-how .subtitle {
-    font-size: 1.4rem; /* Réduisez la taille du sous-titre de "Comment ça marche ?" */
+    font-size: 1.4rem; 
     margin-bottom: 0.8rem;
   }
 
   .hero-right-how .how-steps {
-    flex-direction: column; /* Empilez les étapes */
-    align-items: center; /* Centrez les étapes */
-    gap: 0.6rem; /* Réduisez l'espacement entre les étapes */
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.6rem; 
   }
 
   .hero-right-how .step-card {
-    font-size: 0.9rem; /* Réduisez la taille du texte des étapes */
+    font-size: 0.9rem; 
     padding: 0.8rem 1rem;
-    width: 90%; /* Prenez plus de largeur sur mobile */
+    width: 90%; 
   }
 }
 
-/* Les styles pour les carrousels viendront ici après */
+
 
 /* ================================================== */
 /* ===== HOME CAROUSEL SECTION (ANIMATION INFINIE - PLEINE LARGEUR) ===== */
@@ -646,9 +643,9 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .home-carousel-block {
-  width: 100%; /* Utiliser toute la largeur du parent */
-  margin: 0; /* Supprimer les marges automatiques */
-  padding: 0 20px; /* Garder un peu de padding sur les côtés */
+  width: 100%;
+  margin: 0; 
+  padding: 0 20px; 
 }
 
 .home-carousel-block .low-title {
@@ -657,14 +654,14 @@ input[type="file"]::file-selector-button:hover {
   color: #EEE8FF;
   margin-bottom: 2rem;
   text-align: left;
-  padding-left: 20px; /* Aligner avec le contenu */
+  padding-left: 20px; 
 }
 
 .home-carousel-container {
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden; /* Important pour cacher le défilement infini */
+  overflow: hidden; 
 }
 
 .home-carousel-arrow {
@@ -680,11 +677,11 @@ input[type="file"]::file-selector-button:hover {
   z-index: 10;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  left: 20px; /* Positionnement plus à l'intérieur */
+  left: 20px; 
 }
 
 .home-carousel-arrow:last-child {
-  right: 20px; /* Positionnement plus à l'intérieur */
+  right: 20px; 
 }
 
 .home-carousel-arrow:hover {
@@ -696,15 +693,15 @@ input[type="file"]::file-selector-button:hover {
   gap: 2rem;
   padding: 2rem 0;
   -webkit-overflow-scrolling: touch;
-  animation: scrollInfini 30s linear infinite; /* Animation de défilement infini */
-  width: fit-content; /* Ajuster la largeur au contenu */
+  animation: scrollInfini 30s linear infinite; 
+  width: fit-content; 
 }
 
 .home-carousel-container:hover .home-carousel-items {
-  animation-play-state: paused; /* Arrêter l'animation au survol */
+  animation-play-state: paused; 
 }
 .home-carousel-items.reversed {
-  animation-direction: reverse; /* Inverse la direction de l'animation */
+  animation-direction: reverse; 
 }
 .home-video-card {
   flex: 0 0 auto;
@@ -749,7 +746,7 @@ input[type="file"]::file-selector-button:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% + (100vw - 40px))); /* Défilement ajusté à la largeur de l'écran */
+    transform: translateX(calc(-100% + (100vw - 40px))); 
   }
 }
 
@@ -780,7 +777,7 @@ input[type="file"]::file-selector-button:hover {
     padding: 1.5rem 0;
     gap: 1.5rem;
     padding-left: 10px;
-    animation-duration: 20s; /* Animation plus rapide sur mobile */
+    animation-duration: 20s; 
   }
 
   .home-video-card {
@@ -854,7 +851,7 @@ input[type="file"]::file-selector-button:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   display: block;
   margin-top: 1rem;
-  background-color: #1D083B; /* fond neutre en cas de chargement lent */
+  background-color: #1D083B; 
 }
 
 
@@ -1400,115 +1397,339 @@ input[type="file"]::file-selector-button:hover {
 /** =============================== */
 
 .profile {
-  align-items: center;
-}
-
-.profile-sentence {
-  margin-top: 5rem;
-}
-
-.boxes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  width: 75%;
-  padding: 0 auto;
-  margin: 1rem 0;
+  padding: 2rem;
 }
 
-/* .boxes iframe {
-  width: 100%;
-  margin-top: 1rem;
-} */
-
-.perso-info {
+.profile-sentence {
+  margin-top: 3rem;
   text-align: center;
+  color: var(--text-color);
 }
+
 
 .chall-flex {
+  position: relative; /* Ajoutez ceci si ce n'est pas déjà là */
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
-  max-width: 75%;
-  margin: auto;
+  gap: 1rem;
+  width: 95%;
+  max-width: 1200px;
+  margin: 1rem auto;
   overflow-x: auto;
+  padding: 0.5rem 1rem; /* Ajouter un peu de padding latéral pour les flèches */
+}
+
+
+.profile-completed-challenge-card {
+  display: flex;
+  flex-direction: column;
+  width: 280px; 
+  flex-shrink: 0; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  padding: 1.5rem;
+  margin: 1rem;
+}
+
+.profile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.profile-challenge-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-action-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.profile-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.profile-form-input {
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+.profile-form-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.profile-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.profile-video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #333;
+}
+
+.profile-card-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.profile-card-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.profile-tag {
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.profile-details-button {
+  align-self: flex-start;
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+}
+
+.profile-details-button:hover {
+  background-color: var(--accent-color-darker);
+}
+
+
+.profile-created-challenges-section {
+  margin-top: 3rem;
+  width: 90%;
+  max-width: 960px;
+}
+
+.profile-created-challenges-title {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.profile-created-challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.profile-created-challenge-card {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.profile-created-challenge-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.profile-created-challenge-card p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+
+.boxes {
+  display: block;
+  width: 90%;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+}
+
+.chall-width {
+  
+  display: flex; 
+  gap: 1.5rem; 
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+  width: auto; 
 }
 
 .chall-list {
   display: flex;
-  flex-direction: row;
   gap: 0.5rem;
 }
 
 .chall-box {
-  display: column;
   background: radial-gradient(#3f117e, #6e21d8);
-  height: 15rem;
   border-radius: 10px;
   box-shadow: 2px 2px 6px #6778A7;
+  padding: 1rem;
+  height: auto;
 }
 
 .chall-pres {
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 1rem;
-}
-
-.chall-width {
-  max-width: 1500px;
-  width: 100%;
-  overflow-x: auto;
-  display: flex;
-  scroll-behavior: smooth; /* Pour un défilement fluide */
-}
-
-
-.button {
-  text-align: center;
-}
-
-/**? ================================ */
-/**? ===== PROFILE PAGE DISPLAY ===== */
-/**? ================================ */
-
-@media screen and (max-width: 386px) {
-  .default-button {
-    padding: 0.8rem 0.5rem;
-  }
-}
-
-@media screen and (min-width: 350px) and (max-width: 700px) {
-  .chall-flex {
-      padding-left: 1rem;
-  }
-}
-
-@media screen and (min-width: 700px) {
-  .chall-title {
-      text-align: center;
-      margin-top: 4rem;
-  }
-
+  margin-bottom: 0.8rem;
 }
 
 /* Responsive desktop */
-
-@media screen and (min-width: 700px) {
-  .chall-title {
-      text-align: center;
+@media screen and (min-width: 768px) {
+  .chall-flex {
+    max-width: 960px;
   }
 
+  .profile-completed-challenge-card {
+    flex-direction: column; 
+    width: 300px; 
+  }
 }
-
-@media screen and (min-width: 1000px) {
-
-  .chall-box {
-      padding: 5px;
+.profile-created-challenge-card,
+  .boxes { /* Cibler les cartes des deux sections */
+    width: 350px;
+  }
+@media screen and (min-width: 1200px) {
+  .chall-flex {
+    max-width: 1140px;
   }
 }
 
+.profile-created-challenges-section {
+  margin-top: 3rem;
+  width: 90%;
+  max-width: 960px;
+}
+
+.profile-created-challenges-title {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.chall-flex#created-container {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 90%;
+  margin: 1.5rem auto;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+/* Styles pour la carte de défi créé (CreatedChall) */
+.profile-created-challenge-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px; 
+  flex-shrink: 0; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  padding: 1.5rem;
+}
+
+.profile-created-challenge-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+.profile-created-challenge-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
+  background-color: #333; 
+  margin-bottom: 0.8rem;
+}
+
+.profile-created-challenge-card .card-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.profile-created-challenge-card .challenges-tag {
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.profile-created-challenge-card .challenges-tag:nth-child(3) { 
+  background-color: #007bff; 
+}
+
+.profile-created-challenge-card .default-button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+  align-self: flex-start; 
+}
+
+.profile-created-challenge-card .default-button:hover {
+  background-color: var(--accent-color-darker);
+}
+
+
+@media screen and (min-width: 768px) {
+  .chall-flex#created-container {
+    max-width: 960px;
+  }
+
+  .profile-created-challenge-card {
+    width: 350px; 
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .chall-flex#created-container {
+    max-width: 1140px;
+  }
+}
 /** ================================= */
 /** ===== UPDATE PROFIL SECTION ===== */
 /** ================================= */

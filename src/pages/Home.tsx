@@ -101,12 +101,12 @@ export default function Home() {
     <div className="home-carousel-container">
       
       <div id="home-nouveaute" className="home-carousel-items">
-        {/* Première série des challenges (les originaux) */}
+        
         {challenges.slice(0, 10).map((challenge) => {
           const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
           return (
             <Link
-              key={`original-${challenge.id}`} // Clé unique pour chaque élément
+              key={`original-${challenge.id}`} 
               to={`/challenges/${challenge.id}`}
               className="home-video-card"
             >
@@ -120,12 +120,12 @@ export default function Home() {
             </Link>
           );
         })}
-        {/* Deuxième série des mêmes challenges (les copies pour l'infini) */}
+       
         {challenges.slice(0, 10).map((challenge) => {
           const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
           return (
             <Link
-              key={`duplicate-${challenge.id}`} // Clé unique pour chaque élément
+              key={`duplicate-${challenge.id}`} 
               to={`/challenges/${challenge.id}`}
               className="home-video-card"
             >
@@ -151,14 +151,14 @@ export default function Home() {
       
       <div
         id="home-populaires"
-        className="home-carousel-items reversed" // Ajout de la classe "reversed"
+        className="home-carousel-items reversed" 
       >
-        {/* Première série des challenges populaires (les originaux) */}
+        
         {popularChallenges.slice(0, 10).map((challenge) => {
           const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
           return (
             <Link
-              key={`original-${challenge.id}`} // Clé unique pour chaque élément
+              key={`original-${challenge.id}`}
               to={`/challenges/${challenge.id}`}
               className="home-video-card"
             >
@@ -172,12 +172,12 @@ export default function Home() {
             </Link>
           );
         })}
-        {/* Deuxième série des mêmes challenges populaires (les copies pour l'infini) */}
+        
         {popularChallenges.slice(0, 10).map((challenge) => {
           const thumbnailUrl = getYoutubeThumbnailUrl(challenge.video_url);
           return (
             <Link
-              key={`duplicate-${challenge.id}`} // Clé unique pour chaque élément
+              key={`duplicate-${challenge.id}`} 
               to={`/challenges/${challenge.id}`}
               className="home-video-card"
             >

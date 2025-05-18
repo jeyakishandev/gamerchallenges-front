@@ -1513,7 +1513,43 @@ input[type="file"]::file-selector-button:hover {
   color: var(--text-color);
 }
 
+.delete-account-container {
+  text-align: center; 
+  padding: 2rem 0; 
+}
 
+.danger-button {
+  background-color: #dc3545; 
+  color: white;
+  border: none;
+  border-radius: 8px; 
+  padding: 1rem 2rem; 
+  font-size: 1.1rem; 
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  font-weight: bold; 
+  
+}
+
+.danger-button:hover {
+  background-color: #c82333; 
+  transform: scale(1.05); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+.danger-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.5); 
+}
+
+
+@media (max-width: 600px) {
+  .danger-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
 .chall-flex {
   position: relative; 
   display: flex;

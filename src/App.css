@@ -472,12 +472,18 @@ input[type="file"]::file-selector-button:hover {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 40% 1fr; /* Ajustez les pourcentages selon vos besoins */
-  align-items: start;
+  grid-template-columns: 40% 1fr; /* Ajustez les pourcentages selon vos besoins pour le desktop */
+  align-items: center; /* Centre verticalement les sections sur desktop */
   gap: 30px;
   padding: 4rem 20px;
   max-width: 90%;
   margin: 0 auto 3rem;
+}
+
+.hero-left-section {
+  display: flex;
+  flex-direction: column; /* Empile l'image et le séparateur */
+  gap: 20px; /* Espacement entre l'image et le séparateur */
 }
 
 .hero-left-image {
@@ -489,7 +495,6 @@ input[type="file"]::file-selector-button:hover {
   display: block;
   width: 100%;
   height: auto;
-  
   /* Styles pour l'image (laissez celui qui vous plaît) */
 }
 
@@ -501,7 +506,21 @@ input[type="file"]::file-selector-button:hover {
 
 .hero-center-content {
   text-align: center;
-  
+}
+
+.hero-separator {
+  margin-bottom: 2rem; /* Marge en bas du séparateur */
+}
+
+.hero-separator img {
+  max-width: 80%; /* Assurez-vous que l'image du séparateur est responsive si nécessaire */
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centre l'image du séparateur */
+}
+
+.hero-center-content .default-box-design {
+  /* Vos styles pour l'encadrement violet */
 }
 
 .hero-center-content .main-title {
@@ -529,7 +548,6 @@ input[type="file"]::file-selector-button:hover {
 
 .hero-right-how {
   text-align: center;
-  padding-top: 7rem;
 }
 
 .hero-right-how .subtitle {
@@ -543,7 +561,6 @@ input[type="file"]::file-selector-button:hover {
   display: flex;
   gap: 1rem;
   border-radius: 3px;
-  
 }
 
 .hero-right-how .step-card {
@@ -563,277 +580,226 @@ input[type="file"]::file-selector-button:hover {
 /* Responsive pour la section hero sur les petits écrans */
 @media screen and (max-width: 768px) {
   .hero-layout {
-    grid-template-columns: 1fr; /* Tout en une seule colonne sur les petits écrans */
+    grid-template-columns: 1fr; /* Une seule colonne sur mobile */
     text-align: center;
+    padding: 2rem 1rem; /* Réduisez le padding sur mobile */
   }
 
-  .hero-left-image {
-    margin-bottom: 2rem;
+  .hero-left-section {
+    display: none; /* Masque la section de l'image et du séparateur sur mobile */
   }
 
-  .hero-right-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem; /* Espacement entre les sections */
+  .hero-center-content {
+    margin-bottom: 2rem; /* Augmentez la marge en bas du contenu central */
+  }
+
+  .hero-center-content .main-title {
+    font-size: 1.8rem; /* Réduisez la taille du titre sur mobile */
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-center-content .subtitle {
+    font-size: 1rem; /* Réduisez la taille du sous-titre sur mobile */
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column; /* Empilez les boutons sur mobile */
+    align-items: center; /* Centrez les boutons horizontalement */
+    gap: 0.8rem; /* Réduisez l'espacement entre les boutons */
+    margin-top: 1rem;
   }
 
   .hero-right-how {
     margin-top: 2rem;
+    text-align: center; /* Assurez-vous que le contenu est centré */
+  }
+
+  .hero-right-how .subtitle {
+    font-size: 1.4rem; /* Réduisez la taille du sous-titre de "Comment ça marche ?" */
+    margin-bottom: 0.8rem;
   }
 
   .hero-right-how .how-steps {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Empilez les étapes */
+    align-items: center; /* Centrez les étapes */
+    gap: 0.6rem; /* Réduisez l'espacement entre les étapes */
   }
 
   .hero-right-how .step-card {
-    width: 90%;
-    margin-bottom: 1rem;
-    flex: none;
+    font-size: 0.9rem; /* Réduisez la taille du texte des étapes */
+    padding: 0.8rem 1rem;
+    width: 90%; /* Prenez plus de largeur sur mobile */
   }
 }
 
 /* Les styles pour les carrousels viendront ici après */
 
-/**? ============================ */
-/**? ===== CAROUSEL CONTENT ===== */
-/**? ============================ */
+/* ================================================== */
+/* ===== HOME CAROUSEL SECTION (ANIMATION INFINIE - PLEINE LARGEUR) ===== */
+/* ================================================== */
 
-.carousel-section {
-  margin: 4rem auto;
-  max-width: 1000px;
-  padding: 0 1rem;
-}
-
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  max-width: 1000px;
-}
-
-.carousel-items {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 1rem 0;
-}
-
-/**? ============================ */
-/**? ===== SKELETON DISPLAY ===== */
-/**? ============================ */
-.home-video iframe {
-  width: 260px;
-}
-
-.skeleton-card {
-  background-color: #6778A7;
-  width: 270px;
-  height: 140px;
-  border-radius: 8px;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Jura', sans-serif;
-  font-weight: bold;
-}
-
-/**? ============================ */
-/**? ===== ARROW DISPLAY ===== */
-/**? ============================ */
-
-.arrow {
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.arrow:hover {
-  color: #007bff;
-}
-
-/**? ====================================== */
-/**? ===== HOME LARGE DESKTOP DISPLAY ===== */
-/**? ====================================== */
-
-@media screen and (min-width: 1600px) {
-  .carousel-items {
-    overflow-x: initial;
-  }
-}
-
-.home-page .carousel-items {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-.home-page .video-card {
-  flex: 0 0 90%;
-  scroll-snap-align: center;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  background-color: #6778A7;
-}
-
-.home-page .video-card iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-}
-.home-page .video-title {
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 0.6rem;
-  color: white;
-  background-color: #5d6da1;
-  font-family: 'Jura', sans-serif;
-}
-.home-page .video-title:hover {
-  background-color: #7a8cff; 
-  transition: background-color 0.3s ease;
-}
-
-
-@media screen and (min-width: 768px) {
-  .home-page .video-card {
-    flex: 0 0 320px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .home-page .carousel-items {
-    justify-content: space-between; 
-  }
-
-  .home-page .video-card {
-    flex: 0 0 31.5%; 
-    max-width: 31.5%;
-  }
-}
 .home-carousel-section {
-  margin: 4rem auto;
-  padding: 0 1rem;
+  padding: 3rem 0;
+  
 }
 
 .home-carousel-block {
-  background: radial-gradient(circle at center, rgba(148, 46, 250, 0.08), rgba(29, 8, 59, 0.95));
-  border: 2px solid #8692FA;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(148, 46, 250, 0.2);
-  padding: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-  animation: fadeInUp 1s ease-out forwards;
-  opacity: 0;
-  transform: translateY(30px);
+  width: 100%; /* Utiliser toute la largeur du parent */
+  margin: 0; /* Supprimer les marges automatiques */
+  padding: 0 20px; /* Garder un peu de padding sur les côtés */
+}
+
+.home-carousel-block .low-title {
+  font-size: 2rem;
+  font-family: var(--main-font-title);
+  color: #EEE8FF;
+  margin-bottom: 2rem;
+  text-align: left;
+  padding-left: 20px; /* Aligner avec le contenu */
 }
 
 .home-carousel-container {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  overflow-x: hidden;
-  position: relative;
+  overflow: hidden; /* Important pour cacher le défilement infini */
+}
+
+.home-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: #A96AFF;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  left: 20px; /* Positionnement plus à l'intérieur */
+}
+
+.home-carousel-arrow:last-child {
+  right: 20px; /* Positionnement plus à l'intérieur */
+}
+
+.home-carousel-arrow:hover {
+  opacity: 1;
 }
 
 .home-carousel-items {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  justify-content: flex-start;
-  scroll-padding-left: 1rem; 
-  padding-left: 1rem;        
-  
+  gap: 2rem;
+  padding: 2rem 0;
+  -webkit-overflow-scrolling: touch;
+  animation: scrollInfini 30s linear infinite; /* Animation de défilement infini */
+  width: fit-content; /* Ajuster la largeur au contenu */
 }
 
+.home-carousel-container:hover .home-carousel-items {
+  animation-play-state: paused; /* Arrêter l'animation au survol */
+}
+.home-carousel-items.reversed {
+  animation-direction: reverse; /* Inverse la direction de l'animation */
+}
 .home-video-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 14px;
+  flex: 0 0 auto;
+  width: 400px;
+  border-radius: 12px;
   overflow: hidden;
-  background: linear-gradient(145deg, #2a0e56, #1d083b);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 0 0 95%;
-max-width: 600px; 
-
-  
-}
-.home-video-card:first-child {
-  min-width: 300px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  background-color: transparent;
 }
 
 .home-video-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 14px rgba(148, 46, 250, 0.4);
+  transform: scale(1.03);
 }
-.home-video-card iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
+
+.home-video-card img {
   display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
 }
-/* Bloc bas de carte */
+
 .video-card-footer {
-  background-color: #1d083b;
-  padding: 0.8rem 1rem;
-  text-align: center;
+  padding: 1.5rem;
+  text-align: left;
 }
 
-/* Titre cliquable */
 .video-card-title {
-  font-size: 0.95rem;
-  font-weight: bold;
-  color: #ffffff;
+  font-size: 1.2rem;
   font-family: var(--second-font-text);
-  text-decoration: none;
-  line-height: 1.3;
-  word-break: break-word;
-  transition: color 0.3s ease;
+  color: #EEE8FF;
+  margin-bottom: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.video-card-title:hover {
-  color: #a96aff;
+/* Animation Keyframes */
+@keyframes scrollInfini {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% + (100vw - 40px))); /* Défilement ajusté à la largeur de l'écran */
+  }
 }
 
+/* Responsive pour les carrousels sur mobile */
+@media screen and (max-width: 768px) {
+  .home-carousel-section {
+    padding: 2rem 0;
+  }
 
-.home-carousel-arrow {
-  font-size: 2rem;
-  cursor: pointer;
-  user-select: none;
-}
+  .home-carousel-block {
+    padding: 0 10px;
+  }
 
-.home-carousel-arrow:hover {
-  color: #a96aff;
-}
+  .home-carousel-block .low-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding-left: 10px;
+  }
 
-@media screen and (min-width: 1024px) {
+  .home-carousel-arrow {
+    font-size: 2rem;
+    left: 10px;
+    right: 10px;
+  }
+
+  .home-carousel-items {
+    padding: 1.5rem 0;
+    gap: 1.5rem;
+    padding-left: 10px;
+    animation-duration: 20s; /* Animation plus rapide sur mobile */
+  }
+
   .home-video-card {
-    flex: 0 0 30%;
-    max-width: 30%;
+    width: 85vw;
+    max-width: 400px;
+  }
+
+  .home-video-card img {
+    height: 180px;
+  }
+
+  .video-card-footer {
+    padding: 1rem;
+  }
+
+  .video-card-title {
+    font-size: 1.1rem;
   }
 }
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 
 /** =================================== */
 /** ===== CHALLENGES PAGE SECTION ===== */

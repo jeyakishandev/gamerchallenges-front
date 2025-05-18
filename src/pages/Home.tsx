@@ -36,13 +36,7 @@ export default function Home() {
     fetchChallenges();
   }, []);
 
-  const scroll = (id: string, direction: "left" | "right") => {
-    const container = document.getElementById(id);
-    if (container) {
-      const amount = direction === "left" ? -250 : 250;
-      container.scrollBy({ left: amount, behavior: "smooth" });
-    }
-  };
+  
   
   return (
     <main className="home-page">

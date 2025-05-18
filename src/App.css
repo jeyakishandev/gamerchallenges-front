@@ -1392,6 +1392,110 @@ input[type="file"]::file-selector-button:hover {
   }
 }
 
+
+
+.form-with-image {
+  display: flex;
+  flex-direction: row; 
+  width: 100%; 
+  align-items: center; 
+}
+
+.image-container {
+  width: 50%; 
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 80%; 
+  height: auto;
+  border-radius: 8px;
+}
+
+.form-container-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%; 
+  padding: 0 20px; 
+}
+
+.login-section .form-container-column {
+  order: 2; 
+}
+
+.login-section .image-container {
+  order: 1; 
+}
+
+.signup-section .form-container-column {
+  order: 1; 
+}
+
+.signup-section .image-container {
+  order: 2; 
+}
+
+.low-title {
+  text-align: left; 
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.toggle-text {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .form-wrapper {
+      flex-direction: column; 
+      align-items: center;
+      padding: 15px;
+  }
+
+  .form-with-image {
+      flex-direction: column;
+      width: 90%;
+  }
+
+  .image-container {
+      width: 90%;
+      margin-bottom: 20px;
+  }
+
+  .form-container-column {
+      width: 100%;
+      padding: 0;
+  }
+
+  .low-title {
+      text-align: center;
+  }
+
+  .login-section .form-container-column,
+  .login-section .image-container,
+  .signup-section .form-container-column,
+  .signup-section .image-container {
+      order: 0; 
+  }
+}
+
+
+
 /** =============================== */
 /** ===== PROFIL PAGE SECTION ===== */
 /** =============================== */
@@ -1411,7 +1515,7 @@ input[type="file"]::file-selector-button:hover {
 
 
 .chall-flex {
-  position: relative; /* Ajoutez ceci si ce n'est pas déjà là */
+  position: relative; 
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -1419,7 +1523,7 @@ input[type="file"]::file-selector-button:hover {
   max-width: 1200px;
   margin: 1rem auto;
   overflow-x: auto;
-  padding: 0.5rem 1rem; /* Ajouter un peu de padding latéral pour les flèches */
+  padding: 0.5rem 1rem; 
 }
 
 

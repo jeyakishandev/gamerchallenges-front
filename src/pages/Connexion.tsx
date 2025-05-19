@@ -3,8 +3,8 @@ import { IUser } from "../@types";
 import { addUserIntoApi, getUsers } from "../api";
 import { FormLogin, FormSubscribe } from "../components/FormConnection";
 import { useNavigate } from "react-router-dom";
-import loginImage from '../../public/img/dino-login.png';
-import signupImage from '../../public/img/dino-signup.png';
+import loginImage from '../assets/dino-login.png';
+import signupImage from '../assets/dino-signup.png';
 
 function Connection () {
     const [users, setUsers] = useState<IUser[]>([]);

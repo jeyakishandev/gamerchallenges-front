@@ -131,7 +131,7 @@ export default function Profil() {
                   <div className="chall-flex">
                     <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-                    <div id="created-container" className="chall-flex">
+                    <div id="created" className="chall-flex">
                       {createdChallenges.map((challenge) => {
                         return <CreatedChall key={challenge.id} challenge={challenge}/>
                       })}

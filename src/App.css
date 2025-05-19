@@ -707,18 +707,18 @@ input[type="file"]::file-selector-button:hover {
   gap: 2rem;
   padding: 2rem 0;
   width: fit-content;
-  animation-timing-function: linear; 
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
 .home-carousel-items.nouveaute {
   animation-name: scrollNouveaute;
-  animation-duration: 60s; 
+  animation-duration: 60s;
 }
 
 .home-carousel-items.populaires {
   animation-name: scrollPopulaires;
-  animation-duration: 60s; 
+  animation-duration: 60s;
 }
 
 .home-carousel-container:hover .home-carousel-items {
@@ -795,14 +795,21 @@ input[type="file"]::file-selector-button:hover {
   }
 
   .home-carousel-arrow {
-    display: none; 
+    display: none;
+  }
+
+  .home-carousel-items.nouveaute {
+    animation: none;
+  }
+
+  .home-carousel-items.populaires {
+    animation: none;
   }
 
   .home-carousel-items {
     padding: 1.5rem 0;
     gap: 1.5rem;
     padding-left: 10px;
-    animation: none; 
   }
 
   .home-video-card {

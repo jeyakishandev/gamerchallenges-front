@@ -639,13 +639,13 @@ input[type="file"]::file-selector-button:hover {
 
 .home-carousel-section {
   padding: 3rem 0;
-  
+  overflow: hidden; /* Important pour masquer le défilement horizontal */
 }
 
 .home-carousel-block {
   width: 100%;
-  margin: 0; 
-  padding: 0 20px; 
+  margin: 0;
+  padding: 0 20px;
 }
 
 .home-carousel-block .low-title {
@@ -654,14 +654,17 @@ input[type="file"]::file-selector-button:hover {
   color: #EEE8FF;
   margin-bottom: 2rem;
   text-align: left;
-  padding-left: 20px; 
+  padding-left: 20px;
 }
 
 .home-carousel-container {
   position: relative;
   display: flex;
   align-items: center;
-  overflow: hidden; 
+  overflow-x: auto; /* Permet le défilement manuel horizontal */
+  scroll-behavior: smooth; /* Ajoute un défilement doux */
+  -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
+  cursor: grab; /* Indique que l'on peut "attraper" et faire glisser */
 }
 
 .home-carousel-arrow {
@@ -677,11 +680,11 @@ input[type="file"]::file-selector-button:hover {
   z-index: 10;
   opacity: 0.6;
   transition: opacity 0.3s ease;
-  left: 20px; 
+  left: 20px;
 }
 
 .home-carousel-arrow:last-child {
-  right: 20px; 
+  right: 20px;
 }
 
 .home-carousel-arrow:hover {
@@ -692,17 +695,18 @@ input[type="file"]::file-selector-button:hover {
   display: flex;
   gap: 2rem;
   padding: 2rem 0;
-  -webkit-overflow-scrolling: touch;
-  animation: scrollInfini 60s linear infinite; 
-  width: fit-content; 
+  width: fit-content;
+  animation: scrollInfini 60s linear infinite; /* Vitesse de défilement automatique */
 }
 
 .home-carousel-container:hover .home-carousel-items {
-  animation-play-state: paused; 
+  animation-play-state: paused;
 }
+
 .home-carousel-items.reversed {
-  animation-direction: reverse; 
+  animation-direction: reverse;
 }
+
 .home-video-card {
   flex: 0 0 auto;
   width: 400px;
@@ -746,7 +750,7 @@ input[type="file"]::file-selector-button:hover {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% + (100vw - 40px))); 
+    transform: translateX(calc(-100% + (100vw - 40px)));
   }
 }
 
@@ -777,7 +781,7 @@ input[type="file"]::file-selector-button:hover {
     padding: 1.5rem 0;
     gap: 1.5rem;
     padding-left: 10px;
-    animation-duration: 60s; 
+    animation-duration: 90s; /* Vitesse de défilement automatique plus lente sur mobile */
   }
 
   .home-video-card {

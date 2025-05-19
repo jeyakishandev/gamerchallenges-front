@@ -426,11 +426,6 @@ input[type="file"]::file-selector-button:hover {
   .form-input {
     height: 2.2rem;
   }
-
-  .default-button {
-    max-width: 300px;
-  }
-
   .label {
     max-width: 600px;
   }
@@ -444,10 +439,6 @@ input[type="file"]::file-selector-button:hover {
 
   .form-input {
     max-width: 600px;
-  }
-
-  .default-button {
-    max-width: 280px;
   }
 }
 
@@ -862,6 +853,10 @@ input[type="file"]::file-selector-button:hover {
   padding: 0.7rem 0;
 }
 
+.card-tags p {
+  padding: 0.2rem 1rem;
+}
+
 .challenges-tag {
   min-width: 7.5rem;
   margin: 1rem 0.5rem;
@@ -870,7 +865,6 @@ input[type="file"]::file-selector-button:hover {
 
 .card-details {
   text-align: center;
-  display: inline-block;
   margin-bottom: 2rem;
 }
 

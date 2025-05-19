@@ -80,7 +80,7 @@ export default function Profil() {
                     <div className="avatar-container">
                     <img
                         className="avatar"
-                        src={`http://localhost:3000/uploads/${player?.avatar_url}`}
+                        src={`${import.meta.env.VITE_API_URL}/${player?.avatar_url}`}
                         alt={`Avatar de ${player?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />

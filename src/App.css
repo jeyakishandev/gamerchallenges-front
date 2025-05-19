@@ -590,7 +590,6 @@ input[type="file"]::file-selector-button:hover {
   box-shadow: 0 0 6px rgba(148, 46, 250, 0.1);
   text-align: center;
   white-space: normal;
-  word-break: break-word;
 }
 
 /* Responsive pour la section hero sur les petits écrans */
@@ -650,7 +649,13 @@ input[type="file"]::file-selector-button:hover {
   }
 }
 
-
+/* Saut de ligne après les balises strong */
+@media (min-width: 768px) and (max-width: 1048px) {
+  .how-steps .step-card strong::after {
+    content: "";
+    display: block;
+  }
+}
 
 /* ================================================== */
 /* ===== HOME CAROUSEL SECTION (ANIMATION INFINIE - PLEINE LARGEUR) ===== */

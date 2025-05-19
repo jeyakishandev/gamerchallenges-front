@@ -5,7 +5,7 @@ import { IChallenge } from "../@types/index";
 import useAuthStore from "../store"; // 🔒 pour vérifier si user connecté
 import { getChallenges } from "../api";
 import { getYoutubeThumbnailUrl } from "../utils/youtube";
-import heroLeftImage from "../../public/img/astronaute-mignon-agitant-main-controleur-jeu-cartoon-vector-icon-illustration-concept-icone-science-technologie-isole-vecteur-premium-style-dessin-anime-plat.png";
+import heroLeftImage from "../../public/img/dino-home.png";
 import heroseparatorImage from "../../public/img/Capture_d_écran_2025-05-18_à_11.30.20-removebg-preview.png"
 
 export default function Home() {

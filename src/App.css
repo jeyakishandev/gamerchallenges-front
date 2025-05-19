@@ -693,7 +693,7 @@ input[type="file"]::file-selector-button:hover {
   gap: 2rem;
   padding: 2rem 0;
   -webkit-overflow-scrolling: touch;
-  animation: scrollInfini 55s linear infinite; 
+  animation: scrollInfini 60s linear infinite; 
   width: fit-content; 
 }
 
@@ -777,7 +777,7 @@ input[type="file"]::file-selector-button:hover {
     padding: 1.5rem 0;
     gap: 1.5rem;
     padding-left: 10px;
-    animation-duration: 55s; 
+    animation-duration: 60s; 
   }
 
   .home-video-card {

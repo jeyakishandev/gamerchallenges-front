@@ -1,13 +1,19 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import useAuthStore from "../store";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { getUserById, loginUser } from "../api";
+import { NavLink, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { getUserById, loginUser, forgotPasswordRequest, resetPasswordRequest } from "../api";
 import { IUser } from "../@types";
 import { deleteUser } from "../api"
 
 
 interface IUserProps {
-  addUser: (pseudo: string, email: string, password: string, confirmPasword: string, avatar: File | null) => Promise<void>;
+  addUser: (
+    pseudo: string,
+    email: string,
+    password: string,
+    confirmPasword: string,
+    avatar: File | null
+  ) => Promise<void>;
 }
 
 interface FormUpdateProfileProps {
@@ -182,6 +188,20 @@ function FormSubscribe ({addUser}: IUserProps) {
 
 function FormLogin () {
 
+  const location = useLocation();
+  const [successMessage, setSuccessMessage] = useState(location.state?.successMessage || null);
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(null);
+      }, 5000); // 5000ms = 5 secondes
+
+      // Nettoyer le timer si le composant est démonté
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+
   const { login } = useAuthStore()
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -212,6 +232,20 @@ function FormLogin () {
     <form onSubmit={handleSubmit}>
       {error && <div className="error-message">{error}</div>}
 
+      {successMessage && (
+        <div className="toast-message success-toast">
+          <span>{successMessage}</span>
+          <button 
+            type="button"
+            className="toast-close"
+            onClick={() => setSuccessMessage(null)}
+            aria-label="Fermer le message"
+          >
+            ×
+          </button>
+        </div>
+      )}
+
       <Input 
         value={pseudoOrEmail}
         setValue={setPseudoOrEmail}
@@ -229,6 +263,8 @@ function FormLogin () {
         type="password" 
         label="Mot de passe"
       />
+
+      <NavLink to="/mot-de-passe-oublie" className="link-password-reset">Mot de passe oublié</NavLink>
 
       <div className="form-button align-button">
         <button className="default-button" type="submit">Confirmer</button>
@@ -328,6 +364,7 @@ function FormUpdateProfile({ initialUser, onUpdate }: FormUpdateProfileProps) {
   );
 }
 
+//* Change password function
 function FormUpdatePasswordProfile ({initialUser, onUpdatePassword}: UpdateProfilePasswordProps) {
 
   const navigate = useNavigate();
@@ -401,4 +438,234 @@ function FormUpdatePasswordProfile ({initialUser, onUpdatePassword}: UpdateProfi
   </>
 }
 
-export { FormSubscribe, FormLogin, FormUpdateProfile, FormUpdatePasswordProfile, Input}
+//* Forgot password
+const ForgotPasswordForm = () => {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+    setMessage("");
+
+    if (!email) {
+      setError("Veuillez saisir votre email.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      //* L'email est récupéré via le formualire et envoyé vers l'api
+      const response = await forgotPasswordRequest(email);
+      setMessage(response.message);
+      
+    } catch (error) {
+      setError("Une erreur est survenue. Veuillez réessayer");
+      console.error("Erreur de connexion:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      {message && (
+        <div className="alert alert-success">
+          {message}
+        </div>
+      )}
+      
+      {error && (
+        <div className="alert alert-danger">
+          {error}
+        </div>
+      )}
+
+      {!message && (
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          {error && <div className="error-message">{error}</div>}
+
+          <Input 
+            value={email}
+            setValue={setEmail}
+            name="email"
+            placeholder="Votre addresse email"
+            type="email" 
+            label="Email"
+          />
+
+          <div className="form-button align-button">
+            <button className="default-button" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Envoi en cours...' : 'Envoyer le lien'}
+            </button>
+
+            <button
+              type="button"
+              className="default-button"
+              onClick={() => navigate('/connexion')}
+              disabled={isSubmitting}
+            >
+              Retour
+            </button>
+          </div>
+        </form>
+      )}
+    </>
+  )
+}
+
+//* Reset password if forgot password passed
+function ResetPasswordForm () {
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [token, setToken] = useState("");
+  const [email, setEmail] = useState("");
+  const [isValidToken, setIsValidToken] = useState(false);
+  
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  //* Ici on récupère le token et l'email dans les params 
+  useEffect(() => {
+    const tokenFromUrl = searchParams.get('token');
+    const emailFormUrl = searchParams.get('email');
+
+  //* Si ils sont présent on initialise et validToken passe à true sinon message d'erreur
+    if (tokenFromUrl && emailFormUrl) {
+      setToken(tokenFromUrl);
+      setEmail(emailFormUrl);
+      setIsValidToken(true);
+    } else {
+      setError("Token ou email de réinitialisation manquant ou invalide.");
+    }
+  }, [searchParams]);
+
+  //* On créer un schéma de validation suplémentaire coté front
+  const validatePassword = (password: string): boolean => {
+    // Au minimum 8 caractères, au moins une lettre et un chiffre
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  //* Gestion de soumission du formulaire
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+
+    if (!newPassword || !confirmNewPassword) {
+      setError("Veuillez remplir tous les champs.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!validatePassword(newPassword)) {
+      setError("Le mot de passe doit contenir au moins 8 caractères, une lettre et un chiffre.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+      setError("Les mots de passe ne correspondent pas.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      //* On récupère les données dans un payload
+      const payload = {
+        token,
+        email,
+        newPassword,
+        confirmNewPassword
+      };
+
+      //* Si le payload est complet et valide il est envoyer vers la requette API
+      await resetPasswordRequest(payload);
+      
+      //* Redirection vers la page de connexion avec un message de succès
+      navigate('/connexion', { 
+        state: { 
+          successMessage: "Mot de passe réinitialisé avec succès ! Vous pouvez maintenant vous connecter." 
+        }
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Une erreur est survenue. Veuillez réessayer.");
+      }
+      console.error("Erreur lors de la réinitialisation:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (!isValidToken) {
+    return (
+      <div className="error-container">
+        <h3>Lien invalide</h3>
+        <p>{error}</p>
+        <button onClick={() => navigate('/mot-de-passe-oublie')}>
+          Demander un nouveau lien
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          {error && <div className="error-message">{error}</div>}
+
+          <Input 
+            value={newPassword}
+            setValue={setNewPassword}
+            name="password"
+            placeholder="Nouveau mot de passe"
+            type="password" 
+            label="password"
+          />
+
+          <Input 
+            value={confirmNewPassword}
+            setValue={setConfirmNewPassword}
+            name="password"
+            placeholder="Confimer nouveau mot de passe"
+            type="password" 
+            label="password"
+          />
+
+          {error && (
+            <div className="error-message" role="alert">
+              {error}
+            </div>
+          )}
+
+          <div className="form-button align-button">
+            <button className="default-button" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Réinitialisation...' : 'Réinitialiser'}
+            </button>
+
+            <button
+              type="button"
+              className="default-button"
+              onClick={() => navigate('/connexion')}
+              disabled={isSubmitting}
+            >
+              Retour
+            </button>
+          </div>
+        </form>
+    </>
+  )
+}
+
+export { FormSubscribe, FormLogin, FormUpdateProfile, FormUpdatePasswordProfile, ForgotPasswordForm, ResetPasswordForm, Input}

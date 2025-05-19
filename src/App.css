@@ -364,6 +364,18 @@ input[type="file"]::file-selector-button:hover {
   background-color: #3f0c7c;
 }
 
+.success-toast {
+  background-color: #11f0459b;
+  color: #d4edda;
+  padding: 0.50rem;
+  margin-bottom: 1rem;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  font-family: var(--second-font-text);
+}
+
 /** ================================ **/
 /** ===== FORM CONTAINER WRAP ===== **/
 /** ================================ **/
@@ -1356,6 +1368,10 @@ max-width: 600px;
 .back-button {
   text-align: center;
   padding: 2rem 0;
+}
+
+.link-password-reset:hover {
+  color: #a96aff;
 }
 
 /**? ============================================ */

@@ -48,3 +48,23 @@ export interface IDifficulty {
   color: string;
 }
 
+export interface IForgotPasswordPayload {
+  email: string;
+}
+
+export interface IForgotPasswordResponse {
+  message: string;
+  success?: boolean;
+}
+
+export interface IResetPasswordPayload {
+  token: string;
+  email: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
+
+export interface IResetPasswordResponse {
+  message: string;
+  error?: string;
+}

@@ -1,4 +1,4 @@
-import type { IChallenges, IChallenge, IUser, IChallengePayload, ICategory, IDifficulty } from "../@types";
+import type { IChallenges, IChallenge, IUser, IChallengePayload, ICategory, IDifficulty, IForgotPasswordResponse, IForgotPasswordPayload, IResetPasswordPayload, IResetPasswordResponse } from "../@types";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -178,6 +178,50 @@ export async function updateUserPasswordIntoApi(
     return null;
   }  
 }
+
+//* Send forgot password request
+export async function forgotPasswordRequest (email: string): Promise<IForgotPasswordResponse> {
+
+  //* L'email est envoyé en verification au back
+  const payload: IForgotPasswordPayload = { email };
+
+  const result = await fetch(`${baseUrl}/forgot-password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+
+  if (!result.ok) {
+    throw new Error ("Erreur lors de la demande de réinitialisation.");
+  }
+
+
+  //* Si l'email correspond à un utilisateur un lien est envoyé sur sa boite mail
+  const data: IForgotPasswordResponse = await result.json();
+  return data
+}
+
+export async function resetPasswordRequest (payload: IResetPasswordPayload): Promise<IResetPasswordResponse> {
+
+  const response = await fetch(`${baseUrl}/reset-password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error ("Erreur lors de la réinitialisation du mot de passe.");
+  }
+
+  const data: IResetPasswordResponse = await response.json();
+  return data;
+}
+
+
 
 export async function addSubmissionToChallenge(challengeId: number, videoUrl: string, token: string) {
   const response = await fetch(`${baseUrl}/challenges/${challengeId}/submissions`, {

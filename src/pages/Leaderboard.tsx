@@ -31,13 +31,13 @@ export default function Leaderboard() {
     useEffect (() => {
         const loadData = async () => {
             const data = await getUsers();
+
             const newLeaderPlayers = data.sort((a, b) => {
                 const aLen = a.challenges?.length ?? 0;
                 const bLen = b.challenges?.length ?? 0;
                 return bLen - aLen;
               });
               
-            console.log(newLeaderPlayers);
             setLeaderboardPlayers(newLeaderPlayers.slice(0, 10));
         };
         loadData();
@@ -57,15 +57,13 @@ export default function Leaderboard() {
 
                 <div className="lead-boxes">
                     <section className="best-challenges leader-card-style">
-                        <h3 className="low-title">Challenges populaire</h3>
+                        <h3 className="low-title">Challenges populaires</h3>
                     <table className="leaderbord-lists default-box-design effectL">
                             <thead>
-                                <tr>
-                                    <div className="array-header">
+                                <tr className="array-header">
                                     <th className="default-text" scope="col">Rang</th>
                                     <th className="default-text" scope="col">Pseudo</th>
                                     <th className="default-text" scope="col">Participations</th>
-                                    </div>
                                 </tr>
                             </thead>
                             <tbody className="leader-card-style">
@@ -95,15 +93,13 @@ export default function Leaderboard() {
                     </section>
 
                     <section className="best-players leader-card-style">
-                        <h3 className="low-title">Meilleures Joueurs</h3>
+                        <h3 className="low-title">Meilleurs Joueurs</h3>
                         <table className="leaderbord-lists default-box-design effectR">
                             <thead>
-                                <tr>
-                                    <div className="array-header">
+                                <tr className="array-header">
                                     <th className="default-text" scope="col">Rang</th>
                                     <th className="default-text" scope="col">Pseudo</th>
                                     <th className="default-text" scope="col">Participations</th>
-                                    </div>
                                 </tr>
                             </thead>
                             <tbody className="leader-card-style">

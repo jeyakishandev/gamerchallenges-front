@@ -32,11 +32,17 @@ export default function LeaderboardTopPlayers ({players, index}: LeaderboardPlay
 
     return (
         <>
-        <Link to={`/profile/${players.id}`} className="array-content">
-        <td className={className}>{medal}</td>
-        <td className={className}>{players.pseudo}</td>
-        <td className={className}>{players.challenges.length}</td>
-        </Link>
+        <tr className="array-content">
+            <td>
+                <Link to={`/profile/${players.id}`} className={className}>{medal}</Link>
+            </td>
+            <td>
+                <Link to={`/profile/${players.id}`} className={className}>{players.pseudo}</Link>
+            </td>
+            <td>
+                <Link to={`/profile/${players.id}`} className={className}>{players.challenges.length}</Link>
+            </td>
+        </tr>
         </>
     )
 }

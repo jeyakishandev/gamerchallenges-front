@@ -55,6 +55,7 @@ export default function Challenge() {
         <div className="challenge-container">
           <section className="video-container">
             <iframe
+            className="card-video"
               width="100%"
               height="315"
               src={embedUrl}
@@ -132,11 +133,12 @@ export default function Challenge() {
               <div className="participation-info">
                 <span className="default-tag-design">{user.pseudo}</span>
                 <span className="default-tag-design">
-                  {new Date(submission.created_at).toLocaleDateString()}
+                  {new Date(submission.createdAt).toLocaleDateString()}
                 </span>
               </div>
               <div>
                 <iframe
+                className="card-video"
                   width="100%"
                   height="315"
                   src={subEmbedUrl}

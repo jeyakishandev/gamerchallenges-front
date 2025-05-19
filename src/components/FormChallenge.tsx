@@ -16,9 +16,10 @@ interface Props {
     category_id: number;
     difficulty_id: number;
   };
+  isModal?: boolean;
 }
 
-function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
+function FormChallenge({ onFormSubmit, challengeId, defaultValues, isModal }: Props) {
   const navigate = useNavigate();
 
   // États pour stocker les catégories, difficultés et erreurs éventuelles
@@ -76,10 +77,7 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    
-    console.log("👤 user dans Zustand :", user);
-    console.log("🔑 token dans Zustand :", token);
-    
+        
     if (!user || !token) {
       setError("Tu dois être connecté pour modifier ou créer un challenge.");
       return;
@@ -91,8 +89,7 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
       category_id: Number(formData.category_id),
       difficulty_id: Number(formData.difficulty_id),
     };
-  
-    console.log("Payload envoyé :", payload);
+
   
     try {
       let responseData;
@@ -102,8 +99,6 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
       } else {
         responseData = await addChallengeToApi(payload, token);
       }
-  
-      console.log("Challenge sauvegardé :", responseData);
   
       if (onFormSubmit) onFormSubmit();
       navigate(`/challenges/${responseData.id}`);
@@ -116,81 +111,94 @@ function FormChallenge({ onFormSubmit, challengeId, defaultValues }: Props) {
 
   // Rendu du formulaire
   return (
-    <div className="default-form-container default-form default-box-design">
-      <form className="create-form " onSubmit={handleSubmit}>
-        <p className="paragraph-center low-title">{challengeId ? "Modifier le Challenge" : "Créer un Challenge"}</p>
+    <section className="default-box-design">
+  <form className="form-challenge" onSubmit={handleSubmit}>
+    <p className="paragraph-center low-title">
+      {challengeId ? "Modifier le Challenge" : "Créer un Challenge"}
+    </p>
 
-        {error && <p style={{ color: "white", textAlign: "center", background: "red"}}>{error}</p>}
+    {error && (
+      <p style={{ color: "white", textAlign: "center", background: "red" }}>
+        {error}
+      </p>
+    )}
 
-        <input
-          type="text"
-          className="form-input"
-          name="name"
-          placeholder="Titre"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+    <input
+      type="text"
+      className="form-input"
+      name="name"
+      placeholder="Titre"
+      value={formData.name}
+      onChange={handleChange}
+      required
+    />
 
-        <textarea
-          name="description"
-          className="form-input textarea"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
+    <textarea
+      className="form-input"
+      name="description"
+      placeholder="Description"
+      value={formData.description}
+      onChange={handleChange}
+      required
+    />
 
-        <input
-          type="text"
-          className="form-input"
-          name="video_url"
-          placeholder="URL de la vidéo"
-          value={formData.video_url}
-          onChange={handleChange}
-          required
-        />
+    <input
+      type="text"
+      className="form-input"
+      name="video_url"
+      placeholder="URL de la vidéo"
+      value={formData.video_url}
+      onChange={handleChange}
+      required
+    />
 
-        <select
-          name="category_id"
-          className="form-input select"
-          value={formData.category_id}
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Sélectionner une catégorie --</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>{cat.name}</option>
-            ))}
-        </select>
+    <select
+      name="category_id"
+      className="form-input"
+      value={formData.category_id}
+      onChange={handleChange}
+      required
+    >
+      <option value="">-- Sélectionner une catégorie --</option>
+      {categories.map((cat) => (
+        <option key={cat.id} value={cat.id}>
+          {cat.name}
+        </option>
+      ))}
+    </select>
 
-        <select
-          name="difficulty_id"
-          className="form-input"
-          value={formData.difficulty_id}
-          onChange={handleChange}
-          required
-        >
-          <option value="">-- Sélectionner une difficulté --</option>
-            {difficulties.map((diff) => (
-              <option key={diff.id} value={diff.id}>{diff.name}</option>
-            ))}
-        </select>
+    <select
+      name="difficulty_id"
+      className="form-input"
+      value={formData.difficulty_id}
+      onChange={handleChange}
+      required
+    >
+      <option value="">-- Sélectionner une difficulté --</option>
+      {difficulties.map((diff) => (
+        <option key={diff.id} value={diff.id}>
+          {diff.name}
+        </option>
+      ))}
+    </select>
 
         <div className="form-buttons">
           <button type="submit" className="default-button form-button">
             Valider
           </button>
-          <button
-            type="button"
-            className="default-button form-button"
-            onClick={() => navigate("/")}
-          >
-            Retour
-          </button>
+          {!isModal && (
+            <button
+              type="button"
+              className="default-button form-button"
+              onClick={() => navigate("/")}
+            >
+              Retour
+            </button>
+          )}
+          
         </div>
       </form>
-    </div>
+    </section>
   );
 }
 

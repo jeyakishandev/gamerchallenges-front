@@ -3,7 +3,6 @@ import useAuthStore from "../store";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { getUserById, loginUser } from "../api";
 import { IUser } from "../@types";
-import { deleteUser } from "../api"
 
 
 interface IUserProps {
@@ -175,7 +174,6 @@ function FormSubscribe ({addUser}: IUserProps) {
 
       <div className="form-button align-button">
         <button className="default-button" type="submit">Confirmer</button>
-        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>
@@ -233,7 +231,6 @@ function FormLogin () {
 
       <div className="form-button align-button">
         <button className="default-button" type="submit">Confirmer</button>
-        <button className="default-button" type="button">Retour</button>
       </div>
     </form>
   </>
@@ -245,9 +242,7 @@ function FormUpdateProfile({ initialUser, onUpdate }: FormUpdateProfileProps) {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate();
-  const token = useAuthStore((state) => state.token);
-  const logout = useAuthStore((state) => state.logout);
+  
 
   useEffect(() => {
     if (initialUser) {
@@ -265,25 +260,7 @@ function FormUpdateProfile({ initialUser, onUpdate }: FormUpdateProfileProps) {
     setAvatar(null);
   };
 
-  const handleDeleteAccount = async () => {
-    const confirmDelete = window.confirm(
-      "Es-tu sûr de vouloir supprimer ton compte ? Cette action est irréversible !"
-    );
-    if (!confirmDelete) return;
-
-    if (!token) {
-      alert("Token manquant. Veuillez vous reconnecter.");
-      return;
-    }
-
-    const success = await deleteUser(initialUser.id, token);
-    if (success) {
-      logout();
-      navigate("/");
-    } else {
-      alert("Une erreur est survenue lors de la suppression.");
-    }
-  };
+  
 
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -318,13 +295,7 @@ function FormUpdateProfile({ initialUser, onUpdate }: FormUpdateProfileProps) {
         <button className="default-button" type="submit">
           Confirmer
         </button>
-        <button
-          className="default-button danger"
-          type="button"
-          onClick={handleDeleteAccount}
-        >
-          Supprimer mon compte
-        </button>
+        
       </div>
     </form>
   );

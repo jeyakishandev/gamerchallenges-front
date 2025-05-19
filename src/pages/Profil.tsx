@@ -60,7 +60,15 @@ export default function Profil() {
             <main className="profile">
 
                 <div className="perso-info">
-                    <h2 className="main-title">Retrouves ici ton profil, avec tes informations personnelles, et tes défis !</h2>
+                  {user?.id === player?.id ? (
+                  <h2 className="main-title">
+                  Retrouves ici ton profil, avec tes informations personnelles, et tes défis !
+                  </h2>
+                   ) : (
+                    <h2 className="main-title">
+                  Retrouve ici le profil de {player?.pseudo} !
+                  </h2>
+                   )}
                     <section className="button-container">
                       {user?.id === player?.id && (
                         <a
@@ -69,13 +77,17 @@ export default function Profil() {
                         >Modifier le profil</a>
                       )}
                     </section>
+                    <div className="avatar-container">
                     <img
                         className="avatar"
-                        src={`http://localhost:3000/uploads/${player?.avatar_url}`}
+                        src={`${import.meta.env.VITE_API_URL}/${player?.avatar_url}`}
                         alt={`Avatar de ${player?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />
-                    <p className="pseudo default-text">Pseudo : {player?.pseudo}</p>
+                    {user?.id === player?.id && (
+                      <h3 className="pseudo default-text low-title">{player?.pseudo}</h3>
+                    )}
+                </div>
                 </div>
 
                 <div className="perso-chall">
@@ -92,8 +104,8 @@ export default function Profil() {
                     <div className="chall-flex">
                         <span className="arrow" onClick={() => scroll("completed", "left")}>❮</span>
 
-                        <div id="completed" className="carousel-items chall-width">
-
+                        <div id="completed" className="chall-flex">
+                        
                             {player?.challenges.map((challenge) => {
                                 return <CompletedChall key={challenge.id} challenge={challenge} userId={player.id} />
                             })}
@@ -110,21 +122,19 @@ export default function Profil() {
                 <article className="chall">
                   
                   {player?.id === user?.id ? (
-                    <h3 className="chall-title">Mes challenges créés</h3>
+                    <h3 className="chall-title low-title">Mes challenges créés</h3>
                   ) : (
-                    <h3 className="chall-title">Challenges créés</h3>
+                    <h3 className="chall-title low-title">Challenges créés</h3>
                   )}
                   
 
                   <div className="chall-flex">
                     <span className="arrow" onClick={() => scroll("created", "left")}>❮</span>
 
-                    <div id="created" className="carousel-items">
+                    <div id="created" className="chall-flex">
                       {createdChallenges.map((challenge) => {
-                        console.log(createdChallenges)
                         return <CreatedChall key={challenge.id} challenge={challenge}/>
                       })}
-
                     </div>
 
                     <span className="arrow" onClick={() => scroll("created", "right")}>❯</span>

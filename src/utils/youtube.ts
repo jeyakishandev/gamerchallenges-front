@@ -44,3 +44,10 @@ export function getYoutubeEmbedUrl(url: string): string {
     const videoId = extractYoutubeVideoId(url);
     return videoId ? `https://www.youtube-nocookie.com/embed/${videoId}` : url;
 }
+
+export function getYoutubeThumbnailUrl(url: string): string {
+    const videoId = extractYoutubeVideoId(url);
+    if (!videoId) return "";
+
+    return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`
+}

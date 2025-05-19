@@ -4,7 +4,8 @@ import { FormUpdateProfile, FormUpdatePasswordProfile } from "../components/Form
 import { getUserById, updateUserIntoApi, updateUserPasswordIntoApi } from "../api";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store";
-
+import { deleteUser } from "../api";
+import  logout  from "../pages/logout";
 function UpdateProfile () {
 
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ function UpdateProfile () {
           pseudo,
           email,
         );
-        console.log(updatedUser);
+        
         if (updatedUser) {
           login(updatedUser, token);
           navigate(`/profile/${user.id}`);
@@ -81,7 +82,7 @@ function UpdateProfile () {
           newPassword,
           confirmNewPassword
         );
-        console.log(updatedUserPassword);
+        
         if (updatedUserPassword) {
           login(user, token);
           navigate(`/profile/${user.id}`);
@@ -93,7 +94,34 @@ function UpdateProfile () {
         console.error(err);
       }
     };
+    const handleDeleteAccount = async () => {
+      const confirmDelete = window.confirm(
+        "Êtes-vous sûr de vouloir supprimer votre compte ?"
+      );
+      if (!confirmDelete) return;
   
+      if (!token || !user?.id) {
+        setError("Non autorisé.");
+        return;
+      }
+  
+      setLoading(true);
+      try {
+        const success = await deleteUser(user.id, token);
+        if (success) {
+          logout();
+          navigate("/");
+        } else {
+          setError("Échec de la suppression du compte.");
+        }
+      } catch (err) {
+        setError("Erreur lors de la suppression du compte.");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (loading) return <p>Chargement de votre profil...</p>;
     if (error) return <p className="error-message">{error}</p>;
     if (!currentUser) return <p>Profil non trouvé.</p>;
@@ -111,7 +139,17 @@ function UpdateProfile () {
       <section className="password-form default-form-container default-form default-box-design">
         <h3 className="low-title">Modifier le mot de passe</h3>
         <FormUpdatePasswordProfile initialUser={currentUser} onUpdatePassword={handleUpdatePassword} />
+        
       </section>
+      <div className="delete-account-container"> 
+        <button
+          className="danger-button" 
+          type="button"
+          onClick={handleDeleteAccount}
+        >
+          Supprimer mon compte
+        </button>
+      </div>
     </>
   )
 }

@@ -42,7 +42,7 @@ export default function Challenges() {
                 </div> 
                 {form && (
                     <section>
-                        <FormChallenge />
+                        <FormChallenge isModal={true} />
                     </section>
                 )}
 

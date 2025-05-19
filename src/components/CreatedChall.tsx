@@ -43,7 +43,9 @@ export default function CreatedChall({ challenge }: CreatedChallenges) {
                 <p className="default-tag-design challenges-tag" >{challenge.users.length} participants</p>
                 
             </div>
+            <div className='button-center'>
                 <Link to={`/challenges/${challenge.id}`} className="default-button card-details">Détails</Link>
+            </div>
         </article>  
     )
 }

@@ -23,6 +23,7 @@ export default function Profil() {
     const [createdChallenges, setCreatedChallenges] = useState<IChallenges>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const baseUrl = import.meta.env.VITE_API_URL;
 
 
     
@@ -80,7 +81,7 @@ export default function Profil() {
                     <div className="avatar-container">
                     <img
                         className="avatar"
-                        src={`${import.meta.env.VITE_API_URL}/${player?.avatar_url}`}
+                        src={`${baseUrl}/uploads/${player?.avatar_url}`}
                         alt={`Avatar de ${player?.pseudo || "l'utilisateur"}`}
                         style={{ width: '100px', height: '100px', borderRadius: '50%' }}
                     />

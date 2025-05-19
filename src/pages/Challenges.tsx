@@ -10,6 +10,9 @@ import useAuthStore from "../store";
 export default function Challenges() {
     // Chargement des challenges depuis la BDD.
     const [challenges, setChallenges] = useState<IChallenges>([]);
+    const [visibleCount, setVisibleCount] = useState(6); // nombre de challenges affichés au chargement de la page.
+    const { user } = useAuthStore();
+    const [form, setForm] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
@@ -17,10 +20,14 @@ export default function Challenges() {
             setChallenges(newChallenges);
         };
         loadData();
-    }, [])
+    }, []);
 
-    const { user } = useAuthStore();
-    const [form, setForm] = useState(false);
+    const handleShowMore = () => {
+        setVisibleCount((prev) => prev + 6);
+    }
+    const handleShowLess = () => {
+        setVisibleCount(6);
+    }
     
     return (
         <main>
@@ -47,10 +54,28 @@ export default function Challenges() {
                 )}
 
                 <div className="cards-container">
-                    {challenges.map((challenge) => {
+                    {challenges.slice(0, visibleCount).map((challenge) => {
                         return <ChallengesCard key={challenge.id} challenge={challenge} />
                     })}
                 
+                </div>
+                <div className="button-display-challenges">
+                    {visibleCount < challenges.length && (
+                        
+                            <button 
+                                className="default-button"
+                                onClick={handleShowMore}>
+                                    Afficher plus
+                            </button>
+                        
+                    )}
+                    {visibleCount > 6 && (
+                        <button
+                            className="default-button"
+                            onClick={handleShowLess}>
+                                Afficher moins
+                        </button>
+                    )}
                 </div>
                 
                 

@@ -1,0 +1,319 @@
+/* === HEADER FINAL GAMER CHALLENGES === */
+
+/* ========== GLOBAUX ========== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  width: 400px; /* Réduction de la largeur du logo pour un meilleur affichage mobile */
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited,
+a:focus,
+a:active {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+.profil-picture {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  margin-left: 1rem; 
+}
+
+.profil-picture.mobile-only {
+  margin: 1rem auto; 
+  height: 60px;
+  width: 60px;
+}
+
+.link-color {
+  color: #e2d9ff;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+  padding-bottom: 4px;
+  text-shadow: 0 0 5px rgba(179, 136, 255, 0.5);
+}
+
+.link-color:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #a64dff, 0 0 20px #a64dff, 0 0 30px #a64dff;
+}
+
+.link-color::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  height: 3px;
+  width: 0%;
+  background-color: #a64dff;
+  transition: width 0.5s ease-in-out, left 0.5s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(166, 77, 255, 0.8);
+  border-radius: 2px;
+}
+
+.link-color:hover::after {
+  width: 100%;
+  left: 0%;
+  background-color: #d480ff;
+  box-shadow: 0 0 10px #d480ff, 0 0 20px #d480ff;
+}
+
+/* ======= BOUTON CONNEXION ======= */
+.connexion-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #6c1dbf;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 2px solid #a64dff;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(166, 77, 255, 0.5);
+}
+
+.connexion-btn:hover {
+  background-color: #a64dff;
+  color: #ffffff;
+  border-color: #d480ff;
+  box-shadow: 0 0 10px #d480ff, 0 0 20px #d480ff;
+}
+
+
+/* ========== MENU BURGER ========== */
+.burger.mobile-only {
+  position: fixed;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%; 
+  color: white; 
+}
+
+.burger.mobile-only > svg { 
+  width: 100%;
+  height: 100%;
+  color: white; 
+}
+.close-button-fullscreen {
+  position: absolute; 
+  top: 2rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  color: white; 
+}
+
+.close-button-fullscreen svg {
+  width: 2rem;
+  height: 2rem;
+}
+/* ========== NAVBAR DESKTOP ========== */
+.navbar {
+  display: none;
+}
+
+.navbar.desktop-only {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 50%;
+  position: static;
+}
+
+.navbar.desktop-only li {
+  list-style-type: none;
+  padding: 0 1rem;
+}
+
+/* ========== MENU FULLSCREEN MOBILE ========== */
+.fullscreen-menu {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #1d083b 0%, #5017a1 100%);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fullscreen-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+  max-width: 400px;
+  color: white;
+  padding: 20px 0;
+}
+
+.fullscreen-logo {
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%; 
+}
+
+.fullscreen-logo img {
+  height: auto;
+  max-width: 80%;
+}
+
+.fullscreen-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.fullscreen-links li a.link-color {
+  color: #e3d5ff;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  font-size: 1.5rem;
+  text-shadow: 0 0 5px rgba(179, 136, 255, 0.5);
+  padding-bottom: 4px;
+}
+
+.fullscreen-links li a.link-color:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px #a64dff, 0 0 20px #a64dff, 0 0 30px #a64dff;
+}
+
+.fullscreen-links li a.link-color::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  height: 2px;
+  width: 0%;
+  background-color: #a64dff;
+  transition: width 0.5s ease-in-out, left 0.5s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 5px rgba(166, 77, 255, 0.8);
+  border-radius: 1px;
+}
+
+.fullscreen-links li a.link-color:hover::after {
+  width: 100%;
+  left: 0%;
+  background-color: #d480ff;
+  box-shadow: 0 0 8px #d480ff, 0 0 15px #d480ff;
+}
+
+.fullscreen-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+/* ========== FIX RESPONSIVE FINAL ========== */
+
+/* Mobile-first : cacher le menu desktop */
+.desktop-only {
+  display: none !important;
+}
+.mobile-only {
+  display: block !important;
+}
+
+/* Desktop à partir de 768px */
+@media screen and (min-width: 768px) {
+  .desktop-only {
+    display: flex !important;
+    align-items: center;
+  }
+
+  .mobile-only {
+    display: none !important;
+  }
+
+  .burger {
+    display: none !important;
+  }
+
+  .header {
+    padding: 1rem 3rem;
+  }
+
+  .logo {
+    
+    max-height: 140px;
+  }
+  .logo img {
+    max-height: 100%; 
+  .navbar.desktop-only {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: auto;
+    margin-left: auto;
+  }
+
+  .navbar.desktop-only li {
+    list-style-type: none;
+    padding: 0 1rem;
+  }
+
+  .navbar.desktop-only li a.link-color {
+    font-size: 1rem;
+  }
+
+  .desktop-only .default-button {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+  }
+
+  .desktop-only .profil-picture {
+    height: 30px;
+    width: 30px;
+    margin-left: 0.8rem;
+  }
+}
+}

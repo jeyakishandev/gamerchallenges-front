@@ -1,0 +1,2034 @@
+/**! ===== MOBILE FIRST ===== */
+/**! ===== RESPONSIVE SIZE == */
+/**! MOBILE SIZE UNDER 768PX
+/**! TABLETTE SIZE 768PX - 1024PX
+/**! DESKTOP SIZE 1024PX - 1366PX
+/**! LARGE DESKTOP SIZE 1366PX ++
+
+/**! ===== CSS FOLDER PLAN ===== */
+/**! - RESET ELEMENT
+/**! - DEFAULT VARIABLE ELEMENT : FONT, COLOR, BOX DESIGN
+/**! - DEFAULT CLASS ELEMENT : BOX TAG BUTTON DEFAULT DESIGN
+/**! - DEFAULT TITLE AND TEXT
+/**! - DEFAULT FORM
+/* TODO: HEADER
+/**! - HOME PAGE
+/**! - CHALLENGES PAGE
+/**! - CHALLENGE PAGE
+/**! - LEADERBOARD PAGE
+/**! - CONNECTION PAGE
+/* TODO: PROFILE
+/**! - UPDATE PROFIL PAGE
+/**! - FOOTER */
+/**! - 404NNotFound */
+
+/**! ============== COMMENTS BLOCK ================ */
+
+/** =========================================== */
+/** ===== I COMMENT THE MAIN SECTION ========== */
+/** =========================================== */
+/**? ============================================ */
+/**? ===== I COMMENT ON PART OF THE PAGE ======== */
+/**? ============================================ */
+
+/**! ===== CSS RULLES START HERE ===== */
+
+/** RESET ELEMENT */
+h2 {
+  font-size: 1rem;
+}
+
+/** ==================================== */
+/** ===== DEFAULT VARIABLE ELEMENT ===== */
+/** ==================================== */
+
+:root {
+
+  /** FONT FAMILY */
+  --main-font-title: 'Joti One', cursive;
+  --second-font-text: 'Jura', sans-serif;
+
+  /** COLOR ELEMENTS */
+  --main-background-color: radial-gradient(#5017A1, #1D083B);
+  --button-color: #285CEC;
+  --button-color-hover: #7825d0;
+  --text-color: #FFFFFF;
+  --background-color-box: radial-gradient(
+  circle at center,
+  rgba(148, 46, 250, 0.08),
+  rgba(29, 8, 59, 0.95)
+);
+
+
+  /** BOX DESIGN */
+  --border-box: 2px solid #8692FA;
+  --border-radius: 10px;
+  --shadow-box: 0 0 20px rgba(148, 46, 250, 0.15);
+
+  --border-button-hover: 2px solid #b4b8fb;
+}
+
+/** ================================== */
+/** ===== DEFAULT CLASS ELEMENTS ===== */
+/** ================================== */
+
+.default-box-design {
+  max-width: 850px;
+  margin: 3rem auto;
+  padding: 3rem 2rem;
+  background: var(--background-color-box);
+  border: var(--border-box);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-box);
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+
+.default-tag-design {
+  border: var(--border-box);
+  box-shadow: var(--shadow-box);
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  color: #ffffff;
+  font-family: var(--second-font-text);
+}
+
+.default-button {
+  position: relative;
+  padding: 0.8rem 2.2rem;
+  white-space: nowrap;
+  background: #2b064b;
+  color: white;
+  border: 2px solid #a96aff;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #a96aff88;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.default-button span {
+  position: relative;
+  z-index: 2;
+}
+.default-button.button-long-text {
+  padding: 0.8rem 0.5rem;
+}
+
+.buttons-flex {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.default-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(179,127,255,0.15), transparent 70%);
+  animation: pulse-light 4s linear infinite;
+  z-index: 0;
+}
+
+.default-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #a96affcc, 0 0 28px #6a00ff66;
+  background: #3f0c7c;
+  border-color: #c7a8ff;
+}
+
+.default-button:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px 2px black;
+}
+
+@keyframes pulse-light {
+  0% { transform: rotate(0deg); opacity: 0.3; }
+  50% { transform: rotate(180deg); opacity: 0.6; }
+  100% { transform: rotate(360deg); opacity: 0.3; }
+}
+
+body {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--main-background-color);
+  color: var(--text-color);
+}
+
+.arrow {
+  cursor: pointer;
+  font-size: 1.5rem;
+  left: 10px;
+  right: 10px;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+/** ================================== */
+/** ===== DEFAULT TITLE AND TEXT ===== */
+/** ================================== */
+
+/** main-title: h1 */
+.main-title {
+  font-size: 1.8rem;
+  padding: 1rem 0 1rem;
+}
+
+/** subtitle: h2 */
+.subtitle { 
+  font-size: 1.4rem;
+  padding-bottom: 2rem;
+}
+
+/** low-title: h3 */
+.chall-title {
+  text-align: center;
+  color: var(--text-color);
+  font-family: var(--second-font-text);
+  font-size: 1.5rem;
+}
+
+.low-title {
+  text-align: center;
+  font-family: var(--second-font-text);
+  font-size: 1.2rem;
+}
+
+.main-title, .subtitle {
+  font-family: var(--main-font-title);
+  text-align: center;
+}
+
+/** default-text: p */
+.default-text, a, .default-button {
+  font-family: var(--second-font-text);
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.default-button {
+  cursor: pointer;
+}
+
+/** paragraph center */
+.paragraph-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 1366px) {
+  .default-text, a, .default-button {
+    font-size: 1.2rem;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .subtitle { 
+    font-size: 1.6rem;
+  }
+
+  .low-title {
+    font-size: 1.4rem;
+  }
+}
+
+/** ================================ **/
+/** ======= FORM COMPONENTS ======= **/
+/** ================================ **/
+
+.default-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 16px;
+  background: radial-gradient(circle at center, rgba(148, 46, 250, 0.08), rgba(29, 8, 59, 0.95));
+  border: 2px solid #a96aff88;
+  box-shadow: 0 0 20px rgba(148, 46, 250, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.6s ease-out both;
+  box-sizing: border-box;
+}
+
+.default-form form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+/** ================================ **/
+/** ========= INPUT STYLES ========= **/
+/** ================================ **/
+
+.form-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  margin: 0.5rem auto;
+  font-size: 1rem;
+  background-color: #5017A1;
+  color: white;
+  border-radius: 8px;
+  border: 1px solid #a96aff88;
+  box-shadow: 0 0 5px rgba(148, 46, 250, 0.1);
+  box-sizing: border-box;
+
+}
+input.form-input,
+select.form-input,
+textarea.form-input {
+  padding: 1.5rem 1rem;
+}
+
+textarea.form-input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-input::placeholder,
+textarea.form-input::placeholder {
+  color: white;
+}
+
+.create-form select option {
+  background-color: #5017A1;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.label {
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  font-weight: bold;
+  font-family: 'Jura', sans-serif;
+  color: white;
+  margin-bottom: 0.4rem;
+}
+
+/** ================================ **/
+/** ========== BUTTONS ============= **/
+/** ================================ **/
+
+.form-button,
+.form-buttons,
+.align-button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+
+
+.default-button:hover {
+  background-color: #3f0c7c;
+  transform: scale(1.03);
+}
+/* ===== INPUT FILE STYLING ===== */
+
+input[type="file"].form-input {
+  padding: 0.7rem 1rem;
+  height: 3.8rem;
+  background-color: #5017A1;
+  border: 1px solid #a96aff88;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 0 5px rgba(148, 46, 250, 0.1);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Bouton "Browse" - Chrome/Safari */
+input[type="file"]::file-selector-button {
+  background-color: #2b064b;
+  color: white;
+  border: 1px solid #a96aff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: 'Jura', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #3f0c7c;
+}
+
+.success-toast {
+  background-color: #11f0459b;
+  color: #d4edda;
+  padding: 0.50rem;
+  margin-bottom: 1rem;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  font-family: var(--second-font-text);
+}
+
+/** ================================ **/
+/** ===== FORM CONTAINER WRAP ===== **/
+/** ================================ **/
+
+.form-challenge {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.form-challenge .form-input {
+  max-width: 600px;
+}
+
+.form-challenge select.form-input {
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+/** ================================ **/
+/** ========== ANIMATION ========== **/
+/** ================================ **/
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/** ================================ **/
+/** ========== RESPONSIVE ========= **/
+/** ================================ **/
+
+
+
+/* 💻 Tablette */
+@media screen and (min-width: 768px) {
+  .form-input {
+    height: 2rem;
+  }
+
+  .form-button {
+    margin: 1rem auto;
+  }
+}
+
+/* 🖥️ Desktop */
+@media screen and (min-width: 1024px) {
+  .default-form {
+    padding: 3rem;
+  }
+
+  .form-input {
+    height: 2.2rem;
+  }
+  .label {
+    max-width: 600px;
+  }
+}
+
+/* 🖥️ Large desktop */
+@media screen and (min-width: 1366px) {
+  .default-form {
+    max-width: 700px;
+  }
+
+  .form-input {
+    max-width: 600px;
+  }
+}
+
+
+/** ============================= */
+/** ===== HOME PAGE SECTION ===== */
+/** ============================= */
+
+/**? ============================ */
+/**? ===== HOME CONTENT ========= */
+/**? ============================ */
+
+/* Home.css */
+
+.home-page {
+  padding: 20px;
+}
+
+/* ================================================== */
+/* ===== SECTION HERO AVEC IMAGE ET "COMMENT ÇA MARCHE ?" ===== */
+/* ================================================== */
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 40% 1fr; 
+  align-items: center; 
+  gap: 30px;
+  padding: 4rem 20px;
+  max-width: 90%;
+  margin: 0 auto 3rem;
+}
+
+.hero-left-section {
+  display: flex;
+  flex-direction: column; 
+  gap: 20px; 
+}
+
+.hero-left-image {
+  width: 100%;
+  height: auto;
+}
+
+.hero-left-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  
+}
+
+.hero-right-content {
+  display: flex;
+  flex-direction: column; 
+  gap: 30px; 
+}
+
+.hero-center-content {
+  text-align: center;
+}
+
+.hero-separator {
+  margin-bottom: 2rem; 
+}
+
+.hero-separator img {
+  max-width: 80%; 
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+.hero-center-content .main-title {
+  font-size: 2rem;
+  font-family: var(--main-font-title);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.hero-center-content .subtitle {
+  font-size: 1.2rem;
+  font-family: var(--main-font-title);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.hero-right-how {
+  text-align: center;
+}
+
+.hero-right-how .subtitle {
+  font-size: 1.6rem;
+  font-family: var(--main-font-title);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.hero-right-how .how-steps {
+  display: flex;
+  gap: 1rem;
+  border-radius: 3px;
+}
+
+.hero-right-how .step-card {
+  flex: 1;
+  font-size: 1rem;
+  font-family: var(--second-font-text);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #a96aff;
+  box-shadow: 0 0 6px rgba(148, 46, 250, 0.1);
+  text-align: center;
+  white-space: normal;
+}
+
+/* Responsive pour la section hero sur les petits écrans */
+@media screen and (max-width: 768px) {
+  .hero-layout {
+    grid-template-columns: 1fr; 
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+
+  .hero-left-section {
+    display: none; 
+  }
+
+  .hero-center-content {
+    margin-bottom: 2rem; 
+  }
+
+  .hero-center-content .main-title {
+    font-size: 1.8rem; 
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-center-content .subtitle {
+    font-size: 1rem; 
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.8rem; 
+    margin-top: 1rem;
+  }
+
+  .hero-right-how {
+    margin-top: 2rem;
+    text-align: center; 
+  }
+
+  .hero-right-how .subtitle {
+    font-size: 1.4rem; 
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-right-how .how-steps {
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.6rem; 
+  }
+
+  .hero-right-how .step-card {
+    font-size: 0.9rem; 
+    padding: 0.8rem 1rem;
+    width: 90%; 
+  }
+}
+
+/* Saut de ligne après les balises strong */
+@media (min-width: 768px) and (max-width: 1048px) {
+  .how-steps .step-card strong::after {
+    content: "";
+    display: block;
+  }
+}
+
+/* ================================================== */
+/* ===== HOME CAROUSEL SECTION (ANIMATION INFINIE - PLEINE LARGEUR) ===== */
+/* ================================================== */
+
+.home-carousel-section {
+  padding: 3rem 0;
+  overflow: hidden; /* Important pour masquer le défilement horizontal */
+}
+
+.home-carousel-block {
+  width: 100%;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.home-carousel-block .low-title {
+  font-size: 2rem;
+  font-family: var(--main-font-title);
+  color: #EEE8FF;
+  margin-bottom: 2rem;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.home-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow-x: auto; /* Permet le défilement manuel horizontal */
+  scroll-behavior: smooth; /* Ajoute un défilement doux */
+  -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
+  cursor: grab; /* Indique que l'on peut "attraper" et faire glisser */
+}
+
+/* Cacher la scrollbar sur desktop */
+@media (hover: hover) and (pointer: fine) {
+  .home-carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  .home-carousel-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+.home-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  color: #A96AFF;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  left: 20px;
+}
+
+.home-carousel-arrow:last-child {
+  right: 20px;
+}
+
+.home-carousel-arrow:hover {
+  opacity: 1;
+}
+
+.home-carousel-items {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  width: fit-content;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.home-carousel-items.nouveaute {
+  animation-name: scrollNouveaute;
+  animation-duration: 60s;
+}
+
+.home-carousel-items.populaires {
+  animation-name: scrollPopulaires;
+  animation-duration: 60s;
+}
+
+.home-carousel-container:hover .home-carousel-items {
+  animation-play-state: paused;
+}
+
+.home-carousel-items.reversed {
+  animation-direction: reverse;
+}
+
+.home-video-card {
+  flex: 0 0 auto;
+  width: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  background-color: transparent;
+}
+
+.home-video-card:hover {
+  transform: scale(1.03);
+}
+
+.home-video-card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.video-card-footer {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.video-card-title {
+  font-size: 1.2rem;
+  font-family: var(--second-font-text);
+  color: #EEE8FF;
+  margin-bottom: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Animation Keyframes */
+@keyframes scrollNouveaute {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% + (100vw - 40px))); }
+}
+
+@keyframes scrollPopulaires {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% + (100vw - 40px))); }
+}
+
+/* Responsive pour les carrousels sur mobile - Désactiver l'animation */
+@media screen and (max-width: 768px) {
+  .home-carousel-section {
+    padding: 2rem 0;
+  }
+
+  .home-carousel-block {
+    padding: 0 10px;
+  }
+
+  .home-carousel-block .low-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .home-carousel-arrow {
+    display: none;
+  }
+
+  .home-carousel-items.nouveaute {
+    animation: none;
+  }
+
+  .home-carousel-items.populaires {
+    animation: none;
+  }
+
+  .home-carousel-items {
+    padding: 1.5rem 0;
+    gap: 1.5rem;
+    padding-left: 10px;
+  }
+
+  .home-video-card {
+    width: 85vw;
+    max-width: 400px;
+  }
+
+  .home-video-card img {
+    height: 180px;
+  }
+
+  .video-card-footer {
+    padding: 1rem;
+  }
+
+  .video-card-title {
+    font-size: 1.1rem;
+  }
+}
+
+/** =================================== */
+/** ===== CHALLENGES PAGE SECTION ===== */
+/** =================================== */
+
+
+
+
+
+/**? ====================================== */
+/**? ===== CHALLENGES MOBILE DISPLAY  ===== */
+/**? ====================================== */
+
+.challenges-title {
+  margin-top: 3.8rem;
+}
+
+.challenges-subtitle {
+  width: 80%;
+  margin: auto;
+}
+
+.cards-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 70%;
+  padding: 0 2rem;
+  margin: 1rem 0;
+}
+
+.card iframe {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.card-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  display: block;
+  margin-top: 1rem;
+  background-color: #1D083B; 
+}
+
+
+.card-tags {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 0.7rem 0;
+}
+
+.card-tags p {
+  padding: 0.2rem 1rem;
+}
+
+.challenges-tag {
+  min-width: 7.5rem;
+  margin: 1rem 0.5rem;
+  text-align: center;
+}
+
+.card-details {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.button-display-challenges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.challenges-background {
+  border: var(--border-box);
+  background-color: #1D083B;
+  box-shadow: var(--shadow-box);
+  border-radius: var(--border-radius);
+}
+
+/**? ======================================== */
+/**? ===== CHALLENGES TABLETTE DISPLAY  ===== */
+/**? ======================================== */
+
+@media screen and (min-width: 768px) {
+  .card {
+      width: 35%;
+  }
+
+  .challenges-subtitle {
+      width: 70%;
+  }
+
+  .card-title {
+    min-height: 6rem;
+    margin-bottom: 0;
+  }
+
+  .button-container {
+    text-align: right;
+    margin-right: 10rem;
+}
+}
+
+/**? ======================================= */
+/**? ===== CHALLENGES DESKTOP DISPLAY  ===== */
+/**? ======================================= */
+@media screen and (min-width: 1024px) {
+  .card {
+      width: 25%;
+  }
+}
+
+/** ================================== */
+/** ===== CHALLENGE PAGE (UNIQUE) ===== */
+/** ===== EN CONSERVANT LES STYLES DEFAULT ===== */
+/** ================================== */
+.challenge-content.default-box-design {
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 960px;
+}
+
+.challenge-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .challenge-container {
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .video-container {
+    width: 60%;
+  }
+
+  .challenge-info {
+    width: 40%;
+  }
+}
+
+.video-container {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+.card-video {
+  width: 100%;
+  height: 100%;
+}
+
+.challenge-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.challenge-title.low-title {
+  font-size: 2.2rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.challenge-cat-and-diff {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.challenge-actions-inline {
+  display: flex;
+  gap: 0.75rem;
+  margin-left: auto;
+  margin-bottom: 1rem;
+}
+
+.icon-button {
+  background: var(--secondary-background);
+  color: var(--text-color-secondary);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.icon-button:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.category-color.default-tag-design,
+.difficulty-color.default-tag-design {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.challenge-description .default-text {
+  line-height: 1.7;
+  color: var(--text-color-secondary);
+  white-space: pre-line;
+}
+
+.align-button {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+
+.participation-title.low-title {
+  font-size: 1.6rem;
+  color: var(--text-color);
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+/* Styles pour la section des participations */
+.challenge-participations {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Style pour chaque conteneur de participation */
+.challenge-participation-container.default-box-design {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 15px; 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease-in-out; 
+}
+
+.challenge-participation-container.default-box-design:hover {
+  transform: translateY(-5px); 
+}
+
+/* Style pour les informations de participation (pseudo et date) */
+.participation-info {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.participation-info span.default-tag-design {
+  background-color: var(--tag-accent-background);
+  color: var(--tag-accent-text-color);
+  padding: 0.6rem 1.2rem; 
+  border-radius: 8px; 
+  font-size: 1rem; 
+  font-weight: bold;
+}
+
+/* Style pour le conteneur de la vidéo de participation */
+.challenge-participation-container > div {
+  border-radius: 10px; 
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Style pour l'iframe de la vidéo de participation */
+.challenge-participation-container iframe.card-video {
+  width: 100%;
+  height: 200px; 
+  aspect-ratio: 16 / 9;
+}
+
+/* Responsive pour les participations */
+@media screen and (max-width: 600px) {
+  .challenge-participations {
+    grid-template-columns: 1fr; 
+  }
+
+  .challenge-participation-container iframe.card-video {
+    height: 150px; 
+  }
+}
+
+
+
+:root {
+  --card-background: #1e1e1e;
+  --secondary-background: #2c2c2c;
+  --text-color: #f0f0f0;
+  --text-color-secondary: #a9a9a9;
+  --border-color: #444;
+  --border-radius: 12px;
+  --shadow-box: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-box-light: 0 2px 4px rgba(0, 0, 0, 0.15);
+  --tag-accent-background: #3962c8; 
+  --tag-accent-text-color: #fff;
+  --accent-color: #007bff; 
+  --accent-color-darker: #0056b3;
+  --tag-accent-background: #4CAF50; 
+  --tag-accent-text-color: #fff;
+}
+
+
+
+/** ==================================== */
+/** ===== LEADERBOARD PAGE SECTION ===== */
+/** ==================================== */
+/**? ========================================== */
+/**? ===== LEADERBORD PAGE MOBILE DISPLAY ===== */
+/**? ========================================== */
+
+.low-title {
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+}
+
+.leaderbord-title {
+  margin-top: 3.8rem;
+}
+
+.leaderbord-subtitle {
+  margin: 1rem auto 4rem;
+  width: 80%;
+}
+
+.gold {
+  color: #FFD700; /* Or */
+  font-weight: bold;
+}
+
+.silver {
+  color: #C0C0C0; /* Argent */
+  font-weight: bold;
+}
+
+.bronze {
+  color: #CD7F32; /* Bronze */
+  font-weight: bold;
+}
+
+@keyframes rotate {
+  to {
+    --rotateR: 360deg;
+    --rotateL: -360deg;
+  }
+}
+
+@property --rotateR {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --rotateL {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.effectR {
+  background: conic-gradient(from var(--rotateR),
+              transparent 0%, #c3ffe1 15%, transparent 30%);
+  position: absolute;
+  inset: 0;
+  animation: rotate 5s linear infinite;
+}
+
+.effectL {
+  background: conic-gradient(from var(--rotateL),
+              transparent 0%, #c3ffe1 15%, transparent 30%);
+  position: absolute;
+  inset: 0;
+  animation: rotate 5s linear infinite;
+}
+
+.effectR:after, .effectL:after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-color: #1D083B;
+}
+
+.leader-card-style {
+  position: relative;
+}
+
+.block {
+  position: relative;
+  height: 20%;
+}
+
+.leaderboard-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.leaderbord-lists {
+  padding: 1rem 0;
+  min-height: 35rem;
+  position: relative;
+  width: 100%;
+}
+
+.leaderbord-lists td, .leaderbord-lists th {
+  text-align: center;
+  list-style-type: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  z-index: 2;
+  position: relative;
+}
+
+.array-header, .array-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.array-content td, .array-header th {
+  min-width: 20%;
+  padding: 0.5rem 0;
+}
+
+.leaderbord-lists tr {
+  width: 100%;
+}
+
+.perso-leader-sentence {
+  text-align: center;
+}
+
+@media screen and (min-width: 320px) {
+
+  .lead-boxes {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (min-width: 400px) {
+
+  .array-content td, .array-header th {
+    min-width: 33%;
+  }
+
+  .leaderbord-lists {
+    padding: 1rem 2rem;
+  }
+}
+
+
+/**? ============================================= */
+/**? ===== LEADERBORAD PAGE TABLETTE DISPLAY ===== */
+/**? ============================================= */
+
+@media screen and (min-width: 768px) {
+
+
+}
+
+@media screen and (min-width: 890px) {
+  .lead-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 2rem;
+
+    .leaderbord-lists {
+      padding: 1rem 2rem;
+      min-height: 40rem;
+    }
+  
+    .best-challenges {
+      width: 40rem;
+    }
+  
+    .best-players {
+        width: 40rem;
+    }
+}
+}
+
+/**? ============================================ */
+/**? ===== LEADERBOARD PAGE DESKTOP DISPLAY ===== */
+/**? ============================================ */
+
+@media screen and (min-width: 1024px) {
+  .lead-boxes {
+      gap: 80px;
+  }
+}
+
+/** =================================== */
+/** ===== CONNECTION PAGE SECTION ===== */
+/** =================================== */
+/**? ========================================== */
+/**? ===== CONNECTION PAGE MOBILE DISPLAY ===== */
+/**? ========================================== */
+
+.connection-form {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+}
+
+.back-button {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.link-password-reset:hover {
+  color: #a96aff;
+}
+
+/**? ============================================ */
+/**? ===== CONNECTION PAGE TABLETTE DISPLAY ===== */
+/**? ============================================ */
+
+@media screen and (min-width: 768px) {
+  .connection-form {
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+
+  .signup-form, .login-form {
+    width: 40%;
+    margin: 0 1rem 2rem 1rem;
+  }
+}
+
+/**? =========================================== */
+/**? ===== CONNECTION PAGE DESKTOP DISPLAY ===== */
+/**? =========================================== */
+@media screen and (min-width: 1024px) {
+  
+  .form-container-login {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .signup-form input, .login-form input {
+    height: 2rem;
+  }
+}
+
+
+
+.form-with-image {
+  display: flex;
+  flex-direction: row; 
+  width: 100%; 
+  align-items: center; 
+}
+
+.image-container {
+  width: 50%; 
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 80%; 
+  height: auto;
+  border-radius: 8px;
+}
+
+.form-container-column {
+  display: flex;
+  flex-direction: column;
+  width: 50%; 
+  padding: 0 20px; 
+}
+
+.login-section .form-container-column {
+  order: 2; 
+}
+
+.login-section .image-container {
+  order: 1; 
+}
+
+.signup-section .form-container-column {
+  order: 1; 
+}
+
+.signup-section .image-container {
+  order: 2; 
+}
+
+.low-title {
+  text-align: left; 
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.toggle-text {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .form-wrapper {
+      flex-direction: column; 
+      align-items: center;
+      padding: 15px;
+  }
+
+  .form-with-image {
+      flex-direction: column;
+      width: 90%;
+  }
+
+  .image-container {
+      width: 90%;
+      margin-bottom: 20px;
+  }
+
+  .form-container-column {
+      width: 100%;
+      padding: 0;
+  }
+
+  .low-title {
+      text-align: center;
+  }
+
+  .login-section .form-container-column,
+  .login-section .image-container,
+  .signup-section .form-container-column,
+  .signup-section .image-container {
+      order: 0; 
+  }
+}
+
+
+
+/** =============================== */
+/** ===== PROFIL PAGE SECTION ===== */
+/** =============================== */
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.profile-sentence {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.delete-account-container {
+  text-align: center; 
+  padding: 2rem 0; 
+}
+
+.danger-button {
+  background-color: #dc3545; 
+  color: white;
+  border: none;
+  border-radius: 8px; 
+  padding: 1rem 2rem; 
+  font-size: 1.1rem; 
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  font-weight: bold; 
+  
+}
+
+.danger-button:hover {
+  background-color: #c82333; 
+  transform: scale(1.05); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+.danger-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.5); 
+}
+
+
+@media (max-width: 600px) {
+  .danger-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+
+.chall-flex {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80vw;
+  margin: 1rem auto;
+  padding: 0.5rem 0;
+  overflow: visible;
+}
+
+
+.chall-flex-inside {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 900px) {
+  .chall-flex {
+    width: 98vw;
+    max-width: 100vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .boxes {
+    display: block;
+    width: 100%;
+    min-height: 575px; 
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .boxes {
+      display: block;
+      width: 90%;
+      min-width: 30%;
+      min-height: 400px;
+      margin: 1.5rem auto;
+      padding: 1.5rem;
+    
+  }
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column; /* Aligner l'avatar et le pseudo verticalement */
+  align-items: center; /* Centrer horizontalement */
+}
+
+.profile-completed-challenge-card {
+  display: flex;
+  flex-direction: column;
+  width: 280px; 
+  flex-shrink: 0; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  padding: 1.5rem;
+  margin: 1rem;
+}
+
+.profile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.profile-challenge-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-action-button {
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.profile-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.profile-form-input {
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--input-background);
+  color: var(--text-color);
+}
+
+.profile-form-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.profile-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.profile-video-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #333;
+}
+
+.profile-card-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.profile-card-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.profile-tag {
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.profile-details-button {
+  align-self: flex-start;
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+}
+
+.profile-details-button:hover {
+  background-color: var(--accent-color-darker);
+}
+
+
+.profile-created-challenges-section {
+  margin-top: 3rem;
+  width: 90%;
+  max-width: 960px;
+}
+
+.profile-created-challenges-title {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.profile-created-challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.profile-created-challenge-card {
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.profile-created-challenge-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.profile-created-challenge-card p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.button-center {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.chall-width {
+  
+  display: flex; 
+  gap: 1.5rem; 
+  overflow-x: auto;
+  padding: 1rem 0;
+  scroll-behavior: smooth;
+  width: auto; 
+}
+
+.chall-list {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chall-box {
+  background: radial-gradient(#3f117e, #6e21d8);
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px #6778A7;
+  padding: 1rem;
+  height: auto;
+}
+
+.chall-pres {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Responsive desktop */
+@media screen and (min-width: 768px) {
+  .profile-completed-challenge-card {
+    flex-direction: column; 
+    width: 300px; 
+  }
+}
+
+.profile-created-challenges-section {
+  margin-top: 3rem;
+  width: 90%;
+  max-width: 960px;
+}
+
+.profile-created-challenges-title {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.chall-flex#created-container {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 90%;
+  margin: 1.5rem auto;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+/* Styles pour la carte de défi créé (CreatedChall) */
+.profile-created-challenge-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px; 
+  flex-shrink: 0; 
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-background);
+  padding: 1.5rem;
+}
+
+.profile-created-challenge-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+.profile-created-challenge-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
+  background-color: #333; 
+  margin-bottom: 0.8rem;
+}
+
+.profile-created-challenge-card .card-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.profile-created-challenge-card .challenges-tag {
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.profile-created-challenge-card .challenges-tag:nth-child(3) { 
+  background-color: #007bff; 
+}
+
+.profile-created-challenge-card .default-button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  background-color: var(--accent-color);
+  transition: background-color 0.3s ease;
+  align-self: flex-start; 
+}
+
+.profile-created-challenge-card .default-button:hover {
+  background-color: var(--accent-color-darker);
+}
+
+/** ================================= */
+/** ===== UPDATE PROFIL SECTION ===== */
+/** ================================= */
+
+.password-form {
+  margin-top: 2rem;
+}
+
+.update-profile-button {
+  text-align: right;
+  margin: 0 2rem 2rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .update-profile-button {
+    width: 85%;
+  }
+}
+
+
+/** ==================================== */
+/** ===== FOOTER COMPONENT SECTION ===== */
+/** ==================================== */
+
+.footer {
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 1.5rem 1rem;
+  color: white;
+}
+
+.footer-text {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-links a {
+  margin: 0 8px;
+  text-decoration: none;
+  color: #8fa3ff;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/** ==================================== */
+/** ===== 404NotFound PAGE SECTION ===== */
+/** ==================================== */
+
+.link-color:hover {
+  color: #AFCCFA;
+}
+
+.main-404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-sentence-404 {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.home-link-404 {
+  text-align: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.dino-car-404 {
+  max-width: 75%;
+  height: auto;
+}
+
+/**? ==================================== */
+/**? ===== 404NotFound PAGE DISPLAY ===== */
+/**? ==================================== */
+
+@media screen and (min-width: 650px) {
+  .dino-car-404 {
+    max-width: 60%;
+    height: auto;
+  }
+}
